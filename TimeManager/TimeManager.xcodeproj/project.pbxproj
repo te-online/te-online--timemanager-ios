@@ -14,6 +14,7 @@
 		E958A1321D5874A000FB6166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E958A1311D5874A000FB6166 /* Assets.xcassets */; };
 		E958A1351D5874A000FB6166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A1331D5874A000FB6166 /* LaunchScreen.storyboard */; };
 		E958A13D1D5880BB00FB6166 /* ClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */; };
+		E958A1411D58A97700FB6166 /* ProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1401D58A97700FB6166 /* ProjectTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E958A1341D5874A000FB6166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E958A1361D5874A000FB6166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTableViewController.swift; sourceTree = "<group>"; };
+		E958A1401D58A97700FB6166 /* ProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				E958A1361D5874A000FB6166 /* Info.plist */,
 				E958A12E1D5874A000FB6166 /* TimeManager.xcdatamodeld */,
 				E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */,
+				E958A1401D58A97700FB6166 /* ProjectTableViewController.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E958A13D1D5880BB00FB6166 /* ClientTableViewController.swift in Sources */,
+				E958A1411D58A97700FB6166 /* ProjectTableViewController.swift in Sources */,
 				E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */,
 				E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,

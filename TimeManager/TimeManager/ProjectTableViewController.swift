@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClientTableViewController: UITableViewController {
+class ProjectTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +21,14 @@ class ClientTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("clients") as UITableViewCell!
-        cell.textLabel?.text = "Hello"
+        let cell = tableView.dequeueReusableCellWithIdentifier("projects") as UITableViewCell!
+        cell.textLabel?.text = "World"
         
         return cell
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("selectedClient", sender: nil)
+        return 3
     }
     
 }
