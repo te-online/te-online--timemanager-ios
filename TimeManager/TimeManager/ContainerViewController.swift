@@ -10,7 +10,7 @@ import UIKit
 
 class ContainerViewController: UIViewController {
     
-    var clientsController: UIViewController!
+    var entriesScreenController: UIViewController!
     var overviewScreenController: UIViewController!
     var statisticsScreenController: UIViewController!
     var currentViewController: UIViewController!
@@ -19,7 +19,7 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
         
         // Load all the nice child views we're going to use.
-        self.clientsController = storyboard?.instantiateViewControllerWithIdentifier("ClientsViewController")
+        self.entriesScreenController = storyboard?.instantiateViewControllerWithIdentifier("EntriesViewController")
         self.overviewScreenController = storyboard?.instantiateViewControllerWithIdentifier("OverviewScreenController")
         self.statisticsScreenController = storyboard?.instantiateViewControllerWithIdentifier("StatisticsScreenController")
         self.currentViewController = nil
@@ -42,7 +42,7 @@ class ContainerViewController: UIViewController {
     }
     
     @IBAction func NavBarButtonEntriesTouched(sender: AnyObject) {
-        self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.clientsController)
+        self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.entriesScreenController)
     }
     
     @IBAction func NavBarButtonStatisticsTouched(sender: AnyObject) {

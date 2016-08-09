@@ -25,6 +25,7 @@
 		E958A1521D59E8CB00FB6166 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E958A14D1D59E8CB00FB6166 /* Poppins-SemiBold.ttf */; };
 		E958A1541D59FDDF00FB6166 /* OverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1531D59FDDF00FB6166 /* OverviewController.swift */; };
 		E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1571D5A275A00FB6166 /* SettingsController.swift */; };
+		E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1591D5A292600FB6166 /* EntriesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		E958A14D1D59E8CB00FB6166 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		E958A1531D59FDDF00FB6166 /* OverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewController.swift; sourceTree = "<group>"; };
 		E958A1571D5A275A00FB6166 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		E958A1591D5A292600FB6166 /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				E958A1461D59D5F500FB6166 /* ContainerViewController.swift */,
 				E958A1531D59FDDF00FB6166 /* OverviewController.swift */,
 				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
+				E958A1591D5A292600FB6166 /* EntriesViewController.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */,
 				E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,
+				E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
