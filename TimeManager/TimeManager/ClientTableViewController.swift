@@ -36,7 +36,7 @@ class ClientTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("selectedClient", sender: nil)
+        //performSegueWithIdentifier("selectedClient", sender: nil)
     }
     
 }
