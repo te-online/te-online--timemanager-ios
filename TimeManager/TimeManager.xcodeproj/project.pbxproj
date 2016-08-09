@@ -24,6 +24,7 @@
 		E958A1511D59E8CB00FB6166 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E958A14C1D59E8CB00FB6166 /* Poppins-Regular.ttf */; };
 		E958A1521D59E8CB00FB6166 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E958A14D1D59E8CB00FB6166 /* Poppins-SemiBold.ttf */; };
 		E958A1541D59FDDF00FB6166 /* OverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1531D59FDDF00FB6166 /* OverviewController.swift */; };
+		E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1571D5A275A00FB6166 /* SettingsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		E958A14C1D59E8CB00FB6166 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		E958A14D1D59E8CB00FB6166 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		E958A1531D59FDDF00FB6166 /* OverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewController.swift; sourceTree = "<group>"; };
+		E958A1571D5A275A00FB6166 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				E958A1441D59CE3300FB6166 /* NavBarController.swift */,
 				E958A1461D59D5F500FB6166 /* ContainerViewController.swift */,
 				E958A1531D59FDDF00FB6166 /* OverviewController.swift */,
+				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */,
 				E958A1541D59FDDF00FB6166 /* OverviewController.swift in Sources */,
 				E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */,
+				E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */,
 				E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */,
 				E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,

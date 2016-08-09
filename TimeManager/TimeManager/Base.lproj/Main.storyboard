@@ -10,7 +10,16 @@
             <string>Poppins-Light</string>
             <string>Poppins-Light</string>
         </mutableArray>
+        <mutableArray key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+            <string>Poppins-Medium</string>
+            <string>Poppins-Medium</string>
+        </mutableArray>
         <mutableArray key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
@@ -349,6 +358,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJb-0C-amA">
                                         <rect key="frame" x="16" y="546" width="54" height="30"/>
                                         <state key="normal" title="Options"/>
+                                        <connections>
+                                            <segue destination="4e4-wf-iOJ" kind="presentation" modalPresentationStyle="pageSheet" id="NGm-R0-4QN"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTn-ax-adf">
                                         <rect key="frame" x="11" y="192" width="64" height="30"/>
@@ -392,6 +404,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHz-3D-saZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1889" y="792"/>
+        </scene>
+        <!--Settings Controller-->
+        <scene sceneID="alh-g0-d3C">
+            <objects>
+                <viewController id="4e4-wf-iOJ" customClass="SettingsController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Xn-ns-qro"/>
+                        <viewControllerLayoutGuide type="bottom" id="4qT-vS-vrc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="74j-6j-7SZ">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvA-eZ-iIb">
+                                <rect key="frame" x="20" y="65" width="126" height="21"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
+                                <color key="textColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cho-Em-v3l">
+                                <rect key="frame" x="20" y="169" width="140" height="30"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Common" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-4W-OmF">
+                                <rect key="frame" x="20" y="115" width="126" height="30"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                                <color key="textColor" red="0.51372549019607838" green="0.52549019607843139" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start week with" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCe-eq-fIj">
+                                <rect key="frame" x="20" y="147" width="140" height="30"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YAx-7o-iCW">
+                                <rect key="frame" x="199" y="54" width="181" height="216"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Cloud Sync" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsA-iS-LkL">
+                                <rect key="frame" x="20" y="260" width="126" height="30"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                                <color key="textColor" red="0.51372549020000002" green="0.52549019610000003" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="te-cloud.de Server" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9v1-86-e5z">
+                                <rect key="frame" x="20" y="293" width="140" height="30"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klw-Ch-XEk">
+                                <rect key="frame" x="292" y="331" width="88" height="30"/>
+                                <state key="normal" title="Authenticate"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Microsoft One Drive" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oK-GX-0JP">
+                                <rect key="frame" x="20" y="328" width="140" height="30"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1a9-Vb-UJo">
+                                <rect key="frame" x="301" y="296" width="79" height="30"/>
+                                <state key="normal" title="Start Setup"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMe-wp-Gik">
+                                <rect key="frame" x="343" y="8" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <segue destination="38D-Ns-GST" kind="unwind" unwindAction="dismissSettings:" id="wuA-5R-HVW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wMe-wp-Gik" firstAttribute="top" secondItem="6Xn-ns-qro" secondAttribute="bottom" constant="8" id="0bU-ye-tfv"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="SsA-iS-LkL" secondAttribute="leading" id="8rE-oc-2OV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1a9-Vb-UJo" secondAttribute="trailing" id="MfC-T2-2TM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wMe-wp-Gik" secondAttribute="trailing" id="egT-jJ-Dk3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YAx-7o-iCW" secondAttribute="trailing" id="sV9-94-Eps"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="klw-Ch-XEk" secondAttribute="trailing" id="yR8-Nd-DN3"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="600"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tUs-b5-8uW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="38D-Ns-GST" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-1889" y="1601"/>
         </scene>
         <!--Client Table View Controller-->
         <scene sceneID="sD4-Ag-Tf5">

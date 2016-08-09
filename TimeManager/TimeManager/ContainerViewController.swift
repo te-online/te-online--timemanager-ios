@@ -33,6 +33,10 @@ class ContainerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func dismissSettings(unwindSegue: UIStoryboardSegue) {
+        
+    }
+    
     @IBAction func NavBarButtonOverviewTouched(sender: AnyObject) {
         self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.overviewScreenController)
     }
