@@ -16,6 +16,8 @@
 		E958A13D1D5880BB00FB6166 /* ClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */; };
 		E958A1411D58A97700FB6166 /* ProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1401D58A97700FB6166 /* ProjectTableViewController.swift */; };
 		E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1421D58C16B00FB6166 /* PageViewController.swift */; };
+		E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1441D59CE3300FB6166 /* NavBarController.swift */; };
+		E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1461D59D5F500FB6166 /* ContainerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTableViewController.swift; sourceTree = "<group>"; };
 		E958A1401D58A97700FB6166 /* ProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewController.swift; sourceTree = "<group>"; };
 		E958A1421D58C16B00FB6166 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		E958A1441D59CE3300FB6166 /* NavBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarController.swift; sourceTree = "<group>"; };
+		E958A1461D59D5F500FB6166 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 				E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */,
 				E958A1401D58A97700FB6166 /* ProjectTableViewController.swift */,
 				E958A1421D58C16B00FB6166 /* PageViewController.swift */,
+				E958A1441D59CE3300FB6166 /* NavBarController.swift */,
+				E958A1461D59D5F500FB6166 /* ContainerViewController.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -149,7 +155,9 @@
 			files = (
 				E958A13D1D5880BB00FB6166 /* ClientTableViewController.swift in Sources */,
 				E958A1411D58A97700FB6166 /* ProjectTableViewController.swift in Sources */,
+				E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */,
 				E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */,
+				E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */,
 				E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */,
 				E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,
