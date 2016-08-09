@@ -34,19 +34,16 @@ class ContainerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func NavBarButtonStatisticsTouched(sender: AnyObject) {
-        self.hideContentController(self.currentViewController)
-        self.displayContentController(self.statisticsScreenController)
+    @IBAction func NavBarButtonOverviewTouched(sender: AnyObject) {
+        self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.overviewScreenController)
     }
     
     @IBAction func NavBarButtonEntriesTouched(sender: AnyObject) {
-        self.hideContentController(self.currentViewController)
-        self.displayContentController(self.clientsController)
+        self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.clientsController)
     }
     
-    @IBAction func NavBarButtonOverviewTouched(sender: AnyObject) {
-        self.hideContentController(self.currentViewController)
-        self.displayContentController(self.overviewScreenController)
+    @IBAction func NavBarButtonStatisticsTouched(sender: AnyObject) {
+        self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.statisticsScreenController)
     }
     
     func displayContentController(content: UIViewController!) {
@@ -71,18 +68,24 @@ class ContainerViewController: UIViewController {
         content.removeFromParentViewController()
     }
     
-//    func cycleFromViewController(oldVC: UIViewController, toViewController newVC: UIViewController) {
-//        oldVC.willMoveToParentViewController(nil)
-//        self.addChildViewController(newVC)
+    func cycleFromViewController(fromViewController oldVC: UIViewController!, toViewController newVC: UIViewController!) {
+        if(oldVC == newVC || oldVC == nil || newVC == nil) {
+            return
+        }
+        oldVC.willMoveToParentViewController(nil)
+        self.addChildViewController(newVC)
+        newVC.view.alpha = 0
+        newVC.view.frame = self.frameFromContentController()
 //        newVC.view.frame = self.newViewStartFrame()
 //        var endFrame: CGRect = self.oldViewEndFrame()
-//        self.transitionFromViewController(oldVC, toViewController: newVC, duration: 0.25, options: [], animations: {() -> Void in
-//            newVC.view.frame = oldVC.view.frame
-//            oldVC.view.frame = endFrame
-//            }, completion: {(finished: Bool) -> Void in
-//                oldVC.removeFromParentViewController()
-//                newVC.didMoveToParentViewController(self)
-//        })
-//    }
+        self.transitionFromViewController(oldVC, toViewController: newVC, duration: 0.25, options: [], animations: {() -> Void in
+            newVC.view.alpha = 1
+            oldVC.view.alpha = 0
+            }, completion: {(finished: Bool) -> Void in
+                oldVC.removeFromParentViewController()
+                newVC.didMoveToParentViewController(self)
+                self.currentViewController = newVC
+        })
+    }
     
 }
