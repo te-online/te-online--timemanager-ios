@@ -17,15 +17,14 @@ class ContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-//        currentScreen = 0;
-//        screens = ["OverviewScreenContainer", "EntriesScreenContainer", "StatisticsScreenContainer"]
+        // Load all the nice child views we're going to use.
         self.clientsController = storyboard?.instantiateViewControllerWithIdentifier("ClientsViewController")
         self.overviewScreenController = storyboard?.instantiateViewControllerWithIdentifier("OverviewScreenController")
         self.statisticsScreenController = storyboard?.instantiateViewControllerWithIdentifier("StatisticsScreenController")
         self.currentViewController = nil
         
+        // Show the first view.
         self.displayContentController(overviewScreenController!)
     }
     
@@ -47,43 +46,49 @@ class ContainerViewController: UIViewController {
     }
     
     func displayContentController(content: UIViewController!) {
-        if(content == nil) {
-            return
-        }
+        // Add the new view controller.
         self.addChildViewController(content!)
-        content!.view.frame = self.frameFromContentController()
+        // Make sure the view fits perfectly into our layout.
+        content!.view.frame = self.visibleFrameForEmbeddedControllers()
+        // Add the new view.
         self.view!.addSubview(content!.view)
+        // Tell the child that it now lives at their parents.
         content!.didMoveToParentViewController(self)
+        // Store the current view controller, just in case.
         self.currentViewController = content
     }
     
-    func frameFromContentController() -> CGRect {
+    func visibleFrameForEmbeddedControllers() -> CGRect {
+        // Let's give them a rect, where the nav bar is still visible (Nav Bar is 86px in width and full height).
         let showRect = CGRect(x: 86, y: 0, width: self.view!.frame.width - 86, height:self.view!.frame.height)
         return showRect
-    }
-    
-    func hideContentController(content: UIViewController) {
-        content.willMoveToParentViewController(nil)
-        content.view.removeFromSuperview()
-        content.removeFromParentViewController()
     }
     
     func cycleFromViewController(fromViewController oldVC: UIViewController!, toViewController newVC: UIViewController!) {
         if(oldVC == newVC || oldVC == nil || newVC == nil) {
             return
         }
+        // Prepare removing from parent.
         oldVC.willMoveToParentViewController(nil)
-        self.addChildViewController(newVC)
+        // Add new view controller.
+        self.addChildViewController(newVC!)
+        // Make new view controller transparent.
         newVC.view.alpha = 0
-        newVC.view.frame = self.frameFromContentController()
-//        newVC.view.frame = self.newViewStartFrame()
-//        var endFrame: CGRect = self.oldViewEndFrame()
+        // Make new view controller fit the available space.
+        newVC.view.frame = self.visibleFrameForEmbeddedControllers()
+        // Add the new view.
+        self.view!.addSubview(newVC!.view)
+        // Transition the new view controller to visible and the old one to transparent.
         self.transitionFromViewController(oldVC, toViewController: newVC, duration: 0.25, options: [], animations: {() -> Void in
             newVC.view.alpha = 1
             oldVC.view.alpha = 0
             }, completion: {(finished: Bool) -> Void in
+                // Remove old view controller after animation.
+                oldVC.view.removeFromSuperview()
                 oldVC.removeFromParentViewController()
+                // Make sure new view controller knows they're home.
                 newVC.didMoveToParentViewController(self)
+                // Store current view controller, just in case.
                 self.currentViewController = newVC
         })
     }
