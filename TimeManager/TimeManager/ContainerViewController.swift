@@ -15,13 +15,6 @@ class ContainerViewController: UIViewController {
     var statisticsScreenController: UIViewController!
     var currentViewController: UIViewController!
     
-//    var currentScreen = Int()
-//    var screens = [String]()
-    @IBAction func NavBarButtonStatisticsTouched(sender: AnyObject) {
-        self.hideContentController(self.currentViewController)
-        self.displayContentController(self.statisticsScreenController)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,6 +32,21 @@ class ContainerViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func NavBarButtonStatisticsTouched(sender: AnyObject) {
+        self.hideContentController(self.currentViewController)
+        self.displayContentController(self.statisticsScreenController)
+    }
+    
+    @IBAction func NavBarButtonEntriesTouched(sender: AnyObject) {
+        self.hideContentController(self.currentViewController)
+        self.displayContentController(self.clientsController)
+    }
+    
+    @IBAction func NavBarButtonOverviewTouched(sender: AnyObject) {
+        self.hideContentController(self.currentViewController)
+        self.displayContentController(self.overviewScreenController)
     }
     
     func displayContentController(content: UIViewController!) {

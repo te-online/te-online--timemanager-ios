@@ -102,10 +102,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGx-II-c1F">
                                         <rect key="frame" x="19" y="90" width="48" height="30"/>
                                         <state key="normal" title="Entries"/>
+                                        <connections>
+                                            <action selector="NavBarButtonEntriesTouched:" destination="hje-Nn-7VH" eventType="touchUpInside" id="5LK-Ar-jFX"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM6-K5-8Ns">
                                         <rect key="frame" x="11" y="21" width="64" height="30"/>
                                         <state key="normal" title="Overview"/>
+                                        <connections>
+                                            <action selector="NavBarButtonOverviewTouched:" destination="hje-Nn-7VH" eventType="touchUpInside" id="p9N-wi-OiL"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJb-0C-amA">
                                         <rect key="frame" x="16" y="546" width="54" height="30"/>
