@@ -6,32 +6,23 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="EUY-36-omD">
+        <!--View Controller-->
+        <scene sceneID="F5e-V1-hYt">
             <objects>
-                <navigationController navigationBarHidden="YES" id="7OD-2o-txD" sceneMemberID="viewController">
-                    <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZhR-cZ-v6z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Dpx-4w-rGS" kind="relationship" relationship="rootViewController" id="VPW-CS-16L"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rhs-bH-Ng2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="9u7-mg-DZE" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uhi-QI-JQH"/>
+                        <viewControllerLayoutGuide type="bottom" id="hPL-ei-49s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eE8-vY-A0z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="150-JX-qVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-660" y="424"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="cgY-Nv-KLL">
-            <objects>
-                <pageViewController storyboardIdentifier="pageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="2" navigationOrientation="horizontal" spineLocation="none" doubleSided="YES" id="ekP-5U-vOS" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="bjJ-RF-Hqy"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7T5-xt-L6P" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-15" y="424"/>
+            <point key="canvasLocation" x="-161" y="792"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Zsc-7W-6hj">
@@ -75,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVQ-OM-tUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="654" y="424"/>
+            <point key="canvasLocation" x="-1020" y="792"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="1TL-2z-7It">
@@ -92,35 +83,38 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1A1-ab-oz6">
                                 <rect key="frame" x="0.0" y="0.0" width="86" height="600"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTn-ax-adf">
-                                        <rect key="frame" x="11" y="164" width="64" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJb-0C-amA">
+                                        <rect key="frame" x="16" y="546" width="54" height="30"/>
+                                        <state key="normal" title="Options"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTn-ax-adf">
+                                        <rect key="frame" x="11" y="192" width="64" height="30"/>
                                         <state key="normal" title="Statistics"/>
                                         <connections>
                                             <action selector="NavBarButtonStatisticsTouched:" destination="hje-Nn-7VH" eventType="touchUpInside" id="OV9-IQ-L0j"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGx-II-c1F">
-                                        <rect key="frame" x="19" y="90" width="48" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGx-II-c1F">
+                                        <rect key="frame" x="19" y="118" width="48" height="30"/>
                                         <state key="normal" title="Entries"/>
                                         <connections>
                                             <action selector="NavBarButtonEntriesTouched:" destination="hje-Nn-7VH" eventType="touchUpInside" id="5LK-Ar-jFX"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM6-K5-8Ns">
-                                        <rect key="frame" x="11" y="21" width="64" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM6-K5-8Ns">
+                                        <rect key="frame" x="11" y="49" width="64" height="30"/>
                                         <state key="normal" title="Overview"/>
                                         <connections>
                                             <action selector="NavBarButtonOverviewTouched:" destination="hje-Nn-7VH" eventType="touchUpInside" id="p9N-wi-OiL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJb-0C-amA">
-                                        <rect key="frame" x="16" y="546" width="54" height="30"/>
-                                        <state key="normal" title="Options"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="hJb-0C-amA" secondAttribute="bottom" constant="24" id="CDB-zR-GEZ"/>
+                                    <constraint firstItem="cGx-II-c1F" firstAttribute="top" secondItem="1A1-ab-oz6" secondAttribute="top" constant="118" id="RKs-Lj-F7v"/>
+                                    <constraint firstItem="yTn-ax-adf" firstAttribute="top" secondItem="1A1-ab-oz6" secondAttribute="top" constant="192" id="deK-ns-gck"/>
+                                    <constraint firstItem="aM6-K5-8Ns" firstAttribute="top" secondItem="1A1-ab-oz6" secondAttribute="top" constant="49" id="hjR-GR-39b"/>
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </view>
@@ -134,76 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHz-3D-saZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1067" y="1146"/>
-        </scene>
-        <!--Nav Bar Controller-->
-        <scene sceneID="96x-Tx-Btw">
-            <objects>
-                <viewController id="Dpx-4w-rGS" customClass="NavBarController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CKP-j9-RcO"/>
-                        <viewControllerLayoutGuide type="bottom" id="Q3h-MF-41o"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oGw-40-zC1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJl-ue-fn3">
-                                <rect key="frame" x="19" y="83" width="48" height="30"/>
-                                <state key="normal" title="Entries"/>
-                                <connections>
-                                    <action selector="NavBarButtonEntriesTouch:" destination="Dpx-4w-rGS" eventType="touchUpInside" id="69N-h0-oyE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZC-Qu-t0s">
-                                <rect key="frame" x="11" y="153" width="64" height="30"/>
-                                <state key="normal" title="Statistics"/>
-                                <connections>
-                                    <action selector="NavBarButtonStatisticsTouch:" destination="Dpx-4w-rGS" eventType="touchUpInside" id="Gsc-oK-Hiy"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIk-a2-1pw">
-                                <rect key="frame" x="16" y="550" width="54" height="30"/>
-                                <state key="normal" title="Options"/>
-                            </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75n-nX-GAN">
-                                <rect key="frame" x="97" y="0.0" width="1" height="600"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLG-36-Y55" userLabel="Container Clients">
-                                <rect key="frame" x="98" y="0.0" width="502" height="600"/>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwG-Ya-Xs2" userLabel="Container Overview">
-                                <rect key="frame" x="98" y="0.0" width="502" height="600"/>
-                            </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DP9-db-EBM">
-                                <rect key="frame" x="11" y="20" width="64" height="30"/>
-                                <state key="normal" title="Overview"/>
-                                <connections>
-                                    <action selector="NavBarButtonOverviewTouch:" destination="Dpx-4w-rGS" eventType="touchUpInside" id="4VA-zY-ZMT"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="aLG-36-Y55" firstAttribute="width" secondItem="oGw-40-zC1" secondAttribute="width" id="7ki-El-xGF"/>
-                            <constraint firstItem="aLG-36-Y55" firstAttribute="height" secondItem="oGw-40-zC1" secondAttribute="height" id="8Uc-Iv-a0A"/>
-                            <constraint firstItem="uwG-Ya-Xs2" firstAttribute="width" secondItem="oGw-40-zC1" secondAttribute="width" id="A1A-j3-7sG"/>
-                            <constraint firstItem="qZC-Qu-t0s" firstAttribute="top" secondItem="CKP-j9-RcO" secondAttribute="bottom" constant="133" id="GMF-vJ-qR3"/>
-                            <constraint firstItem="uwG-Ya-Xs2" firstAttribute="leading" secondItem="oGw-40-zC1" secondAttribute="leadingMargin" constant="78" id="Js6-86-24L"/>
-                            <constraint firstItem="aLG-36-Y55" firstAttribute="leading" secondItem="oGw-40-zC1" secondAttribute="leadingMargin" constant="78" id="anO-j5-Il1"/>
-                            <constraint firstItem="DP9-db-EBM" firstAttribute="top" secondItem="CKP-j9-RcO" secondAttribute="bottom" id="cT4-Um-bnc"/>
-                            <constraint firstItem="Q3h-MF-41o" firstAttribute="top" secondItem="fIk-a2-1pw" secondAttribute="bottom" constant="20" id="dYc-hE-bSe"/>
-                            <constraint firstItem="mJl-ue-fn3" firstAttribute="top" secondItem="CKP-j9-RcO" secondAttribute="bottom" constant="63" id="oHD-2W-Ibg"/>
-                            <constraint firstItem="uwG-Ya-Xs2" firstAttribute="height" secondItem="oGw-40-zC1" secondAttribute="height" id="vZi-ed-XZP"/>
-                            <constraint firstItem="75n-nX-GAN" firstAttribute="height" secondItem="oGw-40-zC1" secondAttribute="height" id="xBT-ti-c0q"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="kTz-Jx-6YO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y89-kU-Chr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-316" y="1164"/>
+            <point key="canvasLocation" x="-1889" y="792"/>
         </scene>
         <!--Client Table View Controller-->
         <scene sceneID="sD4-Ag-Tf5">
@@ -232,7 +157,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9P-jd-DVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="307" y="1184"/>
+            <point key="canvasLocation" x="497" y="792"/>
         </scene>
         <!--Project Table View Controller-->
         <scene sceneID="07F-6v-180">
@@ -260,7 +185,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t29-ob-9pn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1002" y="1184"/>
+            <point key="canvasLocation" x="1166" y="792"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="H3f-Em-wOl">
@@ -290,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Id-Ne-3lI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344" y="424"/>
+            <point key="canvasLocation" x="-1020" y="1462"/>
         </scene>
     </scenes>
 </document>
