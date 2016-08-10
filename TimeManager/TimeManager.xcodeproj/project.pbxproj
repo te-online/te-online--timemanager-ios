@@ -26,6 +26,8 @@
 		E958A1541D59FDDF00FB6166 /* OverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1531D59FDDF00FB6166 /* OverviewController.swift */; };
 		E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1571D5A275A00FB6166 /* SettingsController.swift */; };
 		E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1591D5A292600FB6166 /* EntriesViewController.swift */; };
+		E96751CD1D5B69CA001FFBDC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E96751CC1D5B69CA001FFBDC /* Podfile */; };
+		E96751CF1D5B7321001FFBDC /* ClientsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96751CE1D5B7321001FFBDC /* ClientsCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		E958A1531D59FDDF00FB6166 /* OverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewController.swift; sourceTree = "<group>"; };
 		E958A1571D5A275A00FB6166 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		E958A1591D5A292600FB6166 /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
+		E96751CC1D5B69CA001FFBDC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		E96751CE1D5B7321001FFBDC /* ClientsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,12 +96,14 @@
 				E958A12E1D5874A000FB6166 /* TimeManager.xcdatamodeld */,
 				E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */,
 				E958A1401D58A97700FB6166 /* ProjectTableViewController.swift */,
+				E96751CC1D5B69CA001FFBDC /* Podfile */,
 				E958A1421D58C16B00FB6166 /* PageViewController.swift */,
 				E958A1441D59CE3300FB6166 /* NavBarController.swift */,
 				E958A1461D59D5F500FB6166 /* ContainerViewController.swift */,
 				E958A1531D59FDDF00FB6166 /* OverviewController.swift */,
 				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
 				E958A1591D5A292600FB6166 /* EntriesViewController.swift */,
+				E96751CE1D5B7321001FFBDC /* ClientsCollectionViewController.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -178,6 +184,7 @@
 				E958A1321D5874A000FB6166 /* Assets.xcassets in Resources */,
 				E958A1501D59E8CB00FB6166 /* Poppins-Medium.ttf in Resources */,
 				E958A1521D59E8CB00FB6166 /* Poppins-SemiBold.ttf in Resources */,
+				E96751CD1D5B69CA001FFBDC /* Podfile in Resources */,
 				E958A12D1D5874A000FB6166 /* Main.storyboard in Resources */,
 				E958A14E1D59E8CB00FB6166 /* Poppins-Bold.ttf in Resources */,
 			);
@@ -191,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E958A13D1D5880BB00FB6166 /* ClientTableViewController.swift in Sources */,
+				E96751CF1D5B7321001FFBDC /* ClientsCollectionViewController.swift in Sources */,
 				E958A1411D58A97700FB6166 /* ProjectTableViewController.swift in Sources */,
 				E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */,
 				E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */,
@@ -352,6 +360,7 @@
 				E958A13B1D5874A000FB6166 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

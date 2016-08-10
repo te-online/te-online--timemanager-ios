@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hje-Nn-7VH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="y5a-J1-Nnm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,6 +16,9 @@
             <string>Poppins-Medium</string>
         </mutableArray>
         <mutableArray key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
@@ -530,6 +533,93 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9P-jd-DVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-379" y="1465"/>
+        </scene>
+        <!--Clients-->
+        <scene sceneID="KVF-Ia-jnt">
+            <objects>
+                <collectionViewController title="Clients" id="y5a-J1-Nnm" customClass="ClientsCollectionViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="0xh-u6-1h7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rDb-Y8-5Gk">
+                            <size key="itemSize" width="600" height="63"/>
+                            <size key="headerReferenceSize" width="50" height="40"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="client" id="rig-Ks-k5X">
+                                <rect key="frame" x="0.0" y="40" width="600" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sirius Cybernetics Corp." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ttu-L3-EzX">
+                                            <rect key="frame" x="13" y="10" width="579" height="23"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                            <color key="textColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VHv-gY-K55">
+                                            <rect key="frame" x="565" y="10" width="27" height="44"/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uD2-fc-9e4" userLabel="Bottom Separator">
+                                            <rect key="frame" x="0.0" y="62" width="600" height="1"/>
+                                            <color key="backgroundColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2 projects • 224 hrs. • since 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdO-Pw-KUs">
+                                            <rect key="frame" x="13" y="34" width="579" height="21"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
+                                            <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="WdO-Pw-KUs" firstAttribute="top" secondItem="rig-Ks-k5X" secondAttribute="topMargin" constant="26" id="6Ul-Bm-1vJ"/>
+                                    <constraint firstItem="uD2-fc-9e4" firstAttribute="width" secondItem="rig-Ks-k5X" secondAttribute="width" id="AmF-vu-bPh"/>
+                                    <constraint firstItem="WdO-Pw-KUs" firstAttribute="leading" secondItem="rig-Ks-k5X" secondAttribute="leadingMargin" constant="5" id="Gi3-v4-LTr"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="uD2-fc-9e4" secondAttribute="bottom" constant="-8" id="byb-d3-cQ5"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="VHv-gY-K55" secondAttribute="trailing" id="kBg-Hn-Bwv"/>
+                                    <constraint firstItem="Ttu-L3-EzX" firstAttribute="leading" secondItem="rig-Ks-k5X" secondAttribute="leadingMargin" constant="5" id="n7W-Ki-jsK"/>
+                                    <constraint firstItem="Ttu-L3-EzX" firstAttribute="top" secondItem="rig-Ks-k5X" secondAttribute="topMargin" constant="2" id="ouH-fb-FUR"/>
+                                    <constraint firstItem="VHv-gY-K55" firstAttribute="centerY" secondItem="rig-Ks-k5X" secondAttribute="centerY" id="sIj-Kb-c9f"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clientsHeadline" id="8o1-Mp-8tM">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CLIENTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiP-Jn-9wm">
+                                    <rect key="frame" x="13" y="14" width="579" height="23"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                    <color key="textColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FCi-Sy-10d" userLabel="Bottom Separator">
+                                    <rect key="frame" x="0.0" y="38" width="600" height="1"/>
+                                    <color key="backgroundColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="FCi-Sy-10d" firstAttribute="width" secondItem="8o1-Mp-8tM" secondAttribute="width" id="IdD-Of-QkL"/>
+                                <constraint firstItem="KiP-Jn-9wm" firstAttribute="top" secondItem="8o1-Mp-8tM" secondAttribute="topMargin" constant="6" id="fsf-so-W8m"/>
+                                <constraint firstItem="KiP-Jn-9wm" firstAttribute="leading" secondItem="8o1-Mp-8tM" secondAttribute="leadingMargin" constant="5" id="xNA-Bz-aGY"/>
+                            </constraints>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="y5a-J1-Nnm" id="Kw8-Io-dBC"/>
+                            <outlet property="delegate" destination="y5a-J1-Nnm" id="F6h-OD-K59"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bqk-OV-25b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-379" y="2151"/>
         </scene>
         <!--Project Table View Controller-->
         <scene sceneID="07F-6v-180">
