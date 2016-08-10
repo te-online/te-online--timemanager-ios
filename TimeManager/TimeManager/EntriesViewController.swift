@@ -46,6 +46,27 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
         self.timesController.tableView.delegate = self
         //        self.timesController.tableView.dataSource = self
         
+        var shadowPath: UIBezierPath = UIBezierPath(rect: self.projectsController.view.bounds)
+        self.projectsController.view.layer.masksToBounds = false
+        self.projectsController.view.layer.shadowColor = UIColor.blackColor().CGColor
+        self.projectsController.view.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        self.projectsController.view.layer.shadowOpacity = 0.5
+        self.projectsController.view.layer.shadowPath = shadowPath.CGPath
+        
+        shadowPath = UIBezierPath(rect: self.tasksController.view.bounds)
+        self.tasksController.view.layer.masksToBounds = false
+        self.tasksController.view.layer.shadowColor = UIColor.blackColor().CGColor
+        self.tasksController.view.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        self.tasksController.view.layer.shadowOpacity = 0.5
+        self.tasksController.view.layer.shadowPath = shadowPath.CGPath
+        
+        shadowPath = UIBezierPath(rect: self.timesController.view.bounds)
+        self.timesController.view.layer.masksToBounds = false
+        self.timesController.view.layer.shadowColor = UIColor.blackColor().CGColor
+        self.timesController.view.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        self.timesController.view.layer.shadowOpacity = 0.5
+        self.timesController.view.layer.shadowPath = shadowPath.CGPath
+        
         // Show the first view.
         self.displayContentController(self.clientsController)
     }
@@ -55,18 +76,21 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
         if(tableView == self.clientsController.tableView) {
             if(self.currentSelection.clientId < 0) {
                 transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
+                (self.projectsController as! ProjectTableViewController).setFocus("self")
             }
             
             self.currentSelection.clientId = indexPath.row
         } else if(tableView == self.projectsController.tableView) {
             if(self.currentSelection.projectId < 0) {
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
+                (self.projectsController as! ProjectTableViewController).setFocus("next")
             }
             
             self.currentSelection.projectId = indexPath.row
         } else if(tableView == self.tasksController.tableView) {
             if(self.currentSelection.taskId < 0) {
                 transitionInViewController(lastViewController: self.tasksController, newViewController: self.timesController)
+                (self.projectsController as! ProjectTableViewController).setFocus("none")
             }
             
             self.currentSelection.taskId = indexPath.row
