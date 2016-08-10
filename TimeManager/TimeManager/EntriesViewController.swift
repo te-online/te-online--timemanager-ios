@@ -48,29 +48,29 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
         
         self.view.layer.masksToBounds = true
         
-        var shadowPath: UIBezierPath = UIBezierPath(rect: self.projectsController.view.bounds)
-        self.projectsController.view.layer.masksToBounds = false
-        self.projectsController.view.layer.shadowColor = UIColor.blackColor().CGColor
-        self.projectsController.view.layer.shadowOffset = CGSizeMake(0.0, 0.0)
-        self.projectsController.view.layer.shadowOpacity = 0.5
-        self.projectsController.view.layer.shadowPath = shadowPath.CGPath
-        
-        shadowPath = UIBezierPath(rect: self.tasksController.view.bounds)
-        self.tasksController.view.layer.masksToBounds = false
-        self.tasksController.view.layer.shadowColor = UIColor.blackColor().CGColor
-        self.tasksController.view.layer.shadowOffset = CGSizeMake(0.0, 0.0)
-        self.tasksController.view.layer.shadowOpacity = 0.5
-        self.tasksController.view.layer.shadowPath = shadowPath.CGPath
-        
-        shadowPath = UIBezierPath(rect: self.timesController.view.bounds)
-        self.timesController.view.layer.masksToBounds = false
-        self.timesController.view.layer.shadowColor = UIColor.blackColor().CGColor
-        self.timesController.view.layer.shadowOffset = CGSizeMake(0.0, 0.0)
-        self.timesController.view.layer.shadowOpacity = 0.5
-        self.timesController.view.layer.shadowPath = shadowPath.CGPath
+        // Get some shadows from the factory.
+        self.produceShadow(self.projectsController)
+        self.produceShadow(self.tasksController)
+        self.produceShadow(self.timesController)
         
         // Show the first view.
         self.displayContentController(self.clientsController)
+    }
+    
+    func produceShadow(viewController: UIViewController) {
+        let shadowPath: UIBezierPath = UIBezierPath()
+        shadowPath.moveToPoint(CGPointMake(0.0, 0.0))
+        shadowPath.addLineToPoint(CGPointMake(0.0, CGRectGetHeight(viewController.view.frame)))
+        shadowPath.addLineToPoint(CGPointMake(-4.0, CGRectGetHeight(viewController.view.frame)))
+        shadowPath.addLineToPoint(CGPointMake(-4.0, 0.0))
+        shadowPath.closePath()
+        
+        viewController.view.layer.masksToBounds = false
+        viewController.view.layer.shadowColor = UIColor.init(colorLiteralRed: 0.48, green: 0.48, blue: 0.48, alpha: 1.0).CGColor
+//        viewController.view.layer.shadowOffset = CGSizeMake(0, 0)
+        viewController.view.layer.shadowRadius = 4
+        viewController.view.layer.shadowOpacity = 0.5
+        viewController.view.layer.shadowPath = shadowPath.CGPath
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -225,12 +225,12 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
     }
     
     func visibleFrameForFirstEmbeddedController() -> CGRect {
-        let showRect = CGRect(x: 0, y: 0, width: self.view!.frame.width / 2, height:self.view!.frame.height)
+        let showRect = CGRect(x: 0, y: 0, width: self.view!.frame.width / 2 + 42, height: self.view!.frame.height)
         return showRect
     }
     
     func visibleFrameForEmbeddededControllers() -> CGRect {
-        let showRect = CGRect(x: self.view!.frame.width / 2, y: 0, width: self.view!.frame.width / 2, height:self.view!.frame.height)
+        let showRect = CGRect(x: self.view!.frame.width / 2, y: 0, width: self.view!.frame.width / 2, height: self.view!.frame.height)
         return showRect
     }
     

@@ -254,11 +254,14 @@ class ProjectTableViewController: UITableViewController {
             if(cardMode == CardMode.Invisible) {
                 // Position card to invisible
 //                xPos = self.parentViewController!.view!.frame.width + self.view!.frame.width / 2
-                xPos = self.view!.frame.width + self.view!.frame.width / 2
+                xPos = self.view!.frame.width * 2 + self.view!.frame.width / 2
 //                center = CGPointMake(xPos, self.view!.center.y)
 //                self.view!.alpha = 0
                 UIView.animateWithDuration(0.25, animations: {() -> Void in
                     self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                })
+                UIView.animateWithDuration(0.3, animations: {() -> Void in
+//                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
                     self.view!.alpha = 0
                 })
             }
