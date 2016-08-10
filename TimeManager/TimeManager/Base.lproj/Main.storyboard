@@ -496,16 +496,16 @@
             </objects>
             <point key="canvasLocation" x="-1889" y="1601"/>
         </scene>
-        <!--Client Table View Controller-->
+        <!--Project Table View Controller-->
         <scene sceneID="sD4-Ag-Tf5">
             <objects>
-                <tableViewController storyboardIdentifier="ClientsViewController" id="0p7-ld-OyE" customClass="ClientTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ClientsViewController" id="0p7-ld-OyE" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="left" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9L6-Px-1g7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.22613528200420896" blue="0.0015564945877715175" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="left" selectionStyle="default" indentationWidth="10" reuseIdentifier="clients" id="ubx-xP-c5h">
+                            <tableViewCell clipsSubviews="YES" contentMode="left" selectionStyle="default" indentationWidth="10" reuseIdentifier="projects" id="ubx-xP-c5h">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ubx-xP-c5h" id="eki-tD-4Xc">
@@ -578,10 +578,10 @@
             </objects>
             <point key="canvasLocation" x="-1020" y="2158"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Project Table View Controller-->
         <scene sceneID="DQB-0R-eHC">
             <objects>
-                <tableViewController storyboardIdentifier="TasksViewController" id="GnN-qL-9DY" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TasksViewController" id="GnN-qL-9DY" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="LWM-zP-tCW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -605,10 +605,10 @@
             </objects>
             <point key="canvasLocation" x="251" y="743"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Project Table View Controller-->
         <scene sceneID="yhS-XV-RFK">
             <objects>
-                <tableViewController storyboardIdentifier="TimesViewController" id="e4V-Nk-cia" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TimesViewController" id="e4V-Nk-cia" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dQ3-Yo-yii">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

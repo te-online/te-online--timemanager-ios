@@ -76,28 +76,93 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
         if(tableView == self.clientsController.tableView) {
             if(self.currentSelection.clientId < 0) {
                 transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
-                (self.projectsController as! ProjectTableViewController).setFocus("self")
+            } else {
+                self.currentSelection.projectId = -1
+                self.currentSelection.taskId = -1
             }
+            
+            (self.projectsController as! ProjectTableViewController).positionActive()
             
             self.currentSelection.clientId = indexPath.row
         } else if(tableView == self.projectsController.tableView) {
             if(self.currentSelection.projectId < 0) {
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
-                (self.projectsController as! ProjectTableViewController).setFocus("next")
+            } else {
+                self.currentSelection.taskId = -1
             }
+            
+            (self.projectsController as! ProjectTableViewController).positionSideBySideLeft()
+            (self.tasksController as! ProjectTableViewController).positionActive()
             
             self.currentSelection.projectId = indexPath.row
         } else if(tableView == self.tasksController.tableView) {
             if(self.currentSelection.taskId < 0) {
                 transitionInViewController(lastViewController: self.tasksController, newViewController: self.timesController)
-                (self.projectsController as! ProjectTableViewController).setFocus("none")
             }
+            
+            (self.tasksController as! ProjectTableViewController).positionSideBySideLeft()
+            (self.timesController as! ProjectTableViewController).positionActive()
             
             self.currentSelection.taskId = indexPath.row
         } else if(tableView == self.timesController.tableView) {
             // Do nothing.
         }
         
+    }
+    
+    func mightNavigateLeft(sender: UITableViewController) {
+        if(sender == self.clientsController) {
+            return
+        }
+        
+        if(sender == self.projectsController && self.currentSelection.projectId >= 0) {
+            (self.clientsController as! ProjectTableViewController).positionSideBySideLeft()
+            (self.projectsController as! ProjectTableViewController).positionSideBySideRight()
+            (self.tasksController as! ProjectTableViewController).positionInvisible()
+            (self.timesController as! ProjectTableViewController).positionInvisible()
+        }
+        if(sender == self.tasksController) {
+            (self.clientsController as! ProjectTableViewController).positionSideBySideLeft()
+            (self.projectsController as! ProjectTableViewController).positionSideBySideRight()
+            (self.tasksController as! ProjectTableViewController).positionInvisible()
+            (self.timesController as! ProjectTableViewController).positionInvisible()
+        }
+        if(sender == self.timesController) {
+            (self.clientsController as! ProjectTableViewController).positionInTheDeck()
+            (self.projectsController as! ProjectTableViewController).positionSideBySideLeft()
+            (self.tasksController as! ProjectTableViewController).positionSideBySideRight()
+            (self.timesController as! ProjectTableViewController).positionInvisible()
+        }
+        NSLog("Navigate left")
+    }
+    
+    internal func mightNavigateRight(sender: UITableViewController) {
+        if(sender == self.timesController) {
+            return
+        }
+        
+        if(sender == self.clientsController && self.currentSelection.clientId >= 0) {
+            NSLog("Clients moving")
+            (self.clientsController as! ProjectTableViewController).positionSideBySideLeft()
+            (self.projectsController as! ProjectTableViewController).positionSideBySideRight()
+            (self.tasksController as! ProjectTableViewController).positionInvisible()
+            (self.timesController as! ProjectTableViewController).positionInvisible()
+        }
+        if(sender == self.projectsController && self.currentSelection.projectId >= 0) {
+            NSLog("Projects moving")
+            (self.clientsController as! ProjectTableViewController).positionInTheDeck()
+            (self.projectsController as! ProjectTableViewController).positionSideBySideLeft()
+            (self.tasksController as! ProjectTableViewController).positionSideBySideRight()
+            (self.timesController as! ProjectTableViewController).positionInvisible()
+        }
+        if(sender == self.tasksController && self.currentSelection.taskId >= 0) {
+            NSLog("Tasks Moving")
+            (self.clientsController as! ProjectTableViewController).positionInTheDeck()
+            (self.projectsController as! ProjectTableViewController).positionInTheDeck()
+            (self.tasksController as! ProjectTableViewController).positionSideBySideLeft()
+            (self.timesController as! ProjectTableViewController).positionSideBySideRight()
+        }
+        NSLog("Navigate right")
     }
     
     override func didReceiveMemoryWarning() {
