@@ -1,1 +1,5 @@
-pod "CSStickyHeaderFlowLayout"
+project '/Users/thomas/Apps/te-online--timemanager-ios/TimeManager/TimeManager.xcodeproj'
+
+target 'TimeManager' do
+	pod 'CSStickyHeaderFlowLayout'
+end
