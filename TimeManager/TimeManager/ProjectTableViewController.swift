@@ -19,6 +19,8 @@ class ProjectTableViewController: UITableViewController {
     
     var delegate: NSObject!
     
+    var startX: Double = 0
+    
     enum CardMode {
         case Active
         case SideBySideLeft
@@ -65,6 +67,9 @@ class ProjectTableViewController: UITableViewController {
     }
     
     func handlePan(pgr: UIPanGestureRecognizer) {
+        if pgr.state == .Began {
+            self.startX = Double(pgr.view!.center.x)
+        }
         if pgr.state == .Changed {
             
             var center: CGPoint = pgr.view!.center
@@ -79,21 +84,19 @@ class ProjectTableViewController: UITableViewController {
                     // move card until middle of parent frame
                     xPos = center.x + translation.x
                     xPos = (xPos > pgr.view!.frame.width) ? pgr.view!.frame.width : xPos
-                    (self.tableView.delegate as! EntriesViewController).mightNavigateLeft(self)
                 } else {
                     // If movement is to the left
                     // dimm card more
-                    // report to container -> maybe make next card active again
-                    (self.tableView.delegate as! EntriesViewController).mightNavigateRight(self)
                     xPos = center.x
                 }
+                
             } else {
-                if((translation.x + center.x) > center.x) {
-                    (self.tableView.delegate as! EntriesViewController).mightNavigateLeft(self)
-                } else {
-                    // report to container -> maybe make next card active again
-                    (self.tableView.delegate as! EntriesViewController).mightNavigateRight(self)
-                }
+//                if((translation.x + center.x) > center.x) {
+//                    (self.tableView.delegate as! EntriesViewController).mightNavigateLeft(self)
+//                } else {
+//                    // report to container -> maybe make next card active again
+//                    (self.tableView.delegate as! EntriesViewController).mightNavigateRight(self)
+//                }
                 
                 xPos = center.x + translation.x
                 xPos = (xPos < pgr.view!.frame.width / 2) ? pgr.view!.frame.width / 2 : xPos
@@ -117,6 +120,15 @@ class ProjectTableViewController: UITableViewController {
                 // report to container -> maybe navigation right
                 // If the movement is to the left
                 // report to container -> maybe navigation left
+            }
+            
+            let targetX = translation.x + center.x
+            
+            if(targetX > center.x && abs(self.startX - Double(targetX)) > 50) {
+                (self.tableView.delegate as! EntriesViewController).mightNavigateLeft(self)
+            } else if(targetX <= center.x && abs(self.startX - Double(targetX)) > 50) {
+                // report to container -> maybe make next card active again
+                (self.tableView.delegate as! EntriesViewController).mightNavigateRight(self)
             }
             
 //            NSLog("X " + String(xPos))
