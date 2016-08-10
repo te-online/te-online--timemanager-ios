@@ -46,24 +46,26 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
         self.timesController.tableView.delegate = self
         //        self.timesController.tableView.dataSource = self
         
+        self.view.layer.masksToBounds = true
+        
         var shadowPath: UIBezierPath = UIBezierPath(rect: self.projectsController.view.bounds)
         self.projectsController.view.layer.masksToBounds = false
         self.projectsController.view.layer.shadowColor = UIColor.blackColor().CGColor
-        self.projectsController.view.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        self.projectsController.view.layer.shadowOffset = CGSizeMake(0.0, 0.0)
         self.projectsController.view.layer.shadowOpacity = 0.5
         self.projectsController.view.layer.shadowPath = shadowPath.CGPath
         
         shadowPath = UIBezierPath(rect: self.tasksController.view.bounds)
         self.tasksController.view.layer.masksToBounds = false
         self.tasksController.view.layer.shadowColor = UIColor.blackColor().CGColor
-        self.tasksController.view.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        self.tasksController.view.layer.shadowOffset = CGSizeMake(0.0, 0.0)
         self.tasksController.view.layer.shadowOpacity = 0.5
         self.tasksController.view.layer.shadowPath = shadowPath.CGPath
         
         shadowPath = UIBezierPath(rect: self.timesController.view.bounds)
         self.timesController.view.layer.masksToBounds = false
         self.timesController.view.layer.shadowColor = UIColor.blackColor().CGColor
-        self.timesController.view.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        self.timesController.view.layer.shadowOffset = CGSizeMake(0.0, 0.0)
         self.timesController.view.layer.shadowOpacity = 0.5
         self.timesController.view.layer.shadowPath = shadowPath.CGPath
         
@@ -82,6 +84,7 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
             }
             
             (self.projectsController as! ProjectTableViewController).positionActive()
+            self.repositionCards()
             
             self.currentSelection.clientId = indexPath.row
         } else if(tableView == self.projectsController.tableView) {
@@ -93,6 +96,7 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
             
             (self.projectsController as! ProjectTableViewController).positionSideBySideLeft()
             (self.tasksController as! ProjectTableViewController).positionActive()
+            self.repositionCards()
             
             self.currentSelection.projectId = indexPath.row
         } else if(tableView == self.tasksController.tableView) {
@@ -102,6 +106,7 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
             
             (self.tasksController as! ProjectTableViewController).positionSideBySideLeft()
             (self.timesController as! ProjectTableViewController).positionActive()
+            self.repositionCards()
             
             self.currentSelection.taskId = indexPath.row
         } else if(tableView == self.timesController.tableView) {
@@ -133,7 +138,7 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
             (self.tasksController as! ProjectTableViewController).positionSideBySideRight()
             (self.timesController as! ProjectTableViewController).positionInvisible()
         }
-        NSLog("Navigate left")
+//        NSLog("Navigate left")
     }
     
     internal func mightNavigateRight(sender: UITableViewController) {
@@ -162,7 +167,34 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
             (self.tasksController as! ProjectTableViewController).positionSideBySideLeft()
             (self.timesController as! ProjectTableViewController).positionSideBySideRight()
         }
-        NSLog("Navigate right")
+//        NSLog("Navigate right")
+    }
+    
+    func repositionCards() {
+        (self.clientsController as! ProjectTableViewController).repositionCard()
+        (self.projectsController as! ProjectTableViewController).repositionCard()
+        (self.tasksController as! ProjectTableViewController).repositionCard()
+        (self.timesController as! ProjectTableViewController).repositionCard()
+    }
+    
+    func mightMoveWithOtherCards(sender: UITableViewController) {
+        NSLog("Might move with left card")
+        
+        if(sender == self.clientsController) {
+            (self.projectsController as! ProjectTableViewController).moveCardRightHandWithOtherCardsCenterPosition((self.clientsController as! ProjectTableViewController).getX())
+        }
+        if(sender == self.projectsController) {
+            (self.tasksController as! ProjectTableViewController).moveCardRightHandWithOtherCardsCenterPosition((self.projectsController as! ProjectTableViewController).getX())
+            (self.clientsController as! ProjectTableViewController).moveCardLeftHandWithOtherCardsCenterPosition((self.projectsController as! ProjectTableViewController).getX())
+        }
+        if(sender == self.tasksController) {
+            (self.timesController as! ProjectTableViewController).moveCardRightHandWithOtherCardsCenterPosition((self.tasksController as! ProjectTableViewController).getX())
+            (self.projectsController as! ProjectTableViewController).moveCardLeftHandWithOtherCardsCenterPosition((self.tasksController as! ProjectTableViewController).getX())
+        }
+        if(sender == self.timesController) {
+            (self.tasksController as! ProjectTableViewController).moveCardLeftHandWithOtherCardsCenterPosition((self.timesController as! ProjectTableViewController).getX())
+        }
+
     }
     
     override func didReceiveMemoryWarning() {

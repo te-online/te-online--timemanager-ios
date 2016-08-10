@@ -91,16 +91,11 @@ class ProjectTableViewController: UITableViewController {
                 }
                 
             } else {
-//                if((translation.x + center.x) > center.x) {
-//                    (self.tableView.delegate as! EntriesViewController).mightNavigateLeft(self)
-//                } else {
-//                    // report to container -> maybe make next card active again
-//                    (self.tableView.delegate as! EntriesViewController).mightNavigateRight(self)
-//                }
                 
                 xPos = center.x + translation.x
                 xPos = (xPos < pgr.view!.frame.width / 2) ? pgr.view!.frame.width / 2 : xPos
-                xPos = (xPos >= self.parentViewController!.view!.frame.width) ? self.parentViewController!.view!.frame.width : xPos
+//                xPos = (xPos >= self.parentViewController!.view!.frame.width) ? self.parentViewController!.view!.frame.width : xPos
+                xPos = (xPos >= pgr.view!.frame.width * 2) ? pgr.view!.frame.width * 2 : xPos
                 // If card is side by side left
                 // If the movement is a slide to the right
                 // position the card to active
@@ -126,10 +121,13 @@ class ProjectTableViewController: UITableViewController {
             
             if(targetX > center.x && abs(self.startX - Double(targetX)) > 50) {
                 (self.tableView.delegate as! EntriesViewController).mightNavigateLeft(self)
+                
             } else if(targetX <= center.x && abs(self.startX - Double(targetX)) > 50) {
                 // report to container -> maybe make next card active again
                 (self.tableView.delegate as! EntriesViewController).mightNavigateRight(self)
             }
+            
+            (self.tableView.delegate as! EntriesViewController).mightMoveWithOtherCards(self)
             
 //            NSLog("X " + String(xPos))
             center = CGPointMake(xPos, pgr.view!.center.y)
@@ -138,7 +136,8 @@ class ProjectTableViewController: UITableViewController {
         }
         if(pgr.state == .Ended) {
             NSLog("Touch ended.")
-            self.repositionCard()
+//            self.repositionCard()
+            (self.tableView.delegate as! EntriesViewController).repositionCards()
         }
     }
     
@@ -162,61 +161,118 @@ class ProjectTableViewController: UITableViewController {
 //        }
 //    }
     
+    func moveCardFromLeft(x: Double) {
+        var center: CGPoint = self.view!.center
+        let xPos: CGFloat = CGFloat(x) + self.view!.frame.width / 2
+        center = CGPointMake(xPos, self.view!.center.y)
+        self.view!.center = center
+    }
+    
+    func moveCardFromRight(x: Double) {
+        var center: CGPoint = self.view!.center
+        let xPos: CGFloat = CGFloat(x) - self.view!.frame.width / 2
+        center = CGPointMake(xPos, self.view!.center.y)
+        self.view!.center = center
+    }
+    
+    func moveCardRightHandWithOtherCardsCenterPosition(x: Double) {
+        var center: CGPoint = self.view!.center
+        let xPos: CGFloat = CGFloat(x) + self.view!.frame.width
+        center = CGPointMake(xPos, self.view!.center.y)
+        self.view!.center = center
+    }
+    
+    func moveCardLeftHandWithOtherCardsCenterPosition(x: Double) {
+        var center: CGPoint = self.view!.center
+        let xPos: CGFloat = CGFloat(x) - self.view!.frame.width
+        center = CGPointMake(xPos, self.view!.center.y)
+        self.view!.center = center
+    }
+    
+    func getRightX() -> Double {
+        return Double(self.view!.center.x + self.view!.frame.width / 2)
+    }
+    
+    func getLeftX() -> Double {
+        return Double(self.view!.center.x - self.view!.frame.width / 2)
+    }
+    
+    func getX() -> Double {
+        return Double(self.view!.center.x)
+    }
+    
     func repositionCard() {
         // If card is first card
         if(cardType == CardType.FirstCard) {
             // position card back to starting point
-            var center: CGPoint = self.view!.center
             let xPos = self.view!.frame.width / 2
-            center = CGPointMake(xPos, self.view!.center.y)
-            self.view!.center = center
-            if(cardMode == CardMode.InTheDeck) {
-                self.view!.alpha = 0.3
-            } else {
+            UIView.animateWithDuration(0.25, animations: {() -> Void in
+                self.view!.center = CGPointMake(xPos, self.view!.center.y)
                 self.view!.alpha = 1
-            }
+                if(self.cardMode == CardMode.InTheDeck) {
+                    self.view!.alpha = 0.3
+                } else {
+                    self.view!.alpha = 1
+                }
+            })
         } else {
-            var center: CGPoint = self.view!.center
             var xPos: CGFloat = 0
             // If card is side by side left
             if(cardMode == CardMode.SideBySideLeft) {
                 // Position card to side by side left
                 xPos = self.view!.frame.width / 2
-                center = CGPointMake(xPos, self.view!.center.y)
                 self.view!.alpha = 1
+                UIView.animateWithDuration(0.25, animations: {() -> Void in
+                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                    self.view!.alpha = 1
+                })
             }
             // If card is side by side right
             if(cardMode == CardMode.SideBySideRight) {
                 // Position card to side by side right
                 xPos = self.view!.frame.width + (self.view!.frame.width / 2)
-                center = CGPointMake(xPos, self.view!.center.y)
-                self.view!.alpha = 1
+//                center = CGPointMake(xPos, self.view!.center.y)
+//                self.view!.alpha = 1
+                UIView.animateWithDuration(0.25, animations: {() -> Void in
+                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                    self.view!.alpha = 1
+                })
             }
             // If card is active
             if(cardMode == CardMode.Active) {
                 // Position card to active
 //                xPos = self.parentViewController!.view!.frame.width - self.view!.frame.width / 2
                 xPos = self.view!.frame.width + self.view!.frame.width / 2
-                center = CGPointMake(xPos, self.view!.center.y)
-                self.view!.alpha = 1
+//                center = CGPointMake(xPos, self.view!.center.y)
+//                self.view!.alpha = 1
+                UIView.animateWithDuration(0.25, animations: {() -> Void in
+                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                    self.view!.alpha = 1
+                })
             }
             // If card is invisible
             if(cardMode == CardMode.Invisible) {
                 // Position card to invisible
 //                xPos = self.parentViewController!.view!.frame.width + self.view!.frame.width / 2
                 xPos = self.view!.frame.width + self.view!.frame.width / 2
-                center = CGPointMake(xPos, self.view!.center.y)
-                self.view!.alpha = 0
+//                center = CGPointMake(xPos, self.view!.center.y)
+//                self.view!.alpha = 0
+                UIView.animateWithDuration(0.25, animations: {() -> Void in
+                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                    self.view!.alpha = 0
+                })
             }
             // If card is in the deck
             if(cardMode == CardMode.InTheDeck) {
                 // Position card to in the deck
                 xPos = self.view!.frame.width / 2
-                center = CGPointMake(xPos, self.view!.center.y)
-                self.view!.alpha = 0.5
+//                center = CGPointMake(xPos, self.view!.center.y)
+//                self.view!.alpha = 0.5
+                UIView.animateWithDuration(0.25, animations: {() -> Void in
+                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                    self.view!.alpha = 0.5
+                })
             }
-            
-            self.view!.center = center
         }
     }
     
@@ -224,7 +280,7 @@ class ProjectTableViewController: UITableViewController {
         // Position the card as active.
         self.cardMode = CardMode.Active
         
-        self.repositionCard()
+//        self.repositionCard()
         
         // Make sure, the card is on the right edge of the view.
         // Make sure, the card is completely visible
@@ -234,7 +290,7 @@ class ProjectTableViewController: UITableViewController {
         // Position the card as being in the deck.
         self.cardMode = CardMode.InTheDeck
         
-        self.repositionCard()
+//        self.repositionCard()
         
         // Make sure, the card is on the left edge of the view (slightly off to see that there is a deck.)
         // Make sure, the card is dimm.
@@ -244,7 +300,7 @@ class ProjectTableViewController: UITableViewController {
         // Position the card side by side left.
         self.cardMode = CardMode.SideBySideLeft
         
-        self.repositionCard()
+//        self.repositionCard()
         
         // Make sure, the card is on the left edge of the view.
         // Make sure the card is completely visible.
@@ -254,7 +310,7 @@ class ProjectTableViewController: UITableViewController {
         // Position the card side by side right.
         self.cardMode = CardMode.SideBySideRight
         
-        self.repositionCard()
+//        self.repositionCard()
         
         // Make sure, the card is on the right edge of the view.
         // Make sure, the card is completely visible.
@@ -264,7 +320,7 @@ class ProjectTableViewController: UITableViewController {
         // Position the card side by side right.
         self.cardMode = CardMode.Invisible
         
-        self.repositionCard()
+//        self.repositionCard()
         
         // Make sure, the card is on the right edge of the view.
         // Make sure, the card is completely visible.
