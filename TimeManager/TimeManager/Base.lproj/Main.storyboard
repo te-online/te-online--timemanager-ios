@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="y5a-J1-Nnm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hje-Nn-7VH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,6 +16,15 @@
             <string>Poppins-Medium</string>
         </mutableArray>
         <mutableArray key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
@@ -351,7 +360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVQ-OM-tUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-851" y="719"/>
+            <point key="canvasLocation" x="-934" y="708"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="1TL-2z-7It">
@@ -619,7 +628,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqk-OV-25b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-379" y="2151"/>
+            <point key="canvasLocation" x="-379" y="2158"/>
         </scene>
         <!--Project Table View Controller-->
         <scene sceneID="07F-6v-180">
@@ -676,7 +685,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Id-Ne-3lI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1020" y="2158"/>
+            <point key="canvasLocation" x="-1103" y="2158"/>
         </scene>
         <!--Project Table View Controller-->
         <scene sceneID="DQB-0R-eHC">
@@ -703,7 +712,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2z3-gz-8lJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="743"/>
+            <point key="canvasLocation" x="882" y="1465"/>
         </scene>
         <!--Project Table View Controller-->
         <scene sceneID="yhS-XV-RFK">
@@ -730,7 +739,268 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hn-of-EIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="63"/>
+            <point key="canvasLocation" x="1512" y="1465"/>
+        </scene>
+        <!--Projects-->
+        <scene sceneID="1Ex-Uf-QUd">
+            <objects>
+                <collectionViewController title="Projects" id="1Ko-oS-dki" customClass="ClientsCollectionViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="4sK-74-9ND">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="yJP-4f-pze">
+                            <size key="itemSize" width="600" height="63"/>
+                            <size key="headerReferenceSize" width="50" height="40"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="client" id="Ntk-YY-g4U">
+                                <rect key="frame" x="0.0" y="40" width="600" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sirius Cybernetics Corp." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sh-OI-zFZ">
+                                            <rect key="frame" x="13" y="10" width="579" height="23"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                            <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnG-kZ-D4E">
+                                            <rect key="frame" x="565" y="10" width="27" height="44"/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVH-4a-vFk" userLabel="Bottom Separator">
+                                            <rect key="frame" x="0.0" y="62" width="600" height="1"/>
+                                            <color key="backgroundColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2 projects • 224 hrs. • since 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVw-hO-9eK">
+                                            <rect key="frame" x="13" y="34" width="579" height="21"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
+                                            <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="zVH-4a-vFk" secondAttribute="bottom" constant="-8" id="3qC-FB-guH"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="OnG-kZ-D4E" secondAttribute="trailing" id="OAA-Rq-aDQ"/>
+                                    <constraint firstItem="wVw-hO-9eK" firstAttribute="leading" secondItem="Ntk-YY-g4U" secondAttribute="leadingMargin" constant="5" id="QxP-Pv-tLY"/>
+                                    <constraint firstItem="7sh-OI-zFZ" firstAttribute="top" secondItem="Ntk-YY-g4U" secondAttribute="topMargin" constant="2" id="Sdw-Up-IxS"/>
+                                    <constraint firstItem="7sh-OI-zFZ" firstAttribute="leading" secondItem="Ntk-YY-g4U" secondAttribute="leadingMargin" constant="5" id="WGG-Sb-uQR"/>
+                                    <constraint firstItem="OnG-kZ-D4E" firstAttribute="centerY" secondItem="Ntk-YY-g4U" secondAttribute="centerY" id="YVQ-Cy-5ZH"/>
+                                    <constraint firstItem="zVH-4a-vFk" firstAttribute="width" secondItem="Ntk-YY-g4U" secondAttribute="width" id="bia-xn-Ie9"/>
+                                    <constraint firstItem="wVw-hO-9eK" firstAttribute="top" secondItem="Ntk-YY-g4U" secondAttribute="topMargin" constant="26" id="pVP-Kd-wFr"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clientsHeadline" id="e0u-Bj-sGh">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PROJECTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3m-CX-vKK">
+                                    <rect key="frame" x="13" y="14" width="579" height="23"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                    <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69p-To-XN8" userLabel="Bottom Separator">
+                                    <rect key="frame" x="0.0" y="38" width="600" height="1"/>
+                                    <color key="backgroundColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="69p-To-XN8" firstAttribute="width" secondItem="e0u-Bj-sGh" secondAttribute="width" id="3ps-S0-aWe"/>
+                                <constraint firstItem="g3m-CX-vKK" firstAttribute="top" secondItem="e0u-Bj-sGh" secondAttribute="topMargin" constant="6" id="dL1-NF-vOo"/>
+                                <constraint firstItem="g3m-CX-vKK" firstAttribute="leading" secondItem="e0u-Bj-sGh" secondAttribute="leadingMargin" constant="5" id="qJ2-iy-YkC"/>
+                            </constraints>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="1Ko-oS-dki" id="IZQ-H9-Fwz"/>
+                            <outlet property="delegate" destination="1Ko-oS-dki" id="usE-p8-FRK"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WhX-ZS-xq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="251" y="2158"/>
+        </scene>
+        <!--Tasks-->
+        <scene sceneID="l57-Zl-RTR">
+            <objects>
+                <collectionViewController title="Tasks" id="Wot-Tz-8sW" customClass="ClientsCollectionViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="J2C-ug-mQ8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tz9-kJ-mnY">
+                            <size key="itemSize" width="600" height="63"/>
+                            <size key="headerReferenceSize" width="50" height="40"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="client" id="260-Fz-Fkk">
+                                <rect key="frame" x="0.0" y="40" width="600" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sirius Cybernetics Corp." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frN-1i-092">
+                                            <rect key="frame" x="13" y="10" width="579" height="23"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                            <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M1A-GI-GMV">
+                                            <rect key="frame" x="565" y="10" width="27" height="44"/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="73c-kb-2wi" userLabel="Bottom Separator">
+                                            <rect key="frame" x="0.0" y="62" width="600" height="1"/>
+                                            <color key="backgroundColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2 projects • 224 hrs. • since 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXw-oj-qwk">
+                                            <rect key="frame" x="13" y="34" width="579" height="21"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
+                                            <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="frN-1i-092" firstAttribute="leading" secondItem="260-Fz-Fkk" secondAttribute="leadingMargin" constant="5" id="0hX-IA-I2I"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="M1A-GI-GMV" secondAttribute="trailing" id="Hms-BH-guR"/>
+                                    <constraint firstItem="tXw-oj-qwk" firstAttribute="leading" secondItem="260-Fz-Fkk" secondAttribute="leadingMargin" constant="5" id="PwN-mm-Ync"/>
+                                    <constraint firstItem="frN-1i-092" firstAttribute="top" secondItem="260-Fz-Fkk" secondAttribute="topMargin" constant="2" id="TyW-XM-W42"/>
+                                    <constraint firstItem="M1A-GI-GMV" firstAttribute="centerY" secondItem="260-Fz-Fkk" secondAttribute="centerY" id="WGy-EH-2RX"/>
+                                    <constraint firstItem="tXw-oj-qwk" firstAttribute="top" secondItem="260-Fz-Fkk" secondAttribute="topMargin" constant="26" id="dKA-C6-kwd"/>
+                                    <constraint firstItem="73c-kb-2wi" firstAttribute="width" secondItem="260-Fz-Fkk" secondAttribute="width" id="fqM-vz-Hgk"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="73c-kb-2wi" secondAttribute="bottom" constant="-8" id="h53-j2-qiv"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clientsHeadline" id="ym0-ri-ob1">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TASKS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppr-0q-fLZ">
+                                    <rect key="frame" x="13" y="14" width="579" height="23"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                    <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="141-BV-u6N" userLabel="Bottom Separator">
+                                    <rect key="frame" x="0.0" y="38" width="600" height="1"/>
+                                    <color key="backgroundColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="ppr-0q-fLZ" firstAttribute="leading" secondItem="ym0-ri-ob1" secondAttribute="leadingMargin" constant="5" id="Eg7-VG-rhW"/>
+                                <constraint firstItem="ppr-0q-fLZ" firstAttribute="top" secondItem="ym0-ri-ob1" secondAttribute="topMargin" constant="6" id="cnn-3G-QGh"/>
+                                <constraint firstItem="141-BV-u6N" firstAttribute="width" secondItem="ym0-ri-ob1" secondAttribute="width" id="fWw-7e-iyk"/>
+                            </constraints>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="Wot-Tz-8sW" id="oxQ-gM-jXw"/>
+                            <outlet property="delegate" destination="Wot-Tz-8sW" id="MIq-j7-peL"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FcF-pg-cKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882" y="2158"/>
+        </scene>
+        <!--Times-->
+        <scene sceneID="K1u-Be-PjS">
+            <objects>
+                <collectionViewController title="Times" id="Jds-PN-WOR" customClass="ClientsCollectionViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="yFQ-cL-9fy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="8Jb-Nn-VGZ">
+                            <size key="itemSize" width="600" height="63"/>
+                            <size key="headerReferenceSize" width="50" height="40"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="client" id="WTc-Qz-smE">
+                                <rect key="frame" x="0.0" y="40" width="600" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sirius Cybernetics Corp." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifC-Jk-fpC">
+                                            <rect key="frame" x="13" y="10" width="579" height="23"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                            <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tkk-pW-qOK">
+                                            <rect key="frame" x="565" y="10" width="27" height="44"/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QXF-CX-KcZ" userLabel="Bottom Separator">
+                                            <rect key="frame" x="0.0" y="62" width="600" height="1"/>
+                                            <color key="backgroundColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2 projects • 224 hrs. • since 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXy-Qc-kfd">
+                                            <rect key="frame" x="13" y="34" width="579" height="21"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
+                                            <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="QXF-CX-KcZ" firstAttribute="width" secondItem="WTc-Qz-smE" secondAttribute="width" id="7ik-eZ-bos"/>
+                                    <constraint firstItem="ifC-Jk-fpC" firstAttribute="leading" secondItem="WTc-Qz-smE" secondAttribute="leadingMargin" constant="5" id="F6k-wW-a3J"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="QXF-CX-KcZ" secondAttribute="bottom" constant="-8" id="QFj-Ue-LDL"/>
+                                    <constraint firstItem="CXy-Qc-kfd" firstAttribute="leading" secondItem="WTc-Qz-smE" secondAttribute="leadingMargin" constant="5" id="anM-lx-wgJ"/>
+                                    <constraint firstItem="CXy-Qc-kfd" firstAttribute="top" secondItem="WTc-Qz-smE" secondAttribute="topMargin" constant="26" id="dZq-hw-EFh"/>
+                                    <constraint firstItem="Tkk-pW-qOK" firstAttribute="centerY" secondItem="WTc-Qz-smE" secondAttribute="centerY" id="m1U-9Q-jHT"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Tkk-pW-qOK" secondAttribute="trailing" id="oJb-Xg-Ebm"/>
+                                    <constraint firstItem="ifC-Jk-fpC" firstAttribute="top" secondItem="WTc-Qz-smE" secondAttribute="topMargin" constant="2" id="tb2-CY-4Z2"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clientsHeadline" id="PBc-LX-XDn">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TIMES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAR-E7-e7Z">
+                                    <rect key="frame" x="13" y="14" width="579" height="23"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                    <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agQ-Bs-5lb" userLabel="Bottom Separator">
+                                    <rect key="frame" x="0.0" y="38" width="600" height="1"/>
+                                    <color key="backgroundColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="aAR-E7-e7Z" firstAttribute="top" secondItem="PBc-LX-XDn" secondAttribute="topMargin" constant="6" id="1rd-ik-4gN"/>
+                                <constraint firstItem="aAR-E7-e7Z" firstAttribute="leading" secondItem="PBc-LX-XDn" secondAttribute="leadingMargin" constant="5" id="J5i-2J-JQu"/>
+                                <constraint firstItem="agQ-Bs-5lb" firstAttribute="width" secondItem="PBc-LX-XDn" secondAttribute="width" id="cMb-q9-upx"/>
+                            </constraints>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="Jds-PN-WOR" id="xnf-Ig-Qrg"/>
+                            <outlet property="delegate" destination="Jds-PN-WOR" id="MAj-3Q-B2V"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="saC-z4-Pq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1512" y="2158"/>
         </scene>
     </scenes>
 </document>
