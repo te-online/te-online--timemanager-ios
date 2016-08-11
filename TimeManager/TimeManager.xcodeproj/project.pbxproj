@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		530E3D74117F8074E22AB3A9 /* libPods-TimeManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4A0DA6D8E6C18353B528D25 /* libPods-TimeManager.a */; };
 		E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1271D5874A000FB6166 /* AppDelegate.swift */; };
 		E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1291D5874A000FB6166 /* ViewController.swift */; };
 		E958A12D1D5874A000FB6166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A12B1D5874A000FB6166 /* Main.storyboard */; };
@@ -29,7 +28,8 @@
 		E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1591D5A292600FB6166 /* EntriesViewController.swift */; };
 		E96751CD1D5B69CA001FFBDC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E96751CC1D5B69CA001FFBDC /* Podfile */; };
 		E96751CF1D5B7321001FFBDC /* ClientsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96751CE1D5B7321001FFBDC /* ClientsCollectionViewController.swift */; };
-		E9FC8CF31D5B812600B81E79 /* libCSStickyHeaderFlowLayout.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9FC8CF21D5B812600B81E79 /* libCSStickyHeaderFlowLayout.a */; };
+		E9BA20CD1D5C65580098F37D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA20CC1D5C65580098F37D /* TestViewController.swift */; };
+		E9BA20CF1D5C6F9A0098F37D /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA20CE1D5C6F9A0098F37D /* PassThroughView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +58,8 @@
 		E958A1591D5A292600FB6166 /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		E96751CC1D5B69CA001FFBDC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E96751CE1D5B7321001FFBDC /* ClientsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsCollectionViewController.swift; sourceTree = "<group>"; };
+		E9BA20CC1D5C65580098F37D /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		E9BA20CE1D5C6F9A0098F37D /* PassThroughView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		E9FC8CF21D5B812600B81E79 /* libCSStickyHeaderFlowLayout.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCSStickyHeaderFlowLayout.a; path = "../../../Library/Developer/Xcode/DerivedData/TimeManager-cxhfzahfiipbppdssejzcfwwvtoc/Build/Products/Debug-iphonesimulator/CSStickyHeaderFlowLayout/libCSStickyHeaderFlowLayout.a"; sourceTree = "<group>"; };
 		FB9B58AE7CFF6C6B817BE1C5 /* Pods-TimeManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeManager.debug.xcconfig"; path = "TimeManager/Pods/Target Support Files/Pods-TimeManager/Pods-TimeManager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,8 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9FC8CF31D5B812600B81E79 /* libCSStickyHeaderFlowLayout.a in Frameworks */,
-				530E3D74117F8074E22AB3A9 /* libPods-TimeManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +123,8 @@
 				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
 				E958A1591D5A292600FB6166 /* EntriesViewController.swift */,
 				E96751CE1D5B7321001FFBDC /* ClientsCollectionViewController.swift */,
+				E9BA20CC1D5C65580098F37D /* TestViewController.swift */,
+				E9BA20CE1D5C6F9A0098F37D /* PassThroughView.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -281,9 +283,11 @@
 				E958A1411D58A97700FB6166 /* ProjectTableViewController.swift in Sources */,
 				E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */,
 				E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */,
+				E9BA20CD1D5C65580098F37D /* TestViewController.swift in Sources */,
 				E958A1541D59FDDF00FB6166 /* OverviewController.swift in Sources */,
 				E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */,
 				E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */,
+				E9BA20CF1D5C6F9A0098F37D /* PassThroughView.swift in Sources */,
 				E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */,
 				E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,
