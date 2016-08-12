@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProjectTableViewController: UITableViewController {
+class CardOfViewDeckController: UICollectionViewController {
     
     var hasFocus: Bool!
     var previousHasFocus: Bool!
@@ -53,17 +53,6 @@ class ProjectTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("projects") as UITableViewCell!
-        cell.textLabel?.text = "World"
-        
-        return cell
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
     }
     
     func handlePan(pgr: UIPanGestureRecognizer) {
@@ -120,14 +109,14 @@ class ProjectTableViewController: UITableViewController {
             let targetX = translation.x + center.x
             
             if(targetX > center.x && abs(self.startX - Double(targetX)) > 50) {
-                (self.tableView.delegate as! EntriesViewController).mightNavigateLeft(self)
+                (self.collectionView!.delegate as! EntriesViewController).mightNavigateLeft(self)
                 
             } else if(targetX <= center.x && abs(self.startX - Double(targetX)) > 50) {
                 // report to container -> maybe make next card active again
-                (self.tableView.delegate as! EntriesViewController).mightNavigateRight(self)
+                (self.collectionView!.delegate as! EntriesViewController).mightNavigateRight(self)
             }
             
-            (self.tableView.delegate as! EntriesViewController).mightMoveWithOtherCards(self)
+            (self.collectionView!.delegate as! EntriesViewController).mightMoveWithOtherCards(self)
             
 //            NSLog("X " + String(xPos))
             center = CGPointMake(xPos, pgr.view!.center.y)
@@ -137,7 +126,7 @@ class ProjectTableViewController: UITableViewController {
         if(pgr.state == .Ended) {
             NSLog("Touch ended.")
 //            self.repositionCard()
-            (self.tableView.delegate as! EntriesViewController).repositionCards()
+            (self.collectionView!.delegate as! EntriesViewController).repositionCards()
         }
     }
     

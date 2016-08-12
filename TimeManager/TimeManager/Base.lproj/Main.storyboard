@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jds-PN-WOR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hje-Nn-7VH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -576,7 +576,7 @@
         <!--Project Table View Controller-->
         <scene sceneID="sD4-Ag-Tf5">
             <objects>
-                <tableViewController storyboardIdentifier="ClientsViewController" id="0p7-ld-OyE" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="0p7-ld-OyE" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="left" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9L6-Px-1g7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -601,8 +601,8 @@
         <!--Clients-->
         <scene sceneID="KVF-Ia-jnt">
             <objects>
-                <collectionViewController title="Clients" id="y5a-J1-Nnm" customClass="ClientsCollectionViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="0xh-u6-1h7">
+                <collectionViewController storyboardIdentifier="ClientsViewController" title="Clients" id="y5a-J1-Nnm" customClass="ClientsViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="0xh-u6-1h7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -613,28 +613,28 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="client" id="rig-Ks-k5X">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClientCell" id="rig-Ks-k5X">
                                 <rect key="frame" x="0.0" y="40" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uD2-fc-9e4" userLabel="Bottom Separator">
+                                            <rect key="frame" x="0.0" y="62" width="600" height="1"/>
+                                            <color key="backgroundColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow-right-grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="y0y-vS-uQw">
+                                            <rect key="frame" x="578" y="20" width="14" height="23"/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sirius Cybernetics Corp." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ttu-L3-EzX">
-                                            <rect key="frame" x="13" y="10" width="579" height="23"/>
+                                            <rect key="frame" x="13" y="10" width="294" height="23"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                             <color key="textColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VHv-gY-K55">
-                                            <rect key="frame" x="565" y="10" width="27" height="44"/>
-                                        </imageView>
-                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uD2-fc-9e4" userLabel="Bottom Separator">
-                                            <rect key="frame" x="0.0" y="62" width="600" height="1"/>
-                                            <color key="backgroundColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
-                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2 projects • 224 hrs. • since 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdO-Pw-KUs">
-                                            <rect key="frame" x="13" y="34" width="579" height="21"/>
+                                            <rect key="frame" x="13" y="34" width="294" height="21"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
                                             <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -643,18 +643,16 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="WdO-Pw-KUs" firstAttribute="top" secondItem="rig-Ks-k5X" secondAttribute="topMargin" constant="26" id="6Ul-Bm-1vJ"/>
-                                    <constraint firstItem="uD2-fc-9e4" firstAttribute="width" secondItem="rig-Ks-k5X" secondAttribute="width" id="AmF-vu-bPh"/>
-                                    <constraint firstItem="WdO-Pw-KUs" firstAttribute="leading" secondItem="rig-Ks-k5X" secondAttribute="leadingMargin" constant="5" id="Gi3-v4-LTr"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="uD2-fc-9e4" secondAttribute="bottom" constant="-8" id="byb-d3-cQ5"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="VHv-gY-K55" secondAttribute="trailing" id="kBg-Hn-Bwv"/>
-                                    <constraint firstItem="Ttu-L3-EzX" firstAttribute="leading" secondItem="rig-Ks-k5X" secondAttribute="leadingMargin" constant="5" id="n7W-Ki-jsK"/>
-                                    <constraint firstItem="Ttu-L3-EzX" firstAttribute="top" secondItem="rig-Ks-k5X" secondAttribute="topMargin" constant="2" id="ouH-fb-FUR"/>
-                                    <constraint firstItem="VHv-gY-K55" firstAttribute="centerY" secondItem="rig-Ks-k5X" secondAttribute="centerY" id="sIj-Kb-c9f"/>
+                                    <constraint firstItem="WdO-Pw-KUs" firstAttribute="leading" secondItem="rig-Ks-k5X" secondAttribute="leadingMargin" constant="5" id="EZn-1L-UT4"/>
+                                    <constraint firstItem="Ttu-L3-EzX" firstAttribute="leading" secondItem="rig-Ks-k5X" secondAttribute="leadingMargin" constant="5" id="EwC-GI-vjK"/>
+                                    <constraint firstItem="y0y-vS-uQw" firstAttribute="centerY" secondItem="rig-Ks-k5X" secondAttribute="centerY" id="Rza-Bg-iLL"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="y0y-vS-uQw" secondAttribute="trailing" id="gHF-VG-bLt"/>
+                                    <constraint firstItem="WdO-Pw-KUs" firstAttribute="top" secondItem="rig-Ks-k5X" secondAttribute="topMargin" constant="26" id="s8D-OE-z1y"/>
+                                    <constraint firstItem="Ttu-L3-EzX" firstAttribute="top" secondItem="rig-Ks-k5X" secondAttribute="topMargin" constant="2" id="w1w-56-2eN"/>
                                 </constraints>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clientsHeadline" id="8o1-Mp-8tM">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClientsHeadCell" id="8o1-Mp-8tM">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -704,7 +702,7 @@
         <!--Project Table View Controller-->
         <scene sceneID="07F-6v-180">
             <objects>
-                <tableViewController storyboardIdentifier="ProjectsViewController" id="pDm-jT-wvh" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="pDm-jT-wvh" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="B4K-B9-dfe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -761,7 +759,7 @@
         <!--Project Table View Controller-->
         <scene sceneID="DQB-0R-eHC">
             <objects>
-                <tableViewController storyboardIdentifier="TasksViewController" id="GnN-qL-9DY" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="GnN-qL-9DY" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="LWM-zP-tCW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -788,7 +786,7 @@
         <!--Project Table View Controller-->
         <scene sceneID="yhS-XV-RFK">
             <objects>
-                <tableViewController storyboardIdentifier="TimesViewController" id="e4V-Nk-cia" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="e4V-Nk-cia" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dQ3-Yo-yii">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -815,7 +813,7 @@
         <!--Projects-->
         <scene sceneID="1Ex-Uf-QUd">
             <objects>
-                <collectionViewController title="Projects" id="1Ko-oS-dki" customClass="TestViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ProjectsViewController" title="Projects" id="1Ko-oS-dki" customClass="ProjectsViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="4sK-74-9ND" customClass="PassThroughView" customModule="TimeManager" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -827,7 +825,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="client" id="Ntk-YY-g4U">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="ProjectCell" id="Ntk-YY-g4U">
                                 <rect key="frame" x="0.0" y="40" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -840,9 +838,6 @@
                                             <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnG-kZ-D4E">
-                                            <rect key="frame" x="565" y="10" width="27" height="44"/>
-                                        </imageView>
                                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVH-4a-vFk" userLabel="Bottom Separator">
                                             <rect key="frame" x="0.0" y="62" width="600" height="1"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -859,6 +854,9 @@
                                             <color key="textColor" red="0.81568628549575806" green="0.22352941334247589" blue="0.062745101749897003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="OnG-kZ-D4E">
+                                            <rect key="frame" x="578" y="20" width="14" height="23"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -884,7 +882,7 @@
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clientsHeadline" id="e0u-Bj-sGh">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectsHeadCell" id="e0u-Bj-sGh">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -1103,7 +1101,7 @@
         <!--Times-->
         <scene sceneID="K1u-Be-PjS">
             <objects>
-                <collectionViewController title="Times" id="Jds-PN-WOR" customClass="TestViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="TimesViewController" title="Times" id="Jds-PN-WOR" customClass="TimesViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="yFQ-cL-9fy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1115,7 +1113,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="client" id="WTc-Qz-smE">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimeCell" id="WTc-Qz-smE">
                                 <rect key="frame" x="0.0" y="40" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1128,9 +1126,6 @@
                                             <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tkk-pW-qOK">
-                                            <rect key="frame" x="565" y="10" width="27" height="44"/>
-                                        </imageView>
                                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QXF-CX-KcZ" userLabel="Bottom Separator">
                                             <rect key="frame" x="0.0" y="62" width="600" height="1"/>
                                             <color key="backgroundColor" red="0.86274510622024536" green="0.86274510622024536" blue="0.86274510622024536" alpha="1" colorSpace="calibratedRGB"/>
@@ -1161,6 +1156,9 @@ logo, colors, font choices and simp</string>
                                             <color key="textColor" red="0.81568628549575806" green="0.22352941334247589" blue="0.062745101749897003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow-right-grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="gvB-ZR-SXV">
+                                            <rect key="frame" x="578" y="20" width="14" height="23"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -1172,12 +1170,12 @@ logo, colors, font choices and simp</string>
                                     <constraint firstItem="ifC-Jk-fpC" firstAttribute="leading" secondItem="WTc-Qz-smE" secondAttribute="leadingMargin" constant="5" id="F6k-wW-a3J"/>
                                     <constraint firstItem="r5v-KY-Kzi" firstAttribute="top" secondItem="WTc-Qz-smE" secondAttribute="topMargin" constant="26" id="Hf2-AY-tUN"/>
                                     <constraint firstItem="eY4-da-mip" firstAttribute="leading" secondItem="WTc-Qz-smE" secondAttribute="leadingMargin" constant="261" id="I00-qj-Spf"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="gvB-ZR-SXV" secondAttribute="trailing" id="MdH-xN-JnE"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="QXF-CX-KcZ" secondAttribute="bottom" constant="-8" id="QFj-Ue-LDL"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="eY4-da-mip" secondAttribute="trailing" constant="20" id="aSc-xh-TGz"/>
                                     <constraint firstItem="CXy-Qc-kfd" firstAttribute="leading" secondItem="WTc-Qz-smE" secondAttribute="leadingMargin" constant="5" id="anM-lx-wgJ"/>
                                     <constraint firstItem="CXy-Qc-kfd" firstAttribute="top" secondItem="WTc-Qz-smE" secondAttribute="topMargin" constant="26" id="dZq-hw-EFh"/>
-                                    <constraint firstItem="Tkk-pW-qOK" firstAttribute="centerY" secondItem="WTc-Qz-smE" secondAttribute="centerY" id="m1U-9Q-jHT"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Tkk-pW-qOK" secondAttribute="trailing" id="oJb-Xg-Ebm"/>
+                                    <constraint firstItem="gvB-ZR-SXV" firstAttribute="centerY" secondItem="WTc-Qz-smE" secondAttribute="centerY" id="lmQ-68-cTM"/>
                                     <constraint firstItem="ifC-Jk-fpC" firstAttribute="top" secondItem="WTc-Qz-smE" secondAttribute="topMargin" constant="2" id="tb2-CY-4Z2"/>
                                     <constraint firstItem="eY4-da-mip" firstAttribute="top" secondItem="WTc-Qz-smE" secondAttribute="topMargin" constant="4" id="vEr-ij-DPY"/>
                                     <constraint firstItem="Q4a-mP-KIc" firstAttribute="leading" secondItem="WTc-Qz-smE" secondAttribute="leadingMargin" constant="153" id="xN1-Ny-QBn"/>
@@ -1194,7 +1192,7 @@ logo, colors, font choices and simp</string>
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clientsHeadline" id="PBc-LX-XDn">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimesHeadCell" id="PBc-LX-XDn">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -1292,7 +1290,7 @@ logo, colors, font choices and simp</string>
         <!--Tasks-->
         <scene sceneID="gme-Ya-Dzm">
             <objects>
-                <collectionViewController title="Tasks" id="LNI-hQ-r14" customClass="TestViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="TasksViewController" title="Tasks" id="LNI-hQ-r14" customClass="TasksViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="nOV-2b-Wef" customClass="PassThroughView" customModule="TimeManager" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1304,7 +1302,7 @@ logo, colors, font choices and simp</string>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="client" id="k1K-XC-Cjj">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskCell" id="k1K-XC-Cjj">
                                 <rect key="frame" x="0.0" y="40" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1317,9 +1315,6 @@ logo, colors, font choices and simp</string>
                                             <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYY-Lb-Xqb">
-                                            <rect key="frame" x="565" y="10" width="27" height="44"/>
-                                        </imageView>
                                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tsg-s1-2Ne" userLabel="Bottom Separator">
                                             <rect key="frame" x="0.0" y="62" width="600" height="1"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1336,18 +1331,21 @@ logo, colors, font choices and simp</string>
                                             <color key="textColor" red="0.8156862855" green="0.22352941330000001" blue="0.062745101750000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZOG-cf-lNz">
+                                            <rect key="frame" x="578" y="20" width="14" height="23"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="0.87058823529411766" green="0.94901960784313721" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="XYY-Lb-Xqb" firstAttribute="centerY" secondItem="k1K-XC-Cjj" secondAttribute="centerY" id="6Nv-op-4Us"/>
                                     <constraint firstItem="ZIL-mK-7UQ" firstAttribute="top" secondItem="k1K-XC-Cjj" secondAttribute="topMargin" constant="26" id="Aoe-t5-DGM"/>
                                     <constraint firstItem="Oys-5c-4OY" firstAttribute="leading" secondItem="k1K-XC-Cjj" secondAttribute="leadingMargin" constant="5" id="MfF-uN-chx"/>
                                     <constraint firstItem="ZIL-mK-7UQ" firstAttribute="leading" secondItem="k1K-XC-Cjj" secondAttribute="leadingMargin" constant="5" id="N4g-7j-IV1"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="XYY-Lb-Xqb" secondAttribute="trailing" id="Y5H-cg-FSW"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="tsg-s1-2Ne" secondAttribute="bottom" constant="-8" id="a9z-0X-A1i"/>
                                     <constraint firstItem="tsg-s1-2Ne" firstAttribute="width" secondItem="k1K-XC-Cjj" secondAttribute="width" id="aTr-bs-eiB"/>
+                                    <constraint firstItem="ZOG-cf-lNz" firstAttribute="centerY" secondItem="k1K-XC-Cjj" secondAttribute="centerY" id="cx4-4o-qrU"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="ZOG-cf-lNz" secondAttribute="trailing" id="gFM-Ey-qYX"/>
                                     <constraint firstItem="Oys-5c-4OY" firstAttribute="top" secondItem="k1K-XC-Cjj" secondAttribute="topMargin" constant="2" id="vbq-B5-cHf"/>
                                 </constraints>
                             </collectionViewCell>
@@ -1361,7 +1359,7 @@ logo, colors, font choices and simp</string>
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="clientsHeadline" id="8rs-WS-cIw">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TasksHeadCell" id="8rs-WS-cIw">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -1644,4 +1642,8 @@ logo, colors, font choices and simp</string>
             <point key="canvasLocation" x="1512" y="2691"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow-right-grey.png" width="10" height="16"/>
+        <image name="arrow-right.png" width="10" height="16"/>
+    </resources>
 </document>

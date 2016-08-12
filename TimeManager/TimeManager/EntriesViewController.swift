@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EntriesViewController: UIViewController, UITableViewDelegate {
+class EntriesViewController: UIViewController, UITableViewDelegate, UICollectionViewDelegate {
     
     struct Selection {
         var clientId: Int!
@@ -18,32 +18,32 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
     
     var currentSelection: Selection!
     
-    var clientsController: UITableViewController!
-    var projectsController: UITableViewController!
-    var tasksController: UITableViewController!
-    var timesController: UITableViewController!
+    var clientsController: UICollectionViewController!
+    var projectsController: UICollectionViewController!
+    var tasksController: UICollectionViewController!
+    var timesController: UICollectionViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Load all the nice child views we're going to use.
-        self.clientsController = storyboard?.instantiateViewControllerWithIdentifier("ClientsViewController") as! UITableViewController
-        self.projectsController = storyboard?.instantiateViewControllerWithIdentifier("ProjectsViewController") as! UITableViewController
-        self.tasksController = storyboard?.instantiateViewControllerWithIdentifier("TasksViewController") as! UITableViewController
-        self.timesController = storyboard?.instantiateViewControllerWithIdentifier("TimesViewController") as! UITableViewController
+        self.clientsController = storyboard?.instantiateViewControllerWithIdentifier("ClientsViewController") as! UICollectionViewController
+        self.projectsController = storyboard?.instantiateViewControllerWithIdentifier("ProjectsViewController") as! UICollectionViewController
+        self.tasksController = storyboard?.instantiateViewControllerWithIdentifier("TasksViewController") as! UICollectionViewController
+        self.timesController = storyboard?.instantiateViewControllerWithIdentifier("TimesViewController") as! UICollectionViewController
         
         self.currentSelection = Selection(clientId: -1, projectId: -1, taskId: -1)
         
-        self.clientsController.tableView.delegate = self
+        self.clientsController.collectionView!.delegate = self
 //        self.clientsController.tableView.dataSource = self
         
-        self.projectsController.tableView.delegate = self
+        self.projectsController.collectionView!.delegate = self
         //        self.projectsController.tableView.dataSource = self
         
-        self.tasksController.tableView.delegate = self
+        self.tasksController.collectionView!.delegate = self
         //        self.tasksController.tableView.dataSource = self
         
-        self.timesController.tableView.delegate = self
+        self.timesController.collectionView!.delegate = self
         //        self.timesController.tableView.dataSource = self
         
         self.view.layer.masksToBounds = true
@@ -73,9 +73,9 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
         viewController.view.layer.shadowPath = shadowPath.CGPath
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         NSLog("Selected " + String(indexPath.row))
-        if(tableView == self.clientsController.tableView) {
+        if(collectionView == self.clientsController.collectionView) {
             if(self.currentSelection.clientId < 0) {
                 transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
             } else {
@@ -83,116 +83,115 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
                 self.currentSelection.taskId = -1
             }
             
-            (self.projectsController as! ProjectTableViewController).positionActive()
+            (self.projectsController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
             self.currentSelection.clientId = indexPath.row
-        } else if(tableView == self.projectsController.tableView) {
+        } else if(collectionView == self.projectsController.collectionView) {
             if(self.currentSelection.projectId < 0) {
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
             } else {
                 self.currentSelection.taskId = -1
             }
             
-            (self.projectsController as! ProjectTableViewController).positionSideBySideLeft()
-            (self.tasksController as! ProjectTableViewController).positionActive()
+            (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.tasksController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
             self.currentSelection.projectId = indexPath.row
-        } else if(tableView == self.tasksController.tableView) {
+        } else if(collectionView == self.tasksController.collectionView) {
             if(self.currentSelection.taskId < 0) {
                 transitionInViewController(lastViewController: self.tasksController, newViewController: self.timesController)
             }
             
-            (self.tasksController as! ProjectTableViewController).positionSideBySideLeft()
-            (self.timesController as! ProjectTableViewController).positionActive()
+            (self.tasksController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.timesController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
             self.currentSelection.taskId = indexPath.row
-        } else if(tableView == self.timesController.tableView) {
+        } else if(collectionView == self.timesController.collectionView) {
             // Do nothing.
         }
-        
     }
     
-    func mightNavigateLeft(sender: UITableViewController) {
+    func mightNavigateLeft(sender: UICollectionViewController) {
         if(sender == self.clientsController) {
             return
         }
         
         if(sender == self.projectsController && self.currentSelection.projectId >= 0) {
-            (self.clientsController as! ProjectTableViewController).positionSideBySideLeft()
-            (self.projectsController as! ProjectTableViewController).positionSideBySideRight()
-            (self.tasksController as! ProjectTableViewController).positionInvisible()
-            (self.timesController as! ProjectTableViewController).positionInvisible()
+            (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.projectsController as! CardOfViewDeckController).positionSideBySideRight()
+            (self.tasksController as! CardOfViewDeckController).positionInvisible()
+            (self.timesController as! CardOfViewDeckController).positionInvisible()
         }
         if(sender == self.tasksController) {
-            (self.clientsController as! ProjectTableViewController).positionSideBySideLeft()
-            (self.projectsController as! ProjectTableViewController).positionSideBySideRight()
-            (self.tasksController as! ProjectTableViewController).positionInvisible()
-            (self.timesController as! ProjectTableViewController).positionInvisible()
+            (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.projectsController as! CardOfViewDeckController).positionSideBySideRight()
+            (self.tasksController as! CardOfViewDeckController).positionInvisible()
+            (self.timesController as! CardOfViewDeckController).positionInvisible()
         }
         if(sender == self.timesController) {
-            (self.clientsController as! ProjectTableViewController).positionInTheDeck()
-            (self.projectsController as! ProjectTableViewController).positionSideBySideLeft()
-            (self.tasksController as! ProjectTableViewController).positionSideBySideRight()
-            (self.timesController as! ProjectTableViewController).positionInvisible()
+            (self.clientsController as! CardOfViewDeckController).positionInTheDeck()
+            (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.tasksController as! CardOfViewDeckController).positionSideBySideRight()
+            (self.timesController as! CardOfViewDeckController).positionInvisible()
         }
 //        NSLog("Navigate left")
     }
     
-    internal func mightNavigateRight(sender: UITableViewController) {
+    internal func mightNavigateRight(sender: UICollectionViewController) {
         if(sender == self.timesController) {
             return
         }
         
         if(sender == self.clientsController && self.currentSelection.clientId >= 0) {
             NSLog("Clients moving")
-            (self.clientsController as! ProjectTableViewController).positionSideBySideLeft()
-            (self.projectsController as! ProjectTableViewController).positionSideBySideRight()
-            (self.tasksController as! ProjectTableViewController).positionInvisible()
-            (self.timesController as! ProjectTableViewController).positionInvisible()
+            (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.projectsController as! CardOfViewDeckController).positionSideBySideRight()
+            (self.tasksController as! CardOfViewDeckController).positionInvisible()
+            (self.timesController as! CardOfViewDeckController).positionInvisible()
         }
         if(sender == self.projectsController && self.currentSelection.projectId >= 0) {
             NSLog("Projects moving")
-            (self.clientsController as! ProjectTableViewController).positionInTheDeck()
-            (self.projectsController as! ProjectTableViewController).positionSideBySideLeft()
-            (self.tasksController as! ProjectTableViewController).positionSideBySideRight()
-            (self.timesController as! ProjectTableViewController).positionInvisible()
+            (self.clientsController as! CardOfViewDeckController).positionInTheDeck()
+            (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.tasksController as! CardOfViewDeckController).positionSideBySideRight()
+            (self.timesController as! CardOfViewDeckController).positionInvisible()
         }
         if(sender == self.tasksController && self.currentSelection.taskId >= 0) {
             NSLog("Tasks Moving")
-            (self.clientsController as! ProjectTableViewController).positionInTheDeck()
-            (self.projectsController as! ProjectTableViewController).positionInTheDeck()
-            (self.tasksController as! ProjectTableViewController).positionSideBySideLeft()
-            (self.timesController as! ProjectTableViewController).positionSideBySideRight()
+            (self.clientsController as! CardOfViewDeckController).positionInTheDeck()
+            (self.projectsController as! CardOfViewDeckController).positionInTheDeck()
+            (self.tasksController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.timesController as! CardOfViewDeckController).positionSideBySideRight()
         }
 //        NSLog("Navigate right")
     }
     
     func repositionCards() {
-        (self.clientsController as! ProjectTableViewController).repositionCard()
-        (self.projectsController as! ProjectTableViewController).repositionCard()
-        (self.tasksController as! ProjectTableViewController).repositionCard()
-        (self.timesController as! ProjectTableViewController).repositionCard()
+        (self.clientsController as! CardOfViewDeckController).repositionCard()
+        (self.projectsController as! CardOfViewDeckController).repositionCard()
+        (self.tasksController as! CardOfViewDeckController).repositionCard()
+        (self.timesController as! CardOfViewDeckController).repositionCard()
     }
     
-    func mightMoveWithOtherCards(sender: UITableViewController) {
+    func mightMoveWithOtherCards(sender: UICollectionViewController) {
         NSLog("Might move with left card")
         
         if(sender == self.clientsController) {
-            (self.projectsController as! ProjectTableViewController).moveCardRightHandWithOtherCardsCenterPosition((self.clientsController as! ProjectTableViewController).getX())
+            (self.projectsController as! CardOfViewDeckController).moveCardRightHandWithOtherCardsCenterPosition((self.clientsController as! CardOfViewDeckController).getX())
         }
         if(sender == self.projectsController) {
-            (self.tasksController as! ProjectTableViewController).moveCardRightHandWithOtherCardsCenterPosition((self.projectsController as! ProjectTableViewController).getX())
-            (self.clientsController as! ProjectTableViewController).moveCardLeftHandWithOtherCardsCenterPosition((self.projectsController as! ProjectTableViewController).getX())
+            (self.tasksController as! CardOfViewDeckController).moveCardRightHandWithOtherCardsCenterPosition((self.projectsController as! CardOfViewDeckController).getX())
+            (self.clientsController as! CardOfViewDeckController).moveCardLeftHandWithOtherCardsCenterPosition((self.projectsController as! CardOfViewDeckController).getX())
         }
         if(sender == self.tasksController) {
-            (self.timesController as! ProjectTableViewController).moveCardRightHandWithOtherCardsCenterPosition((self.tasksController as! ProjectTableViewController).getX())
-            (self.projectsController as! ProjectTableViewController).moveCardLeftHandWithOtherCardsCenterPosition((self.tasksController as! ProjectTableViewController).getX())
+            (self.timesController as! CardOfViewDeckController).moveCardRightHandWithOtherCardsCenterPosition((self.tasksController as! CardOfViewDeckController).getX())
+            (self.projectsController as! CardOfViewDeckController).moveCardLeftHandWithOtherCardsCenterPosition((self.tasksController as! CardOfViewDeckController).getX())
         }
         if(sender == self.timesController) {
-            (self.tasksController as! ProjectTableViewController).moveCardLeftHandWithOtherCardsCenterPosition((self.timesController as! ProjectTableViewController).getX())
+            (self.tasksController as! CardOfViewDeckController).moveCardLeftHandWithOtherCardsCenterPosition((self.timesController as! CardOfViewDeckController).getX())
         }
 
     }
@@ -225,7 +224,7 @@ class EntriesViewController: UIViewController, UITableViewDelegate {
     }
     
     func visibleFrameForFirstEmbeddedController() -> CGRect {
-        let showRect = CGRect(x: 0, y: 0, width: self.view!.frame.width / 2 + 42, height: self.view!.frame.height)
+        let showRect = CGRect(x: 0, y: 0, width: self.view!.frame.width / 2, height: self.view!.frame.height)
         return showRect
     }
     

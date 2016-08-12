@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TestViewController: UICollectionViewController {
+class ClientsViewController: CardOfViewDeckController {
     
     var backgroundController: UIViewController!
     
@@ -22,13 +22,6 @@ class TestViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load all the nice child views we're going to use.
-        self.backgroundController = storyboard?.instantiateViewControllerWithIdentifier("TimesInfoBackground")
-        
-        // Show the first view.
-        self.displayContentController(backgroundController!)
-        
-        self.collectionView!.frame = CGRect(x: 0, y: 30, width: self.view!.frame.width, height: self.collectionView!.frame.height - 30)
         self.collectionView!.backgroundColor = UIColor.clearColor()
         self.view!.backgroundColor = UIColor.whiteColor()
         
@@ -42,18 +35,14 @@ class TestViewController: UICollectionViewController {
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell: UICollectionViewCell
         
-        if indexPath.section == 0 {
-            cell = collectionView.dequeueReusableCellWithReuseIdentifier("empty", forIndexPath: indexPath) as UICollectionViewCell!
-            cell.backgroundColor = UIColor.clearColor()
-            cell.userInteractionEnabled = false
-        } else {
-            cell = collectionView.dequeueReusableCellWithReuseIdentifier("client", forIndexPath: indexPath) as UICollectionViewCell!
+        
+            cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClientCell", forIndexPath: indexPath) as UICollectionViewCell!
 //            cell.backgroundColor = UIColor.whiteColor()
             
             let ClientNameLabel = cell.viewWithTag(1) as! UILabel
@@ -61,17 +50,15 @@ class TestViewController: UICollectionViewController {
             
             let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
             ClientMetaLabel.text = self.clients[indexPath.row].clientMeta
-        }
+        
         
         return cell
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if(section == 0) {
-            return 1
-        } else {
-            return clients.count
-        }
+
+        return clients.count
+        
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -80,15 +67,9 @@ class TestViewController: UICollectionViewController {
         reusableView = nil
         
         if(kind == UICollectionElementKindSectionHeader) {
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "clientsHeadline", forIndexPath: indexPath)
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "ClientsHeadCell", forIndexPath: indexPath)
             
-            if(indexPath.section == 0) {
-                headerView.backgroundColor = UIColor.clearColor()
-                headerView.alpha = 0
-                headerView.userInteractionEnabled = false
-            } else {
-                headerView.backgroundColor = UIColor.whiteColor()
-            }
+            headerView.backgroundColor = UIColor.whiteColor()
             
             reusableView = headerView
         }
@@ -96,30 +77,9 @@ class TestViewController: UICollectionViewController {
         return reusableView
     }
     
-    func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if indexPath.section == 0 {
-            return CGSize(width: self.view.frame.width, height: 200)
-        }
-        return CGSize(width: self.view.frame.width, height: 63)
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width, height: 63)
     }
-    
-    func displayContentController(content: UIViewController!) {
-        // Add the new view controller.
-        self.addChildViewController(content!)
-        // Make sure the view fits perfectly into our layout.
-        content!.view.frame = self.visibleFrameForEmbeddedControllers()
-        // Add the new view.
-        self.view!.insertSubview(content!.view, belowSubview: self.collectionView!)
-//        self.view!.addSubview(content!.view)
-        // Tell the child that it now lives at their parents.
-        content!.didMoveToParentViewController(self)
-        content!.view.userInteractionEnabled = true
-    }
-    
-    func visibleFrameForEmbeddedControllers() -> CGRect {
-        // Let's give them a rect, where the nav bar is still visible (Nav Bar is 86px in width and full height).
-        let showRect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.6)
-        return showRect
-    }
+
     
 }
