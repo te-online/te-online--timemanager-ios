@@ -50,7 +50,7 @@ class TasksViewController: CardOfViewDeckController {
         
         if indexPath.section == 0 {
             cell = collectionView.dequeueReusableCellWithReuseIdentifier("empty", forIndexPath: indexPath) as UICollectionViewCell!
-            cell.backgroundColor = UIColor.clearColor()
+//            cell.backgroundColor = UIColor.clearColor()
             cell.userInteractionEnabled = false
         } else {
             cell = collectionView.dequeueReusableCellWithReuseIdentifier("TaskCell", forIndexPath: indexPath) as UICollectionViewCell!
@@ -107,10 +107,16 @@ class TasksViewController: CardOfViewDeckController {
         content!.view.frame = self.visibleFrameForEmbeddedControllers()
         // Add the new view.
         self.view!.insertSubview(content!.view, belowSubview: self.collectionView!)
-        //        self.view!.addSubview(content!.view)
         // Tell the child that it now lives at their parents.
         content!.didMoveToParentViewController(self)
         content!.view.userInteractionEnabled = true
+        
+        
+        let EditButton = content!.view.viewWithTag(4) as! UIButton
+        EditButton.layer.borderColor = UIColor(colorLiteralRed: 0.7, green: 0.7, blue: 0.7, alpha: 1).CGColor
+        
+        let DeleteButton = content!.view.viewWithTag(5) as! UIButton
+        DeleteButton.layer.borderColor = UIColor(colorLiteralRed: 0.8509803922, green: 0.5764705882, blue: 0.4784313725, alpha: 1).CGColor
     }
     
     func visibleFrameForEmbeddedControllers() -> CGRect {

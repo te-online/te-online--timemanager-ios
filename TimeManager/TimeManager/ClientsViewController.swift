@@ -67,6 +67,10 @@ class ClientsViewController: CardOfViewDeckController {
         if(kind == UICollectionElementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "ClientsHeadCell", forIndexPath: indexPath)
             headerView.backgroundColor = UIColor.whiteColor()
+            
+            let NewButton = headerView.viewWithTag(3) as! UIButton
+            NewButton.layer.borderColor = UIColor(colorLiteralRed: 0.537254902, green: 0.8, blue: 1, alpha: 1).CGColor
+            
             reusableView = headerView
         }
         
