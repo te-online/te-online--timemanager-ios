@@ -23,12 +23,12 @@ class TestViewController: UICollectionViewController {
         super.viewDidLoad()
         
         // Load all the nice child views we're going to use.
-        self.backgroundController = storyboard?.instantiateViewControllerWithIdentifier("CollectionViewBackground")
+        self.backgroundController = storyboard?.instantiateViewControllerWithIdentifier("TimesInfoBackground")
         
         // Show the first view.
         self.displayContentController(backgroundController!)
         
-        self.collectionView!.frame = CGRect(x: 0, y: 50, width: self.view!.frame.width, height: self.collectionView!.frame.height)
+        self.collectionView!.frame = CGRect(x: 0, y: 30, width: self.view!.frame.width, height: self.collectionView!.frame.height - 30)
         self.collectionView!.backgroundColor = UIColor.clearColor()
         self.view!.backgroundColor = UIColor.whiteColor()
         
@@ -54,7 +54,7 @@ class TestViewController: UICollectionViewController {
             cell.userInteractionEnabled = false
         } else {
             cell = collectionView.dequeueReusableCellWithReuseIdentifier("client", forIndexPath: indexPath) as UICollectionViewCell!
-            cell.backgroundColor = UIColor.whiteColor()
+//            cell.backgroundColor = UIColor.whiteColor()
             
             let ClientNameLabel = cell.viewWithTag(1) as! UILabel
             ClientNameLabel.text = self.clients[indexPath.row].clientName
@@ -84,8 +84,7 @@ class TestViewController: UICollectionViewController {
             
             if(indexPath.section == 0) {
                 headerView.backgroundColor = UIColor.clearColor()
-                (headerView.viewWithTag(1) as! UILabel).text = ""
-                headerView.viewWithTag(2)!.alpha = 0
+                headerView.alpha = 0
                 headerView.userInteractionEnabled = false
             } else {
                 headerView.backgroundColor = UIColor.whiteColor()
@@ -99,7 +98,7 @@ class TestViewController: UICollectionViewController {
     
     func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: self.view.frame.width, height: 300)
+            return CGSize(width: self.view.frame.width, height: 200)
         }
         return CGSize(width: self.view.frame.width, height: 63)
     }
@@ -119,7 +118,7 @@ class TestViewController: UICollectionViewController {
     
     func visibleFrameForEmbeddedControllers() -> CGRect {
         // Let's give them a rect, where the nav bar is still visible (Nav Bar is 86px in width and full height).
-        let showRect = CGRect(x: 0, y: 0, width: self.view!.frame.width, height: 300)
+        let showRect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.6)
         return showRect
     }
     
