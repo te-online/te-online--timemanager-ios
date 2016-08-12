@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E906D0181D5DFDD500C06C87 /* arrow-down-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = E906D0121D5DFDD500C06C87 /* arrow-down-grey.png */; };
+		E906D0191D5DFDD500C06C87 /* arrow-down-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E906D0131D5DFDD500C06C87 /* arrow-down-grey@2x.png */; };
+		E906D01A1D5DFDD500C06C87 /* arrow-down-grey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E906D0141D5DFDD500C06C87 /* arrow-down-grey@3x.png */; };
+		E906D01B1D5DFDD500C06C87 /* arrow-up-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = E906D0151D5DFDD500C06C87 /* arrow-up-grey.png */; };
+		E906D01C1D5DFDD500C06C87 /* arrow-up-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E906D0161D5DFDD500C06C87 /* arrow-up-grey@2x.png */; };
+		E906D01D1D5DFDD500C06C87 /* arrow-up-grey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E906D0171D5DFDD500C06C87 /* arrow-up-grey@3x.png */; };
 		E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1271D5874A000FB6166 /* AppDelegate.swift */; };
 		E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1291D5874A000FB6166 /* ViewController.swift */; };
 		E958A12D1D5874A000FB6166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A12B1D5874A000FB6166 /* Main.storyboard */; };
@@ -42,6 +48,12 @@
 /* Begin PBXFileReference section */
 		0A9A181321E6623CC4B43C3C /* Pods-TimeManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeManager.release.xcconfig"; path = "TimeManager/Pods/Target Support Files/Pods-TimeManager/Pods-TimeManager.release.xcconfig"; sourceTree = "<group>"; };
 		A4A0DA6D8E6C18353B528D25 /* libPods-TimeManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TimeManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E906D0121D5DFDD500C06C87 /* arrow-down-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-down-grey.png"; sourceTree = "<group>"; };
+		E906D0131D5DFDD500C06C87 /* arrow-down-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-down-grey@2x.png"; sourceTree = "<group>"; };
+		E906D0141D5DFDD500C06C87 /* arrow-down-grey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-down-grey@3x.png"; sourceTree = "<group>"; };
+		E906D0151D5DFDD500C06C87 /* arrow-up-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-up-grey.png"; sourceTree = "<group>"; };
+		E906D0161D5DFDD500C06C87 /* arrow-up-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-up-grey@2x.png"; sourceTree = "<group>"; };
+		E906D0171D5DFDD500C06C87 /* arrow-up-grey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-up-grey@3x.png"; sourceTree = "<group>"; };
 		E958A1241D5874A000FB6166 /* TimeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E958A1271D5874A000FB6166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E958A1291D5874A000FB6166 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +159,12 @@
 		E958A1481D59E8A700FB6166 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				E906D0121D5DFDD500C06C87 /* arrow-down-grey.png */,
+				E906D0131D5DFDD500C06C87 /* arrow-down-grey@2x.png */,
+				E906D0141D5DFDD500C06C87 /* arrow-down-grey@3x.png */,
+				E906D0151D5DFDD500C06C87 /* arrow-up-grey.png */,
+				E906D0161D5DFDD500C06C87 /* arrow-up-grey@2x.png */,
+				E906D0171D5DFDD500C06C87 /* arrow-up-grey@3x.png */,
 				E9BA20D61D5DCE850098F37D /* arrow-right.png */,
 				E9BA20D81D5DCE8C0098F37D /* arrow-right@2x.png */,
 				E9BA20D91D5DCE8C0098F37D /* arrow-right@3x.png */,
@@ -234,18 +252,24 @@
 			files = (
 				E9BA20E01D5DCE930098F37D /* arrow-right-grey@2x.png in Resources */,
 				E958A1351D5874A000FB6166 /* LaunchScreen.storyboard in Resources */,
+				E906D01B1D5DFDD500C06C87 /* arrow-up-grey.png in Resources */,
 				E958A14F1D59E8CB00FB6166 /* Poppins-Light.ttf in Resources */,
 				E958A1511D59E8CB00FB6166 /* Poppins-Regular.ttf in Resources */,
 				E958A1321D5874A000FB6166 /* Assets.xcassets in Resources */,
 				E958A1501D59E8CB00FB6166 /* Poppins-Medium.ttf in Resources */,
 				E958A1521D59E8CB00FB6166 /* Poppins-SemiBold.ttf in Resources */,
+				E906D0191D5DFDD500C06C87 /* arrow-down-grey@2x.png in Resources */,
 				E9BA20DF1D5DCE930098F37D /* arrow-right-grey.png in Resources */,
 				E96751CD1D5B69CA001FFBDC /* Podfile in Resources */,
+				E906D01D1D5DFDD500C06C87 /* arrow-up-grey@3x.png in Resources */,
 				E958A12D1D5874A000FB6166 /* Main.storyboard in Resources */,
+				E906D0181D5DFDD500C06C87 /* arrow-down-grey.png in Resources */,
 				E9BA20D71D5DCE850098F37D /* arrow-right.png in Resources */,
+				E906D01C1D5DFDD500C06C87 /* arrow-up-grey@2x.png in Resources */,
 				E958A14E1D59E8CB00FB6166 /* Poppins-Bold.ttf in Resources */,
 				E9BA20E11D5DCE930098F37D /* arrow-right-grey@3x.png in Resources */,
 				E9BA20DB1D5DCE8C0098F37D /* arrow-right@3x.png in Resources */,
+				E906D01A1D5DFDD500C06C87 /* arrow-down-grey@3x.png in Resources */,
 				E9BA20DA1D5DCE8C0098F37D /* arrow-right@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

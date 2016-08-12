@@ -609,13 +609,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rDb-Y8-5Gk">
                             <size key="itemSize" width="600" height="63"/>
-                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="50" height="70"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClientCell" id="rig-Ks-k5X">
-                                <rect key="frame" x="0.0" y="50" width="600" height="63"/>
+                                <rect key="frame" x="0.0" y="70" width="600" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
@@ -625,8 +625,8 @@
                                             <rect key="frame" x="0.0" y="62" width="201" height="1"/>
                                             <color key="backgroundColor" red="0.86274510622024536" green="0.86274510622024536" blue="0.86274510622024536" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow-right-grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="y0y-vS-uQw">
-                                            <rect key="frame" x="578" y="20" width="14" height="23"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right-grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="y0y-vS-uQw">
+                                            <rect key="frame" x="582" y="23" width="10" height="16"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sirius Cybernetics Corp." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ttu-L3-EzX">
                                             <rect key="frame" x="13" y="10" width="224" height="23"/>
@@ -655,38 +655,28 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClientsHeadCell" id="8o1-Mp-8tM">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FCi-Sy-10d" userLabel="Bottom Separator">
-                                    <rect key="frame" x="0.0" y="49" width="600" height="1"/>
+                                    <rect key="frame" x="0.0" y="69" width="600" height="1"/>
                                     <color key="backgroundColor" red="0.86274510622024536" green="0.86274510622024536" blue="0.86274510622024536" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAb-tx-OFd">
-                                    <rect key="frame" x="201" y="10" width="50" height="24"/>
+                                    <rect key="frame" x="461" y="23" width="50" height="25"/>
                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
-                                    <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
                                     <state key="normal" title="New">
                                         <color key="titleColor" red="0.47450980544090271" green="0.75294119119644165" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="2"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                            <integer key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0O-aJ-siq">
-                                    <rect key="frame" x="70" y="12" width="50" height="23"/>
+                                    <rect key="frame" x="70" y="22" width="50" height="23"/>
                                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                     <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="CLIENTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiP-Jn-9wm">
-                                    <rect key="frame" x="13" y="14" width="49" height="23"/>
+                                    <rect key="frame" x="13" y="24" width="49" height="23"/>
                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                     <color key="textColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -694,8 +684,8 @@
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="bottomMargin" secondItem="KiP-Jn-9wm" secondAttribute="bottom" constant="-5" id="765-1K-BvJ"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="wAb-tx-OFd" secondAttribute="bottom" id="FUd-XV-fmC"/>
                                 <constraint firstItem="FCi-Sy-10d" firstAttribute="width" secondItem="8o1-Mp-8tM" secondAttribute="width" id="IdD-Of-QkL"/>
-                                <constraint firstAttribute="bottomMargin" secondItem="wAb-tx-OFd" secondAttribute="bottom" constant="-2" id="NMp-kL-Jgc"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="Q0O-aJ-siq" secondAttribute="bottom" constant="-3" id="utw-Qu-Fwn"/>
                             </constraints>
                         </collectionReusableView>
@@ -859,8 +849,8 @@
                                             <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="OnG-kZ-D4E">
-                                            <rect key="frame" x="578" y="20" width="14" height="23"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="OnG-kZ-D4E">
+                                            <rect key="frame" x="582" y="23" width="10" height="16"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="20 hrs. unpaid" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsH-os-Eki">
                                             <rect key="frame" x="312" y="34" width="232" height="21"/>
@@ -1168,8 +1158,8 @@ logo, colors, font choices and simp</string>
                                             <color key="textColor" red="0.81568628549575806" green="0.22352941334247589" blue="0.062745101749897003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow-right-grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="gvB-ZR-SXV">
-                                            <rect key="frame" x="578" y="20" width="14" height="23"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-down-grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="gvB-ZR-SXV">
+                                            <rect key="frame" x="576" y="26" width="16" height="10"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1342,8 +1332,8 @@ logo, colors, font choices and simp</string>
                                             <color key="textColor" red="0.8156862855" green="0.22352941330000001" blue="0.062745101750000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZOG-cf-lNz">
-                                            <rect key="frame" x="578" y="20" width="14" height="23"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZOG-cf-lNz">
+                                            <rect key="frame" x="582" y="23" width="10" height="16"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1652,6 +1642,7 @@ logo, colors, font choices and simp</string>
         </scene>
     </scenes>
     <resources>
+        <image name="arrow-down-grey.png" width="16" height="10"/>
         <image name="arrow-right-grey.png" width="10" height="16"/>
         <image name="arrow-right.png" width="10" height="16"/>
     </resources>

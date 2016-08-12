@@ -70,6 +70,10 @@ class ClientsViewController: CardOfViewDeckController {
             
             let NewButton = headerView.viewWithTag(3) as! UIButton
             NewButton.layer.borderColor = UIColor(colorLiteralRed: 0.537254902, green: 0.8, blue: 1, alpha: 1).CGColor
+            NewButton.layer.cornerRadius = 2
+            NewButton.layer.borderWidth = 1
+//            NewButton.layer.frame = CGRectMake(NewButton.layer.frame.minX, NewButton.layer.frame.minY, 50, 5)
+            NewButton.layer.masksToBounds = true
             
             reusableView = headerView
         }
