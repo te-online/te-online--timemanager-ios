@@ -54,7 +54,6 @@ class TasksViewController: CardOfViewDeckController {
             cell.userInteractionEnabled = false
         } else {
             cell = collectionView.dequeueReusableCellWithReuseIdentifier("TaskCell", forIndexPath: indexPath) as UICollectionViewCell!
-            //            cell.backgroundColor = UIColor.whiteColor()
             
             let ClientNameLabel = cell.viewWithTag(1) as! UILabel
             ClientNameLabel.text = self.clients[indexPath.row].clientName
@@ -86,8 +85,6 @@ class TasksViewController: CardOfViewDeckController {
                 headerView.backgroundColor = UIColor.clearColor()
                 headerView.alpha = 0
                 headerView.userInteractionEnabled = false
-            } else {
-//                headerView.backgroundColor = UIColor.whiteColor()
             }
             
             reusableView = headerView

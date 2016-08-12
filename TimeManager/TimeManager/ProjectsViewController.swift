@@ -54,7 +54,6 @@ class ProjectsViewController: CardOfViewDeckController {
             cell.userInteractionEnabled = false
         } else {
             cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProjectCell", forIndexPath: indexPath) as UICollectionViewCell!
-            //            cell.backgroundColor = UIColor.whiteColor()
             
             let ClientNameLabel = cell.viewWithTag(1) as! UILabel
             ClientNameLabel.text = self.clients[indexPath.row].clientName
@@ -86,8 +85,6 @@ class ProjectsViewController: CardOfViewDeckController {
                 headerView.backgroundColor = UIColor.clearColor()
                 headerView.alpha = 0
                 headerView.userInteractionEnabled = false
-            } else {
-//                headerView.backgroundColor = UIColor.whiteColor()
             }
             
             reusableView = headerView
@@ -96,11 +93,11 @@ class ProjectsViewController: CardOfViewDeckController {
         return reusableView
     }
     
-//    func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//    override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 //        if indexPath.section == 0 {
 //            return CGSize(width: self.view.frame.width, height: 500)
 //        }
-//        return CGSize(width: 200, height: 63)
+//        return super.getCellSize()
 //    }
     
     func displayContentController(content: UIViewController!) {

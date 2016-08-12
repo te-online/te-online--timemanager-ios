@@ -73,10 +73,4 @@ class ClientsViewController: CardOfViewDeckController {
         return reusableView
     }
     
-    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        collectionView.reloadData()
-        NSLog("size CollectionView width" + String(collectionView.frame.width))
-        return CGSize(width: self.view.frame.width/2, height: 63)
-    }
-    
 }

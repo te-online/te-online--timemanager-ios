@@ -49,15 +49,8 @@ class CardOfViewDeckController: UICollectionViewController {
         self.cardType = CardType.DeckCard
         self.cardMode = CardMode.InTheDeck
         
-//        self.collectionView?.collectionViewFlowLayout.
-        NSLog("CollectionView width" + String(self.view.bounds.width/2))
-//        return CGSize(width: self.view.frame.width, height: 63)
-        
-//        self.myCollectionViewFlowLayout.itemSize = CGSizeMake(320, 548)
-//        self.collectionView?.collectionViewLayout. = CGSizeMake(320, 63)
+//        NSLog("CollectionView width" + String(self.view.bounds.width/2))
         self.setCellSize();
-//        self.automaticallyAdjustsScrollViewInsets = false
-//        self.collectionView!.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -332,26 +325,25 @@ class CardOfViewDeckController: UICollectionViewController {
         // Set the mode of the card here.
         self.cardType = type
     }
-    
-//    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        NSLog("Touch ended.")
-//    }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         collectionView.reloadData()
-        NSLog("size CollectionView width" + String(collectionView.frame.width))
-        return CGSize(width: self.view.frame.width/2, height: 63)
+        NSLog("sizeForItemAtIndexPath width" + String(collectionView.frame.width))
+        return self.getCellSize()
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-//        (self.collectionView!.collectionViewLayout).setItemSize(CGSizeMake(floor(size.width / 7), floor(size.width / 7)))
-        (self.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(self.view.frame.width / 2, 63)
+        (self.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = self.getCellSize()
         self.collectionView!.collectionViewLayout.invalidateLayout()
         NSLog("invalidated")
     }
     
     func setCellSize() {
-         (self.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSizeMake(self.view.frame.width / 2, 63)
+         (self.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = self.getCellSize()
+    }
+    
+    func getCellSize() -> CGSize {
+        return CGSizeMake(self.view.frame.width / 2, 63)
     }
     
 }
