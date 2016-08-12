@@ -19,6 +19,8 @@ class ClientsViewController: CardOfViewDeckController {
         var clientMeta: String!
     }
     
+    var Colors = SharedColorPalette.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +52,8 @@ class ClientsViewController: CardOfViewDeckController {
         let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
         ClientMetaLabel.text = self.clients[indexPath.row].clientMeta
         
+        cell.backgroundColor = UIColor.whiteColor()
+        
         cell.contentView.frame = cell.bounds
         cell.contentView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
         
@@ -80,5 +84,28 @@ class ClientsViewController: CardOfViewDeckController {
         
         return reusableView
     }
+    
+    override func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+        NSLog("Selected Clients Override" + String(collectionView))
+        let cell: UICollectionViewCell! = collectionView.cellForItemAtIndexPath(indexPath)
+        if cell != nil {
+            cell.contentView.backgroundColor = Colors.VeryLightGrey
+        }
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell: UICollectionViewCell! = collectionView.cellForItemAtIndexPath(indexPath)
+        if cell != nil {
+            cell.contentView.backgroundColor = UIColor.whiteColor()
+        }
+    }
+
+    
+//    override func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+//        let cell: UICollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath)!
+//        let color = UIColor.whiteColor()
+//        
+//        cell.contentView.backgroundColor = color
+//    }
     
 }

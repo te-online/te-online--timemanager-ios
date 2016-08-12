@@ -14,10 +14,32 @@ class ProjectsViewController: CardOfViewDeckController {
     
     var clients = [Client]()
     
+    struct newClient {
+        var name: String!
+        var sinceDate: String!
+        var address: String!
+        var contacts: [String]!
+        var note: String!
+        var totalHours: Double!
+    }
+    
     struct Client {
         var clientName: String!
         var clientMeta: String!
     }
+    
+    struct Project {
+        var name: String!
+        var numTasks: Int!
+        var numHours: Double!
+        var numHoursUnpaid: Double!
+        var numHoursNInvoiced: Double!
+    }
+    
+    var cellColor: UIColor!
+    var activeColor: UIColor!
+    
+    var Colors = SharedColorPalette.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +63,8 @@ class ProjectsViewController: CardOfViewDeckController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 2
     }
@@ -54,6 +78,7 @@ class ProjectsViewController: CardOfViewDeckController {
             cell.userInteractionEnabled = false
         } else {
             cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProjectCell", forIndexPath: indexPath) as UICollectionViewCell!
+            cell.backgroundColor = Colors.ProjectsCellBlue
             
             let ClientNameLabel = cell.viewWithTag(1) as! UILabel
             ClientNameLabel.text = self.clients[indexPath.row].clientName
@@ -85,6 +110,8 @@ class ProjectsViewController: CardOfViewDeckController {
                 headerView.backgroundColor = UIColor.clearColor()
                 headerView.alpha = 0
                 headerView.userInteractionEnabled = false
+            } else {
+                headerView.backgroundColor = Colors.ProjectsCellBlue
             }
             
             reusableView = headerView
@@ -93,12 +120,12 @@ class ProjectsViewController: CardOfViewDeckController {
         return reusableView
     }
     
-//    override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        if indexPath.section == 0 {
-//            return CGSize(width: self.view.frame.width, height: 500)
-//        }
-//        return super.getCellSize()
-//    }
+    override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            return CGSize(width: self.view.frame.width, height: 150)
+        }
+        return super.getCellSize()
+    }
     
     func displayContentController(content: UIViewController!) {
         // Add the new view controller.
@@ -112,11 +139,13 @@ class ProjectsViewController: CardOfViewDeckController {
         content!.didMoveToParentViewController(self)
         content!.view.userInteractionEnabled = true
         
-        let EditButton = content!.view.viewWithTag(4) as! UIButton
-        EditButton.layer.borderColor = UIColor(colorLiteralRed: 0.7, green: 0.7, blue: 0.7, alpha: 1).CGColor
+        content!.view.viewWithTag(1)!.backgroundColor = Colors.ProjectsCellBlue
         
-        let DeleteButton = content!.view.viewWithTag(5) as! UIButton
-        DeleteButton.layer.borderColor = UIColor(colorLiteralRed: 0.8509803922, green: 0.5764705882, blue: 0.4784313725, alpha: 1).CGColor
+        let EditButton = content!.view.viewWithTag(5) as! UIButton
+        EditButton.layer.borderColor = Colors.MediumGrey.CGColor
+        
+        let DeleteButton = content!.view.viewWithTag(6) as! UIButton
+        DeleteButton.layer.borderColor = Colors.MediumRed.CGColor
     }
     
     func visibleFrameForEmbeddedControllers() -> CGRect {
@@ -124,5 +153,30 @@ class ProjectsViewController: CardOfViewDeckController {
         let showRect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.6)
         return showRect
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+        let cell: UICollectionViewCell! = collectionView.cellForItemAtIndexPath(indexPath)
+        if cell != nil {
+            cell.contentView.backgroundColor = Colors.ProjectsCellActiveBlue
+        }
+    }
+    
+//    override func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+//        let cell: UICollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath)!
+//        cell.contentView.backgroundColor = Colors.ProjectsCellActiveBlue
+//    }
+    
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell: UICollectionViewCell! = collectionView.cellForItemAtIndexPath(indexPath)
+        if cell != nil {
+            cell.contentView.backgroundColor = Colors.ProjectsCellBlue
+        }
+    }
+    
+//    override func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+//        let cell: UICollectionViewCell = self.collectionView!.cellForItemAtIndexPath(indexPath)!
+//        cell.contentView.backgroundColor = Colors.ProjectsCellBlue
+//    }
     
 }

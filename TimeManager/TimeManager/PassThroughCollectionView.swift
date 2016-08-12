@@ -8,16 +8,16 @@
 
 import UIKit
 
-class PassThroughView: UICollectionView {
+class PassThroughCollectionView: UICollectionView {
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         for subview in subviews as [UIView] {
-            if !subview.hidden && subview.alpha > 0 && subview.userInteractionEnabled && subview.pointInside(convertPoint(point, toView: subview), withEvent: event) {
+            if !subview.hidden && subview.alpha > 0 && subview.userInteractionEnabled && subview.pointInside(convertPoint(point, toView: subview), withEvent: event) && subview.isMemberOfClass(UICollectionViewCell) {
                 return true
             }
         }
         return false
     }
-    
+
 //    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //        super.touchesEnded(touches, withEvent: event)
 //        self.yourCustomDelegate.forwardTouches(touches, withEvent: (event as! UIEvent))

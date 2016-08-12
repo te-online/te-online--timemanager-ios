@@ -816,7 +816,7 @@
         <scene sceneID="1Ex-Uf-QUd">
             <objects>
                 <collectionViewController storyboardIdentifier="ProjectsViewController" title="Projects" id="1Ko-oS-dki" customClass="ProjectsViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="4sK-74-9ND" customClass="PassThroughView" customModule="TimeManager" customModuleProvider="target">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="4sK-74-9ND" customClass="PassThroughCollectionView" customModule="TimeManager" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -928,7 +928,6 @@
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="1Ko-oS-dki" id="IZQ-H9-Fwz"/>
-                            <outlet property="delegate" destination="1Ko-oS-dki" id="usE-p8-FRK"/>
                         </connections>
                     </collectionView>
                 </collectionViewController>
@@ -936,10 +935,10 @@
             </objects>
             <point key="canvasLocation" x="251" y="2158"/>
         </scene>
-        <!--View Controller-->
+        <!--Project Details View Controller-->
         <scene sceneID="2Ts-U4-LhP">
             <objects>
-                <viewController storyboardIdentifier="ProjectsInfoBackground" id="Dab-a7-gou" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectsInfoBackground" id="Dab-a7-gou" customClass="ProjectDetailsViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dJ3-Zx-JqQ"/>
                         <viewControllerLayoutGuide type="bottom" id="fDQ-JA-YzI"/>
@@ -948,28 +947,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHK-Zs-raV">
+                            <view tag="1" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHK-Zs-raV">
                                 <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="PROJECTS FOR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9V-Qs-HJH">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="PROJECTS FOR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9V-Qs-HJH">
                                         <rect key="frame" x="13" y="8" width="81" height="23"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rich Industries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMY-F4-k2d">
-                                        <rect key="frame" x="102" y="8" width="459" height="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rich Industries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMY-F4-k2d">
+                                        <rect key="frame" x="102" y="8" width="361" height="23"/>
                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="10"/>
                                         <color key="textColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rich Industries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh8-ED-laj">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rich Industries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh8-ED-laj">
                                         <rect key="frame" x="13" y="39" width="579" height="23"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="20"/>
                                         <color key="textColor" red="0.25098040699958801" green="0.56470590829849243" blue="0.87450981140136719" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfs-I7-bnz">
+                                    <button opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfs-I7-bnz">
                                         <rect key="frame" x="422" y="34" width="68" height="34"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                         <state key="normal" title="Delete">
@@ -984,6 +983,9 @@
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="DeleteButtonPressed:" destination="Dab-a7-gou" eventType="touchUpInside" id="SPE-3G-Jw7"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Client since" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fH3-RZ-5Pj">
                                         <rect key="frame" x="13" y="63" width="220" height="23"/>
@@ -991,7 +993,7 @@
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="01. August 2000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tai-CW-Sz8">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="01. August 2000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tai-CW-Sz8">
                                         <rect key="frame" x="13" y="81" width="220" height="23"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                         <color key="textColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="calibratedRGB"/>
@@ -1003,19 +1005,19 @@
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="755 Westminster Road" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMi-qq-Uu3">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="8" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="755 Westminster Road" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMi-qq-Uu3">
                                         <rect key="frame" x="13" y="123" width="220" height="22"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="8" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Mrs. Melissa Hemmingway" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au6-yn-7lN">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Mrs. Melissa Hemmingway" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au6-yn-7lN">
                                         <rect key="frame" x="270" y="91" width="220" height="22"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Mr. Dylan Alegreya" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LC5-nY-1Oh">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Mr. Dylan Alegreya" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LC5-nY-1Oh">
                                         <rect key="frame" x="270" y="112" width="220" height="22"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1027,13 +1029,7 @@
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Important client" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khq-gc-ITe">
-                                        <rect key="frame" x="270" y="151" width="220" height="22"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
-                                        <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wU8-Gl-C4B">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wU8-Gl-C4B">
                                         <rect key="frame" x="364" y="34" width="50" height="34"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
@@ -1049,11 +1045,20 @@
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="EditButtonPressed:" destination="Dab-a7-gou" eventType="touchUpInside" id="X43-O5-aA7"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Contact persons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smM-Wa-nhq">
                                         <rect key="frame" x="270" y="72" width="220" height="27"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Important client" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khq-gc-ITe">
+                                        <rect key="frame" x="270" y="151" width="220" height="22"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                        <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1064,14 +1069,12 @@
                                     <constraint firstItem="fH3-RZ-5Pj" firstAttribute="leading" secondItem="LHK-Zs-raV" secondAttribute="leading" constant="13" id="A7N-vM-rFh"/>
                                     <constraint firstItem="khq-gc-ITe" firstAttribute="top" secondItem="sqF-QH-8Xc" secondAttribute="bottom" constant="-6" id="F8h-vR-ZbR"/>
                                     <constraint firstAttribute="trailing" secondItem="LC5-nY-1Oh" secondAttribute="trailing" constant="10" id="Gi8-ak-B5B"/>
-                                    <constraint firstItem="kfs-I7-bnz" firstAttribute="top" secondItem="LHK-Zs-raV" secondAttribute="top" constant="34" id="KEp-zo-oXW"/>
                                     <constraint firstItem="fH3-RZ-5Pj" firstAttribute="top" secondItem="LHK-Zs-raV" secondAttribute="top" constant="63" id="LaK-qu-2St"/>
                                     <constraint firstItem="2EM-Ni-Axo" firstAttribute="leading" secondItem="LHK-Zs-raV" secondAttribute="leading" constant="13" id="Nhu-2R-429"/>
                                     <constraint firstItem="O9V-Qs-HJH" firstAttribute="top" secondItem="LHK-Zs-raV" secondAttribute="top" constant="8" id="OuL-lZ-r7M"/>
                                     <constraint firstItem="DMi-qq-Uu3" firstAttribute="top" secondItem="2EM-Ni-Axo" secondAttribute="bottom" constant="-5" id="Ulm-gh-Ccn"/>
                                     <constraint firstAttribute="trailing" secondItem="khq-gc-ITe" secondAttribute="trailing" constant="10" id="VgM-je-sdk"/>
                                     <constraint firstItem="DMi-qq-Uu3" firstAttribute="leading" secondItem="LHK-Zs-raV" secondAttribute="leading" constant="13" id="XVx-Yr-8dA"/>
-                                    <constraint firstItem="wU8-Gl-C4B" firstAttribute="top" secondItem="LHK-Zs-raV" secondAttribute="top" constant="34" id="ZH0-XD-wFz"/>
                                     <constraint firstItem="au6-yn-7lN" firstAttribute="top" secondItem="smM-Wa-nhq" secondAttribute="bottom" constant="-5" id="a8n-Qy-BDk"/>
                                     <constraint firstItem="sqF-QH-8Xc" firstAttribute="top" secondItem="LC5-nY-1Oh" secondAttribute="bottom" id="bO1-x9-bXn"/>
                                     <constraint firstAttribute="trailing" secondItem="sqF-QH-8Xc" secondAttribute="trailing" constant="10" id="bWt-Hd-aK1"/>
@@ -1101,7 +1104,7 @@
         <scene sceneID="K1u-Be-PjS">
             <objects>
                 <collectionViewController storyboardIdentifier="TimesViewController" title="Times" id="Jds-PN-WOR" customClass="TimesViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="yFQ-cL-9fy" customClass="PassThroughView" customModule="TimeManager" customModuleProvider="target">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="yFQ-cL-9fy" customClass="PassThroughCollectionView" customModule="TimeManager" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1289,7 +1292,7 @@ logo, colors, font choices and simp</string>
         <scene sceneID="gme-Ya-Dzm">
             <objects>
                 <collectionViewController storyboardIdentifier="TasksViewController" title="Tasks" id="LNI-hQ-r14" customClass="TasksViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="nOV-2b-Wef" customClass="PassThroughView" customModule="TimeManager" customModuleProvider="target">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="nOV-2b-Wef" customClass="PassThroughCollectionView" customModule="TimeManager" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

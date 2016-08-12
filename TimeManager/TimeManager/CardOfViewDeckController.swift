@@ -8,7 +8,17 @@
 
 import UIKit
 
+protocol CardOfViewDeckControllerDelegate {
+    func didSelectItemAtIndexPath(viewController: UICollectionViewController, indexPath: NSIndexPath)
+    func mightNavigateLeft(sender: UICollectionViewController)
+    func mightNavigateRight(sender: UICollectionViewController)
+    func mightMoveWithOtherCards(sender: UICollectionViewController)
+    func repositionCards()
+}
+
 class CardOfViewDeckController: UICollectionViewController {
+    
+    var delegate: CardOfViewDeckControllerDelegate?
     
     var hasFocus: Bool!
     var previousHasFocus: Bool!
@@ -17,7 +27,7 @@ class CardOfViewDeckController: UICollectionViewController {
     var cardType: CardType!
     var cardMode: CardMode!
     
-    var delegate: NSObject!
+//    var delegate: NSObject!
     
     var startX: Double = 0
     
@@ -49,8 +59,10 @@ class CardOfViewDeckController: UICollectionViewController {
         self.cardType = CardType.DeckCard
         self.cardMode = CardMode.InTheDeck
         
+        self.collectionView?.delegate = self
+        
 //        NSLog("CollectionView width" + String(self.view.bounds.width/2))
-        self.setCellSize();
+//        self.setCellSize();
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,14 +124,16 @@ class CardOfViewDeckController: UICollectionViewController {
             let targetX = translation.x + center.x
             
             if(targetX > center.x && abs(self.startX - Double(targetX)) > 50) {
-                (self.collectionView!.delegate as! EntriesViewController).mightNavigateLeft(self)
+                self.delegate?.mightNavigateLeft(self)
+//                (self.collectionView!.delegate as! CardOfViewDeckController).mightNavigateLeft(self)
                 
             } else if(targetX <= center.x && abs(self.startX - Double(targetX)) > 50) {
                 // report to container -> maybe make next card active again
-                (self.collectionView!.delegate as! EntriesViewController).mightNavigateRight(self)
+//                (self.collectionView!.delegate as! EntriesViewController).mightNavigateRight(self)
+                self.delegate?.mightNavigateRight(self)
             }
             
-            (self.collectionView!.delegate as! EntriesViewController).mightMoveWithOtherCards(self)
+            self.delegate?.mightMoveWithOtherCards(self)
             
 //            NSLog("X " + String(xPos))
             center = CGPointMake(xPos, pgr.view!.center.y)
@@ -129,7 +143,7 @@ class CardOfViewDeckController: UICollectionViewController {
         if(pgr.state == .Ended) {
 //            NSLog("Touch ended.")
 //            self.repositionCard()
-            (self.collectionView!.delegate as! EntriesViewController).repositionCards()
+            self.delegate?.repositionCards()
         }
     }
     
@@ -328,7 +342,7 @@ class CardOfViewDeckController: UICollectionViewController {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         collectionView.reloadData()
-        NSLog("sizeForItemAtIndexPath width" + String(collectionView.frame.width))
+//        NSLog("sizeForItemAtIndexPath width" + String(collectionView.frame.width))
         return self.getCellSize()
     }
     
@@ -343,7 +357,31 @@ class CardOfViewDeckController: UICollectionViewController {
     }
     
     func getCellSize() -> CGSize {
-        return CGSizeMake(self.view.frame.width / 2, 63)
+        return CGSizeMake(self.view.frame.width, 63)
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.delegate?.didSelectItemAtIndexPath(self, indexPath: indexPath)
+    }
+    
+//    override func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+//        NSLog("Changing color" + String((collectionView as UICollectionView)))
+////        
+//        collectionView.reloadData()
+//        
+////        let cell: UICollectionViewCell = (collectionView as UICollectionView).cellForItemAtIndexPath(indexPath)!
+////        let color: UIColor = cell.contentView.backgroundColor!
+//        
+////        cell.contentView.backgroundColor = UIColor(CGColor: CGColorCreateCopyWithAlpha(color.CGColor, 0.7)!)
+//    }
+////
+////    override func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+////        NSLog("changing back color")
+////        
+////        let cell: UICollectionViewCell = self.collectionView!.cellForItemAtIndexPath(indexPath)!
+////        let color: UIColor = cell.contentView.backgroundColor!
+////        
+////        cell.contentView.backgroundColor = UIColor(CGColor: CGColorCreateCopyWithAlpha(color.CGColor, 1)!)
+////    }
     
 }

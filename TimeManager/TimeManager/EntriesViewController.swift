@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EntriesViewController: UIViewController, UICollectionViewDelegate {
+class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfViewDeckControllerDelegate {
     
     struct Selection {
         var clientId: Int!
@@ -34,16 +34,19 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate {
         
         self.currentSelection = Selection(clientId: -1, projectId: -1, taskId: -1)
         
-        self.clientsController.collectionView!.delegate = self
+        (self.clientsController as! CardOfViewDeckController).delegate = self
+        (self.projectsController as! CardOfViewDeckController).delegate = self
+        (self.tasksController as! CardOfViewDeckController).delegate = self
+        (self.timesController as! CardOfViewDeckController).delegate = self
 //        self.clientsController.tableView.dataSource = self
         
-        self.projectsController.collectionView!.delegate = self
+//        self.projectsController.collectionView!.delegate = self
         //        self.projectsController.tableView.dataSource = self
         
-        self.tasksController.collectionView!.delegate = self
+//        self.tasksController.collectionView!.delegate = self
         //        self.tasksController.tableView.dataSource = self
         
-        self.timesController.collectionView!.delegate = self
+//        self.timesController.collectionView!.delegate = self
         //        self.timesController.tableView.dataSource = self
         
         self.view.layer.masksToBounds = true
@@ -71,6 +74,48 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate {
         viewController.view.layer.shadowRadius = 4
         viewController.view.layer.shadowOpacity = 0.5
         viewController.view.layer.shadowPath = shadowPath.CGPath
+    }
+    
+    func didSelectItemAtIndexPath(viewController: UICollectionViewController, indexPath: NSIndexPath) {
+        let collectionView: UICollectionView = viewController.collectionView!
+        NSLog("Selected " + String(indexPath.row))
+        if(viewController == self.clientsController) {
+            if(self.currentSelection.clientId < 0) {
+                transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
+            } else {
+                self.currentSelection.projectId = -1
+                self.currentSelection.taskId = -1
+            }
+            
+            (self.projectsController as! CardOfViewDeckController).positionActive()
+            self.repositionCards()
+            
+            self.currentSelection.clientId = indexPath.row
+        } else if(collectionView == self.projectsController.collectionView) {
+            if(self.currentSelection.projectId < 0) {
+                transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
+            } else {
+                self.currentSelection.taskId = -1
+            }
+            
+            (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.tasksController as! CardOfViewDeckController).positionActive()
+            self.repositionCards()
+            
+            self.currentSelection.projectId = indexPath.row
+        } else if(collectionView == self.tasksController.collectionView) {
+            if(self.currentSelection.taskId < 0) {
+                transitionInViewController(lastViewController: self.tasksController, newViewController: self.timesController)
+            }
+            
+            (self.tasksController as! CardOfViewDeckController).positionSideBySideLeft()
+            (self.timesController as! CardOfViewDeckController).positionActive()
+            self.repositionCards()
+            
+            self.currentSelection.taskId = indexPath.row
+        } else if(collectionView == self.timesController.collectionView) {
+            // Do nothing.
+        }
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
