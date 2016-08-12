@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EntriesViewController: UIViewController, UITableViewDelegate, UICollectionViewDelegate {
+class EntriesViewController: UIViewController, UICollectionViewDelegate {
     
     struct Selection {
         var clientId: Int!
@@ -146,21 +146,21 @@ class EntriesViewController: UIViewController, UITableViewDelegate, UICollection
         }
         
         if(sender == self.clientsController && self.currentSelection.clientId >= 0) {
-            NSLog("Clients moving")
+//            NSLog("Clients moving")
             (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.projectsController as! CardOfViewDeckController).positionSideBySideRight()
             (self.tasksController as! CardOfViewDeckController).positionInvisible()
             (self.timesController as! CardOfViewDeckController).positionInvisible()
         }
         if(sender == self.projectsController && self.currentSelection.projectId >= 0) {
-            NSLog("Projects moving")
+//            NSLog("Projects moving")
             (self.clientsController as! CardOfViewDeckController).positionInTheDeck()
             (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.tasksController as! CardOfViewDeckController).positionSideBySideRight()
             (self.timesController as! CardOfViewDeckController).positionInvisible()
         }
         if(sender == self.tasksController && self.currentSelection.taskId >= 0) {
-            NSLog("Tasks Moving")
+//            NSLog("Tasks Moving")
             (self.clientsController as! CardOfViewDeckController).positionInTheDeck()
             (self.projectsController as! CardOfViewDeckController).positionInTheDeck()
             (self.tasksController as! CardOfViewDeckController).positionSideBySideLeft()
@@ -177,7 +177,7 @@ class EntriesViewController: UIViewController, UITableViewDelegate, UICollection
     }
     
     func mightMoveWithOtherCards(sender: UICollectionViewController) {
-        NSLog("Might move with left card")
+//        NSLog("Might move with left card")
         
         if(sender == self.clientsController) {
             (self.projectsController as! CardOfViewDeckController).moveCardRightHandWithOtherCardsCenterPosition((self.clientsController as! CardOfViewDeckController).getX())
@@ -206,10 +206,14 @@ class EntriesViewController: UIViewController, UITableViewDelegate, UICollection
         self.addChildViewController(content!)
         // Make sure the view fits perfectly into our layout.
         content!.view.frame = self.visibleFrameForFirstEmbeddedController()
+//        (content as! UICollectionViewController).collectionView!.collectionViewLayout.invalidateLayout()
         // Add the new view.
         self.view!.addSubview(content!.view)
         // Tell the child that it now lives at their parents.
         content!.didMoveToParentViewController(self)
+//        content!.view.clipsToBounds = true
+//        (content as! UICollectionViewController).collectionView!.collectionViewLayout.invalidateLayout()
+//        (content as! UICollectionViewController).collectionView!.reloadData()
     }
     
     func displayContentControllerLater(content: UIViewController!) {
@@ -217,11 +221,17 @@ class EntriesViewController: UIViewController, UITableViewDelegate, UICollection
         self.addChildViewController(content!)
         // Make sure the view fits perfectly into our layout.
         content!.view.frame = self.visibleFrameForEmbeddededControllers()
+//        (content as! UICollectionViewController).collectionView!.collectionViewLayout.invalidateLayout()
         // Add the new view.
         self.view!.addSubview(content!.view)
         // Tell the child that it now lives at their parents.
         content!.didMoveToParentViewController(self)
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        self.clientsController.collectionView?.collectionViewLayout.invalidateLayout()
+//    }
     
     func visibleFrameForFirstEmbeddedController() -> CGRect {
         let showRect = CGRect(x: 0, y: 0, width: self.view!.frame.width / 2, height: self.view!.frame.height)
@@ -229,7 +239,7 @@ class EntriesViewController: UIViewController, UITableViewDelegate, UICollection
     }
     
     func visibleFrameForEmbeddededControllers() -> CGRect {
-        let showRect = CGRect(x: self.view!.frame.width / 2, y: 0, width: self.view!.frame.width / 2, height: self.view!.frame.height)
+        let showRect = CGRect(x: self.view!.frame.width /*/ 2*/, y: 0, width: self.view!.frame.width / 2, height: self.view!.frame.height)
         return showRect
     }
     

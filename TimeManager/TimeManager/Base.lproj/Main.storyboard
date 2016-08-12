@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hje-Nn-7VH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9u7-mg-DZE">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -601,40 +601,40 @@
         <!--Clients-->
         <scene sceneID="KVF-Ia-jnt">
             <objects>
-                <collectionViewController storyboardIdentifier="ClientsViewController" title="Clients" id="y5a-J1-Nnm" customClass="ClientsViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ClientsViewController" title="Clients" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" id="y5a-J1-Nnm" customClass="ClientsViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="0xh-u6-1h7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rDb-Y8-5Gk">
-                            <size key="itemSize" width="600" height="63"/>
+                            <size key="itemSize" width="300" height="63"/>
                             <size key="headerReferenceSize" width="50" height="40"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClientCell" id="rig-Ks-k5X">
-                                <rect key="frame" x="0.0" y="40" width="600" height="63"/>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClientCell" id="rig-Ks-k5X">
+                                <rect key="frame" x="0.0" y="40" width="300" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uD2-fc-9e4" userLabel="Bottom Separator">
-                                            <rect key="frame" x="0.0" y="62" width="600" height="1"/>
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uD2-fc-9e4" userLabel="Bottom Separator">
+                                            <rect key="frame" x="0.0" y="62" width="201" height="1"/>
                                             <color key="backgroundColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow-right-grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="y0y-vS-uQw">
                                             <rect key="frame" x="578" y="20" width="14" height="23"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sirius Cybernetics Corp." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ttu-L3-EzX">
-                                            <rect key="frame" x="13" y="10" width="294" height="23"/>
+                                            <rect key="frame" x="13" y="10" width="224" height="23"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                             <color key="textColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2 projects • 224 hrs. • since 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdO-Pw-KUs">
-                                            <rect key="frame" x="13" y="34" width="294" height="21"/>
+                                            <rect key="frame" x="13" y="34" width="224" height="21"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
                                             <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -643,6 +643,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="uD2-fc-9e4" firstAttribute="width" secondItem="rig-Ks-k5X" secondAttribute="width" id="50t-1C-Yd3"/>
                                     <constraint firstItem="WdO-Pw-KUs" firstAttribute="leading" secondItem="rig-Ks-k5X" secondAttribute="leadingMargin" constant="5" id="EZn-1L-UT4"/>
                                     <constraint firstItem="Ttu-L3-EzX" firstAttribute="leading" secondItem="rig-Ks-k5X" secondAttribute="leadingMargin" constant="5" id="EwC-GI-vjK"/>
                                     <constraint firstItem="y0y-vS-uQw" firstAttribute="centerY" secondItem="rig-Ks-k5X" secondAttribute="centerY" id="Rza-Bg-iLL"/>
@@ -666,9 +667,10 @@
                                     <rect key="frame" x="0.0" y="38" width="600" height="1"/>
                                     <color key="backgroundColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
-                                <button opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAb-tx-OFd">
-                                    <rect key="frame" x="544" y="1" width="50" height="34"/>
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAb-tx-OFd">
+                                    <rect key="frame" x="544" y="8" width="50" height="24"/>
                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                    <inset key="contentEdgeInsets" minX="3" minY="3" maxX="3" maxY="3"/>
                                     <state key="normal" title="New">
                                         <color key="titleColor" red="0.25098040699958801" green="0.56470590829849243" blue="0.87450981140136719" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
@@ -686,6 +688,8 @@
                             <constraints>
                                 <constraint firstItem="FCi-Sy-10d" firstAttribute="width" secondItem="8o1-Mp-8tM" secondAttribute="width" id="IdD-Of-QkL"/>
                                 <constraint firstItem="KiP-Jn-9wm" firstAttribute="top" secondItem="8o1-Mp-8tM" secondAttribute="topMargin" constant="6" id="fsf-so-W8m"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="wAb-tx-OFd" secondAttribute="trailing" constant="-2" id="uYL-1w-mY5"/>
+                                <constraint firstItem="wAb-tx-OFd" firstAttribute="centerY" secondItem="8o1-Mp-8tM" secondAttribute="centerY" id="vDL-CR-OaG"/>
                                 <constraint firstItem="KiP-Jn-9wm" firstAttribute="leading" secondItem="8o1-Mp-8tM" secondAttribute="leadingMargin" constant="5" id="xNA-Bz-aGY"/>
                             </constraints>
                         </collectionReusableView>
@@ -694,6 +698,7 @@
                             <outlet property="delegate" destination="y5a-J1-Nnm" id="F6h-OD-K59"/>
                         </connections>
                     </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqk-OV-25b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

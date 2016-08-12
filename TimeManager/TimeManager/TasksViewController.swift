@@ -96,12 +96,12 @@ class TasksViewController: CardOfViewDeckController {
         return reusableView
     }
     
-    func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if indexPath.section == 0 {
-            return CGSize(width: self.view.frame.width, height: 200)
-        }
-        return CGSize(width: self.view.frame.width, height: 63)
-    }
+//    func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        if indexPath.section == 0 {
+//            return CGSize(width: self.view.frame.width, height: 200)
+//        }
+//        return CGSize(width: self.view.frame.width, height: 63)
+//    }
     
     func displayContentController(content: UIViewController!) {
         // Add the new view controller.

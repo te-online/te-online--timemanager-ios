@@ -13,7 +13,6 @@
 		E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E958A12E1D5874A000FB6166 /* TimeManager.xcdatamodeld */; };
 		E958A1321D5874A000FB6166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E958A1311D5874A000FB6166 /* Assets.xcassets */; };
 		E958A1351D5874A000FB6166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A1331D5874A000FB6166 /* LaunchScreen.storyboard */; };
-		E958A13D1D5880BB00FB6166 /* ClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */; };
 		E958A1411D58A97700FB6166 /* CardOfViewDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */; };
 		E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1421D58C16B00FB6166 /* PageViewController.swift */; };
 		E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1441D59CE3300FB6166 /* NavBarController.swift */; };
@@ -27,7 +26,6 @@
 		E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1571D5A275A00FB6166 /* SettingsController.swift */; };
 		E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1591D5A292600FB6166 /* EntriesViewController.swift */; };
 		E96751CD1D5B69CA001FFBDC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E96751CC1D5B69CA001FFBDC /* Podfile */; };
-		E96751CF1D5B7321001FFBDC /* ClientsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96751CE1D5B7321001FFBDC /* ClientsCollectionViewController.swift */; };
 		E9BA20CD1D5C65580098F37D /* ClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA20CC1D5C65580098F37D /* ClientsViewController.swift */; };
 		E9BA20CF1D5C6F9A0098F37D /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA20CE1D5C6F9A0098F37D /* PassThroughView.swift */; };
 		E9BA20D11D5DCAD00098F37D /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA20D01D5DCAD00098F37D /* ProjectsViewController.swift */; };
@@ -52,7 +50,6 @@
 		E958A1311D5874A000FB6166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E958A1341D5874A000FB6166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E958A1361D5874A000FB6166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTableViewController.swift; sourceTree = "<group>"; };
 		E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardOfViewDeckController.swift; sourceTree = "<group>"; };
 		E958A1421D58C16B00FB6166 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		E958A1441D59CE3300FB6166 /* NavBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarController.swift; sourceTree = "<group>"; };
@@ -66,7 +63,6 @@
 		E958A1571D5A275A00FB6166 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		E958A1591D5A292600FB6166 /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		E96751CC1D5B69CA001FFBDC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E96751CE1D5B7321001FFBDC /* ClientsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsCollectionViewController.swift; sourceTree = "<group>"; };
 		E9BA20CC1D5C65580098F37D /* ClientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsViewController.swift; sourceTree = "<group>"; };
 		E9BA20CE1D5C6F9A0098F37D /* PassThroughView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		E9BA20D01D5DCAD00098F37D /* ProjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
@@ -131,8 +127,6 @@
 				E958A1331D5874A000FB6166 /* LaunchScreen.storyboard */,
 				E958A1361D5874A000FB6166 /* Info.plist */,
 				E958A12E1D5874A000FB6166 /* TimeManager.xcdatamodeld */,
-				E958A13C1D5880BB00FB6166 /* ClientTableViewController.swift */,
-				E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */,
 				E96751CC1D5B69CA001FFBDC /* Podfile */,
 				E958A1421D58C16B00FB6166 /* PageViewController.swift */,
 				E958A1441D59CE3300FB6166 /* NavBarController.swift */,
@@ -140,7 +134,7 @@
 				E958A1531D59FDDF00FB6166 /* OverviewController.swift */,
 				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
 				E958A1591D5A292600FB6166 /* EntriesViewController.swift */,
-				E96751CE1D5B7321001FFBDC /* ClientsCollectionViewController.swift */,
+				E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */,
 				E9BA20CC1D5C65580098F37D /* ClientsViewController.swift */,
 				E9BA20D01D5DCAD00098F37D /* ProjectsViewController.swift */,
 				E9BA20D21D5DCAEF0098F37D /* TasksViewController.swift */,
@@ -311,9 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E958A13D1D5880BB00FB6166 /* ClientTableViewController.swift in Sources */,
 				E9BA20D51D5DCAFE0098F37D /* TimesViewController.swift in Sources */,
-				E96751CF1D5B7321001FFBDC /* ClientsCollectionViewController.swift in Sources */,
 				E958A1411D58A97700FB6166 /* CardOfViewDeckController.swift in Sources */,
 				E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */,
 				E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */,
