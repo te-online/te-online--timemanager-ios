@@ -1430,11 +1430,11 @@ logo, colors, font choices and simp</string>
                         <viewControllerLayoutGuide type="bottom" id="wwe-p8-4KN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Vey-Ys-9Me">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TGi-xr-5Yu">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="FOR PROJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CZ-jk-QMT">
                                         <rect key="frame" x="13" y="8" width="81" height="23"/>
@@ -1471,13 +1471,13 @@ logo, colors, font choices and simp</string>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="01. August 2001 – 12. September 2002" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRg-5k-1l9">
-                                        <rect key="frame" x="13" y="86" width="290" height="23"/>
+                                        <rect key="frame" x="13" y="86" width="300" height="23"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6o8-xJ-PV2">
-                                        <rect key="frame" x="13" y="68" width="81" height="23"/>
+                                        <rect key="frame" x="13" y="68" width="300" height="23"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1501,18 +1501,18 @@ logo, colors, font choices and simp</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.6705882352941176" green="0.86274509803921573" blue="0.69019607843137254" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="6o8-xJ-PV2" firstAttribute="top" secondItem="TGi-xr-5Yu" secondAttribute="top" constant="68" id="4cm-5v-3jy"/>
                                     <constraint firstItem="FeJ-TP-kyM" firstAttribute="top" secondItem="TGi-xr-5Yu" secondAttribute="top" constant="34" id="Dws-UT-MPX"/>
-                                    <constraint firstItem="YRg-5k-1l9" firstAttribute="top" secondItem="TGi-xr-5Yu" secondAttribute="top" constant="86" id="N27-Zc-Wms"/>
                                     <constraint firstItem="3CZ-jk-QMT" firstAttribute="top" secondItem="TGi-xr-5Yu" secondAttribute="top" constant="8" id="RNn-R8-d0f"/>
                                     <constraint firstItem="79m-os-1NZ" firstAttribute="top" secondItem="TGi-xr-5Yu" secondAttribute="top" constant="34" id="Sn7-sd-Oca"/>
+                                    <constraint firstItem="6o8-xJ-PV2" firstAttribute="leading" secondItem="TGi-xr-5Yu" secondAttribute="leading" constant="13" id="UeD-L8-dtl"/>
                                     <constraint firstItem="kc7-s4-gTG" firstAttribute="top" secondItem="TGi-xr-5Yu" secondAttribute="top" constant="8" id="VHx-i1-mAZ"/>
-                                    <constraint firstItem="6o8-xJ-PV2" firstAttribute="leading" secondItem="TGi-xr-5Yu" secondAttribute="leading" constant="13" id="bAG-dm-v9c"/>
-                                    <constraint firstItem="6o8-xJ-PV2" firstAttribute="top" secondItem="TGi-xr-5Yu" secondAttribute="top" constant="68" id="eZQ-Oj-OX3"/>
+                                    <constraint firstItem="YRg-5k-1l9" firstAttribute="leading" secondItem="TGi-xr-5Yu" secondAttribute="leading" constant="13" id="dlh-Ee-6of"/>
                                     <constraint firstItem="kc7-s4-gTG" firstAttribute="leading" secondItem="TGi-xr-5Yu" secondAttribute="leading" constant="102" id="noD-hM-Igt"/>
                                     <constraint firstItem="SxV-zt-49h" firstAttribute="top" secondItem="TGi-xr-5Yu" secondAttribute="top" constant="39" id="oD0-YD-eL1"/>
                                     <constraint firstItem="3CZ-jk-QMT" firstAttribute="leading" secondItem="TGi-xr-5Yu" secondAttribute="leading" constant="13" id="tJJ-nN-tba"/>
-                                    <constraint firstItem="YRg-5k-1l9" firstAttribute="leading" secondItem="TGi-xr-5Yu" secondAttribute="leading" constant="13" id="tdK-zG-v1q"/>
                                     <constraint firstItem="SxV-zt-49h" firstAttribute="leading" secondItem="TGi-xr-5Yu" secondAttribute="leading" constant="13" id="vIX-7O-5pH"/>
+                                    <constraint firstItem="YRg-5k-1l9" firstAttribute="top" secondItem="6o8-xJ-PV2" secondAttribute="bottom" constant="-5" id="xrc-YA-9W2"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1523,7 +1523,7 @@ logo, colors, font choices and simp</string>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="250"/>
+                    <size key="freeformSize" width="500" height="250"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxw-Fl-oAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1538,11 +1538,11 @@ logo, colors, font choices and simp</string>
                         <viewControllerLayoutGuide type="bottom" id="XgT-uU-R0Y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tvo-ey-gSr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PlI-IO-12O">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="FOR TASK" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoT-Nx-13m">
                                         <rect key="frame" x="13" y="8" width="81" height="23"/>
@@ -1595,13 +1595,13 @@ logo, colors, font choices and simp</string>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="15. August 2001 – 1. September 2001" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkp-if-EAm">
-                                        <rect key="frame" x="13" y="86" width="290" height="23"/>
+                                        <rect key="frame" x="13" y="86" width="300" height="23"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDE-16-cuz">
-                                        <rect key="frame" x="13" y="68" width="81" height="23"/>
+                                        <rect key="frame" x="13" y="68" width="300" height="23"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1610,17 +1610,17 @@ logo, colors, font choices and simp</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ZoT-Nx-13m" firstAttribute="top" secondItem="PlI-IO-12O" secondAttribute="top" constant="8" id="GQu-3d-j5b"/>
-                                    <constraint firstItem="gkp-if-EAm" firstAttribute="top" secondItem="PlI-IO-12O" secondAttribute="top" constant="86" id="IqK-OU-T4Z"/>
                                     <constraint firstItem="dla-tL-6kx" firstAttribute="top" secondItem="PlI-IO-12O" secondAttribute="top" constant="39" id="LEi-WF-Qoh"/>
                                     <constraint firstItem="ZoT-Nx-13m" firstAttribute="leading" secondItem="PlI-IO-12O" secondAttribute="leading" constant="13" id="NN5-Iv-xU5"/>
                                     <constraint firstItem="Ci0-zU-Rvh" firstAttribute="top" secondItem="PlI-IO-12O" secondAttribute="top" constant="8" id="NzI-rl-xy2"/>
                                     <constraint firstItem="P5z-r4-dOs" firstAttribute="top" secondItem="PlI-IO-12O" secondAttribute="top" constant="34" id="OxP-JW-WkY"/>
+                                    <constraint firstItem="pDE-16-cuz" firstAttribute="leading" secondItem="PlI-IO-12O" secondAttribute="leading" constant="13" id="UpB-z1-Yhf"/>
                                     <constraint firstItem="Ci0-zU-Rvh" firstAttribute="leading" secondItem="PlI-IO-12O" secondAttribute="leading" constant="102" id="ahw-yt-rFT"/>
+                                    <constraint firstItem="gkp-if-EAm" firstAttribute="leading" secondItem="PlI-IO-12O" secondAttribute="leading" constant="13" id="b60-1y-EIK"/>
                                     <constraint firstItem="dla-tL-6kx" firstAttribute="leading" secondItem="PlI-IO-12O" secondAttribute="leading" constant="13" id="brY-O4-NH5"/>
                                     <constraint firstItem="p9Q-DI-QYh" firstAttribute="top" secondItem="PlI-IO-12O" secondAttribute="top" constant="34" id="ca6-BW-iuQ"/>
-                                    <constraint firstItem="pDE-16-cuz" firstAttribute="top" secondItem="PlI-IO-12O" secondAttribute="top" constant="68" id="ej4-gB-a6o"/>
-                                    <constraint firstItem="gkp-if-EAm" firstAttribute="leading" secondItem="PlI-IO-12O" secondAttribute="leading" constant="13" id="l7g-0G-6c0"/>
-                                    <constraint firstItem="pDE-16-cuz" firstAttribute="leading" secondItem="PlI-IO-12O" secondAttribute="leading" constant="13" id="ph9-Mm-ijr"/>
+                                    <constraint firstItem="pDE-16-cuz" firstAttribute="top" secondItem="PlI-IO-12O" secondAttribute="top" constant="68" id="f3c-zh-T2h"/>
+                                    <constraint firstItem="gkp-if-EAm" firstAttribute="top" secondItem="pDE-16-cuz" secondAttribute="bottom" constant="-5" id="iXX-Kz-sDM"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1631,7 +1631,7 @@ logo, colors, font choices and simp</string>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="250"/>
+                    <size key="freeformSize" width="500" height="250"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6TG-5U-lAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
