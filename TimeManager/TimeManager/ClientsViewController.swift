@@ -68,19 +68,30 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         
         do {
             try dataController.managedObjectContext.save()
+            NSLog("Saved")
         } catch {
             fatalError("Failure to save context: \(error)")
         }
     }
     
-    func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
+    func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath, empty: Bool) {
         cell.backgroundColor = UIColor.whiteColor()
         
-        let ClientNameLabel = cell.viewWithTag(1) as! UILabel
-        ClientNameLabel.text = self.clients[indexPath.row].clientName
-        
-        let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
-        ClientMetaLabel.text = self.clients[indexPath.row].clientMeta
+        if(empty == true) {
+            let ClientNameLabel = cell.viewWithTag(1) as! UILabel
+            ClientNameLabel.text = "It looks as if there were no clients yet."
+            
+            let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
+            ClientMetaLabel.text = "Hit ”New“ to create your first one."
+        } else {
+            let Client = fetchedResultsController.objectAtIndexPath(indexPath) as! ClientObject
+            
+            let ClientNameLabel = cell.viewWithTag(1) as! UILabel
+            ClientNameLabel.text = Client.name
+            
+            let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
+            ClientMetaLabel.text = Client.street
+        }
         
         cell.backgroundColor = UIColor.whiteColor()
         
@@ -89,20 +100,20 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return (fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections!.count : 1
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: UICollectionViewCell
         cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClientCell", forIndexPath: indexPath) as UICollectionViewCell!
         
-        self.configureCell(cell, indexPath: indexPath)
+        self.configureCell(cell, indexPath: indexPath, empty: (fetchedResultsController.sections!.count < 1))
         
         return cell
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return clients.count
+        return (fetchedResultsController.sections!.count > 0) ? (fetchedResultsController.sections)![section].numberOfObjects : 1
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -119,6 +130,11 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
             NewButton.layer.borderWidth = 1
 //            NewButton.layer.frame = CGRectMake(NewButton.layer.frame.minX, NewButton.layer.frame.minY, 50, 5)
             NewButton.layer.masksToBounds = true
+            
+            // Update number of items in header view.
+            let itemCount = (fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections![0].numberOfObjects : 0
+            let itemCountLabel = headerView.viewWithTag(2) as! UILabel
+            itemCountLabel.text = "#" + String(itemCount)
             
             reusableView = headerView
         }
@@ -157,7 +173,7 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
 //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        let moc = appDelegate.managedObjectContext
         let moc = self.dataController.managedObjectContext
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "department.name", cacheName: "rootCache")
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "name", cacheName: "rootCache")
         fetchedResultsController.delegate = self
         
         do {
@@ -165,6 +181,41 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
+    }
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+//        self.collectionView?.performBatchUpdates(<#T##updates: (() -> Void)?##(() -> Void)?##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Insert:
+            self.collectionView!.insertSections(NSIndexSet(index: sectionIndex))
+        case .Delete:
+            self.collectionView!.deleteSections(NSIndexSet(index: sectionIndex))
+        case .Move:
+            break
+        case .Update:
+            break
+        }
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            self.collectionView!.insertItemsAtIndexPaths([newIndexPath!])
+        case .Delete:
+            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
+        case .Update:
+            configureCell(self.collectionView!.cellForItemAtIndexPath(indexPath!)!, indexPath: indexPath!, empty: false)
+        case .Move:
+            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
+            self.collectionView!.insertItemsAtIndexPaths([indexPath!])
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+//        tableView.endUpdates()
     }
     
 }

@@ -16,6 +16,16 @@
 		E906D01F1D5E154500C06C87 /* ProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D01E1D5E154500C06C87 /* ProjectDetailsViewController.swift */; };
 		E906D0211D5E238800C06C87 /* PassThroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */; };
 		E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D0221D5E271300C06C87 /* SharedColorPalette.swift */; };
+		E911CEF11D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEEC1D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift */; };
+		E911CEF21D61E05F0044AED6 /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEED1D61E05F0044AED6 /* Contact+CoreDataProperties.swift */; };
+		E911CEF31D61E05F0044AED6 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEEE1D61E05F0044AED6 /* Project+CoreDataProperties.swift */; };
+		E911CEF41D61E05F0044AED6 /* Time+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEEF1D61E05F0044AED6 /* Time+CoreDataProperties.swift */; };
+		E911CEF51D61E05F0044AED6 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF01D61E05F0044AED6 /* Task+CoreDataProperties.swift */; };
+		E911CEFB1D61E0760044AED6 /* ClientObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF61D61E0760044AED6 /* ClientObject.swift */; };
+		E911CEFC1D61E0760044AED6 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF71D61E0760044AED6 /* Contact.swift */; };
+		E911CEFD1D61E0760044AED6 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF81D61E0760044AED6 /* Project.swift */; };
+		E911CEFE1D61E0760044AED6 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF91D61E0760044AED6 /* Time.swift */; };
+		E911CEFF1D61E0760044AED6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEFA1D61E0760044AED6 /* Task.swift */; };
 		E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */; };
 		E9404C631D61D7F1008ED9A3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C621D61D7F1008ED9A3 /* DataController.swift */; };
 		E9404C661D61D9F0008ED9A3 /* ClientManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C651D61D9F0008ED9A3 /* ClientManagedObject.swift */; };
@@ -67,6 +77,16 @@
 		E906D01E1D5E154500C06C87 /* ProjectDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailsViewController.swift; sourceTree = "<group>"; };
 		E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		E906D0221D5E271300C06C87 /* SharedColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColorPalette.swift; sourceTree = "<group>"; };
+		E911CEEC1D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ClientObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E911CEED1D61E05F0044AED6 /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E911CEEE1D61E05F0044AED6 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E911CEEF1D61E05F0044AED6 /* Time+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Time+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E911CEF01D61E05F0044AED6 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E911CEF61D61E0760044AED6 /* ClientObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientObject.swift; sourceTree = "<group>"; };
+		E911CEF71D61E0760044AED6 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		E911CEF81D61E0760044AED6 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		E911CEF91D61E0760044AED6 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		E911CEFA1D61E0760044AED6 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientEditController.swift; sourceTree = "<group>"; };
 		E9404C621D61D7F1008ED9A3 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		E9404C651D61D9F0008ED9A3 /* ClientManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientManagedObject.swift; path = ManagedObjects/ClientManagedObject.swift; sourceTree = "<group>"; };
@@ -133,6 +153,16 @@
 		E9404C641D61D9D6008ED9A3 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				E911CEF61D61E0760044AED6 /* ClientObject.swift */,
+				E911CEF71D61E0760044AED6 /* Contact.swift */,
+				E911CEF81D61E0760044AED6 /* Project.swift */,
+				E911CEF91D61E0760044AED6 /* Time.swift */,
+				E911CEFA1D61E0760044AED6 /* Task.swift */,
+				E911CEEC1D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift */,
+				E911CEED1D61E05F0044AED6 /* Contact+CoreDataProperties.swift */,
+				E911CEEE1D61E05F0044AED6 /* Project+CoreDataProperties.swift */,
+				E911CEEF1D61E05F0044AED6 /* Time+CoreDataProperties.swift */,
+				E911CEF01D61E05F0044AED6 /* Task+CoreDataProperties.swift */,
 				E9404C651D61D9F0008ED9A3 /* ClientManagedObject.swift */,
 				E9404C6E1D61DA36008ED9A3 /* ContactManagedObject.swift */,
 				E9404C6B1D61DA24008ED9A3 /* TimeManagedObject.swift */,
@@ -368,13 +398,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9404C661D61D9F0008ED9A3 /* ClientManagedObject.swift in Sources */,
+				E911CEF11D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift in Sources */,
 				E9BA20D51D5DCAFE0098F37D /* TimesViewController.swift in Sources */,
+				E911CEF21D61E05F0044AED6 /* Contact+CoreDataProperties.swift in Sources */,
 				E958A1411D58A97700FB6166 /* CardOfViewDeckController.swift in Sources */,
 				E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */,
 				E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */,
+				E911CEF41D61E05F0044AED6 /* Time+CoreDataProperties.swift in Sources */,
 				E9BA20CD1D5C65580098F37D /* ClientsViewController.swift in Sources */,
 				E9404C631D61D7F1008ED9A3 /* DataController.swift in Sources */,
 				E9BA20D11D5DCAD00098F37D /* ProjectsViewController.swift in Sources */,
+				E911CEFB1D61E0760044AED6 /* ClientObject.swift in Sources */,
+				E911CEFF1D61E0760044AED6 /* Task.swift in Sources */,
+				E911CEF31D61E05F0044AED6 /* Project+CoreDataProperties.swift in Sources */,
 				E958A1541D59FDDF00FB6166 /* OverviewController.swift in Sources */,
 				E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */,
 				E906D0211D5E238800C06C87 /* PassThroughCollectionViewCell.swift in Sources */,
@@ -382,7 +418,9 @@
 				E9BA20D31D5DCAEF0098F37D /* TasksViewController.swift in Sources */,
 				E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */,
 				E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */,
+				E911CEFC1D61E0760044AED6 /* Contact.swift in Sources */,
 				E9404C681D61DA10008ED9A3 /* ProjectManagedObject.swift in Sources */,
+				E911CEFE1D61E0760044AED6 /* Time.swift in Sources */,
 				E9BA20CF1D5C6F9A0098F37D /* PassThroughCollectionView.swift in Sources */,
 				E9404C6F1D61DA36008ED9A3 /* ContactManagedObject.swift in Sources */,
 				E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */,
@@ -390,7 +428,9 @@
 				E906D01F1D5E154500C06C87 /* ProjectDetailsViewController.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,
 				E9404C6C1D61DA24008ED9A3 /* TimeManagedObject.swift in Sources */,
+				E911CEFD1D61E0760044AED6 /* Project.swift in Sources */,
 				E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */,
+				E911CEF51D61E05F0044AED6 /* Task+CoreDataProperties.swift in Sources */,
 				E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
