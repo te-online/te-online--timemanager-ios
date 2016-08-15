@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate {
+class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, ClientEditDelegate {
     
     var backgroundController: UIViewController!
     
@@ -22,6 +22,8 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     
     var Colors = SharedColorPalette.sharedInstance
     
+    var dataController: DataController!
+    
     var fetchedResultsController: NSFetchedResultsController!
     
     override func viewDidLoad() {
@@ -32,7 +34,8 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         
         clients = [Client(clientName: "CHOAM", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Acme Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Sirius Cybernetics Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Rich Industries", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Evil Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Soylent Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Very Big Corp. of America", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Frobozz Magic Co.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Warbucks Industries", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Tyrell Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Wayne Enterprises", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Virtucon", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Globex", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Umbrella Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Wonka Industries", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Stark Industries", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Clampett Oil", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Oceanic Airlines", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Yoyodyne Propulsion Sys.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Cyberdyne Systems Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "d’Anconia Copper", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Gringotts", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Oscorp", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Nakatomi Trading", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Spacely Space Sprockets", clientMeta: "2 projects • 224 hrs. • since 2012")]
         
-//        self.initializeFetchedResultsController()
+        self.dataController = DataController()
+        self.initializeFetchedResultsController()
         
     }
     
@@ -42,21 +45,35 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     }
     
     @IBAction func saveClient(unwindSegue: UIStoryboardSegue) {
-        
+        NSLog(String(unwindSegue.sourceViewController))
+        (unwindSegue.sourceViewController as! ClientEditController).delegate = self
     }
     
     @IBAction func cancelClient(unwindSegue: UIStoryboardSegue) {
         
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+    func saveNewClient(client: ClientEditController.Client) {
+        NSLog("Name" + String(client))
+        let entity = NSEntityDescription.entityForName("Client", inManagedObjectContext: dataController.managedObjectContext)
+        let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
+        
+        item.setValue(client.name, forKey: "name")
+        item.setValue(client.street, forKey: "street")
+        item.setValue(client.postcode, forKey: "postcode")
+        item.setValue(client.city, forKey: "city")
+        item.setValue(client.note, forKey: "note")
+        item.setValue(NSDate(), forKey: "changed")
+        item.setValue(NSDate(), forKey: "created")
+        
+        do {
+            try dataController.managedObjectContext.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell: UICollectionViewCell
-        
-        cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClientCell", forIndexPath: indexPath) as UICollectionViewCell!
+    func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.whiteColor()
         
         let ClientNameLabel = cell.viewWithTag(1) as! UILabel
@@ -69,6 +86,17 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         
         cell.contentView.frame = cell.bounds
         cell.contentView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+    }
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell: UICollectionViewCell
+        cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClientCell", forIndexPath: indexPath) as UICollectionViewCell!
+        
+        self.configureCell(cell, indexPath: indexPath)
         
         return cell
     }
@@ -126,9 +154,9 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         let nameSort = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [nameSort]
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let moc = appDelegate.managedObjectContext
-//        let moc = self.dataController.managedObjectContext
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let moc = appDelegate.managedObjectContext
+        let moc = self.dataController.managedObjectContext
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "department.name", cacheName: "rootCache")
         fetchedResultsController.delegate = self
         

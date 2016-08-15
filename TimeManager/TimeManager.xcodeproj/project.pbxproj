@@ -17,6 +17,12 @@
 		E906D0211D5E238800C06C87 /* PassThroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */; };
 		E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D0221D5E271300C06C87 /* SharedColorPalette.swift */; };
 		E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */; };
+		E9404C631D61D7F1008ED9A3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C621D61D7F1008ED9A3 /* DataController.swift */; };
+		E9404C661D61D9F0008ED9A3 /* ClientManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C651D61D9F0008ED9A3 /* ClientManagedObject.swift */; };
+		E9404C681D61DA10008ED9A3 /* ProjectManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C671D61DA10008ED9A3 /* ProjectManagedObject.swift */; };
+		E9404C6A1D61DA19008ED9A3 /* TaskManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C691D61DA19008ED9A3 /* TaskManagedObject.swift */; };
+		E9404C6C1D61DA24008ED9A3 /* TimeManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C6B1D61DA24008ED9A3 /* TimeManagedObject.swift */; };
+		E9404C6F1D61DA36008ED9A3 /* ContactManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C6E1D61DA36008ED9A3 /* ContactManagedObject.swift */; };
 		E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1271D5874A000FB6166 /* AppDelegate.swift */; };
 		E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1291D5874A000FB6166 /* ViewController.swift */; };
 		E958A12D1D5874A000FB6166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A12B1D5874A000FB6166 /* Main.storyboard */; };
@@ -62,6 +68,12 @@
 		E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		E906D0221D5E271300C06C87 /* SharedColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColorPalette.swift; sourceTree = "<group>"; };
 		E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientEditController.swift; sourceTree = "<group>"; };
+		E9404C621D61D7F1008ED9A3 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		E9404C651D61D9F0008ED9A3 /* ClientManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientManagedObject.swift; path = ManagedObjects/ClientManagedObject.swift; sourceTree = "<group>"; };
+		E9404C671D61DA10008ED9A3 /* ProjectManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectManagedObject.swift; path = ManagedObjects/ProjectManagedObject.swift; sourceTree = "<group>"; };
+		E9404C691D61DA19008ED9A3 /* TaskManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskManagedObject.swift; path = ManagedObjects/TaskManagedObject.swift; sourceTree = "<group>"; };
+		E9404C6B1D61DA24008ED9A3 /* TimeManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeManagedObject.swift; path = ManagedObjects/TimeManagedObject.swift; sourceTree = "<group>"; };
+		E9404C6E1D61DA36008ED9A3 /* ContactManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactManagedObject.swift; path = ManagedObjects/ContactManagedObject.swift; sourceTree = "<group>"; };
 		E958A1241D5874A000FB6166 /* TimeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E958A1271D5874A000FB6166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E958A1291D5874A000FB6166 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +130,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E9404C641D61D9D6008ED9A3 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				E9404C651D61D9F0008ED9A3 /* ClientManagedObject.swift */,
+				E9404C6E1D61DA36008ED9A3 /* ContactManagedObject.swift */,
+				E9404C6B1D61DA24008ED9A3 /* TimeManagedObject.swift */,
+				E9404C671D61DA10008ED9A3 /* ProjectManagedObject.swift */,
+				E9404C691D61DA19008ED9A3 /* TaskManagedObject.swift */,
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
 		E958A11B1D58749F00FB6166 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +163,7 @@
 		E958A1261D5874A000FB6166 /* TimeManager */ = {
 			isa = PBXGroup;
 			children = (
+				E9404C641D61D9D6008ED9A3 /* ManagedObjects */,
 				E958A1481D59E8A700FB6166 /* Ressources */,
 				E958A1271D5874A000FB6166 /* AppDelegate.swift */,
 				E958A1291D5874A000FB6166 /* ViewController.swift */,
@@ -164,6 +189,7 @@
 				E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */,
 				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
 				E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */,
+				E9404C621D61D7F1008ED9A3 /* DataController.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -341,23 +367,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9404C661D61D9F0008ED9A3 /* ClientManagedObject.swift in Sources */,
 				E9BA20D51D5DCAFE0098F37D /* TimesViewController.swift in Sources */,
 				E958A1411D58A97700FB6166 /* CardOfViewDeckController.swift in Sources */,
 				E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */,
 				E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */,
 				E9BA20CD1D5C65580098F37D /* ClientsViewController.swift in Sources */,
+				E9404C631D61D7F1008ED9A3 /* DataController.swift in Sources */,
 				E9BA20D11D5DCAD00098F37D /* ProjectsViewController.swift in Sources */,
 				E958A1541D59FDDF00FB6166 /* OverviewController.swift in Sources */,
 				E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */,
 				E906D0211D5E238800C06C87 /* PassThroughCollectionViewCell.swift in Sources */,
+				E9404C6A1D61DA19008ED9A3 /* TaskManagedObject.swift in Sources */,
 				E9BA20D31D5DCAEF0098F37D /* TasksViewController.swift in Sources */,
 				E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */,
 				E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */,
+				E9404C681D61DA10008ED9A3 /* ProjectManagedObject.swift in Sources */,
 				E9BA20CF1D5C6F9A0098F37D /* PassThroughCollectionView.swift in Sources */,
+				E9404C6F1D61DA36008ED9A3 /* ContactManagedObject.swift in Sources */,
 				E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */,
 				E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */,
 				E906D01F1D5E154500C06C87 /* ProjectDetailsViewController.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,
+				E9404C6C1D61DA24008ED9A3 /* TimeManagedObject.swift in Sources */,
 				E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */,
 				E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */,
 			);
