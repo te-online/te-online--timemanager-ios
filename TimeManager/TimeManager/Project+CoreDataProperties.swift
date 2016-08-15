@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-extension Project {
+extension ProjectObject {
 
     @NSManaged var changed: NSDate?
     @NSManaged var client_id: NSNumber?

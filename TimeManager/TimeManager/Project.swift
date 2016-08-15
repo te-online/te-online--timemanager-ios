@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-@objc(Project)
-class Project: NSManagedObject {
+@objc(ProjectObject)
+class ProjectObject: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

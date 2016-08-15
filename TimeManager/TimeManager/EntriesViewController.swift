@@ -91,6 +91,9 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             self.repositionCards()
             
             self.currentSelection.clientId = indexPath.row
+            
+            NSLog("selected id " + String((self.clientsController as! ClientsViewController).currentSelectionId))
+            (self.projectsController as! ProjectsViewController).setParentClientId((self.clientsController as! ClientsViewController).currentSelectionId)
         } else if(collectionView == self.projectsController.collectionView) {
             if(self.currentSelection.projectId < 0) {
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
@@ -119,7 +122,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        NSLog("Selected " + String(indexPath.row))
+        NSLog("Selected " + String(indexPath.row) + String(collectionView))
         if(collectionView == self.clientsController.collectionView) {
             if(self.currentSelection.clientId < 0) {
                 transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
@@ -131,7 +134,10 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             (self.projectsController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
-            self.currentSelection.clientId = indexPath.row
+            self.currentSelection.clientId = (self.clientsController as! ClientsViewController).getClientIdForIndexPath(indexPath)
+            
+//            NSLog("selected id " + String((self.clientsController as! ClientsViewController).currentSelectionId))
+//            (self.projectsController as! ProjectsViewController).setParentClientId((self.clientsController as! ClientsViewController).currentSelectionId)
         } else if(collectionView == self.projectsController.collectionView) {
             if(self.currentSelection.projectId < 0) {
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)

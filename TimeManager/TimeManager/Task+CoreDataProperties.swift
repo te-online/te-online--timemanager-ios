@@ -20,7 +20,7 @@ extension Task {
     @NSManaged var id: NSNumber?
     @NSManaged var name: String?
     @NSManaged var project_id: NSNumber?
-    @NSManaged var project: Project?
+    @NSManaged var project: ProjectObject?
     @NSManaged var times: NSSet?
 
 }

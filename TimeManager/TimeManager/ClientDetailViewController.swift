@@ -8,14 +8,23 @@
 
 import UIKit
 
-class ProjectDetailsViewController: UIViewController {
+protocol ClientDetailViewControllerDelegate {
+    func deleteCurrentClient()
+    func editCurrentClient()
+}
+
+class ClientDetailViewController: UIViewController {
+    
+    var delegate: ClientDetailViewControllerDelegate?
     
     @IBAction func EditButtonPressed(sender: AnyObject) {
-        NSLog("Project would be edited now")
+//        NSLog("Client would be edited now")
+        self.delegate?.editCurrentClient()
     }
     
     @IBAction func DeleteButtonPressed(sender: AnyObject) {
-        NSLog("Project would be deleted now")
+//        NSLog("Client would be deleted now")
+        self.delegate?.deleteCurrentClient()
     }
     
     override func viewDidLoad() {
