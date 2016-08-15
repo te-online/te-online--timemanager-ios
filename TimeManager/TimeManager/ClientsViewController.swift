@@ -37,6 +37,8 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         self.dataController = DataController()
         self.initializeFetchedResultsController()
         
+//        let dummyClient: ClientEditController.Client = ClientEditController.Client(name: "My dummy client", street: "Some street", postcode: "", city: "", note: "")
+//        self.saveNewClient(dummyClient)
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,6 +60,7 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         let entity = NSEntityDescription.entityForName("Client", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
+        item.setValue(1, forKey: "id")
         item.setValue(client.name, forKey: "name")
         item.setValue(client.street, forKey: "street")
         item.setValue(client.postcode, forKey: "postcode")
@@ -74,16 +77,16 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         }
     }
     
-    func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath, empty: Bool) {
+    func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.whiteColor()
         
-        if(empty == true) {
-            let ClientNameLabel = cell.viewWithTag(1) as! UILabel
-            ClientNameLabel.text = "It looks as if there were no clients yet."
-            
-            let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
-            ClientMetaLabel.text = "Hit ”New“ to create your first one."
-        } else {
+//        if(empty == true) {
+//            let ClientNameLabel = cell.viewWithTag(1) as! UILabel
+//            ClientNameLabel.text = "It looks as if there were no clients yet."
+//            
+//            let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
+//            ClientMetaLabel.text = "Hit ”New“ to create your first one."
+//        } else {
             let Client = fetchedResultsController.objectAtIndexPath(indexPath) as! ClientObject
             
             let ClientNameLabel = cell.viewWithTag(1) as! UILabel
@@ -91,7 +94,7 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
             
             let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
             ClientMetaLabel.text = Client.street
-        }
+//        }
         
         cell.backgroundColor = UIColor.whiteColor()
         
@@ -100,25 +103,27 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return (fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections!.count : 1
+        return fetchedResultsController.sections!.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: UICollectionViewCell
         cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClientCell", forIndexPath: indexPath) as UICollectionViewCell!
         
-        self.configureCell(cell, indexPath: indexPath, empty: (fetchedResultsController.sections!.count < 1))
+        self.configureCell(cell, indexPath: indexPath)
         
         return cell
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (fetchedResultsController.sections!.count > 0) ? (fetchedResultsController.sections)![section].numberOfObjects : 1
+        return fetchedResultsController.sections![section].numberOfObjects
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         var reusableView: UICollectionReusableView!
         reusableView = nil
+        
+        NSLog("Kind: " + String(kind))
         
         if(kind == UICollectionElementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "ClientsHeadCell", forIndexPath: indexPath)
@@ -183,39 +188,39 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         }
     }
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-//        self.collectionView?.performBatchUpdates(<#T##updates: (() -> Void)?##(() -> Void)?##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
-    }
+//    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+////        self.collectionView?.performBatchUpdates(<#T##updates: (() -> Void)?##(() -> Void)?##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+//    }
     
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case .Insert:
-            self.collectionView!.insertSections(NSIndexSet(index: sectionIndex))
-        case .Delete:
-            self.collectionView!.deleteSections(NSIndexSet(index: sectionIndex))
-        case .Move:
-            break
-        case .Update:
-            break
-        }
-    }
+//    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+//        switch type {
+//        case .Insert:
+//            self.collectionView!.insertSections(NSIndexSet(index: sectionIndex))
+//        case .Delete:
+//            self.collectionView!.deleteSections(NSIndexSet(index: sectionIndex))
+//        case .Move:
+//            break
+//        case .Update:
+//            break
+//        }
+//    }
+//    
+//    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+//        switch type {
+//        case .Insert:
+//            self.collectionView!.insertItemsAtIndexPaths([newIndexPath!])
+//        case .Delete:
+//            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
+//        case .Update:
+//            configureCell(self.collectionView!.cellForItemAtIndexPath(indexPath!)!, indexPath: indexPath!)
+//        case .Move:
+//            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
+//            self.collectionView!.insertItemsAtIndexPaths([indexPath!])
+//        }
+//    }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
-        case .Insert:
-            self.collectionView!.insertItemsAtIndexPaths([newIndexPath!])
-        case .Delete:
-            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
-        case .Update:
-            configureCell(self.collectionView!.cellForItemAtIndexPath(indexPath!)!, indexPath: indexPath!, empty: false)
-        case .Move:
-            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
-            self.collectionView!.insertItemsAtIndexPaths([indexPath!])
-        }
-    }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-//        tableView.endUpdates()
-    }
+//    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+////        tableView.endUpdates()
+//    }
     
 }
