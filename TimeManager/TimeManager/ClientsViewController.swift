@@ -22,12 +22,12 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     
     var Colors = SharedColorPalette.sharedInstance
     
-    var dataController: DataController!
+    var dataController: AppDelegate!
     
     var fetchedResultsController: NSFetchedResultsController!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        dataController = UIApplication.sharedApplication().delegate as! AppDelegate
         
         self.collectionView!.backgroundColor = UIColor.clearColor()
         self.view!.backgroundColor = UIColor.whiteColor()
@@ -42,19 +42,43 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         
         clients = [Client(clientName: "CHOAM", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Acme Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Sirius Cybernetics Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Rich Industries", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Evil Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Soylent Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Very Big Corp. of America", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Frobozz Magic Co.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Warbucks Industries", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Tyrell Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Wayne Enterprises", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Virtucon", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Globex", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Umbrella Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Wonka Industries", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Stark Industries", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Clampett Oil", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Oceanic Airlines", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Yoyodyne Propulsion Sys.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Cyberdyne Systems Corp.", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "d’Anconia Copper", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Gringotts", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Oscorp", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Nakatomi Trading", clientMeta: "2 projects • 224 hrs. • since 2012"), Client(clientName: "Spacely Space Sprockets", clientMeta: "2 projects • 224 hrs. • since 2012")]
         
-        self.dataController = DataController()
         self.initializeFetchedResultsController()
         
-        do {
-            try fetchedResultsController.performFetch()
-            NSLog("Num " + String(fetchedResultsController.sections!.count))
-            self.collectionView?.reloadData()
-        } catch {
-            fatalError("Failure to perform fetch: \(error)")
-        }
+//        do {
+//            try fetchedResultsController.performFetch()
+//            NSLog("Num " + String(fetchedResultsController.sections!.count))
+//            self.collectionView?.reloadData()
+//        } catch {
+//            fatalError("Failure to perform fetch: \(error)")
+//        }
         
 //        let dummyClient: ClientEditController.Client = ClientEditController.Client(name: "My dummy client", street: "Some street", postcode: "", city: "", note: "")
 //        self.saveNewClient(dummyClient)
+        
+        super.viewDidLoad()
+    }
+    
+//    override func viewWillAppear(animated: Bool) {
+//        
+//        self.dataController = DataController()
+//        self.initializeFetchedResultsController()
+//        
+//        super.viewWillAppear(animated)
+//    }
+    
+    override func viewDidAppear(animated: Bool) {
+//        self.dataController = DataController()
+//        self.initializeFetchedResultsController()
+        
+//        do {
+//            try fetchedResultsController.performFetch()
+//            NSLog("Num " + String(fetchedResultsController.sections!.count))
+//            self.collectionView?.reloadData()
+//        } catch {
+//            fatalError("Failure to perform fetch: \(error)")
+//        }
+        
+        super.viewDidAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,13 +117,13 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         
         do {
             try dataController.managedObjectContext.save()
-            do {
-                try fetchedResultsController.performFetch()
-                NSLog("Num " + String(fetchedResultsController.sections!.count))
-                self.collectionView?.reloadData()
-            } catch {
-                fatalError("Failure to perform fetch: \(error)")
-            }
+//            do {
+//                try fetchedResultsController.performFetch()
+//                NSLog("Num " + String(fetchedResultsController.sections!.count))
+//                self.collectionView?.reloadData()
+//            } catch {
+//                fatalError("Failure to perform fetch: \(error)")
+//            }
         } catch {
             fatalError("Failure to save context: \(error)")
         }
@@ -251,7 +275,8 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         
         do {
             try fetchedResultsController.performFetch()
-            self.collectionView?.reloadData()
+            NSLog("Initialized")
+//            self.collectionView?.reloadData()
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
