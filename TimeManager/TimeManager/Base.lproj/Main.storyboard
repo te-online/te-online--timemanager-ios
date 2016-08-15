@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tlN-sP-UUY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hje-Nn-7VH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -57,6 +57,7 @@
             <string>Poppins-Medium</string>
         </mutableArray>
         <mutableArray key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
@@ -446,7 +447,7 @@
                                         <rect key="frame" x="16" y="546" width="54" height="30"/>
                                         <state key="normal" title="Options"/>
                                         <connections>
-                                            <segue destination="4e4-wf-iOJ" kind="presentation" modalPresentationStyle="pageSheet" id="NGm-R0-4QN"/>
+                                            <segue destination="4e4-wf-iOJ" kind="presentation" modalPresentationStyle="formSheet" id="NGm-R0-4QN"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTn-ax-adf">
@@ -495,7 +496,7 @@
         <!--Settings Controller-->
         <scene sceneID="alh-g0-d3C">
             <objects>
-                <viewController id="4e4-wf-iOJ" customClass="SettingsController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="formSheet" id="4e4-wf-iOJ" customClass="SettingsController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6Xn-ns-qro"/>
                         <viewControllerLayoutGuide type="bottom" id="4qT-vS-vrc"/>
@@ -575,6 +576,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="klw-Ch-XEk" secondAttribute="trailing" id="yR8-Nd-DN3"/>
                         </constraints>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="600"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="600"/>
                 </viewController>
@@ -695,6 +697,9 @@
                                     <state key="normal" title="New">
                                         <color key="titleColor" red="0.47450980544090271" green="0.75294119119644165" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <segue destination="tlN-sP-UUY" kind="presentation" modalPresentationStyle="formSheet" id="okA-0A-YbN"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="#4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0O-aJ-siq">
                                     <rect key="frame" x="70" y="47" width="48" height="20"/>
@@ -745,7 +750,7 @@
         <!--View Controller-->
         <scene sceneID="G8x-jn-slb">
             <objects>
-                <viewController id="tlN-sP-UUY" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="formSheet" id="tlN-sP-UUY" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XcK-Ir-kcJ"/>
                         <viewControllerLayoutGuide type="bottom" id="a8a-H8-Xlj"/>
@@ -852,7 +857,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="EditButtonPressed:" destination="Dab-a7-gou" eventType="touchUpInside" id="3c0-8r-jzG"/>
+                                    <segue destination="lkp-8k-lqA" kind="unwind" unwindAction="saveClient:" id="6GQ-ft-54N"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqJ-Ck-QIw">
@@ -876,11 +881,35 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="EditButtonPressed:" destination="Dab-a7-gou" eventType="touchUpInside" id="8ag-Ku-OOn"/>
+                                    <segue destination="lkp-8k-lqA" kind="unwind" unwindAction="saveClient:" id="02w-9J-uYC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yG7-RD-5l1">
+                                <rect key="frame" x="244" y="450" width="64" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="K2P-gu-cFN"/>
+                                    <constraint firstAttribute="width" constant="64" id="lnj-zB-ypv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.81568628549575806" green="0.33725491166114807" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="lkp-8k-lqA" kind="unwind" unwindAction="cancelClient:" id="9QD-Qx-dtD"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="NEW CLIENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaL-zf-VSv">
-                                <rect key="frame" x="20" y="38" width="57" height="17"/>
+                                <rect key="frame" x="20" y="21" width="57" height="17"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                 <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -891,9 +920,11 @@
                             <constraint firstItem="OOz-n1-WM7" firstAttribute="leading" secondItem="fkL-ag-ovh" secondAttribute="leading" id="4lu-4j-eET"/>
                             <constraint firstItem="meI-2l-ycU" firstAttribute="trailing" secondItem="48s-5R-L54" secondAttribute="trailing" id="4wD-5I-PNE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YqJ-Ck-QIw" secondAttribute="trailing" id="6Sl-cI-9zG"/>
+                            <constraint firstItem="Jfd-aa-IYJ" firstAttribute="leading" secondItem="yG7-RD-5l1" secondAttribute="trailing" constant="8" id="8fS-JK-1To"/>
                             <constraint firstItem="Jfd-aa-IYJ" firstAttribute="trailing" secondItem="meI-2l-ycU" secondAttribute="trailing" id="9Ko-aj-mev"/>
                             <constraint firstItem="48s-5R-L54" firstAttribute="leading" secondItem="nBP-DF-CKr" secondAttribute="trailing" constant="8" id="ATM-cj-pou"/>
                             <constraint firstItem="fkL-ag-ovh" firstAttribute="leading" secondItem="BYo-Lk-MPe" secondAttribute="leading" id="Byt-UP-muI"/>
+                            <constraint firstItem="yG7-RD-5l1" firstAttribute="top" secondItem="Jfd-aa-IYJ" secondAttribute="top" id="DJs-uW-uKX"/>
                             <constraint firstItem="nBP-DF-CKr" firstAttribute="top" secondItem="OOz-n1-WM7" secondAttribute="bottom" constant="2" id="GmL-FI-XEJ"/>
                             <constraint firstItem="dRQ-TA-bBp" firstAttribute="top" secondItem="nBP-DF-CKr" secondAttribute="bottom" constant="19" id="I1g-sz-dtb"/>
                             <constraint firstAttribute="leadingMargin" secondItem="qaL-zf-VSv" secondAttribute="leading" id="K5B-NE-J10"/>
@@ -912,21 +943,29 @@
                             <constraint firstItem="Exn-VZ-YVx" firstAttribute="top" secondItem="Lka-8P-NVP" secondAttribute="bottom" id="efv-et-s5d"/>
                             <constraint firstItem="48s-5R-L54" firstAttribute="top" secondItem="fkL-ag-ovh" secondAttribute="bottom" constant="35" id="euw-pQ-YhW"/>
                             <constraint firstItem="fkL-ag-ovh" firstAttribute="top" secondItem="BYo-Lk-MPe" secondAttribute="bottom" constant="2" id="fgZ-OF-j96"/>
+                            <constraint firstItem="YqJ-Ck-QIw" firstAttribute="top" secondItem="qaL-zf-VSv" secondAttribute="top" id="gvm-PV-vJb"/>
                             <constraint firstItem="meI-2l-ycU" firstAttribute="leading" secondItem="dRQ-TA-bBp" secondAttribute="leading" id="hfY-Dz-77H"/>
                             <constraint firstItem="ph4-u7-GA1" firstAttribute="top" secondItem="fkL-ag-ovh" secondAttribute="bottom" constant="14" id="isk-AW-FPp"/>
                             <constraint firstItem="OOz-n1-WM7" firstAttribute="top" secondItem="fkL-ag-ovh" secondAttribute="bottom" constant="14" id="kvY-Ma-aYQ"/>
-                            <constraint firstItem="qaL-zf-VSv" firstAttribute="top" secondItem="XcK-Ir-kcJ" secondAttribute="bottom" constant="18" id="pFO-Rl-Q7O"/>
-                            <constraint firstItem="Lka-8P-NVP" firstAttribute="top" secondItem="qaL-zf-VSv" secondAttribute="bottom" constant="5" id="u8u-rg-N96"/>
+                            <constraint firstItem="qaL-zf-VSv" firstAttribute="top" secondItem="XcK-Ir-kcJ" secondAttribute="bottom" constant="21" id="pFO-Rl-Q7O"/>
+                            <constraint firstItem="Lka-8P-NVP" firstAttribute="top" secondItem="qaL-zf-VSv" secondAttribute="bottom" constant="22" id="u8u-rg-N96"/>
                             <constraint firstItem="Jfd-aa-IYJ" firstAttribute="top" secondItem="meI-2l-ycU" secondAttribute="bottom" constant="22" id="uH6-HH-1Wf"/>
                             <constraint firstItem="fkL-ag-ovh" firstAttribute="trailing" secondItem="Exn-VZ-YVx" secondAttribute="trailing" id="yaP-qg-JKC"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Kvf-wa-wT4"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="500"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="500"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWe-EA-XYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lkp-8k-lqA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-479" y="2825"/>
+            <point key="canvasLocation" x="-379" y="2884"/>
         </scene>
         <!--Project Table View Controller-->
         <scene sceneID="07F-6v-180">

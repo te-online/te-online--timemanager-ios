@@ -16,6 +16,7 @@
 		E906D01F1D5E154500C06C87 /* ProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D01E1D5E154500C06C87 /* ProjectDetailsViewController.swift */; };
 		E906D0211D5E238800C06C87 /* PassThroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */; };
 		E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D0221D5E271300C06C87 /* SharedColorPalette.swift */; };
+		E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */; };
 		E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1271D5874A000FB6166 /* AppDelegate.swift */; };
 		E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1291D5874A000FB6166 /* ViewController.swift */; };
 		E958A12D1D5874A000FB6166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A12B1D5874A000FB6166 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		E906D01E1D5E154500C06C87 /* ProjectDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailsViewController.swift; sourceTree = "<group>"; };
 		E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		E906D0221D5E271300C06C87 /* SharedColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColorPalette.swift; sourceTree = "<group>"; };
+		E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientEditController.swift; sourceTree = "<group>"; };
 		E958A1241D5874A000FB6166 /* TimeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E958A1271D5874A000FB6166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E958A1291D5874A000FB6166 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				E906D01E1D5E154500C06C87 /* ProjectDetailsViewController.swift */,
 				E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */,
 				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
+				E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				E906D01F1D5E154500C06C87 /* ProjectDetailsViewController.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,
 				E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */,
+				E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
