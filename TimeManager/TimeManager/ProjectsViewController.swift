@@ -105,10 +105,15 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
                 let deleteables = try moc.executeFetchRequest(request)
                 for deleteable in deleteables {
                     moc.deleteObject(deleteable as! NSManagedObject)
+                }
+                do {
+                    try moc.save()
                     self.collectionView!.reloadData()
+                } catch {
+                     fatalError("Failed to delete client: \(error)")
                 }
             } catch {
-                fatalError("Failed to fetch details for client: \(error)")
+                fatalError("Failed to fetch details for current client: \(error)")
             }
         }
         
