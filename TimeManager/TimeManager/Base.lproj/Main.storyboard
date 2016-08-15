@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hje-Nn-7VH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9u7-mg-DZE">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -112,8 +112,11 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
         </mutableArray>
         <mutableArray key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
             <string>Poppins-SemiBold</string>
             <string>Poppins-SemiBold</string>
             <string>Poppins-SemiBold</string>
@@ -614,7 +617,7 @@
         <scene sceneID="KVF-Ia-jnt">
             <objects>
                 <collectionViewController storyboardIdentifier="ClientsViewController" title="Clients" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" id="y5a-J1-Nnm" customClass="ClientsViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="0xh-u6-1h7">
+                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="0xh-u6-1h7" customClass="PassThroughCollectionView" customModule="TimeManager" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -674,6 +677,15 @@
                                     <constraint firstItem="WdO-Pw-KUs" firstAttribute="top" secondItem="rig-Ks-k5X" secondAttribute="topMargin" constant="26" id="s8D-OE-z1y"/>
                                     <constraint firstItem="Ttu-L3-EzX" firstAttribute="top" secondItem="rig-Ks-k5X" secondAttribute="topMargin" constant="2" id="w1w-56-2eN"/>
                                 </constraints>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="empty" id="OC9-TW-Ruj">
+                                <rect key="frame" x="0.0" y="133" width="600" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClientsHeadCell" id="8o1-Mp-8tM">
@@ -1442,7 +1454,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beb-UQ-rK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="2691"/>
+            <point key="canvasLocation" x="270" y="2691"/>
         </scene>
         <!--Times-->
         <scene sceneID="K1u-Be-PjS">
@@ -2156,10 +2168,97 @@ logo, colors, font choices and simp</string>
             </objects>
             <point key="canvasLocation" x="1512" y="2691"/>
         </scene>
+        <!--Project Details View Controller-->
+        <scene sceneID="yuj-dg-ShC">
+            <objects>
+                <viewController storyboardIdentifier="ClientsInfoBackground" id="cYY-uV-ZDz" customClass="ProjectDetailsViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tcu-gR-D4R"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZeB-wW-PT2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ddk-k3-WZl">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HND-y1-vuz">
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROJECTS FOR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcH-bH-Afl">
+                                        <rect key="frame" x="13" y="8" width="81" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="81" id="ZDU-8c-pi3"/>
+                                            <constraint firstAttribute="height" constant="23" id="h5g-uK-zjm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                        <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rich Industries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjO-91-a28">
+                                        <rect key="frame" x="102" y="8" width="361" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="361" id="7mg-jr-Xur"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="10"/>
+                                        <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCx-6K-D3a">
+                                        <rect key="frame" x="422" y="34" width="68" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="68" id="FvE-t0-n4n"/>
+                                            <constraint firstAttribute="height" constant="34" id="y3J-6Q-20R"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                        <state key="normal" title="new">
+                                            <color key="titleColor" red="0.8156862855" green="0.33725491169999999" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="tlN-sP-UUY" kind="presentation" modalPresentationStyle="formSheet" id="gRi-S8-XFs"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.74117647060000003" green="0.84313725490000002" blue="0.90196078430000004" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="YjO-91-a28" firstAttribute="top" secondItem="TcH-bH-Afl" secondAttribute="top" id="C63-5H-L9u"/>
+                                    <constraint firstItem="YjO-91-a28" firstAttribute="height" secondItem="TcH-bH-Afl" secondAttribute="height" id="I6U-Ct-bSY"/>
+                                    <constraint firstItem="YjO-91-a28" firstAttribute="leading" secondItem="TcH-bH-Afl" secondAttribute="trailing" constant="8" id="LoT-J3-FCw"/>
+                                    <constraint firstAttribute="trailing" secondItem="NCx-6K-D3a" secondAttribute="trailing" constant="10" id="ifs-WA-wGA"/>
+                                    <constraint firstItem="TcH-bH-Afl" firstAttribute="top" secondItem="HND-y1-vuz" secondAttribute="top" constant="8" id="jti-Zg-vnN"/>
+                                    <constraint firstItem="TcH-bH-Afl" firstAttribute="leading" secondItem="HND-y1-vuz" secondAttribute="leading" constant="13" id="wIq-Kw-RMy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HND-y1-vuz" firstAttribute="centerY" secondItem="ddk-k3-WZl" secondAttribute="centerY" id="1mw-YT-QBY"/>
+                            <constraint firstItem="HND-y1-vuz" firstAttribute="centerX" secondItem="ddk-k3-WZl" secondAttribute="centerX" id="D4o-dF-BGO"/>
+                            <constraint firstItem="HND-y1-vuz" firstAttribute="width" secondItem="ddk-k3-WZl" secondAttribute="width" id="ZuB-TN-fQL"/>
+                            <constraint firstItem="HND-y1-vuz" firstAttribute="height" secondItem="ddk-k3-WZl" secondAttribute="height" id="q1C-DI-ctU"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="500" height="250"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nj6-fq-pUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="270" y="3029"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow-down-grey.png" width="16" height="10"/>
         <image name="arrow-right-grey.png" width="10" height="16"/>
         <image name="arrow-right.png" width="10" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gRi-S8-XFs"/>
+    </inferredMetricsTieBreakers>
 </document>

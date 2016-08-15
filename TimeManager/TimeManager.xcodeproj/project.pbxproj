@@ -26,6 +26,7 @@
 		E911CEFD1D61E0760044AED6 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF81D61E0760044AED6 /* Project.swift */; };
 		E911CEFE1D61E0760044AED6 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF91D61E0760044AED6 /* Time.swift */; };
 		E911CEFF1D61E0760044AED6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEFA1D61E0760044AED6 /* Task.swift */; };
+		E911CF011D61FB690044AED6 /* ClientsHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CF001D61FB690044AED6 /* ClientsHeaderViewController.swift */; };
 		E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */; };
 		E9404C631D61D7F1008ED9A3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C621D61D7F1008ED9A3 /* DataController.swift */; };
 		E9404C661D61D9F0008ED9A3 /* ClientManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C651D61D9F0008ED9A3 /* ClientManagedObject.swift */; };
@@ -87,6 +88,7 @@
 		E911CEF81D61E0760044AED6 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E911CEF91D61E0760044AED6 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		E911CEFA1D61E0760044AED6 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		E911CF001D61FB690044AED6 /* ClientsHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsHeaderViewController.swift; sourceTree = "<group>"; };
 		E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientEditController.swift; sourceTree = "<group>"; };
 		E9404C621D61D7F1008ED9A3 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		E9404C651D61D9F0008ED9A3 /* ClientManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientManagedObject.swift; path = ManagedObjects/ClientManagedObject.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
 				E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */,
 				E9404C621D61D7F1008ED9A3 /* DataController.swift */,
+				E911CF001D61FB690044AED6 /* ClientsHeaderViewController.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */,
 				E906D0211D5E238800C06C87 /* PassThroughCollectionViewCell.swift in Sources */,
 				E9404C6A1D61DA19008ED9A3 /* TaskManagedObject.swift in Sources */,
+				E911CF011D61FB690044AED6 /* ClientsHeaderViewController.swift in Sources */,
 				E9BA20D31D5DCAEF0098F37D /* TasksViewController.swift in Sources */,
 				E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */,
 				E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */,
