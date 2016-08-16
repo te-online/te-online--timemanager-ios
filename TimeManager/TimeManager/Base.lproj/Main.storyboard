@@ -875,6 +875,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="DoneButtonBottomPressed:" destination="tlN-sP-UUY" eventType="touchUpInside" id="6aO-1H-8GZ"/>
                                     <segue destination="lkp-8k-lqA" kind="unwind" unwindAction="saveClient:" id="6GQ-ft-54N"/>
                                 </connections>
                             </button>
@@ -899,15 +900,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="DoneButtonTopPressed:" destination="tlN-sP-UUY" eventType="touchUpInside" id="fj9-qb-Ei3"/>
                                     <segue destination="lkp-8k-lqA" kind="unwind" unwindAction="saveClient:" id="02w-9J-uYC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="NEW CLIENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaL-zf-VSv">
-                                <rect key="frame" x="20" y="21" width="57" height="17"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
-                                <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yG7-RD-5l1">
                                 <rect key="frame" x="244" y="450" width="64" height="34"/>
                                 <constraints>
@@ -940,6 +936,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="NEW CLIENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaL-zf-VSv">
+                                <rect key="frame" x="20" y="21" width="57" height="17"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -987,6 +989,17 @@
                     <value key="contentSizeForViewInPopover" type="size" width="400" height="500"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="500"/>
+                    <connections>
+                        <outlet property="CancelButtonBottom" destination="yG7-RD-5l1" id="DVZ-eu-6C8"/>
+                        <outlet property="CityInputField" destination="48s-5R-L54" id="H3v-2n-eam"/>
+                        <outlet property="DoneButtonBottom" destination="Jfd-aa-IYJ" id="IKZ-5b-Djx"/>
+                        <outlet property="DoneButtonTop" destination="YqJ-Ck-QIw" id="dAi-eF-8jh"/>
+                        <outlet property="ModalTitleLabel" destination="qaL-zf-VSv" id="OBs-lg-qsX"/>
+                        <outlet property="NameInputField" destination="Exn-VZ-YVx" id="sPk-RY-g9M"/>
+                        <outlet property="NoteInputField" destination="meI-2l-ycU" id="G7s-NO-cXA"/>
+                        <outlet property="PostcodeInputField" destination="nBP-DF-CKr" id="9RG-w2-fJg"/>
+                        <outlet property="StreetInputField" destination="fkL-ag-ovh" id="xxH-6l-E3X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWe-EA-XYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lkp-8k-lqA" userLabel="Exit" sceneMemberID="exit"/>
@@ -2298,30 +2311,6 @@ logo, colors, font choices and simp</string>
                                 <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enH-b0-PCV">
-                                <rect key="frame" x="316" y="21" width="64" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="NE1-rR-Jpa"/>
-                                    <constraint firstAttribute="width" constant="64" id="P8C-Xg-KdZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
-                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
-                                <state key="normal" title="Create">
-                                    <color key="titleColor" red="0.25098040700000002" green="0.5647059083" blue="0.87450981139999995" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="UEN-6D-uJd" kind="unwind" unwindAction="saveProject:" id="8X1-uk-2S5"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="NEW PROJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZJ-oE-VGI">
                                 <rect key="frame" x="20" y="21" width="69" height="17"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
@@ -2357,6 +2346,7 @@ logo, colors, font choices and simp</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="DoneButtonBottomPressed:" destination="ST2-pq-yuG" eventType="touchUpInside" id="oPt-bF-qcD"/>
                                     <segue destination="UEN-6D-uJd" kind="unwind" unwindAction="saveProject:" id="UI1-4e-rtJ"/>
                                 </connections>
                             </button>
@@ -2393,6 +2383,31 @@ logo, colors, font choices and simp</string>
                                 <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enH-b0-PCV">
+                                <rect key="frame" x="316" y="21" width="64" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="NE1-rR-Jpa"/>
+                                    <constraint firstAttribute="width" constant="64" id="P8C-Xg-KdZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Create">
+                                    <color key="titleColor" red="0.25098040700000002" green="0.5647059083" blue="0.87450981139999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="DoneButtonTopPressed:" destination="ST2-pq-yuG" eventType="touchUpInside" id="i7y-or-q75"/>
+                                    <segue destination="UEN-6D-uJd" kind="unwind" unwindAction="saveProject:" id="oFa-QR-oaL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2425,6 +2440,14 @@ logo, colors, font choices and simp</string>
                     <value key="contentSizeForViewInPopover" type="size" width="400" height="260"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="260"/>
+                    <connections>
+                        <outlet property="CancelButtonBottom" destination="Hwa-P5-E3p" id="Dok-P1-xU1"/>
+                        <outlet property="ContextInfoLabel" destination="hKq-df-RG9" id="Br3-Wj-wNH"/>
+                        <outlet property="DoneButtonBottom" destination="EUh-Jl-Kvp" id="syR-1g-taf"/>
+                        <outlet property="DoneButtonTop" destination="enH-b0-PCV" id="8Yf-uV-Xms"/>
+                        <outlet property="ModalTitleLabel" destination="EZJ-oE-VGI" id="zlg-4m-veE"/>
+                        <outlet property="NameInputField" destination="JsT-Ie-euL" id="gdn-A7-oJz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCP-MX-rXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UEN-6D-uJd" userLabel="Exit" sceneMemberID="exit"/>
@@ -2480,6 +2503,7 @@ logo, colors, font choices and simp</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="DoneButtonTopPressed:" destination="h5H-FA-n5q" eventType="touchUpInside" id="WMk-mi-40y"/>
                                     <segue destination="Z9B-mu-ACs" kind="unwind" unwindAction="saveTask:" id="ld3-gB-xdS"/>
                                 </connections>
                             </button>
@@ -2518,6 +2542,7 @@ logo, colors, font choices and simp</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="DoneButtonBottomPressed:" destination="h5H-FA-n5q" eventType="touchUpInside" id="TSe-gP-4Qt"/>
                                     <segue destination="Z9B-mu-ACs" kind="unwind" unwindAction="saveTask:" id="Tsm-c6-lEX"/>
                                 </connections>
                             </button>
@@ -2586,6 +2611,14 @@ logo, colors, font choices and simp</string>
                     <value key="contentSizeForViewInPopover" type="size" width="400" height="260"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="260"/>
+                    <connections>
+                        <outlet property="CancelButtonBottom" destination="ioz-xY-xWk" id="Qax-en-8V7"/>
+                        <outlet property="ContextInfoLabel" destination="g49-iX-cRa" id="svF-SK-b1C"/>
+                        <outlet property="DoneButtonBottom" destination="vsV-za-ymw" id="6Sj-Za-Pms"/>
+                        <outlet property="DoneButtonTop" destination="eo1-nV-gxS" id="7k6-n8-pV2"/>
+                        <outlet property="ModalTitleLabel" destination="fS7-Ek-UEm" id="2dV-UA-29O"/>
+                        <outlet property="NameInputField" destination="w61-3L-CEf" id="GCC-xy-jj6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqs-06-yc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Z9B-mu-ACs" userLabel="Exit" sceneMemberID="exit"/>
@@ -2625,6 +2658,7 @@ logo, colors, font choices and simp</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="DoneButtonTopPressed:" destination="dH5-qh-WKQ" eventType="touchUpInside" id="zKD-Wp-Du9"/>
                                     <segue destination="Mnr-1z-QfV" kind="unwind" unwindAction="saveTime:" id="rOo-4o-sXb"/>
                                 </connections>
                             </button>
@@ -2661,6 +2695,7 @@ logo, colors, font choices and simp</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="DoneButtonBottomPressed:" destination="dH5-qh-WKQ" eventType="touchUpInside" id="Fol-wG-JKv"/>
                                     <segue destination="Mnr-1z-QfV" kind="unwind" unwindAction="saveTime:" id="l2T-Bn-uis"/>
                                 </connections>
                             </button>
@@ -2704,7 +2739,7 @@ logo, colors, font choices and simp</string>
                                     </mask>
                                 </variation>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="OYu-9e-LJ8">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="OYu-9e-LJ8">
                                 <rect key="frame" x="20" y="81" width="360" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="2fx-he-QTq"/>
@@ -2803,6 +2838,16 @@ logo, colors, font choices and simp</string>
                     <value key="contentSizeForViewInPopover" type="size" width="400" height="570"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="570"/>
+                    <connections>
+                        <outlet property="CancelButtonBottom" destination="nbp-bO-PH1" id="d3t-Q4-LoJ"/>
+                        <outlet property="ContextInfoLabel" destination="CMc-Cb-O1G" id="GL6-E1-R8f"/>
+                        <outlet property="DoneButtonBottom" destination="KW0-Rr-FGX" id="77h-jQ-sxI"/>
+                        <outlet property="DoneButtonTop" destination="dvT-sx-TGX" id="88d-TK-iVF"/>
+                        <outlet property="DurationPickerView" destination="TIF-ie-PYr" id="nSe-OT-pRW"/>
+                        <outlet property="ModalTitleLabel" destination="w0Q-gd-I2M" id="4ij-L4-4Iz"/>
+                        <outlet property="NoteInputField" destination="IwZ-Cv-CKN" id="T1M-iU-Mzy"/>
+                        <outlet property="StartPickerView" destination="OYu-9e-LJ8" id="2ss-9G-bGE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YGX-FV-geP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Mnr-1z-QfV" userLabel="Exit" sceneMemberID="exit"/>

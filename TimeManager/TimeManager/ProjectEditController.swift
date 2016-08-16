@@ -19,13 +19,37 @@ class ProjectEditController: UIViewController {
     }
     
     var currentProject: Project!
+    var saveIntent = false
     
     var delegate: ProjectEditDelegate?
+    
+    var Colors = SharedColorPalette.sharedInstance
+    
+    @IBOutlet weak var DoneButtonTop: UIButton!
+    @IBOutlet weak var DoneButtonBottom: UIButton!
+    @IBOutlet weak var CancelButtonBottom: UIButton!
+    
+    @IBOutlet weak var NameInputField: UITextField!
+    @IBOutlet weak var ModalTitleLabel: UILabel!
+    @IBOutlet weak var ContextInfoLabel: UILabel!
+    
+    @IBAction func DoneButtonBottomPressed(sender: AnyObject) {
+        self.saveIntent = true
+    }
+    
+    @IBAction func DoneButtonTopPressed(sender: AnyObject) {
+        self.saveIntent = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         currentProject = Project(name: "")
+        
+        // Make buttons look nicely.
+        DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
+        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
+        CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,10 +58,12 @@ class ProjectEditController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        // Store the input to make it accessible to the unwind segues target controller.
-        currentProject.name = (self.view.viewWithTag(5) as! UITextField).text!
+        if(self.saveIntent) {
+            // Store the input to make it accessible to the unwind segues target controller.
+            currentProject.name = NameInputField.text!
         
-        self.delegate?.saveNewProject(currentProject)
+            self.delegate?.saveNewProject(currentProject)
+        }
         
         super.viewWillDisappear(animated)
     }

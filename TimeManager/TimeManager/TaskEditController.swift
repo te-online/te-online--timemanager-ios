@@ -19,13 +19,37 @@ class TaskEditController: UIViewController {
     }
     
     var currentTask: Task!
+    var saveIntent = false
     
     var delegate: TaskEditDelegate?
+    
+    var Colors = SharedColorPalette.sharedInstance
+    
+    @IBOutlet weak var NameInputField: UITextField!
+    @IBOutlet weak var ContextInfoLabel: UILabel!
+    @IBOutlet weak var ModalTitleLabel: UILabel!
+    
+    @IBOutlet weak var DoneButtonTop: UIButton!
+    @IBOutlet weak var DoneButtonBottom: UIButton!
+    @IBOutlet weak var CancelButtonBottom: UIButton!
+    
+    @IBAction func DoneButtonBottomPressed(sender: AnyObject) {
+        self.saveIntent = true
+    }
+    
+    @IBAction func DoneButtonTopPressed(sender: AnyObject) {
+        self.saveIntent = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.currentTask = Task(name: "")
+        
+        // Make buttons look nicely.
+        DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
+        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
+        CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,10 +58,12 @@ class TaskEditController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        // Store the input to make it accessible to the unwind segues target controller.
-        self.currentTask.name = (self.view.viewWithTag(4) as! UITextField).text!
-        
-        self.delegate?.saveNewTask(self.currentTask)
+        if self.saveIntent {
+            // Store the input to make it accessible to the unwind segues target controller.
+            self.currentTask.name = NameInputField.text!
+            
+            self.delegate?.saveNewTask(self.currentTask)
+        }
         
         super.viewWillDisappear(animated)
     }

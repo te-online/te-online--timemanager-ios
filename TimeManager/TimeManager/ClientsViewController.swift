@@ -96,7 +96,6 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         ClientMetaLabel.text = Client.street
         
         if currentSelection != nil && indexPath.isEqual(currentSelection) {
-            NSLog("selected one")
             cell.contentView.backgroundColor = Colors.VeryLightGrey
         } else {
             cell.contentView.backgroundColor = UIColor.whiteColor()

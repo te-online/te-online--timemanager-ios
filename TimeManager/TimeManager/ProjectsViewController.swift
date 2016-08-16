@@ -60,6 +60,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
      **/
     
     @IBAction func saveProject(unwindSegue: UIStoryboardSegue) {
+        NSLog("saving...")
         (unwindSegue.sourceViewController as! ProjectEditController).delegate = self
     }
     
@@ -140,7 +141,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     }
     
     func setParentClient(client: ClientObject) {
-        NSLog("Setting client to " + String(client) + " current " + String(self.currentClient))
+//        NSLog("Setting client to " + String(client) + " current " + String(self.currentClient))
         self.currentClient = client
         self.initializeFetchedResultsControllerWithCurrentClient()
         self.populateCurrentClientDetails()

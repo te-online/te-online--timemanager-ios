@@ -23,13 +23,41 @@ class ClientEditController: UIViewController {
     }
     
     var currentClient: Client!
+    var saveIntent = false
     
     var delegate: ClientEditDelegate?
+    
+    var Colors = SharedColorPalette.sharedInstance
+    
+    @IBOutlet weak var DoneButtonTop: UIButton!
+    @IBOutlet weak var DoneButtonBottom: UIButton!
+    @IBOutlet weak var CancelButtonBottom: UIButton!
+    
+    @IBOutlet weak var ModalTitleLabel: UILabel!
+    
+    @IBOutlet weak var NameInputField: UITextField!
+    @IBOutlet weak var StreetInputField: UITextField!
+    @IBOutlet weak var PostcodeInputField: UITextField!
+    @IBOutlet weak var CityInputField: UITextField!
+    @IBOutlet weak var NoteInputField: UITextView!
+    
+    @IBAction func DoneButtonTopPressed(sender: AnyObject) {
+        self.saveIntent = true
+    }
+    
+    @IBAction func DoneButtonBottomPressed(sender: AnyObject) {
+        self.saveIntent = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         currentClient = Client(name: "", street: "", postcode: "", city: "", note: "")
+        
+        // Make buttons look nicely.
+        DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
+        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
+        CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,17 +66,18 @@ class ClientEditController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        // Store the input to make it accessible to the unwind segues target controller.
-        currentClient.name = (self.view.viewWithTag(5) as! UITextField).text!
-        currentClient.street = (self.view.viewWithTag(6) as! UITextField).text!
-        currentClient.postcode = (self.view.viewWithTag(7) as! UITextField).text!
-        currentClient.city = (self.view.viewWithTag(8) as! UITextField).text!
+        if(self.saveIntent) {
+            // Store the input to make it accessible to the unwind segues target controller.
+            currentClient.name = NameInputField.text!
+            currentClient.street = StreetInputField.text!
+            currentClient.postcode = PostcodeInputField.text!
+            currentClient.city = CityInputField.text!
 
-        let textInput = (self.view.viewWithTag(9) as! UITextInput)
-        let range: UITextRange = textInput.textRangeFromPosition(textInput.beginningOfDocument, toPosition: textInput.endOfDocument)!
-        currentClient.note = textInput.textInRange(range)
+            let range: UITextRange = NoteInputField.textRangeFromPosition(NoteInputField.beginningOfDocument, toPosition: NoteInputField.endOfDocument)!
+            currentClient.note = NoteInputField.textInRange(range)
 
-        self.delegate?.saveNewClient(currentClient)
+            self.delegate?.saveNewClient(currentClient)
+        }
         
         super.viewWillDisappear(animated)
     }

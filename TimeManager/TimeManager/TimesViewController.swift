@@ -102,7 +102,6 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         item.setValue(self.currentTask, forKey: "task")
         item.setValue(NSUUID().UUIDString, forKey: "uuid")
         item.setValue(self.currentTask.uuid, forKey: "task_uuid")
-        item.setValue(time.name, forKey: "name")
         item.setValue(time.start, forKey: "start")
         item.setValue(time.end, forKey: "end")
         item.setValue(time.note, forKey: "note")
@@ -154,10 +153,10 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         cell.backgroundColor = Colors.ProjectsCellBlue
         
         let correctedIndexPath = NSIndexPath(forItem: indexPath.item, inSection: indexPath.section - 1)
-        let Task = fetchedResultsController.objectAtIndexPath(correctedIndexPath) as! TaskObject
+        let Time = fetchedResultsController.objectAtIndexPath(correctedIndexPath) as! TimeObject
         
-        let TaskNameLabel = cell.viewWithTag(1) as! UILabel
-        TaskNameLabel.text = Task.name
+        let TimeDurationLabel = cell.viewWithTag(1) as! UILabel
+        TimeDurationLabel.text = String(Time.getDuration())
         
         let TaskMetaLabel = cell.viewWithTag(2) as! UILabel
         TaskMetaLabel.text = "Taskinfo goes here."

@@ -24,4 +24,8 @@ extension TimeObject {
     @NSManaged var task_uuid: String?
     @NSManaged var task: TaskObject?
 
+    func getDuration() -> Double {
+        return 5
+    }
+    
 }
