@@ -611,31 +611,6 @@
             </objects>
             <point key="canvasLocation" x="-1889" y="1601"/>
         </scene>
-        <!--Project Table View Controller-->
-        <scene sceneID="sD4-Ag-Tf5">
-            <objects>
-                <tableViewController id="0p7-ld-OyE" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="left" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9L6-Px-1g7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.22613528200420896" blue="0.0015564945877715175" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="left" selectionStyle="default" indentationWidth="10" reuseIdentifier="projects" id="ubx-xP-c5h">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ubx-xP-c5h" id="eki-tD-4Xc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="JHy-Wf-j1c"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q9P-jd-DVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-379" y="1465"/>
-        </scene>
         <!--Clients-->
         <scene sceneID="KVF-Ia-jnt">
             <objects>
@@ -771,7 +746,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqk-OV-25b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-379" y="2158"/>
+            <point key="canvasLocation" x="-379" y="1465"/>
         </scene>
         <!--Client Edit Controller-->
         <scene sceneID="G8x-jn-slb">
@@ -1004,34 +979,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWe-EA-XYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lkp-8k-lqA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-379" y="2884"/>
-        </scene>
-        <!--Project Table View Controller-->
-        <scene sceneID="07F-6v-180">
-            <objects>
-                <tableViewController id="pDm-jT-wvh" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="B4K-B9-dfe">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.58322906643038985" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="projects" id="gyz-oY-qj7">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyz-oY-qj7" id="d5m-Tf-c5v">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="pDm-jT-wvh" id="Hfh-Rz-3FB"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t29-ob-9pn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="251" y="1465"/>
+            <point key="canvasLocation" x="-379" y="2208"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="H3f-Em-wOl">
@@ -1062,60 +1010,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Id-Ne-3lI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1103" y="2158"/>
-        </scene>
-        <!--Project Table View Controller-->
-        <scene sceneID="DQB-0R-eHC">
-            <objects>
-                <tableViewController id="GnN-qL-9DY" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="LWM-zP-tCW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.25098039215686274" green="0.56470588235294117" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="projects" id="ud5-CU-knr">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ud5-CU-knr" id="8Mb-ov-eUd">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="GnN-qL-9DY" id="cmd-of-AxX"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2z3-gz-8lJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="882" y="1465"/>
-        </scene>
-        <!--Project Table View Controller-->
-        <scene sceneID="yhS-XV-RFK">
-            <objects>
-                <tableViewController id="e4V-Nk-cia" customClass="ProjectTableViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dQ3-Yo-yii">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.81568627450980391" green="0.22352941176470589" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="projects" id="Umm-7h-Hq1">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Umm-7h-Hq1" id="80a-dg-pbc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="e4V-Nk-cia" id="wad-Kz-15z"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0hn-of-EIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1512" y="1465"/>
         </scene>
         <!--Projects-->
         <scene sceneID="1Ex-Uf-QUd">
@@ -1272,7 +1166,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhX-ZS-xq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="2158"/>
+            <point key="canvasLocation" x="251" y="1465"/>
         </scene>
         <!--Client Detail View Controller-->
         <scene sceneID="2Ts-U4-LhP">
@@ -1523,7 +1417,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beb-UQ-rK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="270" y="2691"/>
+            <point key="canvasLocation" x="251" y="1967"/>
         </scene>
         <!--Times-->
         <scene sceneID="K1u-Be-PjS">
@@ -1793,7 +1687,7 @@ logo, colors, font choices and simp</string>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saC-z4-Pq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="2158"/>
+            <point key="canvasLocation" x="1512" y="1465"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="gme-Ya-Dzm">
@@ -1968,7 +1862,7 @@ logo, colors, font choices and simp</string>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFi-Rl-Ukt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882" y="2158"/>
+            <point key="canvasLocation" x="882" y="1465"/>
         </scene>
         <!--Task Details View Controller Scene-->
         <scene sceneID="UMf-fs-ii6">
@@ -2137,7 +2031,7 @@ logo, colors, font choices and simp</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxw-Fl-oAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882" y="2691"/>
+            <point key="canvasLocation" x="882" y="1967"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="67c-MS-UfH">
@@ -2299,7 +2193,7 @@ logo, colors, font choices and simp</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6TG-5U-lAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="2691"/>
+            <point key="canvasLocation" x="1512" y="1967"/>
         </scene>
         <!--Project Edit Controller-->
         <scene sceneID="mSM-Or-fSV">
@@ -2470,7 +2364,7 @@ logo, colors, font choices and simp</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCP-MX-rXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UEN-6D-uJd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="251" y="3118"/>
+            <point key="canvasLocation" x="251" y="2328"/>
         </scene>
         <!--Task Edit Controller-->
         <scene sceneID="X53-Dc-fjJ">
@@ -2641,7 +2535,7 @@ logo, colors, font choices and simp</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqs-06-yc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Z9B-mu-ACs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="882" y="3118"/>
+            <point key="canvasLocation" x="882" y="2328"/>
         </scene>
         <!--Time Edit Controller-->
         <scene sceneID="ZLL-Ou-0Mq">
@@ -2870,7 +2764,7 @@ logo, colors, font choices and simp</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YGX-FV-geP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Mnr-1z-QfV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="3273"/>
+            <point key="canvasLocation" x="1512" y="2483"/>
         </scene>
     </scenes>
     <resources>
