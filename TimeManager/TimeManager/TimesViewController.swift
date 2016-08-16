@@ -170,10 +170,10 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let TimeNoteLabel = cell.viewWithTag(5) as! UILabel
         TimeNoteLabel.text = Time.note
         
-        if currentSelection != nil && correctedIndexPath.isEqual(currentSelection) {
-            cell.contentView.backgroundColor = Colors.TasksCellActiveGreen
+        if currentSelection != nil && indexPath.isEqual(currentSelection) {
+            cell.contentView.backgroundColor = Colors.VeryLightGrey
         } else {
-            cell.contentView.backgroundColor = Colors.TasksCellGreen
+            cell.contentView.backgroundColor = UIColor.whiteColor()
         }
     }
     
@@ -229,7 +229,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
                 headerView.alpha = 0
                 headerView.userInteractionEnabled = false
             } else {
-                headerView.backgroundColor = Colors.TasksCellGreen
+                headerView.backgroundColor = UIColor.whiteColor()
                 
                 // Update number of items in header view.
                 let itemCount = (fetchedResultsController != nil && fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections![0].numberOfObjects : 0

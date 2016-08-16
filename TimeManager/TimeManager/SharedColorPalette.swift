@@ -30,8 +30,8 @@ class SharedColorPalette {
     let ProjectsCellBlue = UIColor(red: SharedColorPalette.convertRGB(203), green: SharedColorPalette.convertRGB(225), blue: SharedColorPalette.convertRGB(242), alpha: 1)
     let ProjectsCellActiveBlue = UIColor(red: SharedColorPalette.convertRGB(214), green: SharedColorPalette.convertRGB(237), blue: SharedColorPalette.convertRGB(255), alpha: 1)
     
-    let TasksCellGreen = UIColor(red: SharedColorPalette.convertRGB(137), green: SharedColorPalette.convertRGB(204), blue: SharedColorPalette.convertRGB(255), alpha: 1)
-    let TasksCellActiveGreen = UIColor(red: SharedColorPalette.convertRGB(188), green: SharedColorPalette.convertRGB(225), blue: SharedColorPalette.convertRGB(255), alpha: 1)
+    let TasksCellGreen = UIColor(red: SharedColorPalette.convertRGB(242), green: SharedColorPalette.convertRGB(255), blue: SharedColorPalette.convertRGB(244), alpha: 1)
+    let TasksCellActiveGreen = UIColor(red: SharedColorPalette.convertRGB(247), green: SharedColorPalette.convertRGB(255), blue: SharedColorPalette.convertRGB(248), alpha: 1)
     
     static func convertRGB(rgb: Int) -> CGFloat {
         return CGFloat(rgb) / 255

@@ -2100,7 +2100,7 @@ logo, colors, font choices and simp</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.6705882352941176" green="0.86274509803921573" blue="0.69019607843137254" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="1" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="kc7-s4-gTG" firstAttribute="height" secondItem="3CZ-jk-QMT" secondAttribute="height" id="0bz-yI-8ax"/>
                                     <constraint firstItem="kc7-s4-gTG" firstAttribute="leading" secondItem="3CZ-jk-QMT" secondAttribute="trailing" constant="8" id="3Ej-tH-XtS"/>
