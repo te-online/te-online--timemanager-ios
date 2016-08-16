@@ -9,6 +9,8 @@
 import UIKit
 
 class FormattingHelper {
+    static var calendar: NSCalendar = NSCalendar.currentCalendar()
+    
     static func formatHoursAsString(hours: Double) -> String {
         var hoursString = ""
         
@@ -49,6 +51,15 @@ class FormattingHelper {
         dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = .LongStyle
         dateFormatter.timeStyle = .NoStyle
+        
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    static func formatDateWithShortDayAndDate(date: NSDate) -> String {
+        var dateFormatter: NSDateFormatter!
+        // Let's create a nice date format.
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "cccccc d.M."
         
         return dateFormatter.stringFromDate(date)
     }

@@ -11,19 +11,21 @@ import UIKit
 class OverviewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     struct RecentTask {
-        var projectName: String!
         var clientName: String!
+        var projectName: String!
         var taskName: String!
-        var dayValues: [Double]!
+        var dayValues: [String]!
     }
     
     var tasks = [RecentTask]()
     var days = [String]()
+    var currentDate = NSDate()
     
     var weekTotal: Int!
 
     @IBOutlet weak var TodaysHoursMainLabel: UILabel!
     @IBOutlet weak var WeeksHoursMainLabel: UILabel!
+    @IBOutlet weak var WeeksHoursTableLabel: UILabel!
     
     @IBOutlet weak var TasksCollectionView: UICollectionView!
     @IBOutlet weak var HoursCollectionView: UICollectionView!
@@ -74,28 +76,15 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         } else if(collectionView == HoursCollectionView) {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("hourCell", forIndexPath: indexPath) as UICollectionViewCell
 
-            let column = Int(floor(Double(indexPath.row) / 5))
-            let row = Int(indexPath.row - (column * 5))
-            
-            let hours = self.tasks[row].dayValues[column] as Double
-            var hoursString = ""
-            
-            if((hours % 2).isZero) {
-                hoursString = String(Int(hours))
-            } else {
-                hoursString = String(round(hours * 100) / 100)
-            }
-            
-            if(hours.isZero) {
-                hoursString = ""
-            }
+            let row = Int(floor(Double(indexPath.row) / 7))
+            let column = Int(Double(indexPath.row) - Double(7 * row))
             
             let HourValueLabel = cell.viewWithTag(1) as! UILabel
-            HourValueLabel.text = hoursString
             
-            if(self.tasks[row].dayValues[column].isZero) {
-                let HourUnitLabel = cell.viewWithTag(2) as! UILabel
-                HourUnitLabel.text = "-"
+            if row < self.tasks.count {
+                HourValueLabel.text = self.tasks[row].dayValues[column]
+            } else {
+                HourValueLabel.text = ""
             }
             
             return cell
@@ -127,43 +116,71 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         let tt = TimeTraveller()
         let today = tt.todaysRecordedHours()
         let week = tt.thisWeeksRecordedHours()
+        let days = tt.daysOfCurrentWeek()
+        let entries = tt.fiveMostRecentEntries()
+        
+        NSLog("Entries " + String(entries))
+        
+        
+        
+//        var newTasks = [RecentTask]()
+//        for entry in entries {
+//            let task = (entry.task! as TaskObject)
+//            let project = task.project
+//            let client = project?.client
+//            let newTask = RecentTask(
+//                clientName: client!.name,
+//                projectName: project!.name,
+//                taskName: task.name,
+//                dayValues: tt.recordedHoursForWeekInProjectFromDate(currentDate, project: ((entry.task! as TaskObject).project! as ProjectObject))
+//            )
+//            newTasks.append(newTask)
+//        }
+//        
+//        self.tasks = newTasks
+        
+        self.days = days
+        NSLog("days " + String(self.tasks))
         
         TodaysHoursMainLabel.text = FormattingHelper.formatHoursAsString(today)
         WeeksHoursMainLabel.text = FormattingHelper.formatHoursAsString(week)
+        WeeksHoursTableLabel.text = FormattingHelper.formatHoursAsString(week)
+        
+        self.HoursCollectionView.reloadData()
     }
     
     func loadDummyData() {
         self.weekTotal = 45
         self.tasks = [
             RecentTask(
-                projectName: "Consultation on Strategy Design",
                 clientName: "Rich Industries",
+                projectName: "Consultation on Strategy Design",
                 taskName: "Preparation of Meetings",
-                dayValues: [10, 5, 2.5, 0, 1, 0, 0]
+                dayValues: ["10 hrs.", "5", "2.5", "0", "1", "0", "0"]
             ),
             RecentTask(
-                projectName: "Website Relaunch",
                 clientName: "Soylent Corp.",
+                projectName: "Website Relaunch",
                 taskName: "Set-Up Server",
-                dayValues: [2.5, 0, 10, 5, 0, 0, 0]
+                dayValues: ["2.5", "0", "10", "5", "0", "0", "0"]
             ),
             RecentTask(
-                projectName: "Corporate Design Manual",
                 clientName: "Evil Corp.",
+                projectName: "Corporate Design Manual",
                 taskName: "Layout",
-                dayValues: [0, 2, 2.5, 0, 4, 0, 0]
+                dayValues: ["0", "2", "2.5", "0", "4", "0", "0"]
             ),
             RecentTask(
-                projectName: "Consultation on Strategy Design",
                 clientName: "Rich Industries",
+                projectName: "Consultation on Strategy Design",
                 taskName: "Fetching Coffee",
-                dayValues: [0, 0, 0, 0, 1, 0, 0]
+                dayValues: ["0", "0", "0", "0", "1", "0", "0"]
             ),
             RecentTask(
-                projectName: "Personal Talent Time",
                 clientName: "Warbucks Industries",
+                projectName: "Personal Talent Time",
                 taskName: "Literature Study",
-                dayValues: [0, 0, 0, 2.5, 1, 0, 0]
+                dayValues: ["0", "0", "0", "2.5", "1", "0", "0"]
             )
         ]
         self.days = [
