@@ -108,9 +108,9 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             (self.timesController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
-//            let currentTask = (self.tasksController as! TasksViewController).getCurrentTask()
-//            (self.timesController as! TimesViewController).setParentProject(currentTask)
-//            self.currentSelection.taskId = currentTask.uuid
+            let currentTask = (self.tasksController as! TasksViewController).getCurrentTask()
+            (self.timesController as! TimesViewController).setParentTask(currentTask)
+            self.currentSelection.taskId = currentTask.uuid
         } else if(viewController == self.timesController) {
             // Do nothing.
         }

@@ -319,6 +319,20 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.collectionView?.reloadData()
     }
+    
+    /**
+     *
+     *   HELPER
+     *
+     **/
+    
+    func getCurrentTask() -> TaskObject {
+        if self.currentSelection != nil {
+            return (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! TaskObject)
+        } else {
+            return TaskObject()
+        }
+    }
 
     
 }
