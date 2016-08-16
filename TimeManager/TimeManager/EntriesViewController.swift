@@ -12,8 +12,8 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
     
     struct Selection {
         var clientId: String!
-        var projectId: Int!
-        var taskId: Int!
+        var projectId: String!
+        var taskId: String!
     }
     
     var currentSelection: Selection!
@@ -32,7 +32,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         self.tasksController = storyboard?.instantiateViewControllerWithIdentifier("TasksViewController") as! UICollectionViewController
         self.timesController = storyboard?.instantiateViewControllerWithIdentifier("TimesViewController") as! UICollectionViewController
         
-        self.currentSelection = Selection(clientId: "", projectId: -1, taskId: -1)
+        self.currentSelection = Selection(clientId: "", projectId: "", taskId: "")
         
         (self.clientsController as! CardOfViewDeckController).delegate = self
         (self.projectsController as! CardOfViewDeckController).delegate = self
@@ -75,8 +75,8 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             if(self.currentSelection.clientId.isEmpty) {
                 transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
             } else {
-                self.currentSelection.projectId = -1
-                self.currentSelection.taskId = -1
+                self.currentSelection.projectId = ""
+                self.currentSelection.taskId = ""
             }
             
             (self.projectsController as! CardOfViewDeckController).positionActive()
@@ -86,19 +86,21 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             (self.projectsController as! ProjectsViewController).setParentClient(currentClient)
             self.currentSelection.clientId = currentClient.uuid
         } else if(viewController == self.projectsController) {
-            if(self.currentSelection.projectId < 0) {
+            if(self.currentSelection.projectId.isEmpty) {
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
             } else {
-                self.currentSelection.taskId = -1
+                self.currentSelection.taskId = ""
             }
             
             (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.tasksController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
-            self.currentSelection.projectId = indexPath.row
+            let currentProject = (self.projectsController as! ProjectsViewController).getCurrentProject()
+            (self.tasksController as! TasksViewController).setParentProject(currentProject)
+            self.currentSelection.projectId = currentProject.uuid
         } else if(viewController == self.tasksController) {
-            if(self.currentSelection.taskId < 0) {
+            if(self.currentSelection.taskId.isEmpty) {
                 transitionInViewController(lastViewController: self.tasksController, newViewController: self.timesController)
             }
             
@@ -106,7 +108,9 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             (self.timesController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
-            self.currentSelection.taskId = indexPath.row
+//            let currentTask = (self.tasksController as! TasksViewController).getCurrentTask()
+//            (self.timesController as! TimesViewController).setParentProject(currentTask)
+//            self.currentSelection.taskId = currentTask.uuid
         } else if(viewController == self.timesController) {
             // Do nothing.
         }
@@ -117,7 +121,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             return
         }
         
-        if(sender == self.projectsController && self.currentSelection.projectId >= 0) {
+        if(sender == self.projectsController && !self.currentSelection.projectId.isEmpty) {
             (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.projectsController as! CardOfViewDeckController).positionSideBySideRight()
             (self.tasksController as! CardOfViewDeckController).positionInvisible()
@@ -148,13 +152,13 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             (self.tasksController as! CardOfViewDeckController).positionInvisible()
             (self.timesController as! CardOfViewDeckController).positionInvisible()
         }
-        if(sender == self.projectsController && self.currentSelection.projectId >= 0) {
+        if(sender == self.projectsController && !self.currentSelection.projectId.isEmpty) {
             (self.clientsController as! CardOfViewDeckController).positionInTheDeck()
             (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.tasksController as! CardOfViewDeckController).positionSideBySideRight()
             (self.timesController as! CardOfViewDeckController).positionInvisible()
         }
-        if(sender == self.tasksController && self.currentSelection.taskId >= 0) {
+        if(sender == self.tasksController && !self.currentSelection.taskId.isEmpty) {
             (self.clientsController as! CardOfViewDeckController).positionInTheDeck()
             (self.projectsController as! CardOfViewDeckController).positionInTheDeck()
             (self.tasksController as! CardOfViewDeckController).positionSideBySideLeft()

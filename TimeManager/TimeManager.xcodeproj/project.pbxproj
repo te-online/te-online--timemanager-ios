@@ -26,6 +26,8 @@
 		E911CEFE1D61E0760044AED6 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF91D61E0760044AED6 /* Time.swift */; };
 		E911CEFF1D61E0760044AED6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEFA1D61E0760044AED6 /* Task.swift */; };
 		E911CF031D62109C0044AED6 /* ProjectEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CF021D62109C0044AED6 /* ProjectEditController.swift */; };
+		E92A06771D630E0300A29710 /* ProjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A06761D630E0300A29710 /* ProjectDetailViewController.swift */; };
+		E92A06791D63123100A29710 /* TaskEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A06781D63123100A29710 /* TaskEditController.swift */; };
 		E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */; };
 		E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1271D5874A000FB6166 /* AppDelegate.swift */; };
 		E958A12D1D5874A000FB6166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A12B1D5874A000FB6166 /* Main.storyboard */; };
@@ -78,6 +80,8 @@
 		E911CEF91D61E0760044AED6 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		E911CEFA1D61E0760044AED6 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		E911CF021D62109C0044AED6 /* ProjectEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectEditController.swift; sourceTree = "<group>"; };
+		E92A06761D630E0300A29710 /* ProjectDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailViewController.swift; sourceTree = "<group>"; };
+		E92A06781D63123100A29710 /* TaskEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEditController.swift; sourceTree = "<group>"; };
 		E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientEditController.swift; sourceTree = "<group>"; };
 		E958A1241D5874A000FB6166 /* TimeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E958A1271D5874A000FB6166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
 				E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */,
 				E911CF021D62109C0044AED6 /* ProjectEditController.swift */,
+				E92A06781D63123100A29710 /* TaskEditController.swift */,
 			);
 			name = ModalViewControllers;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				E906D01E1D5E154500C06C87 /* ClientDetailViewController.swift */,
+				E92A06761D630E0300A29710 /* ProjectDetailViewController.swift */,
 			);
 			name = StickyBackgrounds;
 			sourceTree = "<group>";
@@ -434,9 +440,11 @@
 				E911CF031D62109C0044AED6 /* ProjectEditController.swift in Sources */,
 				E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */,
 				E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */,
+				E92A06771D630E0300A29710 /* ProjectDetailViewController.swift in Sources */,
 				E911CEFC1D61E0760044AED6 /* Contact.swift in Sources */,
 				E911CEFE1D61E0760044AED6 /* Time.swift in Sources */,
 				E9BA20CF1D5C6F9A0098F37D /* PassThroughCollectionView.swift in Sources */,
+				E92A06791D63123100A29710 /* TaskEditController.swift in Sources */,
 				E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */,
 				E906D01F1D5E154500C06C87 /* ClientDetailViewController.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,

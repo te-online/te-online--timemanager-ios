@@ -84,6 +84,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     func deleteCurrentClient() {
         if currentClient != nil {
             let moc = self.dataController.managedObjectContext
+             moc.deleteObject(currentClient)
             
             do {
                 try moc.save()
@@ -164,7 +165,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let ProjectMetaLabel = cell.viewWithTag(2) as! UILabel
         ProjectMetaLabel.text = "Projectinfo goes here."
         
-        if currentSelection != nil && indexPath.isEqual(currentSelection) {
+        if currentSelection != nil && correctedIndexPath.isEqual(currentSelection) {
             NSLog("selected one")
             cell.contentView.backgroundColor = Colors.ProjectsCellActiveBlue
         } else {
@@ -246,7 +247,8 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.currentSelection = indexPath
+        let correctedIndexPath = NSIndexPath(forItem: indexPath.item, inSection: indexPath.section - 1)
+        self.currentSelection = correctedIndexPath
         self.collectionView!.reloadData()
         
         super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
@@ -282,6 +284,9 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         
         let DeleteButton = content!.view.viewWithTag(6) as! UIButton
         DeleteButton.layer.borderColor = Colors.MediumRed.CGColor
+        
+        let CreateButton = content!.view.viewWithTag(12) as! UIButton
+        CreateButton.layer.borderColor = Colors.MediumBlue.CGColor
     }
     
     func visibleFrameForEmbeddedControllers() -> CGRect {
@@ -302,8 +307,8 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let byClientId = NSPredicate(format: "client = %@", currentClient)
-        request.predicate = byClientId
+        let byClient = NSPredicate(format: "client = %@", currentClient)
+        request.predicate = byClient
         
         let moc = self.dataController.managedObjectContext
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
@@ -313,6 +318,24 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
             try fetchedResultsController.performFetch()
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
+    }
+    
+    /**
+     *
+     *   HELPER
+     *
+     **/
+    
+//    func getClientIdForIndexPath(indexPath: NSIndexPath) -> String {
+//        return (fetchedResultsController.objectAtIndexPath(indexPath) as! ClientObject).uuid!
+//    }
+    
+    func getCurrentProject() -> ProjectObject {
+        if self.currentSelection != nil {
+            return (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! ProjectObject)
+        } else {
+            return ProjectObject()
         }
     }
     
