@@ -50,8 +50,7 @@ extension ClientObject {
     }
     
     func getCreationYear() -> Int {
-        let createdComponents: NSDateComponents = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self.created!)
-        return createdComponents.year
+        return FormattingHelper.getYearFromDate(self.created!)
     }
     
     func getMetaString() -> String {
@@ -67,37 +66,11 @@ extension ClientObject {
     }
     
     func getNumberOfProjectsString() -> String {
-        let numberOfProjects = self.getNumberOfProjects()
-        
-        var numberOfProjectsString = String(numberOfProjects)
-        
-        if numberOfProjects != 1 {
-            numberOfProjectsString = numberOfProjectsString + " projects"
-        } else {
-            numberOfProjectsString = numberOfProjectsString + " project"
-        }
-        
-        return numberOfProjectsString
+        return FormattingHelper.formatSomeNumberWithUnit(self.getNumberOfProjects(), unitSingular: "project", unitPlural: "projects")
     }
     
     func getTotalHoursString() -> String {
-        let totalHours = self.getTotalHours()
-        
-        var totalHoursString = ""
-        
-        if totalHours%1 == 0 {
-            totalHoursString = totalHoursString + String(Int(totalHours))
-        } else {
-            totalHoursString = totalHoursString + String.localizedStringWithFormat("%.2f %@", totalHours, "")
-        }
-        
-        if totalHours != 1 {
-            totalHoursString = totalHoursString + " hrs."
-        } else {
-            totalHoursString = totalHoursString + " hr."
-        }
-        
-        return totalHoursString
+        return FormattingHelper.formatHoursAsString(self.getTotalHours())
     }
 
 }

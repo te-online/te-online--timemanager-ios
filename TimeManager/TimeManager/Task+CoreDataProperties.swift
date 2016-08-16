@@ -36,23 +36,7 @@ extension TaskObject {
     }
     
     func getTotalHoursString() -> String {
-        let totalHours = self.getTotalHours()
-        
-        var totalHoursString = ""
-        
-        if totalHours%1 == 0 {
-            totalHoursString = totalHoursString + String(Int(totalHours))
-        } else {
-            totalHoursString = totalHoursString + String.localizedStringWithFormat("%.2f %@", totalHours, "")
-        }
-        
-        if totalHours != 1 {
-            totalHoursString = totalHoursString + " hrs."
-        } else {
-            totalHoursString = totalHoursString + " hr."
-        }
-        
-        return totalHoursString
+        return FormattingHelper.formatHoursAsString(self.getTotalHours())
     }
     
 }

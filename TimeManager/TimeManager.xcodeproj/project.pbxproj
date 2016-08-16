@@ -30,6 +30,7 @@
 		E92A06791D63123100A29710 /* TaskEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A06781D63123100A29710 /* TaskEditController.swift */; };
 		E92A067B1D631EF600A29710 /* TimeEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A067A1D631EF600A29710 /* TimeEditController.swift */; };
 		E92A067D1D63307C00A29710 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A067C1D63307C00A29710 /* TaskDetailViewController.swift */; };
+		E92A06801D6360B000A29710 /* FormattingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A067F1D6360B000A29710 /* FormattingHelper.swift */; };
 		E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */; };
 		E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1271D5874A000FB6166 /* AppDelegate.swift */; };
 		E958A12D1D5874A000FB6166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A12B1D5874A000FB6166 /* Main.storyboard */; };
@@ -86,6 +87,7 @@
 		E92A06781D63123100A29710 /* TaskEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEditController.swift; sourceTree = "<group>"; };
 		E92A067A1D631EF600A29710 /* TimeEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEditController.swift; sourceTree = "<group>"; };
 		E92A067C1D63307C00A29710 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		E92A067F1D6360B000A29710 /* FormattingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattingHelper.swift; sourceTree = "<group>"; };
 		E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientEditController.swift; sourceTree = "<group>"; };
 		E958A1241D5874A000FB6166 /* TimeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E958A1271D5874A000FB6166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				E9BA20CE1D5C6F9A0098F37D /* PassThroughCollectionView.swift */,
 				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
+				E92A067F1D6360B000A29710 /* FormattingHelper.swift */,
 			);
 			name = HelperControllers;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */,
 				E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */,
 				E92A06771D630E0300A29710 /* ProjectDetailViewController.swift in Sources */,
+				E92A06801D6360B000A29710 /* FormattingHelper.swift in Sources */,
 				E911CEFC1D61E0760044AED6 /* Contact.swift in Sources */,
 				E92A067B1D631EF600A29710 /* TimeEditController.swift in Sources */,
 				E911CEFE1D61E0760044AED6 /* Time.swift in Sources */,
