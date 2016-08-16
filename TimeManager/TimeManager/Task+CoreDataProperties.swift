@@ -17,9 +17,9 @@ extension Task {
     @NSManaged var changed: NSDate?
     @NSManaged var commit: String?
     @NSManaged var created: NSDate?
-    @NSManaged var id: NSNumber?
+    @NSManaged var uuid: String?
     @NSManaged var name: String?
-    @NSManaged var project_id: NSNumber?
+    @NSManaged var project_uuid: String?
     @NSManaged var project: ProjectObject?
     @NSManaged var times: NSSet?
 

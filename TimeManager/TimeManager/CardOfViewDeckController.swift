@@ -364,6 +364,14 @@ class CardOfViewDeckController: UICollectionViewController {
         self.delegate?.didSelectItemAtIndexPath(self, indexPath: indexPath)
     }
     
+//    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        currentSelection = indexPath
+//    }
+//    
+//    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+//        currentSelection = nil
+//    }
+    
 //    override func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
 //        NSLog("Changing color" + String((collectionView as UICollectionView)))
 ////        

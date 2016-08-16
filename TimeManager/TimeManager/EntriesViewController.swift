@@ -11,7 +11,7 @@ import UIKit
 class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfViewDeckControllerDelegate {
     
     struct Selection {
-        var clientId: Int!
+        var clientId: String!
         var projectId: Int!
         var taskId: Int!
     }
@@ -32,7 +32,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         self.tasksController = storyboard?.instantiateViewControllerWithIdentifier("TasksViewController") as! UICollectionViewController
         self.timesController = storyboard?.instantiateViewControllerWithIdentifier("TimesViewController") as! UICollectionViewController
         
-        self.currentSelection = Selection(clientId: -1, projectId: -1, taskId: -1)
+        self.currentSelection = Selection(clientId: "", projectId: -1, taskId: -1)
         
         (self.clientsController as! CardOfViewDeckController).delegate = self
         (self.projectsController as! CardOfViewDeckController).delegate = self
@@ -80,7 +80,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         let collectionView: UICollectionView = viewController.collectionView!
         NSLog("Selected " + String(indexPath.row))
         if(viewController == self.clientsController) {
-            if(self.currentSelection.clientId < 0) {
+            if(self.currentSelection.clientId.isEmpty) {
                 transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
             } else {
                 self.currentSelection.projectId = -1
@@ -90,10 +90,11 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             (self.projectsController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
-            self.currentSelection.clientId = indexPath.row
-            
-            NSLog("selected id " + String((self.clientsController as! ClientsViewController).currentSelectionId))
-            (self.projectsController as! ProjectsViewController).setParentClientId((self.clientsController as! ClientsViewController).currentSelectionId)
+//            NSLog("selected id " + String((self.clientsController as! ClientsViewController).currentSelectionId))
+
+            let currentClient = (self.clientsController as! ClientsViewController).getCurrentClient()
+            (self.projectsController as! ProjectsViewController).setParentClient(currentClient)
+            self.currentSelection.clientId = currentClient.uuid
         } else if(collectionView == self.projectsController.collectionView) {
             if(self.currentSelection.projectId < 0) {
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
@@ -121,49 +122,49 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         }
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        NSLog("Selected " + String(indexPath.row) + String(collectionView))
-        if(collectionView == self.clientsController.collectionView) {
-            if(self.currentSelection.clientId < 0) {
-                transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
-            } else {
-                self.currentSelection.projectId = -1
-                self.currentSelection.taskId = -1
-            }
-            
-            (self.projectsController as! CardOfViewDeckController).positionActive()
-            self.repositionCards()
-            
-            self.currentSelection.clientId = (self.clientsController as! ClientsViewController).getClientIdForIndexPath(indexPath)
-            
-//            NSLog("selected id " + String((self.clientsController as! ClientsViewController).currentSelectionId))
-//            (self.projectsController as! ProjectsViewController).setParentClientId((self.clientsController as! ClientsViewController).currentSelectionId)
-        } else if(collectionView == self.projectsController.collectionView) {
-            if(self.currentSelection.projectId < 0) {
-                transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
-            } else {
-                self.currentSelection.taskId = -1
-            }
-            
-            (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
-            (self.tasksController as! CardOfViewDeckController).positionActive()
-            self.repositionCards()
-            
-            self.currentSelection.projectId = indexPath.row
-        } else if(collectionView == self.tasksController.collectionView) {
-            if(self.currentSelection.taskId < 0) {
-                transitionInViewController(lastViewController: self.tasksController, newViewController: self.timesController)
-            }
-            
-            (self.tasksController as! CardOfViewDeckController).positionSideBySideLeft()
-            (self.timesController as! CardOfViewDeckController).positionActive()
-            self.repositionCards()
-            
-            self.currentSelection.taskId = indexPath.row
-        } else if(collectionView == self.timesController.collectionView) {
-            // Do nothing.
-        }
-    }
+//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        NSLog("Selected " + String(indexPath.row) + String(collectionView))
+//        if(collectionView == self.clientsController.collectionView) {
+//            if(!self.currentSelection.clientId.isEmpty) {
+//                transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
+//            } else {
+//                self.currentSelection.projectId = -1
+//                self.currentSelection.taskId = -1
+//            }
+//            
+//            (self.projectsController as! CardOfViewDeckController).positionActive()
+//            self.repositionCards()
+//            
+//            self.currentSelection.clientId = (self.clientsController as! ClientsViewController).getClientIdForIndexPath(indexPath)
+//            
+////            NSLog("selected id " + String((self.clientsController as! ClientsViewController).currentSelectionId))
+////            (self.projectsController as! ProjectsViewController).setParentClientId((self.clientsController as! ClientsViewController).currentSelectionId)
+//        } else if(collectionView == self.projectsController.collectionView) {
+//            if(self.currentSelection.projectId < 0) {
+//                transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
+//            } else {
+//                self.currentSelection.taskId = -1
+//            }
+//            
+//            (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
+//            (self.tasksController as! CardOfViewDeckController).positionActive()
+//            self.repositionCards()
+//            
+//            self.currentSelection.projectId = indexPath.row
+//        } else if(collectionView == self.tasksController.collectionView) {
+//            if(self.currentSelection.taskId < 0) {
+//                transitionInViewController(lastViewController: self.tasksController, newViewController: self.timesController)
+//            }
+//            
+//            (self.tasksController as! CardOfViewDeckController).positionSideBySideLeft()
+//            (self.timesController as! CardOfViewDeckController).positionActive()
+//            self.repositionCards()
+//            
+//            self.currentSelection.taskId = indexPath.row
+//        } else if(collectionView == self.timesController.collectionView) {
+//            // Do nothing.
+//        }
+//    }
     
     func mightNavigateLeft(sender: UICollectionViewController) {
         if(sender == self.clientsController) {
@@ -196,7 +197,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             return
         }
         
-        if(sender == self.clientsController && self.currentSelection.clientId >= 0) {
+        if(sender == self.clientsController && !self.currentSelection.clientId.isEmpty) {
 //            NSLog("Clients moving")
             (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.projectsController as! CardOfViewDeckController).positionSideBySideRight()

@@ -19,7 +19,7 @@ extension ClientObject {
     @NSManaged var commit: String?
     @NSManaged var created: NSDate?
     @NSManaged var email: String?
-    @NSManaged var id: NSNumber?
+    @NSManaged var uuid: String?
     @NSManaged var name: String?
     @NSManaged var note: String?
     @NSManaged var phone: String?

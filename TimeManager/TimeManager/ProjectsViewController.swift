@@ -35,7 +35,9 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
 //        var numHoursNInvoiced: Double!
 //    }
     
-    var currentClientId: Int = -1
+    var currentClientId: String = ""
+//    var currentClient = NSManagedObject()
+    var currentClient: ClientObject!
     
     var cellColor: UIColor!
     var activeColor: UIColor!
@@ -93,28 +95,28 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     }
     
     func deleteCurrentClient() {
-        if currentClientId > -1 {
-            let request = NSFetchRequest(entityName: "Client")
-            
-            let byClientId = NSPredicate(format: "id = %@", String(currentClientId))
-            request.predicate = byClientId
-            
+        if currentClient != nil {
+//            let request = NSFetchRequest(entityName: "Client")
+//            
+//            let byClientId = NSPredicate(format: "id = %@", String(currentClientId))
+//            request.predicate = byClientId
+//            
             let moc = self.dataController.managedObjectContext
             
-            do {
-                let deleteables = try moc.executeFetchRequest(request)
-                for deleteable in deleteables {
-                    moc.deleteObject(deleteable as! NSManagedObject)
-                }
+//            do {
+//                let deleteables = try moc.executeFetchRequest(request)
+//                for deleteable in deleteables {
+                    moc.deleteObject(currentClient as NSManagedObject)
+//                }
                 do {
                     try moc.save()
                     self.collectionView!.reloadData()
                 } catch {
                      fatalError("Failed to delete client: \(error)")
                 }
-            } catch {
-                fatalError("Failed to fetch details for current client: \(error)")
-            }
+//            } catch {
+//                fatalError("Failed to fetch details for current client: \(error)")
+//            }
         }
         
     }
@@ -124,8 +126,8 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let entity = NSEntityDescription.entityForName("Project", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
-        item.setValue(1, forKey: "id")
-        item.setValue(currentClientId, forKey: "client_id")
+        item.setValue(NSUUID().UUIDString, forKey: "uuid")
+        item.setValue(currentClient.uuid, forKey: "client_uuid")
         item.setValue(project.name, forKey: "name")
         item.setValue(NSDate(), forKey: "changed")
         item.setValue(NSDate(), forKey: "created")
@@ -141,13 +143,13 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         // Do nothing.
     }
     
-    func initializeFetchedResultsControllerWithClientId(clientId: Int) {
+    func initializeFetchedResultsControllerWithClientId(clientId: String) {
         let request = NSFetchRequest(entityName: "Project")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let byClientId = NSPredicate(format: "client_id = %@", String(clientId))
+        let byClientId = NSPredicate(format: "client_uuid = %@", clientId)
         request.predicate = byClientId
         
         let moc = self.dataController.managedObjectContext
@@ -161,28 +163,48 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         }
     }
     
-    func fetchDetailsForClient(clientId: Int) {
-        let request = NSFetchRequest(entityName: "Client")
+    func initializeFetchedResultsControllerWithCurrentClient() {
+        let request = NSFetchRequest(entityName: "Project")
         
-        let byClientId = NSPredicate(format: "id = %@", String(clientId))
+        let createdSort = NSSortDescriptor(key: "created", ascending: true)
+        request.sortDescriptors = [createdSort]
+        
+        let byClientId = NSPredicate(format: "client = %@", currentClient)
         request.predicate = byClientId
         
         let moc = self.dataController.managedObjectContext
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
         
         do {
-            let clientDetails = try moc.executeFetchRequest(request)
-            self.populateClientDetails(clientDetails as! [ClientObject])
+            try fetchedResultsController.performFetch()
         } catch {
-            fatalError("Failed to fetch details for client: \(error)")
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
     }
     
-    func populateClientDetails(clientObjects: [ClientObject]) {
+    func fetchDetailsForCurrentClient() {
+//        let request = NSFetchRequest(entityName: "Client")
+//        
+//        let byClientId = NSPredicate(format: "id = %@", String(clientId))
+//        request.predicate = byClientId
+//        
+//        let moc = self.dataController.managedObjectContext
+//        
+//        do {
+//            let clientDetails = try moc.executeFetchRequest(request)
+            self.populateClientDetails()
+//        } catch {
+//            fatalError("Failed to fetch details for client: \(error)")
+//        }
+    }
+    
+    func populateClientDetails() {
         // Populate cells here
-        NSLog(String(clientObjects))
-        if clientObjects.count > 0 {
-            let currentClient = clientObjects[0]
-            
+//        NSLog(String(clientObjects))
+//        if clientObjects.count > 0 {
+//            let currentClient = clientObjects[0]
+        
             let ClientNameLabel = backgroundController!.view.viewWithTag(4) as! UILabel
             ClientNameLabel.text = currentClient.name
             
@@ -194,7 +216,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
             
             let ClientNoteLabel = backgroundController!.view.viewWithTag(11) as! UILabel
             ClientNoteLabel.text = currentClient.note
-        }
+//        }
         
 //        if clientObjects as ProjectObject
     }
@@ -285,11 +307,12 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         return super.getCellSize()
     }
     
-    func setParentClientId(clientId: Int) {
-        NSLog("Setting client id " + String(clientId))
-        currentClientId = clientId
-        self.initializeFetchedResultsControllerWithClientId(clientId)
-        self.fetchDetailsForClient(clientId)
+    func setParentClient(client: ClientObject) {
+        NSLog("Setting client to " + String(client) + " current " + String(self.currentClient))
+        self.currentClientId = client.uuid!
+        self.currentClient = client
+        self.initializeFetchedResultsControllerWithCurrentClient()
+        self.fetchDetailsForCurrentClient()
         self.collectionView?.reloadData()
     }
     

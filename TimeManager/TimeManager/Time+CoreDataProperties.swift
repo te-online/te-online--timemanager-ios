@@ -18,10 +18,10 @@ extension Time {
     @NSManaged var commit: String?
     @NSManaged var created: NSDate?
     @NSManaged var end: NSDate?
-    @NSManaged var id: NSNumber?
+    @NSManaged var uuid: String?
     @NSManaged var note: String?
     @NSManaged var start: NSDate?
-    @NSManaged var task_id: NSNumber?
+    @NSManaged var task_uuid: String?
     @NSManaged var task: Task?
 
 }

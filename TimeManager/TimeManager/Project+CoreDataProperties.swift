@@ -15,11 +15,11 @@ import CoreData
 extension ProjectObject {
 
     @NSManaged var changed: NSDate?
-    @NSManaged var client_id: NSNumber?
+    @NSManaged var client_uuid: String?
     @NSManaged var color: String?
     @NSManaged var commit: String?
     @NSManaged var created: NSDate?
-    @NSManaged var id: NSNumber?
+    @NSManaged var uuid: String?
     @NSManaged var name: String?
     @NSManaged var note: String?
     @NSManaged var client: ClientObject?

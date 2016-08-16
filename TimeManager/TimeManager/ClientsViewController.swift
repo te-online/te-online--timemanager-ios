@@ -18,7 +18,7 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     var fetchedResultsController: NSFetchedResultsController!
     
     var currentSelection: NSIndexPath!
-    var currentSelectionId: Int = -1
+    var currentSelectionId: String = ""
     
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
@@ -51,7 +51,7 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         let entity = NSEntityDescription.entityForName("Client", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
-        item.setValue(1, forKey: "id")
+        item.setValue(NSUUID().UUIDString, forKey: "uuid")
         item.setValue(client.name, forKey: "name")
         item.setValue(client.street, forKey: "street")
         item.setValue(client.postcode, forKey: "postcode")
@@ -165,8 +165,16 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         currentSelection = nil
     }
     
-    func getClientIdForIndexPath(indexPath: NSIndexPath) -> Int {
-        return ((fetchedResultsController.objectAtIndexPath(indexPath) as! ClientObject).id as! Int)
+    func getClientIdForIndexPath(indexPath: NSIndexPath) -> String {
+        return (fetchedResultsController.objectAtIndexPath(indexPath) as! ClientObject).uuid!
+    }
+    
+    func getCurrentClient() -> ClientObject {
+        if self.currentSelection != nil {
+            return (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! ClientObject)
+        } else {
+            return ClientObject()
+        }
     }
     
     
