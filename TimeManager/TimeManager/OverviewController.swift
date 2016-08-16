@@ -22,6 +22,8 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var weekTotal: Int!
 
+    @IBOutlet weak var TodaysHoursMainLabel: UILabel!
+    @IBOutlet weak var WeeksHoursMainLabel: UILabel!
     
     @IBOutlet weak var TasksCollectionView: UICollectionView!
     @IBOutlet weak var HoursCollectionView: UICollectionView!
@@ -37,8 +39,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         HoursCollectionView.delegate = self
         HoursCollectionView.dataSource = self
         
-        let tt = TimeTraveller()
-        tt.todaysRecordedHours()
+        self.loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -120,6 +121,15 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         return reusableView
+    }
+    
+    func loadData() {
+        let tt = TimeTraveller()
+        let today = tt.todaysRecordedHours()
+        let week = tt.thisWeeksRecordedHours()
+        
+        TodaysHoursMainLabel.text = FormattingHelper.formatHoursAsString(today)
+        WeeksHoursMainLabel.text = FormattingHelper.formatHoursAsString(week)
     }
     
     func loadDummyData() {

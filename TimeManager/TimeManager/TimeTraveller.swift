@@ -13,7 +13,7 @@ class TimeTraveller {
     
     var dataController: AppDelegate! = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    func todaysRecordedHours() {
+    func todaysRecordedHours() -> Double {
         NSLog("Here we go...")
         // Find all time entries from today and sum up hours
         let today = NSDate()
@@ -42,26 +42,37 @@ class TimeTraveller {
         
         let moc = self.dataController.managedObjectContext
         
+        var hoursCount: Double = 0
+        
         do {
             let entries = try moc.executeFetchRequest(request)
+            if entries.count > 0 {
+                for entry in entries {
+                    hoursCount += (entry as! TimeObject).getDurationInHours()
+                }
+            }
             NSLog("Entries " + String(entries))
         } catch {
             fatalError("Failed to execute fetch request for todays hours: \(error)")
         }
+        
+        return hoursCount
 
     }
     
-    func thisWeeksRecordedHours() {
+    func thisWeeksRecordedHours() -> Double {
         // Determine all days in this week
         // Repeat todaysRecordedHours for each day and sum up hours
+        return 37.5
     }
     
     func fiveMostRecentEntries() {
         // Get the five most recent time entries by creation date
     }
     
-    func recordedHoursForDayInProject(day: NSDate, project: ProjectObject) {
+    func recordedHoursForDayInProject(day: NSDate, project: ProjectObject) -> Double {
         // Get all entries for project and given date and sum up
+        return 10.5
     }
     
 }

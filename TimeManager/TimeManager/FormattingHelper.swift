@@ -13,17 +13,18 @@ class FormattingHelper {
         var hoursString = ""
         
         // If the hour is a whole number we don't want commas.
-        if hours%1 == 0 {
-            hoursString = hoursString + String(Int(hours))
-        } else {
-            hoursString = hoursString + String.localizedStringWithFormat("%.2f %@", hours, "")
-        }
+//        if hours%1 == 0 {
+//            hoursString = hoursString + String(Int(hours))
+//        } else {
+//            hoursString = hoursString + String.localizedStringWithFormat("%.2f", hours)
+//        }
+        hoursString += String(format: "%g", hours)
         
         // One hour vs multiple or zero hours.
         if hours != 1 {
-            hoursString = hoursString + " hrs."
+            hoursString += " hrs."
         } else {
-            hoursString = hoursString + " hr."
+            hoursString += " hr."
         }
         
         return hoursString
@@ -34,9 +35,9 @@ class FormattingHelper {
         
         // One hour vs multiple or zero hours.
         if number == 1 {
-            numberString = numberString + " " + unitSingular
+            numberString += " " + unitSingular
         } else {
-            numberString = numberString + " " + unitPlural
+            numberString += " " + unitPlural
         }
         
         return numberString

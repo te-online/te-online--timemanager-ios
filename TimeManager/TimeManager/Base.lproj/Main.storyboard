@@ -448,6 +448,8 @@
                     <connections>
                         <outlet property="HoursCollectionView" destination="otr-Zf-z1H" id="dMS-hO-gwq"/>
                         <outlet property="TasksCollectionView" destination="SVO-pr-9c2" id="1vL-2Y-mIs"/>
+                        <outlet property="TodaysHoursMainLabel" destination="zzm-26-Icg" id="gqz-qh-AHd"/>
+                        <outlet property="WeeksHoursMainLabel" destination="4Km-69-wRm" id="6Un-s4-2eQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVQ-OM-tUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
