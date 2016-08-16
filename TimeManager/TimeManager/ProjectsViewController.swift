@@ -89,6 +89,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
             
             do {
                 try moc.save()
+                (self as CardOfViewDeckController).delegate?.didDeleteClient()
             } catch {
                 fatalError("Failed to delete client: \(error)")
             }

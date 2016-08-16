@@ -89,6 +89,7 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
             
             do {
                 try moc.save()
+                (self as CardOfViewDeckController).delegate?.didDeleteProject()
             } catch {
                 fatalError("Failed to delete project: \(error)")
             }

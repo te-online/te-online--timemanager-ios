@@ -191,6 +191,33 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
 
     }
     
+    func didDeleteClient() {
+        self.currentSelection.clientId = ""
+        self.currentSelection.projectId = ""
+        self.currentSelection.taskId = ""
+        
+        (self.projectsController as! CardOfViewDeckController).positionInvisible()
+        (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
+        self.repositionCards()
+    }
+    
+    func didDeleteProject() {
+        self.currentSelection.projectId = ""
+        self.currentSelection.taskId = ""
+        
+        (self.tasksController as! CardOfViewDeckController).positionInvisible()
+        (self.projectsController as! CardOfViewDeckController).positionActive()
+        self.repositionCards()
+    }
+    
+    func didDeleteTask() {
+        self.currentSelection.taskId = ""
+        
+        (self.timesController as! CardOfViewDeckController).positionInvisible()
+        (self.tasksController as! CardOfViewDeckController).positionActive()
+        self.repositionCards()
+    }
+    
     func displayContentController(content: UIViewController!) {
         // Add the new view controller.
         self.addChildViewController(content!)

@@ -88,6 +88,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
             
             do {
                 try moc.save()
+                (self as CardOfViewDeckController).delegate?.didDeleteTask()
             } catch {
                 fatalError("Failed to delete task: \(error)")
             }
@@ -233,7 +234,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
                 
                 // Update number of items in header view.
                 let itemCount = (fetchedResultsController != nil && fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections![0].numberOfObjects : 0
-                let itemCountLabel = headerView.viewWithTag(7) as! UILabel
+                let itemCountLabel = headerView.viewWithTag(2) as! UILabel
                 itemCountLabel.text = "#" + String(itemCount)
                 
                 // Update number of total client hours in header view.
@@ -243,12 +244,12 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
                 
                 // Update number of total project hours in header view.
                 let projectHours = self.currentTask.project!.getTotalHoursString()
-                let projectHoursLabel = headerView.viewWithTag(5) as! UILabel
+                let projectHoursLabel = headerView.viewWithTag(6) as! UILabel
                 projectHoursLabel.text = projectHours
                 
                 // Update number of total task hours in header view.
                 let taskHours = self.currentTask.getTotalHoursString()
-                let taskHoursLabel = headerView.viewWithTag(5) as! UILabel
+                let taskHoursLabel = headerView.viewWithTag(8) as! UILabel
                 taskHoursLabel.text = taskHours
             }
             

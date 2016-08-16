@@ -14,6 +14,9 @@ protocol CardOfViewDeckControllerDelegate {
     func mightNavigateRight(sender: UICollectionViewController)
     func mightMoveWithOtherCards(sender: UICollectionViewController)
     func repositionCards()
+    func didDeleteClient()
+    func didDeleteProject()
+    func didDeleteTask()
 }
 
 class CardOfViewDeckController: UICollectionViewController {

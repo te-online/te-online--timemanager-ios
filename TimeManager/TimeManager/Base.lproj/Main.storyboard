@@ -1274,7 +1274,7 @@
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wU8-Gl-C4B">
+                                    <button opaque="NO" alpha="0.20000000000000001" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wU8-Gl-C4B">
                                         <rect key="frame" x="364" y="34" width="50" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="hqB-qR-vBs"/>
@@ -1307,7 +1307,7 @@
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important client" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khq-gc-ITe">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important client" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khq-gc-ITe">
                                         <rect key="frame" x="13" y="182" width="200" height="20"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1559,15 +1559,6 @@ logo, colors, font choices and simp</string>
                                     <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNu-ZN-4uo">
-                                    <rect key="frame" x="70" y="17" width="50" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="50" id="zlH-uZ-MYw"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
-                                    <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.25 Hrs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7Q-NK-h4B">
                                     <rect key="frame" x="130" y="17" width="81" height="20"/>
                                     <constraints>
@@ -1641,6 +1632,15 @@ logo, colors, font choices and simp</string>
                                     <rect key="frame" x="450" y="6" width="81" height="14"/>
                                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
                                     <color key="textColor" red="0.27843138575553894" green="0.63529413938522339" blue="0.98823529481887817" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNu-ZN-4uo">
+                                    <rect key="frame" x="70" y="17" width="50" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="zlH-uZ-MYw"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                    <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -1939,7 +1939,7 @@ logo, colors, font choices and simp</string>
                                         <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79m-os-1NZ">
+                                    <button opaque="NO" clipsSubviews="YES" alpha="0.20000000000000001" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79m-os-1NZ">
                                         <rect key="frame" x="364" y="39" width="50" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="pJy-w8-JEi"/>
@@ -2077,7 +2077,7 @@ logo, colors, font choices and simp</string>
                                         <color key="textColor" red="0.070588235289999995" green="0.45882352939999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9Q-DI-QYh">
+                                    <button opaque="NO" clipsSubviews="YES" alpha="0.20000000000000001" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9Q-DI-QYh">
                                         <rect key="frame" x="364" y="34" width="50" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="RtS-z3-0Ph"/>
