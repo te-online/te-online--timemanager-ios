@@ -93,16 +93,13 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         ClientNameLabel.text = Client.name
         
         let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
-        ClientMetaLabel.text = Client.street
+        ClientMetaLabel.text = Client.getMetaString()
         
         if currentSelection != nil && indexPath.isEqual(currentSelection) {
             cell.contentView.backgroundColor = Colors.VeryLightGrey
         } else {
             cell.contentView.backgroundColor = UIColor.whiteColor()
         }
-        
-        cell.contentView.frame = cell.bounds
-        cell.contentView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

@@ -23,4 +23,16 @@ extension TaskObject {
     @NSManaged var project: ProjectObject?
     @NSManaged var times: NSSet?
 
+    func getTotalHours() -> Double {
+        var totalHours: Double = 0
+        
+        if times != nil {
+            for time in self.times! {
+                totalHours = totalHours + (time as! TimeObject).getDurationInHours()
+            }
+        }
+        
+        return totalHours
+    }
+    
 }

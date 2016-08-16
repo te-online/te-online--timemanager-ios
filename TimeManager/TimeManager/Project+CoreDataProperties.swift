@@ -24,5 +24,17 @@ extension ProjectObject {
     @NSManaged var note: String?
     @NSManaged var client: ClientObject?
     @NSManaged var tasks: NSSet?
+    
+    func getTotalHours() -> Double {
+        var totalHours: Double = 0
+        
+        if tasks != nil {
+            for task in self.tasks! {
+                totalHours = totalHours + (task as! TaskObject).getTotalHours()
+            }
+        }
+        
+        return totalHours
+    }
 
 }
