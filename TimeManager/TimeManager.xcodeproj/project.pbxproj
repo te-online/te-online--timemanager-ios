@@ -14,7 +14,6 @@
 		E906D01C1D5DFDD500C06C87 /* arrow-up-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E906D0161D5DFDD500C06C87 /* arrow-up-grey@2x.png */; };
 		E906D01D1D5DFDD500C06C87 /* arrow-up-grey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E906D0171D5DFDD500C06C87 /* arrow-up-grey@3x.png */; };
 		E906D01F1D5E154500C06C87 /* ClientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D01E1D5E154500C06C87 /* ClientDetailViewController.swift */; };
-		E906D0211D5E238800C06C87 /* PassThroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */; };
 		E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E906D0221D5E271300C06C87 /* SharedColorPalette.swift */; };
 		E911CEF11D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEEC1D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift */; };
 		E911CEF21D61E05F0044AED6 /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEED1D61E05F0044AED6 /* Contact+CoreDataProperties.swift */; };
@@ -26,19 +25,14 @@
 		E911CEFD1D61E0760044AED6 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF81D61E0760044AED6 /* Project.swift */; };
 		E911CEFE1D61E0760044AED6 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEF91D61E0760044AED6 /* Time.swift */; };
 		E911CEFF1D61E0760044AED6 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CEFA1D61E0760044AED6 /* Task.swift */; };
-		E911CF011D61FB690044AED6 /* ClientsHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CF001D61FB690044AED6 /* ClientsHeaderViewController.swift */; };
 		E911CF031D62109C0044AED6 /* ProjectEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911CF021D62109C0044AED6 /* ProjectEditController.swift */; };
 		E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */; };
-		E9404C631D61D7F1008ED9A3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9404C621D61D7F1008ED9A3 /* DataController.swift */; };
 		E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1271D5874A000FB6166 /* AppDelegate.swift */; };
-		E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1291D5874A000FB6166 /* ViewController.swift */; };
 		E958A12D1D5874A000FB6166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A12B1D5874A000FB6166 /* Main.storyboard */; };
 		E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E958A12E1D5874A000FB6166 /* TimeManager.xcdatamodeld */; };
 		E958A1321D5874A000FB6166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E958A1311D5874A000FB6166 /* Assets.xcassets */; };
 		E958A1351D5874A000FB6166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958A1331D5874A000FB6166 /* LaunchScreen.storyboard */; };
 		E958A1411D58A97700FB6166 /* CardOfViewDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */; };
-		E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1421D58C16B00FB6166 /* PageViewController.swift */; };
-		E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1441D59CE3300FB6166 /* NavBarController.swift */; };
 		E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1461D59D5F500FB6166 /* ContainerViewController.swift */; };
 		E958A14E1D59E8CB00FB6166 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E958A1491D59E8CB00FB6166 /* Poppins-Bold.ttf */; };
 		E958A14F1D59E8CB00FB6166 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E958A14A1D59E8CB00FB6166 /* Poppins-Light.ttf */; };
@@ -72,7 +66,6 @@
 		E906D0161D5DFDD500C06C87 /* arrow-up-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-up-grey@2x.png"; sourceTree = "<group>"; };
 		E906D0171D5DFDD500C06C87 /* arrow-up-grey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-up-grey@3x.png"; sourceTree = "<group>"; };
 		E906D01E1D5E154500C06C87 /* ClientDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientDetailViewController.swift; sourceTree = "<group>"; };
-		E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		E906D0221D5E271300C06C87 /* SharedColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColorPalette.swift; sourceTree = "<group>"; };
 		E911CEEC1D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ClientObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E911CEED1D61E05F0044AED6 /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -84,21 +77,16 @@
 		E911CEF81D61E0760044AED6 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E911CEF91D61E0760044AED6 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		E911CEFA1D61E0760044AED6 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		E911CF001D61FB690044AED6 /* ClientsHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsHeaderViewController.swift; sourceTree = "<group>"; };
 		E911CF021D62109C0044AED6 /* ProjectEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectEditController.swift; sourceTree = "<group>"; };
 		E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientEditController.swift; sourceTree = "<group>"; };
-		E9404C621D61D7F1008ED9A3 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		E958A1241D5874A000FB6166 /* TimeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E958A1271D5874A000FB6166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E958A1291D5874A000FB6166 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E958A12C1D5874A000FB6166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E958A12F1D5874A000FB6166 /* TimeManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeManager.xcdatamodel; sourceTree = "<group>"; };
 		E958A1311D5874A000FB6166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E958A1341D5874A000FB6166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E958A1361D5874A000FB6166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardOfViewDeckController.swift; sourceTree = "<group>"; };
-		E958A1421D58C16B00FB6166 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		E958A1441D59CE3300FB6166 /* NavBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarController.swift; sourceTree = "<group>"; };
 		E958A1461D59D5F500FB6166 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		E958A1491D59E8CB00FB6166 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		E958A14A1D59E8CB00FB6166 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
@@ -144,6 +132,63 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E92A06701D63054700A29710 /* SinglePageControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E958A1531D59FDDF00FB6166 /* OverviewController.swift */,
+				E958A1591D5A292600FB6166 /* EntriesViewController.swift */,
+			);
+			name = SinglePageControllers;
+			sourceTree = "<group>";
+		};
+		E92A06711D63057100A29710 /* ModalViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
+				E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */,
+				E911CF021D62109C0044AED6 /* ProjectEditController.swift */,
+			);
+			name = ModalViewControllers;
+			sourceTree = "<group>";
+		};
+		E92A06721D63058B00A29710 /* CardsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */,
+				E92A06741D6305C500A29710 /* Cards */,
+				E92A06751D6305DF00A29710 /* StickyBackgrounds */,
+			);
+			name = CardsViewControllers;
+			sourceTree = "<group>";
+		};
+		E92A06731D6305A500A29710 /* HelperControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E9BA20CE1D5C6F9A0098F37D /* PassThroughCollectionView.swift */,
+				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
+			);
+			name = HelperControllers;
+			sourceTree = "<group>";
+		};
+		E92A06741D6305C500A29710 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				E9BA20CC1D5C65580098F37D /* ClientsViewController.swift */,
+				E9BA20D01D5DCAD00098F37D /* ProjectsViewController.swift */,
+				E9BA20D21D5DCAEF0098F37D /* TasksViewController.swift */,
+				E9BA20D41D5DCAFE0098F37D /* TimesViewController.swift */,
+			);
+			name = Cards;
+			sourceTree = "<group>";
+		};
+		E92A06751D6305DF00A29710 /* StickyBackgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				E906D01E1D5E154500C06C87 /* ClientDetailViewController.swift */,
+			);
+			name = StickyBackgrounds;
+			sourceTree = "<group>";
+		};
 		E9404C641D61D9D6008ED9A3 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,32 +230,17 @@
 				E9404C641D61D9D6008ED9A3 /* ManagedObjects */,
 				E958A1481D59E8A700FB6166 /* Ressources */,
 				E958A1271D5874A000FB6166 /* AppDelegate.swift */,
-				E958A1291D5874A000FB6166 /* ViewController.swift */,
 				E958A12B1D5874A000FB6166 /* Main.storyboard */,
 				E958A1311D5874A000FB6166 /* Assets.xcassets */,
 				E958A1331D5874A000FB6166 /* LaunchScreen.storyboard */,
 				E958A1361D5874A000FB6166 /* Info.plist */,
 				E958A12E1D5874A000FB6166 /* TimeManager.xcdatamodeld */,
 				E96751CC1D5B69CA001FFBDC /* Podfile */,
-				E958A1421D58C16B00FB6166 /* PageViewController.swift */,
-				E958A1441D59CE3300FB6166 /* NavBarController.swift */,
 				E958A1461D59D5F500FB6166 /* ContainerViewController.swift */,
-				E958A1531D59FDDF00FB6166 /* OverviewController.swift */,
-				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
-				E958A1591D5A292600FB6166 /* EntriesViewController.swift */,
-				E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */,
-				E9BA20CC1D5C65580098F37D /* ClientsViewController.swift */,
-				E9BA20D01D5DCAD00098F37D /* ProjectsViewController.swift */,
-				E9BA20D21D5DCAEF0098F37D /* TasksViewController.swift */,
-				E9BA20D41D5DCAFE0098F37D /* TimesViewController.swift */,
-				E9BA20CE1D5C6F9A0098F37D /* PassThroughCollectionView.swift */,
-				E906D01E1D5E154500C06C87 /* ClientDetailViewController.swift */,
-				E906D0201D5E238800C06C87 /* PassThroughCollectionViewCell.swift */,
-				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
-				E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */,
-				E911CF021D62109C0044AED6 /* ProjectEditController.swift */,
-				E9404C621D61D7F1008ED9A3 /* DataController.swift */,
-				E911CF001D61FB690044AED6 /* ClientsHeaderViewController.swift */,
+				E92A06731D6305A500A29710 /* HelperControllers */,
+				E92A06701D63054700A29710 /* SinglePageControllers */,
+				E92A06721D63058B00A29710 /* CardsViewControllers */,
+				E92A06711D63057100A29710 /* ModalViewControllers */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -393,18 +423,13 @@
 				E911CEF21D61E05F0044AED6 /* Contact+CoreDataProperties.swift in Sources */,
 				E958A1411D58A97700FB6166 /* CardOfViewDeckController.swift in Sources */,
 				E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */,
-				E958A12A1D5874A000FB6166 /* ViewController.swift in Sources */,
 				E911CEF41D61E05F0044AED6 /* Time+CoreDataProperties.swift in Sources */,
 				E9BA20CD1D5C65580098F37D /* ClientsViewController.swift in Sources */,
-				E9404C631D61D7F1008ED9A3 /* DataController.swift in Sources */,
 				E9BA20D11D5DCAD00098F37D /* ProjectsViewController.swift in Sources */,
 				E911CEFB1D61E0760044AED6 /* ClientObject.swift in Sources */,
 				E911CEFF1D61E0760044AED6 /* Task.swift in Sources */,
 				E911CEF31D61E05F0044AED6 /* Project+CoreDataProperties.swift in Sources */,
 				E958A1541D59FDDF00FB6166 /* OverviewController.swift in Sources */,
-				E958A1451D59CE3300FB6166 /* NavBarController.swift in Sources */,
-				E906D0211D5E238800C06C87 /* PassThroughCollectionViewCell.swift in Sources */,
-				E911CF011D61FB690044AED6 /* ClientsHeaderViewController.swift in Sources */,
 				E9BA20D31D5DCAEF0098F37D /* TasksViewController.swift in Sources */,
 				E911CF031D62109C0044AED6 /* ProjectEditController.swift in Sources */,
 				E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */,
@@ -412,7 +437,6 @@
 				E911CEFC1D61E0760044AED6 /* Contact.swift in Sources */,
 				E911CEFE1D61E0760044AED6 /* Time.swift in Sources */,
 				E9BA20CF1D5C6F9A0098F37D /* PassThroughCollectionView.swift in Sources */,
-				E958A1431D58C16B00FB6166 /* PageViewController.swift in Sources */,
 				E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */,
 				E906D01F1D5E154500C06C87 /* ClientDetailViewController.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,

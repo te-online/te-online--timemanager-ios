@@ -18,7 +18,6 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     var fetchedResultsController: NSFetchedResultsController!
     
     var currentSelection: NSIndexPath!
-    var currentSelectionId: String = ""
     
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
@@ -37,6 +36,12 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         // Dispose of any resources that can be recreated.
     }
     
+    /**
+     *
+     *   UNWIND BUTTON ACTIONS
+     *
+    **/
+    
     @IBAction func saveClient(unwindSegue: UIStoryboardSegue) {
         NSLog(String(unwindSegue.sourceViewController))
         (unwindSegue.sourceViewController as! ClientEditController).delegate = self
@@ -45,6 +50,12 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     @IBAction func cancelClient(unwindSegue: UIStoryboardSegue) {
         
     }
+    
+    /**
+     *
+     *   STORAGE ACTIONS
+     *
+     **/
     
     func saveNewClient(client: ClientEditController.Client) {
         NSLog("Name" + String(client))
@@ -67,6 +78,12 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         }
     }
     
+    /**
+     *
+     *   COLLECTION VIEW
+     *
+     **/
+    
     func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.whiteColor()
         
@@ -78,7 +95,6 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
         ClientMetaLabel.text = Client.street
         
-//        NSLog("configuring...")
         if currentSelection != nil && indexPath.isEqual(currentSelection) {
             NSLog("selected one")
             cell.contentView.backgroundColor = Colors.VeryLightGrey
@@ -104,13 +120,6 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //        let actualSection = section - 1
-        //        if actualSection >= 0 {
-        //            return fetchedResultsController.sections![actualSection].numberOfObjects
-        //        } else {
-        //            return 1
-        //        }
-        
         return fetchedResultsController.sections![section].numberOfObjects
     }
     
@@ -141,29 +150,22 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        currentSelection = indexPath
-        currentSelectionId = self.getClientIdForIndexPath(indexPath)
-        
+        self.currentSelection = indexPath
         self.collectionView!.reloadData()
         
         super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
     }
     
-    //    override func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-    ////        NSLog("Selected Clients Override" + String(collectionView))
-    //        let cell: UICollectionViewCell! = collectionView.cellForItemAtIndexPath(indexPath)
-    //        if cell != nil {
-    //            cell.contentView.backgroundColor = Colors.VeryLightGrey
-    //        }
-    //    }
-    
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        //        let cell: UICollectionViewCell! = collectionView.cellForItemAtIndexPath(indexPath)
-        //        if cell != nil {
-        //            cell.contentView.backgroundColor = UIColor.whiteColor()
-        //        }
-        currentSelection = nil
+        self.currentSelection = nil
+        self.collectionView!.reloadData()
     }
+    
+    /**
+     *
+     *   HELPER
+     *
+     **/
     
     func getClientIdForIndexPath(indexPath: NSIndexPath) -> String {
         return (fetchedResultsController.objectAtIndexPath(indexPath) as! ClientObject).uuid!
@@ -177,13 +179,11 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         }
     }
     
-    
-    //    override func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-    //        let cell: UICollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath)!
-    //        let color = UIColor.whiteColor()
-    //
-    //        cell.contentView.backgroundColor = color
-    //    }
+    /**
+     *
+     *   FETCHED RESULTS CONTROLLER
+     *
+     **/
     
     func initializeFetchedResultsController() {
         let request = NSFetchRequest(entityName: "Client")

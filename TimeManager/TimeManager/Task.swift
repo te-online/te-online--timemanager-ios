@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Task)
-class Task: NSManagedObject {
+class TaskObject: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

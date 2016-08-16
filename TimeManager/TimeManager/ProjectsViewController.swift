@@ -13,34 +13,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     
     var backgroundController: UIViewController!
     
-//    struct newClient {
-//        var name: String!
-//        var sinceDate: String!
-//        var address: String!
-//        var contacts: [String]!
-//        var note: String!
-//        var totalHours: Double!
-//    }
-//    
-//    struct Client {
-//        var clientName: String!
-//        var clientMeta: String!
-//    }
-//    
-//    struct Project {
-//        var name: String!
-//        var numTasks: Int!
-//        var numHours: Double!
-//        var numHoursUnpaid: Double!
-//        var numHoursNInvoiced: Double!
-//    }
-    
-    var currentClientId: String = ""
-//    var currentClient = NSManagedObject()
     var currentClient: ClientObject!
-    
-    var cellColor: UIColor!
-    var activeColor: UIColor!
     
     var Colors = SharedColorPalette.sharedInstance
     
@@ -49,6 +22,8 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     var fetchedResultsController: NSFetchedResultsController!
     
     var dateFormatter: NSDateFormatter!
+    
+    var currentSelection: NSIndexPath!
     
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
@@ -78,6 +53,12 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         // Dispose of any resources that can be recreated.
     }
     
+    /**
+     *
+     *   UNWIND BUTTON ACTIONS
+     *
+     **/
+    
     @IBAction func saveProject(unwindSegue: UIStoryboardSegue) {
         (unwindSegue.sourceViewController as! ProjectEditController).delegate = self
     }
@@ -90,35 +71,26 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         
     }
     
+    /**
+     *
+     *   STORAGE ACTIONS
+     *
+     **/
+    
     func editCurrentClient() {
         // Do something.
     }
     
     func deleteCurrentClient() {
         if currentClient != nil {
-//            let request = NSFetchRequest(entityName: "Client")
-//            
-//            let byClientId = NSPredicate(format: "id = %@", String(currentClientId))
-//            request.predicate = byClientId
-//            
             let moc = self.dataController.managedObjectContext
             
-//            do {
-//                let deleteables = try moc.executeFetchRequest(request)
-//                for deleteable in deleteables {
-                    moc.deleteObject(currentClient as NSManagedObject)
-//                }
-                do {
-                    try moc.save()
-                    self.collectionView!.reloadData()
-                } catch {
-                     fatalError("Failed to delete client: \(error)")
-                }
-//            } catch {
-//                fatalError("Failed to fetch details for current client: \(error)")
-//            }
+            do {
+                try moc.save()
+            } catch {
+                fatalError("Failed to delete client: \(error)")
+            }
         }
-        
     }
     
     func saveNewProject(project: ProjectEditController.Project) {
@@ -126,6 +98,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let entity = NSEntityDescription.entityForName("Project", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
+        item.setValue(currentClient, forKey: "client")
         item.setValue(NSUUID().UUIDString, forKey: "uuid")
         item.setValue(currentClient.uuid, forKey: "client_uuid")
         item.setValue(project.name, forKey: "name")
@@ -143,83 +116,41 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         // Do nothing.
     }
     
-    func initializeFetchedResultsControllerWithClientId(clientId: String) {
-        let request = NSFetchRequest(entityName: "Project")
-        
-        let createdSort = NSSortDescriptor(key: "created", ascending: true)
-        request.sortDescriptors = [createdSort]
-        
-        let byClientId = NSPredicate(format: "client_uuid = %@", clientId)
-        request.predicate = byClientId
-        
-        let moc = self.dataController.managedObjectContext
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController.delegate = self
-        
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            fatalError("Failed to initialize FetchedResultsController: \(error)")
-        }
-    }
+    /**
+     *
+     *    CLIENT CONFIGURATION
+     *
+     **/
     
-    func initializeFetchedResultsControllerWithCurrentClient() {
-        let request = NSFetchRequest(entityName: "Project")
-        
-        let createdSort = NSSortDescriptor(key: "created", ascending: true)
-        request.sortDescriptors = [createdSort]
-        
-        let byClientId = NSPredicate(format: "client = %@", currentClient)
-        request.predicate = byClientId
-        
-        let moc = self.dataController.managedObjectContext
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController.delegate = self
-        
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            fatalError("Failed to initialize FetchedResultsController: \(error)")
-        }
-    }
-    
-    func fetchDetailsForCurrentClient() {
-//        let request = NSFetchRequest(entityName: "Client")
-//        
-//        let byClientId = NSPredicate(format: "id = %@", String(clientId))
-//        request.predicate = byClientId
-//        
-//        let moc = self.dataController.managedObjectContext
-//        
-//        do {
-//            let clientDetails = try moc.executeFetchRequest(request)
-            self.populateClientDetails()
-//        } catch {
-//            fatalError("Failed to fetch details for client: \(error)")
-//        }
-    }
-    
-    func populateClientDetails() {
+    func populateCurrentClientDetails() {
         // Populate cells here
-//        NSLog(String(clientObjects))
-//        if clientObjects.count > 0 {
-//            let currentClient = clientObjects[0]
         
-            let ClientNameLabel = backgroundController!.view.viewWithTag(4) as! UILabel
-            ClientNameLabel.text = currentClient.name
-            
-            let ClientSinceLabel = backgroundController!.view.viewWithTag(7) as! UILabel
-            ClientSinceLabel.text = self.dateFormatter.stringFromDate(currentClient.created!)
-            
-            let ClientAddressLabel = backgroundController!.view.viewWithTag(8) as! UILabel
-            ClientAddressLabel.text = (currentClient.street! + "\n" + currentClient.postcode! + " " + currentClient.city!)
-            
-            let ClientNoteLabel = backgroundController!.view.viewWithTag(11) as! UILabel
-            ClientNoteLabel.text = currentClient.note
-//        }
+        let ClientNameLabel = backgroundController!.view.viewWithTag(4) as! UILabel
+        ClientNameLabel.text = currentClient.name
         
-//        if clientObjects as ProjectObject
+        let ClientSinceLabel = backgroundController!.view.viewWithTag(7) as! UILabel
+        ClientSinceLabel.text = self.dateFormatter.stringFromDate(currentClient.created!)
+        
+        let ClientAddressLabel = backgroundController!.view.viewWithTag(8) as! UILabel
+        ClientAddressLabel.text = (currentClient.street! + "\n" + currentClient.postcode! + " " + currentClient.city!)
+        
+        let ClientNoteLabel = backgroundController!.view.viewWithTag(11) as! UILabel
+        ClientNoteLabel.text = currentClient.note
     }
+    
+    func setParentClient(client: ClientObject) {
+        NSLog("Setting client to " + String(client) + " current " + String(self.currentClient))
+        self.currentClient = client
+        self.initializeFetchedResultsControllerWithCurrentClient()
+        self.populateCurrentClientDetails()
+        self.collectionView?.reloadData()
+    }
+    
+    /**
+     *
+     *   COLLECTION VIEW
+     *
+     **/
     
     func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
         cell.backgroundColor = Colors.ProjectsCellBlue
@@ -232,6 +163,13 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         
         let ProjectMetaLabel = cell.viewWithTag(2) as! UILabel
         ProjectMetaLabel.text = "Projectinfo goes here."
+        
+        if currentSelection != nil && indexPath.isEqual(currentSelection) {
+            NSLog("selected one")
+            cell.contentView.backgroundColor = Colors.ProjectsCellActiveBlue
+        } else {
+            cell.contentView.backgroundColor = Colors.ProjectsCellBlue
+        }
     }
     
     func configureInvisibleCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
@@ -307,14 +245,23 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         return super.getCellSize()
     }
     
-    func setParentClient(client: ClientObject) {
-        NSLog("Setting client to " + String(client) + " current " + String(self.currentClient))
-        self.currentClientId = client.uuid!
-        self.currentClient = client
-        self.initializeFetchedResultsControllerWithCurrentClient()
-        self.fetchDetailsForCurrentClient()
-        self.collectionView?.reloadData()
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.currentSelection = indexPath
+        self.collectionView!.reloadData()
+        
+        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
     }
+    
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        self.currentSelection = nil
+        self.collectionView!.reloadData()
+    }
+    
+    /**
+     *
+     *   STICKY BACKGROUND CONTROLLER CONFIGURATION
+     *
+     **/
     
     func displayContentController(content: UIViewController!) {
         // Add the new view controller.
@@ -343,65 +290,65 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         return showRect
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
-        let cell: UICollectionViewCell! = collectionView.cellForItemAtIndexPath(indexPath)
-        if cell != nil {
-            cell.contentView.backgroundColor = Colors.ProjectsCellActiveBlue
-        }
-    }
+    /**
+     *
+     *   FETCHED RESULTS CONTROLLER
+     *
+     **/
     
-//    override func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-//        let cell: UICollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath)!
-//        cell.contentView.backgroundColor = Colors.ProjectsCellActiveBlue
-//    }
-    
-    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell: UICollectionViewCell! = collectionView.cellForItemAtIndexPath(indexPath)
-        if cell != nil {
-            cell.contentView.backgroundColor = Colors.ProjectsCellBlue
-        }
-    }
-    
-//    override func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-//        let cell: UICollectionViewCell = self.collectionView!.cellForItemAtIndexPath(indexPath)!
-//        cell.contentView.backgroundColor = Colors.ProjectsCellBlue
-//    }
-    
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func initializeFetchedResultsControllerWithCurrentClient() {
+        let request = NSFetchRequest(entityName: "Project")
         
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case .Insert:
-            self.collectionView!.insertSections(NSIndexSet(index: sectionIndex))
-        case .Delete:
-            self.collectionView!.deleteSections(NSIndexSet(index: sectionIndex))
-        case .Move:
-            break
-        case .Update:
-            break
+        let createdSort = NSSortDescriptor(key: "created", ascending: true)
+        request.sortDescriptors = [createdSort]
+        
+        let byClientId = NSPredicate(format: "client = %@", currentClient)
+        request.predicate = byClientId
+        
+        let moc = self.dataController.managedObjectContext
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
-        case .Insert:
-            self.collectionView!.insertItemsAtIndexPaths([newIndexPath!])
-        case .Delete:
-            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
-        case .Update:
-            configureCell(self.collectionView!.cellForItemAtIndexPath(indexPath!)!, indexPath: indexPath!)
-        case .Move:
-            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
-            self.collectionView!.insertItemsAtIndexPaths([indexPath!])
-        }
-    }
-    
+//    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+//        
+//    }
+//    
+//    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+//        switch type {
+//        case .Insert:
+//            self.collectionView!.insertSections(NSIndexSet(index: sectionIndex))
+//        case .Delete:
+//            self.collectionView!.deleteSections(NSIndexSet(index: sectionIndex))
+//        case .Move:
+//            break
+//        case .Update:
+//            break
+//        }
+//    }
+//    
+//    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+//        switch type {
+//        case .Insert:
+//            self.collectionView!.insertItemsAtIndexPaths([newIndexPath!])
+//        case .Delete:
+//            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
+//        case .Update:
+//            configureCell(self.collectionView!.cellForItemAtIndexPath(indexPath!)!, indexPath: indexPath!)
+//        case .Move:
+//            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
+//            self.collectionView!.insertItemsAtIndexPaths([indexPath!])
+//        }
+//    }
+//    
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.collectionView?.reloadData()
     }
-
     
 }

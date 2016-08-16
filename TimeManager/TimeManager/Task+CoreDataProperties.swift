@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-extension Task {
+extension TaskObject {
 
     @NSManaged var changed: NSDate?
     @NSManaged var commit: String?

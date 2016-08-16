@@ -36,19 +36,11 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         
         HoursCollectionView.delegate = self
         HoursCollectionView.dataSource = self
-        
-        self.updateView()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-    func updateView() {
-        
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

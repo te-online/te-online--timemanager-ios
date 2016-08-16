@@ -34,6 +34,8 @@ class ContainerViewController: UIViewController {
     }
     
     @IBAction func dismissSettings(unwindSegue: UIStoryboardSegue) {
+        // We might want to save the settings at some point here.
+        // Or just get rid of the modal window.
         
     }
     

@@ -17,9 +17,4 @@ class PassThroughCollectionView: UICollectionView {
         }
         return false
     }
-
-//    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        super.touchesEnded(touches, withEvent: event)
-//        self.yourCustomDelegate.forwardTouches(touches, withEvent: (event as! UIEvent))
-//    }
 }

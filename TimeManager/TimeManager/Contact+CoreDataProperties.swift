@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-extension Contact {
+extension ContactObject {
 
     @NSManaged var client_uuid: String?
     @NSManaged var commit: String?

@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-extension Time {
+extension TimeObject {
 
     @NSManaged var changed: NSDate?
     @NSManaged var commit: String?
@@ -22,6 +22,6 @@ extension Time {
     @NSManaged var note: String?
     @NSManaged var start: NSDate?
     @NSManaged var task_uuid: String?
-    @NSManaged var task: Task?
+    @NSManaged var task: TaskObject?
 
 }
