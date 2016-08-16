@@ -1158,7 +1158,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="OnG-kZ-D4E">
                                             <rect key="frame" x="582" y="23" width="10" height="16"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 hrs. unpaid" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsH-os-Eki">
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 hrs. unpaid" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsH-os-Eki">
                                             <rect key="frame" x="311" y="34" width="263" height="19"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="263" id="nnB-ee-Knr"/>
@@ -1584,7 +1584,7 @@ logo, colors, font choices and simp</string>
                                             <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unpaid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4a-mP-KIc">
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unpaid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4a-mP-KIc">
                                             <rect key="frame" x="161" y="14" width="100" height="19"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="43N-dg-Zxj"/>
@@ -1719,7 +1719,7 @@ logo, colors, font choices and simp</string>
                                     <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.25 Hrs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpa-6N-9oS">
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.25 Hrs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpa-6N-9oS">
                                     <rect key="frame" x="370" y="17" width="81" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="81" id="SEb-M0-h45"/>
@@ -1728,13 +1728,13 @@ logo, colors, font choices and simp</string>
                                     <color key="textColor" red="0.81568628549575806" green="0.33725491166114807" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNPAID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGj-h7-YYa">
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" tag="9" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNPAID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGj-h7-YYa">
                                     <rect key="frame" x="370" y="6" width="81" height="14"/>
                                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
                                     <color key="textColor" red="0.81568628549575806" green="0.33725491166114807" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.25 Hrs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97c-xh-ZWm">
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.25 Hrs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97c-xh-ZWm">
                                     <rect key="frame" x="450" y="17" width="81" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="81" id="3fF-KX-ejr"/>
@@ -1743,7 +1743,7 @@ logo, colors, font choices and simp</string>
                                     <color key="textColor" red="0.27843138575553894" green="0.63529413938522339" blue="0.98823529481887817" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/ INVOICED" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsj-Y2-1M2">
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/ INVOICED" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsj-Y2-1M2">
                                     <rect key="frame" x="450" y="6" width="81" height="14"/>
                                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
                                     <color key="textColor" red="0.27843138575553894" green="0.63529413938522339" blue="0.98823529481887817" alpha="1" colorSpace="calibratedRGB"/>
@@ -1842,7 +1842,7 @@ logo, colors, font choices and simp</string>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZOG-cf-lNz">
                                             <rect key="frame" x="582" y="23" width="10" height="16"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 hrs. unpaid" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azt-2r-8AP">
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.20000000000000001" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 hrs. unpaid" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azt-2r-8AP">
                                             <rect key="frame" x="321" y="34" width="253" height="19"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
                                             <color key="textColor" red="0.8156862855" green="0.22352941330000001" blue="0.062745101750000004" alpha="1" colorSpace="calibratedRGB"/>

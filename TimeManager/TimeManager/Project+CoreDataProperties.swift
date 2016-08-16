@@ -36,5 +36,56 @@ extension ProjectObject {
         
         return totalHours
     }
+    
+    func getNumberOfTasks() -> Int {
+        if self.tasks != nil {
+            return self.tasks!.count
+        }
+        
+        return 0
+    }
+    
+    func getMetaString() -> String {
+        var metaString = self.getNumberOfTasksString()
+        metaString = metaString + " • "
+        
+        metaString = metaString + self.getTotalHoursString()
+        
+        return metaString
+    }
+    
+    func getNumberOfTasksString() -> String {
+        let numberOfTasks = self.getNumberOfTasks()
+        
+        var numberOfTasksString = String(numberOfTasks)
+        
+        if numberOfTasks != 1 {
+            numberOfTasksString = numberOfTasksString + " tasks"
+        } else {
+            numberOfTasksString = numberOfTasksString + " task"
+        }
+        
+        return numberOfTasksString
+    }
+    
+    func getTotalHoursString() -> String {
+        let totalHours = self.getTotalHours()
+        
+        var totalHoursString = ""
+        
+        if totalHours%1 == 0 {
+            totalHoursString = totalHoursString + String(Int(totalHours))
+        } else {
+            totalHoursString = totalHoursString + String.localizedStringWithFormat("%.2f %@", totalHours, "")
+        }
+        
+        if totalHours != 1 {
+            totalHoursString = totalHoursString + " hrs."
+        } else {
+            totalHoursString = totalHoursString + " hr."
+        }
+        
+        return totalHoursString
+    }
 
 }

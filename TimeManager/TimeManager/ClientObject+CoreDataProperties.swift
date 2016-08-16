@@ -30,7 +30,7 @@ extension ClientObject {
     @NSManaged var projects: NSSet?
     
     func getNumberOfProjects() -> Int {
-        if projects != nil {
+        if self.projects != nil {
             return self.projects!.count
         }
         
@@ -40,7 +40,7 @@ extension ClientObject {
     func getTotalHours() -> Double {
         var totalHours: Double = 0
         
-        if projects != nil {
+        if self.projects != nil {
             for project in self.projects! {
                 totalHours = totalHours + (project as! ProjectObject).getTotalHours()
             }
@@ -55,32 +55,49 @@ extension ClientObject {
     }
     
     func getMetaString() -> String {
-        let numberOfProjects = self.getNumberOfProjects()
-        let totalHours = self.getTotalHours()
-        let creationYear = self.getCreationYear()
+        var metaString = self.getNumberOfProjectsString()
+        metaString = metaString + " • "
         
-        var metaString = String(numberOfProjects)
+        metaString = metaString + self.getTotalHoursString()
+        metaString = metaString + " • "
+        
+        metaString = metaString + "since " + String(self.getCreationYear())
+        
+        return metaString
+    }
+    
+    func getNumberOfProjectsString() -> String {
+        let numberOfProjects = self.getNumberOfProjects()
+        
+        var numberOfProjectsString = String(numberOfProjects)
+        
         if numberOfProjects != 1 {
-            metaString = metaString + " projects • "
+            numberOfProjectsString = numberOfProjectsString + " projects"
         } else {
-            metaString = metaString + " project • "
+            numberOfProjectsString = numberOfProjectsString + " project"
         }
         
-        if totalHours%2 == 0 {
-            metaString = metaString + String(Int(totalHours))
+        return numberOfProjectsString
+    }
+    
+    func getTotalHoursString() -> String {
+        let totalHours = self.getTotalHours()
+        
+        var totalHoursString = ""
+        
+        if totalHours%1 == 0 {
+            totalHoursString = totalHoursString + String(Int(totalHours))
         } else {
-            metaString = metaString + String.localizedStringWithFormat("%.2f %@", totalHours, "")
+            totalHoursString = totalHoursString + String.localizedStringWithFormat("%.2f %@", totalHours, "")
         }
         
         if totalHours != 1 {
-            metaString = metaString + " hrs. • "
+            totalHoursString = totalHoursString + " hrs."
         } else {
-            metaString = metaString + " hr. • "
+            totalHoursString = totalHoursString + " hr."
         }
         
-        metaString = metaString + "since " + String(creationYear)
-        
-        return metaString
+        return totalHoursString
     }
 
 }

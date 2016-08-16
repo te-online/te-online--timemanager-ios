@@ -130,6 +130,9 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let ClientNameLabel = backgroundController!.view.viewWithTag(4) as! UILabel
         ClientNameLabel.text = currentClient.name
         
+        let ClientNameScrollLabel = backgroundController!.view.viewWithTag(3) as! UILabel
+        ClientNameScrollLabel.text = currentClient.name
+        
         let ClientSinceLabel = backgroundController!.view.viewWithTag(7) as! UILabel
         ClientSinceLabel.text = self.dateFormatter.stringFromDate(currentClient.created!)
         
@@ -164,10 +167,9 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         ProjectNameLabel.text = Project.name
         
         let ProjectMetaLabel = cell.viewWithTag(2) as! UILabel
-        ProjectMetaLabel.text = "Projectinfo goes here."
+        ProjectMetaLabel.text = Project.getMetaString()
         
         if currentSelection != nil && correctedIndexPath.isEqual(currentSelection) {
-            NSLog("selected one")
             cell.contentView.backgroundColor = Colors.ProjectsCellActiveBlue
         } else {
             cell.contentView.backgroundColor = Colors.ProjectsCellBlue
@@ -232,6 +234,11 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
                 let itemCount = (fetchedResultsController != nil && fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections![0].numberOfObjects : 0
                 let itemCountLabel = headerView.viewWithTag(5) as! UILabel
                 itemCountLabel.text = "#" + String(itemCount)
+                
+                // Update number of total client hours in header view.
+                let clientHours = self.currentClient.getTotalHoursString()
+                let clientHoursLabel = headerView.viewWithTag(4) as! UILabel
+                clientHoursLabel.text = clientHours
             }
             
             reusableView = headerView
@@ -322,24 +329,6 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         }
     }
     
-    /**
-     *
-     *   HELPER
-     *
-     **/
-    
-//    func getClientIdForIndexPath(indexPath: NSIndexPath) -> String {
-//        return (fetchedResultsController.objectAtIndexPath(indexPath) as! ClientObject).uuid!
-//    }
-    
-    func getCurrentProject() -> ProjectObject {
-        if self.currentSelection != nil {
-            return (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! ProjectObject)
-        } else {
-            return ProjectObject()
-        }
-    }
-    
 //    func controllerWillChangeContent(controller: NSFetchedResultsController) {
 //        
 //    }
@@ -373,6 +362,20 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
 //    
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.collectionView?.reloadData()
+    }
+    
+    /**
+     *
+     *   HELPER
+     *
+     **/
+    
+    func getCurrentProject() -> ProjectObject {
+        if self.currentSelection != nil {
+            return (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! ProjectObject)
+        } else {
+            return ProjectObject()
+        }
     }
     
 }

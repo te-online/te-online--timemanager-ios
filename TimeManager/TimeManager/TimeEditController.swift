@@ -90,7 +90,7 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
             self.currentTime.start = StartPickerView.date
         
             let duration: Double = Double(self.currentDuration)!
-            self.currentTime.end = self.currentTime.start.dateByAddingTimeInterval((duration * 60) as NSTimeInterval)
+            self.currentTime.end = self.currentTime.start.dateByAddingTimeInterval((duration * 60 * 60) as NSTimeInterval)
         
             self.delegate?.saveNewTime(self.currentTime)
         }

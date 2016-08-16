@@ -156,13 +156,19 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let Time = fetchedResultsController.objectAtIndexPath(correctedIndexPath) as! TimeObject
         
         let TimeDurationLabel = cell.viewWithTag(1) as! UILabel
-        TimeDurationLabel.text = String(Time.getDuration())
+        TimeDurationLabel.text = Time.getHoursString()
         
-        let TaskMetaLabel = cell.viewWithTag(2) as! UILabel
-        TaskMetaLabel.text = "Taskinfo goes here."
+        let TimeMetaLabel = cell.viewWithTag(2) as! UILabel
+        TimeMetaLabel.text = Time.getDateString()
         
-        let TaskUnpaidLabel = cell.viewWithTag(3) as! UILabel
-        TaskUnpaidLabel.text = "Unpaid hours go here."
+        let TimeUnpaidLabel = cell.viewWithTag(3) as! UILabel
+        TimeUnpaidLabel.text = "Unpaid"
+        
+        let TimeSpanLabel = cell.viewWithTag(4) as! UILabel
+        TimeSpanLabel.text = Time.getTimeSpanString()
+        
+        let TimeNoteLabel = cell.viewWithTag(5) as! UILabel
+        TimeNoteLabel.text = Time.note
         
         if currentSelection != nil && correctedIndexPath.isEqual(currentSelection) {
             cell.contentView.backgroundColor = Colors.TasksCellActiveGreen
@@ -229,6 +235,21 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
                 let itemCount = (fetchedResultsController != nil && fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections![0].numberOfObjects : 0
                 let itemCountLabel = headerView.viewWithTag(7) as! UILabel
                 itemCountLabel.text = "#" + String(itemCount)
+                
+                // Update number of total client hours in header view.
+                let clientHours = self.currentTask.project!.client!.getTotalHoursString()
+                let clientHoursLabel = headerView.viewWithTag(4) as! UILabel
+                clientHoursLabel.text = clientHours
+                
+                // Update number of total project hours in header view.
+                let projectHours = self.currentTask.project!.getTotalHoursString()
+                let projectHoursLabel = headerView.viewWithTag(5) as! UILabel
+                projectHoursLabel.text = projectHours
+                
+                // Update number of total task hours in header view.
+                let taskHours = self.currentTask.getTotalHoursString()
+                let taskHoursLabel = headerView.viewWithTag(5) as! UILabel
+                taskHoursLabel.text = taskHours
             }
             
             reusableView = headerView

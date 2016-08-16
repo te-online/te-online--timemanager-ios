@@ -33,4 +33,44 @@ extension TimeObject {
         return (Double(createdComponents.hour) + (Double(createdComponents.minute) / 60)) ?? 0
     }
     
+    func getHoursString() -> String {
+        let totalHours = self.getDurationInHours()
+        
+        var totalHoursString = ""
+        
+        if totalHours%1 == 0 {
+            totalHoursString = totalHoursString + String(Int(totalHours))
+        } else {
+            totalHoursString = totalHoursString + String.localizedStringWithFormat("%.2f %@", totalHours, "")
+        }
+        
+        if totalHours != 1 {
+            totalHoursString = totalHoursString + " hrs."
+        } else {
+            totalHoursString = totalHoursString + " hr."
+        }
+        
+        return totalHoursString
+    }
+    
+    func getDateString() -> String {
+        var dateFormatter: NSDateFormatter!
+        // Let's create a nice date format.
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .LongStyle
+        dateFormatter.timeStyle = .NoStyle
+        
+        return dateFormatter.stringFromDate(self.start!) // "Mon 19. August 2001"
+    }
+    
+    func getTimeSpanString() -> String {
+        var dateFormatter: NSDateFormatter!
+        // Let's create a nice date format.
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .NoStyle
+        dateFormatter.timeStyle = .ShortStyle
+        
+        return dateFormatter.stringFromDate(self.start!) + " – " + dateFormatter.stringFromDate(self.end!) // "12.00 – 14.00"
+    }
+    
 }

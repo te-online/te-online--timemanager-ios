@@ -210,10 +210,10 @@
 				E911CEF91D61E0760044AED6 /* Time.swift */,
 				E911CEFA1D61E0760044AED6 /* Task.swift */,
 				E911CEEC1D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift */,
-				E911CEED1D61E05F0044AED6 /* Contact+CoreDataProperties.swift */,
 				E911CEEE1D61E05F0044AED6 /* Project+CoreDataProperties.swift */,
-				E911CEEF1D61E05F0044AED6 /* Time+CoreDataProperties.swift */,
 				E911CEF01D61E05F0044AED6 /* Task+CoreDataProperties.swift */,
+				E911CEEF1D61E05F0044AED6 /* Time+CoreDataProperties.swift */,
+				E911CEED1D61E05F0044AED6 /* Contact+CoreDataProperties.swift */,
 			);
 			name = ManagedObjects;
 			sourceTree = "<group>";

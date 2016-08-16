@@ -158,10 +158,10 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         TaskNameLabel.text = Task.name
         
         let TaskMetaLabel = cell.viewWithTag(2) as! UILabel
-        TaskMetaLabel.text = "Taskinfo goes here."
+        TaskMetaLabel.text = Task.getTotalHoursString()
         
         let TaskUnpaidLabel = cell.viewWithTag(3) as! UILabel
-        TaskUnpaidLabel.text = "Unpaid hours go here."
+        TaskUnpaidLabel.text = "Unpaid will be visible here."
         
         if currentSelection != nil && correctedIndexPath.isEqual(currentSelection) {
             cell.contentView.backgroundColor = Colors.TasksCellActiveGreen
@@ -228,6 +228,16 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
                 let itemCount = (fetchedResultsController != nil && fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections![0].numberOfObjects : 0
                 let itemCountLabel = headerView.viewWithTag(7) as! UILabel
                 itemCountLabel.text = "#" + String(itemCount)
+                
+                // Update number of total client hours in header view.
+                let clientHours = self.currentProject.client!.getTotalHoursString()
+                let clientHoursLabel = headerView.viewWithTag(4) as! UILabel
+                clientHoursLabel.text = clientHours
+                
+                // Update number of total project hours in header view.
+                let projectHours = self.currentProject.getTotalHoursString()
+                let projectHoursLabel = headerView.viewWithTag(5) as! UILabel
+                projectHoursLabel.text = projectHours
             }
             
             reusableView = headerView
