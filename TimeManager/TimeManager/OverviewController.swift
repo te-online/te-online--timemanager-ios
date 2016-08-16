@@ -36,6 +36,9 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         
         HoursCollectionView.delegate = self
         HoursCollectionView.dataSource = self
+        
+        let tt = TimeTraveller()
+        tt.todaysRecordedHours()
     }
     
     override func didReceiveMemoryWarning() {
