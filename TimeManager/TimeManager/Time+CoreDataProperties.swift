@@ -41,4 +41,17 @@ extension TimeObject {
         return FormattingHelper.formatNiceDayFromDateAsString(self.start!)  + " – " + FormattingHelper.formatNiceDayFromDateAsString(self.end!)  // "12.00 – 14.00"
     }
     
+    func toJSON() -> Dictionary<String, AnyObject> {
+        return [
+            "uuid": self.uuid ?? "",
+            "task_uuid": self.task_uuid ?? "",
+            "start": FormattingHelper.getISOStringFromDate(self.start!),
+            "end": FormattingHelper.getISOStringFromDate(self.end!),
+            "note": self.note ?? "",
+            "commit": self.commit ?? "",
+            "created": FormattingHelper.getISOStringFromDate(self.created!),
+            "changed": FormattingHelper.getISOStringFromDate(self.changed!)
+        ]
+    }
+    
 }

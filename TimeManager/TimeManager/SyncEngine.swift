@@ -17,7 +17,7 @@ class SyncEngine {
     
     var dataController: AppDelegate! = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    var Data: [[AnyObject]] = []
+    var Data: [String: [String: [AnyObject]]]!
     
     struct DataCollection {
         var created: [AnyObject]
@@ -25,8 +25,32 @@ class SyncEngine {
         var deleted: [AnyObject]
     }
     
+    var Objects: [[AnyObject]] = []
+    
     func doSyncJob() {
         // Prepare data
+        Data = [
+            "clients": [
+                "created": [],
+                "updated": [],
+                "deleted": []
+            ],
+            "projects": [
+                "created": [],
+                "updated": [],
+                "deleted": []
+            ],
+            "tasks": [
+                "created": [],
+                "updated": [],
+                "deleted": []
+            ],
+            "times": [
+                "created": [],
+                "updated": [],
+                "deleted": []
+            ]
+        ]
             // For each category do (collect all uuids in a list)
         for (index, entity) in entityMapping.enumerate() {
             let request = NSFetchRequest(entityName: entity)
@@ -43,19 +67,10 @@ class SyncEngine {
             let moc = self.dataController.managedObjectContext
             
             do {
-                var created = try moc.executeFetchRequest(request)
-                for (index, obj) in created.enumerate() {
-                    for (key, value) in (obj as! NSDictionary) {
-                        if key as! String == "created" {
-                            created[index][key] = FormattingHelper.getISOStringFromDate(value as! NSDate)
-                        }
-                    }
-                    NSLog("obj " + String(obj))
-//                    if obj["created"] != nil {
-//                        obj["created"] = FormattingHelper.getISOStringFromDate(obj["created"] as NSDate)
-//                    }
-                }
-                Data.append([created])
+                let entries = try moc.executeFetchRequest(request)
+                Objects.append(entries)
+                let created = self.objectsToJSON(entries, entity: entity)
+                Data[descriptorsMapping[index]]!["created"] = created
             } catch {
                 fatalError("Failed to execute fetch request for todays hours: \(error)")
             }
@@ -65,9 +80,10 @@ class SyncEngine {
             request.predicate = updatedElements
             
             do {
-                
-                let updated = try moc.executeFetchRequest(request)
-                Data[index].append(updated)
+                let entries = try moc.executeFetchRequest(request)
+                Objects.append(entries)
+                let updated = self.objectsToJSON(entries, entity: entity)
+                Data[descriptorsMapping[index]]!["updated"] = updated
             } catch {
                 fatalError("Failed to execute fetch request for todays hours: \(error)")
             }
@@ -77,9 +93,10 @@ class SyncEngine {
             request.predicate = deletedElements
             
             do {
-                
-                let deleted = try moc.executeFetchRequest(request)
-                Data[index].append(deleted)
+                let entries = try moc.executeFetchRequest(request)
+                Objects.append(entries)
+                let deleted = self.objectsToJSON(entries, entity: entity)
+                Data[descriptorsMapping[index]]!["deleted"] = deleted
             } catch {
                 fatalError("Failed to execute fetch request for todays hours: \(error)")
             }
@@ -104,5 +121,25 @@ class SyncEngine {
 //                })
 //            }
         })
+    }
+    
+    func objectsToJSON(entries: [AnyObject], entity: String) -> [NSDictionary] {
+        var convertedEntries = [NSDictionary]()
+        for entry in entries {
+            if(entity == "Client") {
+                convertedEntries.append((entry as! ClientObject).toJSON())
+            }
+            if(entity == "Project") {
+                convertedEntries.append((entry as! ProjectObject).toJSON())
+            }
+            if(entity == "Task") {
+                convertedEntries.append((entry as! TaskObject).toJSON())
+            }
+            if(entity == "Time") {
+                convertedEntries.append((entry as! TimeObject).toJSON())
+            }
+        }
+        
+        return convertedEntries
     }
 }

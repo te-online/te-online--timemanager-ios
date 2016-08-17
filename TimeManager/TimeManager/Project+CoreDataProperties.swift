@@ -61,5 +61,16 @@ extension ProjectObject {
     func getTotalHoursString() -> String {
         return FormattingHelper.formatHoursAsString(self.getTotalHours())
     }
+    
+    func toJSON() -> Dictionary<String, AnyObject> {
+        return [
+            "uuid": self.uuid ?? "",
+            "name": self.name ?? "",
+            "client_uuid": self.client_uuid ?? "",
+            "commit": self.commit ?? "",
+            "created": FormattingHelper.getISOStringFromDate(self.created!),
+            "changed": FormattingHelper.getISOStringFromDate(self.changed!)
+        ]
+    }
 
 }

@@ -39,4 +39,15 @@ extension TaskObject {
         return FormattingHelper.formatHoursAsString(self.getTotalHours())
     }
     
+    func toJSON() -> Dictionary<String, AnyObject> {
+        return [
+            "uuid": self.uuid ?? "",
+            "name": self.name ?? "",
+            "project_uuid": self.project_uuid ?? "",
+            "commit": self.commit ?? "",
+            "created": FormattingHelper.getISOStringFromDate(self.created!),
+            "changed": FormattingHelper.getISOStringFromDate(self.changed!)
+        ]
+    }
+    
 }
