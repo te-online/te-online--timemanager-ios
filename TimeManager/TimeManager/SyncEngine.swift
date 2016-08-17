@@ -104,7 +104,7 @@ class SyncEngine {
         
         NSLog("Data " + String(Data))
 
-        RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data], onCompletion: { (json: JSON) in
+        RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data, "lastCommit": "abcdefg"], onCompletion: { (json: JSON) in
             NSLog("results " + String(json.array))
         // With result do
         // For each category do
