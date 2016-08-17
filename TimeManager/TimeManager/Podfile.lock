@@ -1,12 +1,12 @@
 PODS:
-  - CSStickyHeaderFlowLayout (0.2.10)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - CSStickyHeaderFlowLayout
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
-  CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: fe5218a6e38307ad9ca418ee17edfcf2c2896716
+PODFILE CHECKSUM: b9d7fd104c76f89a6ee0b1cd76a14ef7c6f11cb0
 
 COCOAPODS: 1.0.1

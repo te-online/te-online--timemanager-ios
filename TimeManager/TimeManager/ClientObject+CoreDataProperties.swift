@@ -72,5 +72,19 @@ extension ClientObject {
     func getTotalHoursString() -> String {
         return FormattingHelper.formatHoursAsString(self.getTotalHours())
     }
+    
+    func toJSON() -> Dictionary<String, AnyObject> {
+        return [
+            "uuid": self.uuid!,
+            "name": self.name!,
+            "street": self.street!,
+            "postcode": self.postcode!,
+            "city": self.city!,
+            "note": self.note!,
+            "commit": self.commit!,
+            "created": FormattingHelper.getISOStringFromDate(self.created!),
+            "changed": FormattingHelper.getISOStringFromDate(self.changed!)
+        ]
+    }
 
 }

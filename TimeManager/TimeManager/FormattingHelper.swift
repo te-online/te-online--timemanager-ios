@@ -68,4 +68,13 @@ class FormattingHelper {
         let createdComponents: NSDateComponents = NSCalendar.currentCalendar().components([.Year], fromDate: date)
         return createdComponents.year
     }
+    
+    static func getISOStringFromDate(date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        let enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.locale = enUSPosixLocale
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        return dateFormatter.stringFromDate(NSDate())
+    }
 }

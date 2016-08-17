@@ -101,12 +101,14 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let entity = NSEntityDescription.entityForName("Project", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
+        let now = NSDate()
+        
         item.setValue(currentClient, forKey: "client")
         item.setValue(NSUUID().UUIDString, forKey: "uuid")
         item.setValue(currentClient.uuid, forKey: "client_uuid")
         item.setValue(project.name, forKey: "name")
-        item.setValue(NSDate(), forKey: "changed")
-        item.setValue(NSDate(), forKey: "created")
+        item.setValue(now, forKey: "changed")
+        item.setValue(now, forKey: "created")
         
         do {
             try dataController.managedObjectContext.save()

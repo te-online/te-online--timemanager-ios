@@ -1,5 +1,9 @@
 project '/Users/thomas/Apps/te-online--timemanager-ios/TimeManager/TimeManager.xcodeproj'
+workspace '/Users/thomas/Apps/te-online--timemanager-ios/TimeManager/TimeManager/TimeManager.xcworkspace'
+
+platform :ios, '8.0'
+use_frameworks!
 
 target 'TimeManager' do
-	pod 'CSStickyHeaderFlowLayout'
+    pod 'SwiftyJSON'
 end

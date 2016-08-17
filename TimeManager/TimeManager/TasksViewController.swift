@@ -101,12 +101,14 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
+        let now = NSDate()
+        
         item.setValue(self.currentProject, forKey: "project")
         item.setValue(NSUUID().UUIDString, forKey: "uuid")
         item.setValue(self.currentProject.uuid, forKey: "project_uuid")
         item.setValue(task.name, forKey: "name")
-        item.setValue(NSDate(), forKey: "changed")
-        item.setValue(NSDate(), forKey: "created")
+        item.setValue(now, forKey: "changed")
+        item.setValue(now, forKey: "created")
         
         do {
             try dataController.managedObjectContext.save()

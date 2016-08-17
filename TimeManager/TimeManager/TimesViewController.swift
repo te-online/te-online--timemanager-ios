@@ -100,14 +100,16 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let entity = NSEntityDescription.entityForName("Time", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
+        let now = NSDate()
+        
         item.setValue(self.currentTask, forKey: "task")
         item.setValue(NSUUID().UUIDString, forKey: "uuid")
         item.setValue(self.currentTask.uuid, forKey: "task_uuid")
         item.setValue(time.start, forKey: "start")
         item.setValue(time.end, forKey: "end")
         item.setValue(time.note, forKey: "note")
-        item.setValue(NSDate(), forKey: "changed")
-        item.setValue(NSDate(), forKey: "created")
+        item.setValue(now, forKey: "changed")
+        item.setValue(now, forKey: "created")
         
         do {
             try dataController.managedObjectContext.save()

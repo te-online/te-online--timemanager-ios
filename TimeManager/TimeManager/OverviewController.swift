@@ -119,7 +119,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         let days = tt.daysOfCurrentWeek()
         let entries = tt.fiveMostRecentEntries()
         
-        NSLog("Entries " + String(entries))
+        NSLog("Entries " + String(entries[0]))
         
         
         
@@ -140,7 +140,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
 //        self.tasks = newTasks
         
         self.days = days
-        NSLog("days " + String(self.tasks))
+//        NSLog("days " + String(self.tasks))
         
         TodaysHoursMainLabel.text = FormattingHelper.formatHoursAsString(today)
         WeeksHoursMainLabel.text = FormattingHelper.formatHoursAsString(week)

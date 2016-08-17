@@ -40,6 +40,9 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
         let currentIndex = pages.indexOf(viewController)!
         let previousIndex = abs((currentIndex - 1) % pages.count)
         NSLog("previous " + String(previousIndex))
+        if previousIndex == 1 {
+            return nil
+        }
         return pages[previousIndex]
     }
     

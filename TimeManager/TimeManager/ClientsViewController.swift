@@ -62,14 +62,16 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         let entity = NSEntityDescription.entityForName("Client", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
+        let now = NSDate()
+        
         item.setValue(NSUUID().UUIDString, forKey: "uuid")
         item.setValue(client.name, forKey: "name")
         item.setValue(client.street, forKey: "street")
         item.setValue(client.postcode, forKey: "postcode")
         item.setValue(client.city, forKey: "city")
         item.setValue(client.note, forKey: "note")
-        item.setValue(NSDate(), forKey: "changed")
-        item.setValue(NSDate(), forKey: "created")
+        item.setValue(now, forKey: "changed")
+        item.setValue(now, forKey: "created")
         
         do {
             try dataController.managedObjectContext.save()
