@@ -84,8 +84,7 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     func deleteCurrentProject() {
         if currentProject != nil {
             let moc = self.dataController.managedObjectContext
-            NSLog("current project " + String(self.currentProject))
-            moc.deleteObject(self.currentProject)
+            self.currentProject.setValue("deleted", forKey: "commit")
             
             do {
                 try moc.save()
@@ -315,7 +314,7 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let byProject = NSPredicate(format: "project = %@", currentProject)
+        let byProject = NSPredicate(format: "(project = %@) AND (commit != %@)", currentProject, "deleted")
         request.predicate = byProject
         
         let moc = self.dataController.managedObjectContext

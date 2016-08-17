@@ -68,7 +68,7 @@ class SyncEngine {
             
             do {
                 let entries = try moc.executeFetchRequest(request)
-                Objects.append(entries)
+                self.Objects.append(entries)
                 let created = self.objectsToJSON(entries, entity: entity)
                 Data[descriptorsMapping[index]]!["created"] = created
             } catch {
@@ -81,7 +81,7 @@ class SyncEngine {
             
             do {
                 let entries = try moc.executeFetchRequest(request)
-                Objects.append(entries)
+                self.Objects.append(entries)
                 let updated = self.objectsToJSON(entries, entity: entity)
                 Data[descriptorsMapping[index]]!["updated"] = updated
             } catch {
@@ -94,7 +94,7 @@ class SyncEngine {
             
             do {
                 let entries = try moc.executeFetchRequest(request)
-                Objects.append(entries)
+                self.Objects.append(entries)
                 let deleted = self.objectsToJSON(entries, entity: entity)
                 Data[descriptorsMapping[index]]!["deleted"] = deleted
             } catch {
@@ -103,24 +103,133 @@ class SyncEngine {
         }
         
         NSLog("Data " + String(Data))
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let lastCommit = defaults.stringForKey("lastCommit") ?? ""
 
-        RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data, "lastCommit": "abcdefg"], onCompletion: { (json: JSON) in
+        RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data, "lastCommit": lastCommit], onCompletion: { (json: JSON) in
             NSLog("results " + String(json.array))
-        // With result do
-        // For each category do
-        // Insert new objects
-        // Update changed objects
-        // Delete deleted objects
-        // Apply commit number to all collected uuid objects
-//            if let results = json["results"].array {
-//                for entry in results {
-//                    self.items.append(UserObject(json: entry))
-//                }
-//                dispatch_async(dispatch_get_main_queue(),{
-//                    self.tableView.reloadData()
-//                })
-//            }
+            if let commit = json[0]["commit"].string {
+                NSLog("commit " + commit)
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setValue(commit, forKey: "lastCommit")
+                
+                for entries in self.Objects {
+                    for entry in entries {
+                        entry.setValue(commit, forKey: "commit")
+                    }
+                }
+                
+                let moc = self.dataController.managedObjectContext
+                do {
+                    try moc.save()
+                } catch {
+                    fatalError("Failed to save commit to synced entries: \(error)")
+                }
+                
+            }
+            if let data = json[0]["data"].dictionary {
+                for (index, entity) in self.entityMapping.enumerate() {
+                    if let created = data[self.descriptorsMapping[index]]!["created"].array {
+                        for var object in created {
+//                            NSLog("new created ones" + String(object.dictionary))
+                            self.createObject(object, entityName: entity)
+                        }
+                    }
+                    if let updated = data[self.descriptorsMapping[index]]!["updated"].array {
+                        for var object in updated {
+                            self.updateObject(object, entityName: entity)
+                        }
+                    }
+                    if let deleted = data[self.descriptorsMapping[index]]!["deleted"].array {
+                        for var object in deleted {
+                            self.deleteObject(object, entityName: entity)
+                        }
+                    }
+                }
+            }
         })
+    }
+    
+    func createObject(object: JSON, entityName: String) {
+        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: dataController.managedObjectContext)
+        let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
+        
+        for (key, value) in object.dictionary! {
+            if(key == "created" || key == "changed" || key == "start" || key == "end") {
+                item.setValue(FormattingHelper.getDateFromISOString(value.string!), forKey: key)
+            } else {
+                item.setValue(value.string, forKey: key)
+            }
+        }
+        
+        do {
+            try dataController.managedObjectContext.save()
+        } catch {
+            NSLog("Failure to save new item in sync process: \(error)")
+            
+        }
+    }
+    
+    func updateObject(object: JSON, entityName: String) {
+        let request = NSFetchRequest(entityName: entityName)
+        
+        let thisElement = NSPredicate(format: "uuid = %@", object["uuid"].string!)
+        request.predicate = thisElement
+        
+        let moc = self.dataController.managedObjectContext
+        
+        do {
+            let objects = try moc.executeFetchRequest(request)
+            if(objects.count > 0) {
+                let item = objects[0]
+                
+                for (key, value) in object.dictionary! {
+                    if(key == "created" || key == "changed" || key == "start" || key == "end") {
+                        item.setValue(FormattingHelper.getDateFromISOString(value.string!), forKey: key)
+                    } else {
+                        item.setValue(value.string, forKey: key)
+                    }
+                }
+                
+                do {
+                    try dataController.managedObjectContext.save()
+                } catch {
+                    self.createObject(object, entityName: entityName)
+                    NSLog("Failure to alter item in sync process: \(error)")
+                }
+            }
+        } catch {
+            fatalError("Failed to execute fetch request alter item in sync process: \(error)")
+        }
+
+    }
+    
+    func deleteObject(object: JSON, entityName: String) {
+        let request = NSFetchRequest(entityName: entityName)
+        
+        let thisElement = NSPredicate(format: "uuid = %@", object["uuid"].string!)
+        request.predicate = thisElement
+        
+        let moc = self.dataController.managedObjectContext
+        
+        do {
+            let objects = try moc.executeFetchRequest(request)
+            if(objects.count > 0) {
+                let item = objects[0]
+            
+                moc.deleteObject(item as! NSManagedObject)
+                
+                do {
+                    try moc.save()
+                } catch {
+                    fatalError("Failure to delete item in sync process: \(error)")
+                }
+            }
+        } catch {
+            fatalError("Failed to execute fetch request for delete item in sync process: \(error)")
+        }
+        
     }
     
     func objectsToJSON(entries: [AnyObject], entity: String) -> [NSDictionary] {

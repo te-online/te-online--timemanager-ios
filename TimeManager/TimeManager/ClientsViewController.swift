@@ -188,6 +188,9 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         let nameSort = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [nameSort]
         
+        let notDeleted = NSPredicate(format: "commit != %@", "deleted")
+        request.predicate = notDeleted
+        
         let moc = self.dataController.managedObjectContext
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self

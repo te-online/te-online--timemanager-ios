@@ -84,7 +84,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     func deleteCurrentTask() {
         if self.currentTask != nil {
             let moc = self.dataController.managedObjectContext
-            moc.deleteObject(self.currentTask)
+            self.currentTask.setValue("deleted", forKey: "commit")
             
             do {
                 try moc.save()
@@ -326,7 +326,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let byTask = NSPredicate(format: "task = %@", self.currentTask)
+        let byTask = NSPredicate(format: "(task = %@) AND (commit != %@)", self.currentTask, "deleted")
         request.predicate = byTask
         
         let moc = self.dataController.managedObjectContext

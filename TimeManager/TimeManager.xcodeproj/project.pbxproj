@@ -64,6 +64,7 @@
 		E9BA20DF1D5DCE930098F37D /* arrow-right-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = E9BA20DC1D5DCE930098F37D /* arrow-right-grey.png */; };
 		E9BA20E01D5DCE930098F37D /* arrow-right-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9BA20DD1D5DCE930098F37D /* arrow-right-grey@2x.png */; };
 		E9BA20E11D5DCE930098F37D /* arrow-right-grey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9BA20DE1D5DCE930098F37D /* arrow-right-grey@3x.png */; };
+		E9BE09C61D64D22F00799AB8 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BE09C51D64D22F00799AB8 /* ErrorHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +128,7 @@
 		E9BA20DC1D5DCE930098F37D /* arrow-right-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-right-grey.png"; sourceTree = "<group>"; };
 		E9BA20DD1D5DCE930098F37D /* arrow-right-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-right-grey@2x.png"; sourceTree = "<group>"; };
 		E9BA20DE1D5DCE930098F37D /* arrow-right-grey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-right-grey@3x.png"; sourceTree = "<group>"; };
+		E9BE09C51D64D22F00799AB8 /* ErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		E9FC8CF21D5B812600B81E79 /* libCSStickyHeaderFlowLayout.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCSStickyHeaderFlowLayout.a; path = "../../../Library/Developer/Xcode/DerivedData/TimeManager-cxhfzahfiipbppdssejzcfwwvtoc/Build/Products/Debug-iphonesimulator/CSStickyHeaderFlowLayout/libCSStickyHeaderFlowLayout.a"; sourceTree = "<group>"; };
 		FB9B58AE7CFF6C6B817BE1C5 /* Pods-TimeManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeManager.debug.xcconfig"; path = "TimeManager/Pods/Target Support Files/Pods-TimeManager/Pods-TimeManager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +192,7 @@
 				E92A06811D63643500A29710 /* TimeTraveller.swift */,
 				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
 				E92A067F1D6360B000A29710 /* FormattingHelper.swift */,
+				E9BE09C51D64D22F00799AB8 /* ErrorHandler.swift */,
 			);
 			name = HelperControllers;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				E911CEF21D61E05F0044AED6 /* Contact+CoreDataProperties.swift in Sources */,
 				E958A1411D58A97700FB6166 /* CardOfViewDeckController.swift in Sources */,
 				E958A1471D59D5F500FB6166 /* ContainerViewController.swift in Sources */,
+				E9BE09C61D64D22F00799AB8 /* ErrorHandler.swift in Sources */,
 				E911CEF41D61E05F0044AED6 /* Time+CoreDataProperties.swift in Sources */,
 				E9BA20CD1D5C65580098F37D /* ClientsViewController.swift in Sources */,
 				E9BA20D11D5DCAD00098F37D /* ProjectsViewController.swift in Sources */,

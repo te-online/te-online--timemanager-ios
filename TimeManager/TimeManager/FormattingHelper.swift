@@ -75,6 +75,16 @@ class FormattingHelper {
         dateFormatter.locale = enUSPosixLocale
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
-        return dateFormatter.stringFromDate(NSDate())
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    static func getDateFromISOString(dateString: String) -> NSDate {
+        let formatter: NSDateFormatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        // Always use this locale when parsing fixed format date strings
+        let posix: NSLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        formatter.locale = posix
+        
+        return formatter.dateFromString(dateString) ?? NSDate()
     }
 }

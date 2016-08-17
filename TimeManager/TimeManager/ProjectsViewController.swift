@@ -85,7 +85,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     func deleteCurrentClient() {
         if currentClient != nil {
             let moc = self.dataController.managedObjectContext
-             moc.deleteObject(currentClient)
+            self.currentClient.setValue("deleted", forKey: "commit")
             
             do {
                 try moc.save()
@@ -318,7 +318,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let byClient = NSPredicate(format: "client = %@", currentClient)
+        let byClient = NSPredicate(format: "(client = %@) AND (commit != %@)", currentClient, "deleted")
         request.predicate = byClient
         
         let moc = self.dataController.managedObjectContext

@@ -45,6 +45,9 @@ class TimeTraveller {
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
+        let notDeleted = NSPredicate(format: "commit != %@", "deleted")
+        request.predicate = notDeleted
+        
         request.fetchLimit = 5
         
         let moc = self.dataController.managedObjectContext
@@ -83,7 +86,7 @@ class TimeTraveller {
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDayAndProject = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (task.project = %@)", dayBegin, dayEnd, project)
+        let forDayAndProject = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (task.project = %@) AND (commit != %@)", dayBegin, dayEnd, project, "deleted")
         request.predicate = forDayAndProject
         
         let moc = self.dataController.managedObjectContext
@@ -113,7 +116,7 @@ class TimeTraveller {
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDay = NSPredicate(format: "(start >= %@) AND (end <= %@)", dayBegin, dayEnd)
+        let forDay = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (commit != %@)", dayBegin, dayEnd, "deleted")
         request.predicate = forDay
         
         let moc = self.dataController.managedObjectContext
@@ -143,7 +146,7 @@ class TimeTraveller {
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDay = NSPredicate(format: "(start >= %@) AND (start <= %@)", dayBegin, dayEnd)
+        let forDay = NSPredicate(format: "(start >= %@) AND (start <= %@) AND (commit != %@)", dayBegin, dayEnd, "deleted")
         request.predicate = forDay
         
         let moc = self.dataController.managedObjectContext
