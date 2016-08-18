@@ -18,10 +18,19 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var SyncingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var SyncingText: UILabel!
     
+    @IBOutlet weak var OverviewButton: UIButton!
+    @IBOutlet weak var EntriesButton: UIButton!
+    @IBOutlet weak var StatisticsButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.hideSyncInProgress()
+        
+        // Load nice background images for highlighted state for our navi buttons
+        self.OverviewButton.setBackgroundImage(UIImage(named: "overview-icon-active.png"), forState: .Selected)
+        self.EntriesButton.setBackgroundImage(UIImage(named: "entries-icon-active.png"), forState: .Selected)
+        self.StatisticsButton.setBackgroundImage(UIImage(named: "statistics-icon-active.png"), forState: .Selected)
         
         // Load all the nice child views we're going to use.
         self.entriesScreenController = storyboard?.instantiateViewControllerWithIdentifier("EntriesViewController")
@@ -31,6 +40,8 @@ class ContainerViewController: UIViewController {
         
         // Show the first view.
         self.displayContentController(overviewScreenController!)
+        
+        self.correctButtons()
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,7 +112,26 @@ class ContainerViewController: UIViewController {
                 newVC.didMoveToParentViewController(self)
                 // Store current view controller, just in case.
                 self.currentViewController = newVC
+                self.correctButtons()
         })
+    }
+    
+    func correctButtons() {
+        if self.currentViewController == self.overviewScreenController {
+            self.OverviewButton.selected = true
+            self.EntriesButton.selected = false
+            self.StatisticsButton.selected = false
+        }
+        if self.currentViewController == self.entriesScreenController {
+            self.OverviewButton.selected = false
+            self.EntriesButton.selected = true
+            self.StatisticsButton.selected = false
+        }
+        if self.currentViewController == self.statisticsScreenController {
+            self.OverviewButton.selected = false
+            self.EntriesButton.selected = false
+            self.StatisticsButton.selected = true
+        }
     }
     
     func showSyncInProgress() {
