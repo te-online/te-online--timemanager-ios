@@ -318,7 +318,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let byClient = NSPredicate(format: "(client = %@) AND (commit != %@)", currentClient, "deleted")
+        let byClient = NSPredicate(format: "(client = %@) AND ((commit == nil) OR (commit != %@))", currentClient, "deleted")
         request.predicate = byClient
         
         let moc = self.dataController.managedObjectContext

@@ -314,7 +314,7 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let byProject = NSPredicate(format: "(project = %@) AND (commit != %@)", currentProject, "deleted")
+        let byProject = NSPredicate(format: "(project = %@) AND ((commit == nil) OR (commit != %@))", currentProject, "deleted")
         request.predicate = byProject
         
         let moc = self.dataController.managedObjectContext

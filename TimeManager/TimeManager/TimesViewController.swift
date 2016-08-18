@@ -326,7 +326,8 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let byTask = NSPredicate(format: "(task = %@) AND (commit != %@)", self.currentTask, "deleted")
+        // We don't need entries that are flagged for deletion. However, commit will only compare to a string if not nil, but nil is okay, too.
+        let byTask = NSPredicate(format: "(task = %@) AND ((commit == nil) OR (commit != %@))", self.currentTask, "deleted")
         request.predicate = byTask
         
         let moc = self.dataController.managedObjectContext
