@@ -68,5 +68,9 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
 //        }
     }
     
+    func reloadData() {
+        // Reload the data here
+    }
+    
 }
 

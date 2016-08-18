@@ -39,7 +39,7 @@ class ContainerViewController: UIViewController {
         self.currentViewController = nil
         
         // Show the first view.
-        self.displayContentController(overviewScreenController!)
+        self.displayContentController(statisticsScreenController!)
         
         self.correctButtons()
     }
