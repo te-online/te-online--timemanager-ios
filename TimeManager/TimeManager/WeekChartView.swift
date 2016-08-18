@@ -1,5 +1,5 @@
 //
-//  YearChartViewController.swift
+//  WeekChartView.swift
 //  TimeManager
 //
 //  Created by Thomas Ebert on 18.08.16.
@@ -9,9 +9,9 @@
 import UIKit
 import Charts
 
-class YearChartViewController: UIViewController, ChartViewDelegate {
+class WeekChartViewController: UIViewController, ChartViewDelegate {
     
-    @IBOutlet weak var chartView: ScatterChartView!
+    @IBOutlet weak var chartView: BarChartView!
     
     var months: [String]!
     var data: [Double]!
@@ -20,9 +20,9 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-        self.data = [100, 120, 130, 20, 50, 60, 75, 230, 45, 98, 12, 25]
+        
+        self.months = ["MO 1.8.", "TU 2.8.", "WE 3.8.", "TH 4.8.", "FR 5.8.", "SA 6.8.", "SU 7.8."]
+        self.data = [5, 8.5, 2.75, 7.5, 7, 0, 0]
         
         self.chartView.delegate = self
         // No description text.
@@ -52,7 +52,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         // Bottom axis.
         self.chartView.rightAxis.enabled = false
         let xl: ChartXAxis = chartView.xAxis
-        xl.labelFont = UIFont(name: "Poppins-Regular", size: 14.0)!
+        xl.labelFont = UIFont(name: "Poppins-Regular", size: 12.0)!
         xl.labelTextColor = Colors.MediumGrey
         xl.axisLineColor = Colors.LightGrey
         xl.yOffset = 15.0
@@ -78,23 +78,25 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
     func setChart(dataPoints: [String], values: [Double]) {
         self.chartView.noDataText = "No data."
         
-        var dataEntries: [ChartDataEntry] = []
+        var dataEntries: [BarChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = ScatterChartDataSet(yVals: dataEntries, label: "Months")
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Weeks")
         
         // Options for the entries
-        chartDataSet.setColor(Colors.MediumBlue)
-        chartDataSet.drawValuesEnabled = false
-        chartDataSet.scatterShape = .Circle
-        chartDataSet.scatterShapeSize = 16
-        chartDataSet.highlightColor = Colors.LightBlue
+        chartDataSet.setColor(Colors.LightBlue)
+        chartDataSet.valueFont = UIFont(name: "Poppins-Regular", size: 14.0)!
+        chartDataSet.valueTextColor = Colors.MediumGrey
+        chartDataSet.highlightColor = Colors.Blue
+        chartDataSet.barBorderColor = Colors.Blue
+        chartDataSet.barBorderWidth = 1
+        chartDataSet.barSpace = 0.55
         
-        let chartData = ScatterChartData(xVals: months, dataSet: chartDataSet)
+        let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         self.chartView.data = chartData
         self.chartView.animate(yAxisDuration: 0.3)
     }
@@ -104,3 +106,5 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
     }
     
 }
+
+

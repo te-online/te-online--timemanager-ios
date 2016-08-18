@@ -24,9 +24,9 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
         self.dataSource = self
         
         let page1: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("YearChartView")
-        let page2: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("page2")
-        let page3: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("page3")
-        let page4: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("page4")
+        let page2: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("MonthChartView")
+        let page3: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("WeekChartView")
+        let page4: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("DayChartView")
         
         pages.append(page1)
         pages.append(page2)

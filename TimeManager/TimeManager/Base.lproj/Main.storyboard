@@ -60,9 +60,6 @@
             <string>Poppins-Medium</string>
             <string>Poppins-Medium</string>
             <string>Poppins-Medium</string>
-            <string>Poppins-Medium</string>
-            <string>Poppins-Medium</string>
-            <string>Poppins-Medium</string>
         </mutableArray>
         <mutableArray key="Poppins-Regular.ttf">
             <string>Poppins-Regular</string>
@@ -3292,81 +3289,102 @@ logo, colors, font choices and simp</string>
             </objects>
             <point key="canvasLocation" x="251" y="2862"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="RrH-P0-sdj">
+        <!--Month Chart View Controller-->
+        <scene sceneID="VsG-9H-3cC">
             <objects>
-                <viewController storyboardIdentifier="page2" id="Gr8-86-KGM" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MonthChartView" id="dtc-5H-Xun" customClass="MonthChartViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pVm-PG-VdV"/>
-                        <viewControllerLayoutGuide type="bottom" id="NSA-et-uBJ"/>
+                        <viewControllerLayoutGuide type="top" id="U2z-aV-Vvf"/>
+                        <viewControllerLayoutGuide type="bottom" id="cWl-1A-Tb2"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZnB-Aj-BK6">
+                    <view key="view" contentMode="scaleToFill" id="ebM-aZ-bvF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Month" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QG-J2-JkP">
-                                <rect key="frame" x="20" y="20" width="120" height="21"/>
-                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="25"/>
-                                <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6TR-oT-AuR" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.25098040699958801" green="0.56470590829849243" blue="0.87450981140136719" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6TR-oT-AuR" firstAttribute="width" secondItem="ebM-aZ-bvF" secondAttribute="width" id="CBf-Qc-zdt"/>
+                            <constraint firstItem="6TR-oT-AuR" firstAttribute="height" secondItem="ebM-aZ-bvF" secondAttribute="height" id="FgG-5m-M5K"/>
+                            <constraint firstItem="6TR-oT-AuR" firstAttribute="centerY" secondItem="ebM-aZ-bvF" secondAttribute="centerY" id="PaP-uv-ItD"/>
+                            <constraint firstItem="6TR-oT-AuR" firstAttribute="centerX" secondItem="ebM-aZ-bvF" secondAttribute="centerX" id="dVn-2i-bFG"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="chartView" destination="6TR-oT-AuR" id="Zye-Nb-rqz"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b6l-0C-pkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="251" y="3541"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="8qJ-BN-WiS">
-            <objects>
-                <viewController storyboardIdentifier="page3" id="eWJ-oh-VxT" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="iBe-v5-jHq"/>
-                        <viewControllerLayoutGuide type="bottom" id="od9-Rd-uk8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tr9-qb-1Wx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Week" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBe-Qa-yDg">
-                                <rect key="frame" x="20" y="20" width="120" height="21"/>
-                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="25"/>
-                                <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.86274510622024536" green="0.86274510622024536" blue="0.86274510622024536" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WLD-8w-4Y4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h62-wP-3eb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="902" y="2862"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="2Dk-8E-kN7">
+        <!--Week Chart View Controller-->
+        <scene sceneID="vnV-xB-NlF">
             <objects>
-                <viewController storyboardIdentifier="page4" id="0pq-xO-ho5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeekChartView" id="BlY-7I-6YR" customClass="WeekChartViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xoV-CS-piN"/>
-                        <viewControllerLayoutGuide type="bottom" id="DJf-PM-1BE"/>
+                        <viewControllerLayoutGuide type="top" id="e3q-Gv-GdQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="c6M-qR-JTZ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Mvo-lZ-Vsc">
+                    <view key="view" contentMode="scaleToFill" id="Uyn-gd-5XQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TID-rf-hFb">
-                                <rect key="frame" x="20" y="20" width="120" height="21"/>
-                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="25"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3B-9t-7NZ" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.13725490868091583" green="0.13725490868091583" blue="0.13725490868091583" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r3B-9t-7NZ" firstAttribute="width" secondItem="Uyn-gd-5XQ" secondAttribute="width" id="3ge-ON-bX2"/>
+                            <constraint firstItem="r3B-9t-7NZ" firstAttribute="centerY" secondItem="Uyn-gd-5XQ" secondAttribute="centerY" id="Mf5-ZY-LGx"/>
+                            <constraint firstItem="r3B-9t-7NZ" firstAttribute="centerX" secondItem="Uyn-gd-5XQ" secondAttribute="centerX" id="WSd-gj-e78"/>
+                            <constraint firstItem="r3B-9t-7NZ" firstAttribute="height" secondItem="Uyn-gd-5XQ" secondAttribute="height" id="fmp-FR-ipi"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="chartView" destination="r3B-9t-7NZ" id="irF-m3-xxe"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gLp-yh-C5Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mAs-ZI-sND" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="251" y="3541"/>
+        </scene>
+        <!--Day Chart View-->
+        <scene sceneID="8XA-u2-zIv">
+            <objects>
+                <viewController storyboardIdentifier="DayChartView" id="lYg-yu-9K6" customClass="DayChartView" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yqt-k8-bzU"/>
+                        <viewControllerLayoutGuide type="bottom" id="VZ3-AL-NvU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P4r-Rd-lpo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmS-7f-inb" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vmS-7f-inb" firstAttribute="centerX" secondItem="P4r-Rd-lpo" secondAttribute="centerX" id="BJS-hT-SbG"/>
+                            <constraint firstItem="vmS-7f-inb" firstAttribute="height" secondItem="P4r-Rd-lpo" secondAttribute="height" id="G2z-mN-RPt"/>
+                            <constraint firstItem="vmS-7f-inb" firstAttribute="width" secondItem="P4r-Rd-lpo" secondAttribute="width" id="WVW-5v-ZCO"/>
+                            <constraint firstItem="vmS-7f-inb" firstAttribute="centerY" secondItem="P4r-Rd-lpo" secondAttribute="centerY" id="ZeY-vh-jHI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chartView" destination="vmS-7f-inb" id="L5j-me-M3E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EG7-Rd-1Cw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="902" y="3541"/>
         </scene>

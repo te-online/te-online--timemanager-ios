@@ -54,6 +54,9 @@
 		E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1571D5A275A00FB6166 /* SettingsController.swift */; };
 		E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1591D5A292600FB6166 /* EntriesViewController.swift */; };
 		E992CC291D66168D002E71AB /* YearChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC281D66168D002E71AB /* YearChartViewController.swift */; };
+		E992CC2B1D6628FC002E71AB /* MonthChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */; };
+		E992CC2D1D662BA6002E71AB /* WeekChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC2C1D662BA6002E71AB /* WeekChartView.swift */; };
+		E992CC2F1D662CC4002E71AB /* DayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC2E1D662CC4002E71AB /* DayChartView.swift */; };
 		E9BA20CD1D5C65580098F37D /* ClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA20CC1D5C65580098F37D /* ClientsViewController.swift */; };
 		E9BA20CF1D5C6F9A0098F37D /* PassThroughCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA20CE1D5C6F9A0098F37D /* PassThroughCollectionView.swift */; };
 		E9BA20D11D5DCAD00098F37D /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA20D01D5DCAD00098F37D /* ProjectsViewController.swift */; };
@@ -141,6 +144,9 @@
 		E958A1571D5A275A00FB6166 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		E958A1591D5A292600FB6166 /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		E992CC281D66168D002E71AB /* YearChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearChartViewController.swift; sourceTree = "<group>"; };
+		E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthChartViewController.swift; sourceTree = "<group>"; };
+		E992CC2C1D662BA6002E71AB /* WeekChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekChartView.swift; sourceTree = "<group>"; };
+		E992CC2E1D662CC4002E71AB /* DayChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayChartView.swift; sourceTree = "<group>"; };
 		E9BA20CC1D5C65580098F37D /* ClientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsViewController.swift; sourceTree = "<group>"; };
 		E9BA20CE1D5C6F9A0098F37D /* PassThroughCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughCollectionView.swift; sourceTree = "<group>"; };
 		E9BA20D01D5DCAD00098F37D /* ProjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +327,9 @@
 				E92A06891D64542C00A29710 /* RestAPIManager.swift */,
 				E9BE09FD1D65EBAC00799AB8 /* CustomNaviButton.swift */,
 				E992CC281D66168D002E71AB /* YearChartViewController.swift */,
+				E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */,
+				E992CC2C1D662BA6002E71AB /* WeekChartView.swift */,
+				E992CC2E1D662CC4002E71AB /* DayChartView.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -564,10 +573,12 @@
 				E911CF031D62109C0044AED6 /* ProjectEditController.swift in Sources */,
 				E92A06821D63643500A29710 /* TimeTraveller.swift in Sources */,
 				E906D0231D5E271300C06C87 /* SharedColorPalette.swift in Sources */,
+				E992CC2D1D662BA6002E71AB /* WeekChartView.swift in Sources */,
 				E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */,
 				E92A06771D630E0300A29710 /* ProjectDetailViewController.swift in Sources */,
 				E992CC291D66168D002E71AB /* YearChartViewController.swift in Sources */,
 				E92A06801D6360B000A29710 /* FormattingHelper.swift in Sources */,
+				E992CC2B1D6628FC002E71AB /* MonthChartViewController.swift in Sources */,
 				E911CEFC1D61E0760044AED6 /* Contact.swift in Sources */,
 				E92A06881D644D1600A29710 /* SyncEngine.swift in Sources */,
 				E92A067B1D631EF600A29710 /* TimeEditController.swift in Sources */,
@@ -580,6 +591,7 @@
 				E92A067D1D63307C00A29710 /* TaskDetailViewController.swift in Sources */,
 				E958A1301D5874A000FB6166 /* TimeManager.xcdatamodeld in Sources */,
 				E911CEFD1D61E0760044AED6 /* Project.swift in Sources */,
+				E992CC2F1D662CC4002E71AB /* DayChartView.swift in Sources */,
 				E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */,
 				E911CEF51D61E05F0044AED6 /* Task+CoreDataProperties.swift in Sources */,
 				E9404C611D61CCEF008ED9A3 /* ClientEditController.swift in Sources */,
