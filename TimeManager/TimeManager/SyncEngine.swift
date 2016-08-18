@@ -104,7 +104,7 @@ class SyncEngine {
             }
         }
         
-//        NSLog("Data " + String(Data))
+        NSLog("Data " + String(Data))
         
         let defaults = NSUserDefaults.standardUserDefaults()
         let lastCommit = defaults.stringForKey("lastCommit") ?? ""
