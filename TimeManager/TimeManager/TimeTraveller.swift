@@ -38,28 +38,46 @@ class TimeTraveller {
         return self.recordedHoursBetweenDates(startOfWeek!, end: endOfWeek)
     }
     
-    func fiveMostRecentEntries() -> [TimeObject] {
-        // Get the five most recent time entries by creation date.
+    func fiveMostRecentTasksInWeekByDate(date: NSDate) -> [TaskObject] {
+        // Create an array of all the times in the week
+        let weekDates = self.getWeekDatesFromDate(date)
+        let startOfWeek = self.getDayBegin(weekDates[0] ?? NSDate())
+        let endOfWeek = self.getDayEnd(weekDates[6] ?? NSDate())
+        
         let request = NSFetchRequest(entityName: "Time")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let notDeleted = NSPredicate(format: "commit != %@", "deleted")
-        request.predicate = notDeleted
-        
-        request.fetchLimit = 5
-        
-        let moc = self.dataController.managedObjectContext
+        let forWeek = NSPredicate(format: "(start >= %@) AND (end <= %@)", startOfWeek, endOfWeek)
+        request.predicate = forWeek
         
         do {
-            let entries = try moc.executeFetchRequest(request)
-            return (entries as! [TimeObject])
+            let times = try self.dataController.managedObjectContext.executeFetchRequest(request)
+            // Create a unique set of all the tasks with created times in the week
+            var tasks: [TaskObject] = []
+            // Get all tasks.
+            for time in times {
+                tasks.append((time as! TimeObject).task!)
+            }
+            // Make them unique
+            var uniqueTasks = Array(Set(tasks))
+            // sort the set by total hours
+            NSLog("first " + String(uniqueTasks[0]))
+            uniqueTasks = uniqueTasks.sort({ ($0 as TaskObject).getTotalHours() > ($1 as TaskObject).getTotalHours() })
+             NSLog("first after " + String(uniqueTasks[0]))
+            // Only use the first 5 entries
+            return Array(uniqueTasks.prefix(5))
         } catch {
-            fatalError("Failed to execute fetch request for recent entries: \(error)")
+            fatalError("Failed to execute fetch request recent tasks for week: \(error)")
         }
     }
     
+    /*
+     *  Returns an array of the hours of a project in a specific week, specified by a date in this week.
+     *  e.g. ["5 hrs.", "12 hrs", "-", "1.25 hrs.", "6 hrs.", "-", "-"]
+     *
+    */
     func recordedHoursForWeekInProjectFromDate(date: NSDate, project: ProjectObject) -> [String] {
         let weekDates = self.getWeekDatesFromDate(date)
         
@@ -86,7 +104,7 @@ class TimeTraveller {
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDayAndProject = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (task.project = %@) AND (commit != %@)", dayBegin, dayEnd, project, "deleted")
+        let forDayAndProject = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (task.project = %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, project, "deleted")
         request.predicate = forDayAndProject
         
         let moc = self.dataController.managedObjectContext
@@ -107,6 +125,59 @@ class TimeTraveller {
         return hoursCount
     }
     
+    /*
+     *  Returns an array of the hours of a task in a specific week, specified by a date in this week.
+     *  e.g. ["5 hrs.", "12 hrs", "-", "1.25 hrs.", "6 hrs.", "-", "-"]
+     *
+     */
+    func recordedHoursForWeekInTaskFromDate(date: NSDate, task: TaskObject) -> [String] {
+        let weekDates = self.getWeekDatesFromDate(date)
+        
+        var values = [String]()
+        
+        for weekDate in weekDates {
+            let hours = self.recordedHoursForDateInTask(weekDate!, task: task)
+            if hours > 0 {
+                values.append(FormattingHelper.formatHoursAsString(hours))
+            } else {
+                values.append("-")
+            }
+        }
+        
+        return values
+    }
+    
+    func recordedHoursForDateInTask(date: NSDate, task: TaskObject) -> Double {
+        let dayBegin = self.getDayBegin(date)
+        let dayEnd = self.getDayEnd(date)
+        
+        let request = NSFetchRequest(entityName: "Time")
+        
+        let createdSort = NSSortDescriptor(key: "created", ascending: true)
+        request.sortDescriptors = [createdSort]
+        
+        let forDayAndProject = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (task = %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, task, "deleted")
+        request.predicate = forDayAndProject
+        
+        let moc = self.dataController.managedObjectContext
+        
+        var hoursCount: Double = 0
+        
+        do {
+            let entries = try moc.executeFetchRequest(request)
+            if entries.count > 0 {
+                for entry in entries {
+                    hoursCount += (entry as! TimeObject).getDurationInHours()
+                }
+            }
+        } catch {
+            fatalError("Failed to execute fetch request for hours in project by date: \(error)")
+        }
+        
+        return hoursCount
+    }
+
+    
     func recordedHoursBetweenDates(start: NSDate, end: NSDate) -> Double {
         let dayBegin = self.getDayBegin(start)
         let dayEnd = self.getDayEnd(end)
@@ -116,7 +187,7 @@ class TimeTraveller {
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDay = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (commit != %@)", dayBegin, dayEnd, "deleted")
+        let forDay = NSPredicate(format: "(start >= %@) AND (end <= %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, "deleted")
         request.predicate = forDay
         
         let moc = self.dataController.managedObjectContext
@@ -146,7 +217,7 @@ class TimeTraveller {
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDay = NSPredicate(format: "(start >= %@) AND (start <= %@) AND (commit != %@)", dayBegin, dayEnd, "deleted")
+        let forDay = NSPredicate(format: "(start >= %@) AND (start <= %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, "deleted")
         request.predicate = forDay
         
         let moc = self.dataController.managedObjectContext

@@ -104,13 +104,13 @@ class SyncEngine {
             }
         }
         
-        NSLog("Data " + String(Data))
+//        NSLog("Data " + String(Data))
         
         let defaults = NSUserDefaults.standardUserDefaults()
         let lastCommit = defaults.stringForKey("lastCommit") ?? ""
 
         RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data, "lastCommit": lastCommit], onCompletion: { (json: JSON) in
-            NSLog("results " + String(json.array))
+//            NSLog("results " + String(json.array))
             if let commit = json[0]["commit"].string {
                 NSLog("commit " + commit)
                 let defaults = NSUserDefaults.standardUserDefaults()
@@ -126,7 +126,7 @@ class SyncEngine {
                     }
                 }
                 
-                NSLog("Deletables " + String(self.Deletables))
+//                NSLog("Deletables " + String(self.Deletables))
                 
                 for entries in self.Deletables {
                     for entry in entries {

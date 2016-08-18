@@ -33,7 +33,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loadDummyData()
+//        self.loadDummyData()
         
         TasksCollectionView.delegate = self
         TasksCollectionView.dataSource = self
@@ -47,6 +47,11 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.loadData()
+        super.viewWillAppear(animated)
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -117,27 +122,27 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         let today = tt.todaysRecordedHours()
         let week = tt.thisWeeksRecordedHours()
         let days = tt.daysOfCurrentWeek()
-        let entries = tt.fiveMostRecentEntries()
+        let entries = tt.fiveMostRecentTasksInWeekByDate(NSDate())
         
 //        NSLog("Entries " + String(entries[0]))
         
         
         
-//        var newTasks = [RecentTask]()
-//        for entry in entries {
-//            let task = (entry.task! as TaskObject)
-//            let project = task.project
-//            let client = project?.client
-//            let newTask = RecentTask(
-//                clientName: client!.name,
-//                projectName: project!.name,
-//                taskName: task.name,
-//                dayValues: tt.recordedHoursForWeekInProjectFromDate(currentDate, project: ((entry.task! as TaskObject).project! as ProjectObject))
-//            )
-//            newTasks.append(newTask)
-//        }
-//        
-//        self.tasks = newTasks
+        var newTasks = [RecentTask]()
+        for entry in entries {
+            let task = (entry as TaskObject)
+            let project = task.project
+            let client = project?.client
+            let newTask = RecentTask(
+                clientName: client!.name,
+                projectName: project!.name,
+                taskName: task.name,
+                dayValues: tt.recordedHoursForWeekInTaskFromDate(currentDate, task: (entry as TaskObject))
+            )
+            newTasks.append(newTask)
+        }
+//
+        self.tasks = newTasks
         
         self.days = days
 //        NSLog("days " + String(self.tasks))
@@ -147,6 +152,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         WeeksHoursTableLabel.text = FormattingHelper.formatHoursAsString(week)
         
         self.HoursCollectionView.reloadData()
+        self.TasksCollectionView.reloadData()
     }
     
     func loadDummyData() {
