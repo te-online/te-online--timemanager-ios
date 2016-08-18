@@ -6,4 +6,5 @@ use_frameworks!
 
 target 'TimeManager' do
     pod 'SwiftyJSON'
+    pod 'Charts'
 end
