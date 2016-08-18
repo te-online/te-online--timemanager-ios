@@ -119,7 +119,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         let days = tt.daysOfCurrentWeek()
         let entries = tt.fiveMostRecentEntries()
         
-        NSLog("Entries " + String(entries[0]))
+//        NSLog("Entries " + String(entries[0]))
         
         
         
