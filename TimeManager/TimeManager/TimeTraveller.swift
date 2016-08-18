@@ -19,7 +19,6 @@ class TimeTraveller {
     }
     
     func todaysRecordedHours() -> Double {
-        NSLog("Here we go...")
         // Find all time entries from today and sum up hours
         let today = NSDate()
         return self.recordedHoursForDay(today)
@@ -29,10 +28,13 @@ class TimeTraveller {
         // Determine all days in this week
         let today = NSDate()
         
-        let currentDateComponents = self.calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: today)
+        return self.recordedHoursForWeekFromDate(today)
+    }
+    
+    func recordedHoursForWeekFromDate(date: NSDate) -> Double {
+        let currentDateComponents = self.calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: date)
         
         let startOfWeek = calendar.dateFromComponents(currentDateComponents)
-        
         let endOfWeek = startOfWeek!.dateByAddingTimeInterval(60 * 60 * 24 * 7)
         
         return self.recordedHoursBetweenDates(startOfWeek!, end: endOfWeek)
@@ -63,9 +65,7 @@ class TimeTraveller {
             // Make them unique
             var uniqueTasks = Array(Set(tasks))
             // sort the set by total hours
-            NSLog("first " + String(uniqueTasks[0]))
             uniqueTasks = uniqueTasks.sort({ ($0 as TaskObject).getTotalHours() > ($1 as TaskObject).getTotalHours() })
-             NSLog("first after " + String(uniqueTasks[0]))
             // Only use the first 5 entries
             return Array(uniqueTasks.prefix(5))
         } catch {

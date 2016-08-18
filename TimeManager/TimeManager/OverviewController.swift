@@ -27,13 +27,13 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var WeeksHoursMainLabel: UILabel!
     @IBOutlet weak var WeeksHoursTableLabel: UILabel!
     
+    @IBOutlet weak var CurrentWeekLabel: UILabel!
+    
     @IBOutlet weak var TasksCollectionView: UICollectionView!
     @IBOutlet weak var HoursCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.loadDummyData()
         
         TasksCollectionView.delegate = self
         TasksCollectionView.dataSource = self
@@ -52,6 +52,24 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewWillAppear(animated: Bool) {
         self.loadData()
         super.viewWillAppear(animated)
+    }
+
+    @IBAction func NavigateToPreviousWeekButtonPressed(sender: AnyObject) {
+        // Subtract one week from the current date.
+        self.currentDate = self.currentDate.dateByAddingTimeInterval((-1 * 7 * 24 * 60 * 60))
+        self.loadData()
+    }
+    
+    @IBAction func NavigateToNextWeekButtonPressed(sender: AnyObject) {
+        // Add one week to the current date.
+        self.currentDate = self.currentDate.dateByAddingTimeInterval((7 * 24 * 60 * 60))
+        // If currentdate variable is greater or equal to today, don't let them go into the future.
+        if (self.currentDate.compare(NSDate()) == NSComparisonResult.OrderedDescending || self.currentDate.compare(NSDate()) == NSComparisonResult.OrderedSame) {
+            (sender as! UIButton).enabled = false
+        } else {
+            (sender as! UIButton).enabled = true
+        }
+        self.loadData()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -120,13 +138,10 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     func loadData() {
         let tt = TimeTraveller()
         let today = tt.todaysRecordedHours()
-        let week = tt.thisWeeksRecordedHours()
-        let days = tt.daysOfCurrentWeek()
-        let entries = tt.fiveMostRecentTasksInWeekByDate(NSDate())
-        
-//        NSLog("Entries " + String(entries[0]))
-        
-        
+        let thisWeek = tt.thisWeeksRecordedHours()
+        let week = tt.recordedHoursForWeekFromDate(self.currentDate)
+        let days = tt.daysOfWeekFromDate(self.currentDate)
+        let entries = tt.fiveMostRecentTasksInWeekByDate(self.currentDate)
         
         var newTasks = [RecentTask]()
         for entry in entries {
@@ -141,62 +156,20 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
             )
             newTasks.append(newTask)
         }
-//
+        
         self.tasks = newTasks
         
         self.days = days
-//        NSLog("days " + String(self.tasks))
         
+        // The values for today and this week.
         TodaysHoursMainLabel.text = FormattingHelper.formatHoursAsString(today)
-        WeeksHoursMainLabel.text = FormattingHelper.formatHoursAsString(week)
+        WeeksHoursMainLabel.text = FormattingHelper.formatHoursAsString(thisWeek)
+        // The value for the week currently selected.
         WeeksHoursTableLabel.text = FormattingHelper.formatHoursAsString(week)
+        CurrentWeekLabel.text = (FormattingHelper.weekAndYearFromDate(self.currentDate)).uppercaseString
+        
         
         self.HoursCollectionView.reloadData()
         self.TasksCollectionView.reloadData()
-    }
-    
-    func loadDummyData() {
-        self.weekTotal = 45
-        self.tasks = [
-            RecentTask(
-                clientName: "Rich Industries",
-                projectName: "Consultation on Strategy Design",
-                taskName: "Preparation of Meetings",
-                dayValues: ["10 hrs.", "5", "2.5", "0", "1", "0", "0"]
-            ),
-            RecentTask(
-                clientName: "Soylent Corp.",
-                projectName: "Website Relaunch",
-                taskName: "Set-Up Server",
-                dayValues: ["2.5", "0", "10", "5", "0", "0", "0"]
-            ),
-            RecentTask(
-                clientName: "Evil Corp.",
-                projectName: "Corporate Design Manual",
-                taskName: "Layout",
-                dayValues: ["0", "2", "2.5", "0", "4", "0", "0"]
-            ),
-            RecentTask(
-                clientName: "Rich Industries",
-                projectName: "Consultation on Strategy Design",
-                taskName: "Fetching Coffee",
-                dayValues: ["0", "0", "0", "0", "1", "0", "0"]
-            ),
-            RecentTask(
-                clientName: "Warbucks Industries",
-                projectName: "Personal Talent Time",
-                taskName: "Literature Study",
-                dayValues: ["0", "0", "0", "2.5", "1", "0", "0"]
-            )
-        ]
-        self.days = [
-            "MO 1.8.",
-            "TU 2.8.",
-            "WE 3.8.",
-            "TH 4.8.",
-            "FR 5.8.",
-            "SA 6.8.",
-            "SU 7.8."
-        ]
     }
 }

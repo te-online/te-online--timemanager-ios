@@ -87,4 +87,13 @@ class FormattingHelper {
         
         return formatter.dateFromString(dateString) ?? NSDate()
     }
+    
+    static func weekAndYearFromDate(date: NSDate) -> String {
+        var dateFormatter: NSDateFormatter!
+        // Let's create a nice date format.
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "w / y"
+        
+        return "week " + dateFormatter.stringFromDate(date)
+    }
 }
