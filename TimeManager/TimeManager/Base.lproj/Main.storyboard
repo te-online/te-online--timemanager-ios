@@ -654,11 +654,14 @@
                                             <action selector="NavBarButtonStatisticsTouched:" destination="hje-Nn-7VH" eventType="touchUpInside" id="OV9-IQ-L0j"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="M4y-Uq-AgY">
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="M4y-Uq-AgY">
                                         <rect key="frame" x="33" y="474" width="20" height="20"/>
                                     </activityIndicatorView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SYNCING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAz-xa-dJb">
-                                        <rect key="frame" x="6" y="498" width="74" height="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SYNCING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAz-xa-dJb">
+                                        <rect key="frame" x="0.0" y="498" width="86" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23" id="G1t-sx-vPm"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                         <color key="textColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -668,17 +671,22 @@
                                 <constraints>
                                     <constraint firstItem="aM6-K5-8Ns" firstAttribute="top" secondItem="1A1-ab-oz6" secondAttribute="top" id="56l-eA-rwE"/>
                                     <constraint firstItem="hJb-0C-amA" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="DGf-zY-sKn"/>
+                                    <constraint firstItem="M4y-Uq-AgY" firstAttribute="centerX" secondItem="EAz-xa-dJb" secondAttribute="centerX" id="GPN-jW-lCJ"/>
                                     <constraint firstItem="yTn-ax-adf" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="Ihe-MO-vEd"/>
                                     <constraint firstItem="cGx-II-c1F" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="L9F-lQ-xO9"/>
                                     <constraint firstItem="yTn-ax-adf" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="MDI-Ze-kQu"/>
                                     <constraint firstItem="cGx-II-c1F" firstAttribute="top" secondItem="aM6-K5-8Ns" secondAttribute="bottom" constant="12" id="V4j-eo-DTE"/>
+                                    <constraint firstItem="EAz-xa-dJb" firstAttribute="top" secondItem="M4y-Uq-AgY" secondAttribute="bottom" constant="4" id="VWk-Ao-Tr8"/>
                                     <constraint firstAttribute="bottom" secondItem="hJb-0C-amA" secondAttribute="bottom" constant="24" id="btD-pf-yXi"/>
                                     <constraint firstItem="aM6-K5-8Ns" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="jbR-RP-iTC"/>
                                     <constraint firstAttribute="width" constant="86" id="k4T-ap-qKu"/>
                                     <constraint firstItem="cGx-II-c1F" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="kuj-Wi-FTr"/>
+                                    <constraint firstItem="EAz-xa-dJb" firstAttribute="centerX" secondItem="hJb-0C-amA" secondAttribute="centerX" id="lc1-1i-GtJ"/>
                                     <constraint firstItem="aM6-K5-8Ns" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="mvG-x6-Zak"/>
                                     <constraint firstItem="yTn-ax-adf" firstAttribute="top" secondItem="cGx-II-c1F" secondAttribute="bottom" constant="8" id="oyg-U9-Fej"/>
+                                    <constraint firstItem="EAz-xa-dJb" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="pFU-yW-anH"/>
                                     <constraint firstItem="hJb-0C-amA" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="qZC-At-YZE"/>
+                                    <constraint firstItem="hJb-0C-amA" firstAttribute="top" secondItem="EAz-xa-dJb" secondAttribute="bottom" constant="25" id="xup-IL-IKM"/>
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </view>

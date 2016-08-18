@@ -105,13 +105,18 @@ class ContainerViewController: UIViewController {
     }
     
     func showSyncInProgress() {
-        SyncingSpinner.alpha = 1
-        SyncingText.alpha = 1
+        if SyncingSpinner != nil && SyncingText != nil {
+            SyncingSpinner.alpha = 1
+            SyncingText.alpha = 1
+        }
+        
     }
     
     func hideSyncInProgress() {
-        SyncingSpinner.alpha = 0
-        SyncingText.alpha = 0
+        if SyncingSpinner != nil && SyncingText != nil {
+            SyncingSpinner.alpha = 0
+            SyncingText.alpha = 0
+        }
     }
     
 }
