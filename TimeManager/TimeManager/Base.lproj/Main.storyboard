@@ -450,8 +450,12 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No tasks in this week, yet.              Go ahead, do the hard work and see the tables fill themselves!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B01-kR-FAr">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tasks in this week, yet.              Go ahead, do the hard work and see the tables fill themselves!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B01-kR-FAr">
                                         <rect key="frame" x="22" y="43" width="234" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="234" id="gf2-tC-R80"/>
+                                            <constraint firstAttribute="height" constant="70" id="soY-es-7XR"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                         <color key="textColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -460,6 +464,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="nTF-It-i3a" firstAttribute="top" secondItem="wdn-wG-2RP" secondAttribute="top" id="0rY-yM-nZh"/>
+                                    <constraint firstItem="B01-kR-FAr" firstAttribute="leading" secondItem="hzj-mF-4qb" secondAttribute="leading" constant="22" id="0tp-ZO-bkg"/>
                                     <constraint firstItem="3yF-8A-d9s" firstAttribute="centerY" secondItem="nTF-It-i3a" secondAttribute="centerY" constant="2" id="2UI-u3-mPh"/>
                                     <constraint firstItem="Mzb-ll-T2U" firstAttribute="centerY" secondItem="hzj-mF-4qb" secondAttribute="centerY" constant="12" id="4pJ-IA-hdd"/>
                                     <constraint firstItem="nTF-It-i3a" firstAttribute="leading" secondItem="njA-Ha-9zB" secondAttribute="trailing" constant="-4" id="A8Y-ht-lek"/>
@@ -467,6 +472,7 @@
                                     <constraint firstItem="wdn-wG-2RP" firstAttribute="leading" secondItem="hzj-mF-4qb" secondAttribute="leading" constant="19" id="Bti-w2-6Hy"/>
                                     <constraint firstItem="otr-Zf-z1H" firstAttribute="leading" secondItem="vez-Z1-71a" secondAttribute="trailing" constant="18" id="CeL-9k-gLl"/>
                                     <constraint firstItem="otr-Zf-z1H" firstAttribute="height" secondItem="hzj-mF-4qb" secondAttribute="height" id="CpV-nu-B46"/>
+                                    <constraint firstItem="B01-kR-FAr" firstAttribute="top" secondItem="hzj-mF-4qb" secondAttribute="top" constant="43" id="ILL-w6-vIw"/>
                                     <constraint firstItem="L6Q-2h-LQe" firstAttribute="bottom" secondItem="vez-Z1-71a" secondAttribute="bottom" id="MSr-fe-I7h"/>
                                     <constraint firstItem="3yF-8A-d9s" firstAttribute="leading" secondItem="nTF-It-i3a" secondAttribute="trailing" constant="-5" id="RSS-EV-hsg"/>
                                     <constraint firstItem="vez-Z1-71a" firstAttribute="leading" secondItem="hzj-mF-4qb" secondAttribute="leading" constant="284" id="Tnb-LV-lTQ"/>
