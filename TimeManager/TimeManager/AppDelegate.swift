@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
+        _ = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: #selector(self.syncInIntervals), userInfo: nil, repeats: true)
+        
         return true
     }
 
@@ -136,6 +138,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+    
+    func syncInIntervals() {
+        self.syncInBackground({})
     }
     
     func syncInBackground(completion: () -> Void) {
