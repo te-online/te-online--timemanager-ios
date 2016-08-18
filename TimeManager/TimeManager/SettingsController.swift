@@ -10,9 +10,18 @@ import UIKit
 
 class SettingsController: UIViewController {
     
+    var Colors = SharedColorPalette.sharedInstance
+    
+    @IBOutlet weak var DoneButtonTop: UIButton!
+    @IBOutlet weak var DoneButtonBottom: UIButton!
+    @IBOutlet weak var StartSetupButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
+        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
+        StartSetupButton.layer.borderColor = Colors.MediumBlue.CGColor
     }
     
     override func didReceiveMemoryWarning() {
