@@ -26,6 +26,7 @@ class SyncEngine {
     }
     
     var Objects: [[AnyObject]] = []
+    var Deletables: [[AnyObject]] = []
     
     func doSyncJob() {
         // Prepare data
@@ -95,6 +96,7 @@ class SyncEngine {
             do {
                 let entries = try moc.executeFetchRequest(request)
                 self.Objects.append(entries)
+                self.Deletables.append(entries)
                 let deleted = self.objectsToJSON(entries, entity: entity)
                 Data[descriptorsMapping[index]]!["deleted"] = deleted
             } catch {
@@ -116,7 +118,19 @@ class SyncEngine {
                 
                 for entries in self.Objects {
                     for entry in entries {
-                        entry.setValue(commit, forKey: "commit")
+                        if (((entry as! NSManagedObject).valueForKey("commit")?.isEqual(String("deleted"))) == nil) {
+//                            self.dataController.managedObjectContext.deleteObject(entry as! NSManagedObject)
+//                        } else {
+                            entry.setValue(commit, forKey: "commit")
+                        }
+                    }
+                }
+                
+                NSLog("Deletables " + String(self.Deletables))
+                
+                for entries in self.Deletables {
+                    for entry in entries {
+                        self.dataController.managedObjectContext.deleteObject(entry as! NSManagedObject)
                     }
                 }
                 
@@ -131,22 +145,27 @@ class SyncEngine {
             if let data = json[0]["data"].dictionary {
                 for (index, entity) in self.entityMapping.enumerate() {
                     if let created = data[self.descriptorsMapping[index]]!["created"].array {
-                        for var object in created {
+                        for object in created {
 //                            NSLog("new created ones" + String(object.dictionary))
                             self.createObject(object, entityName: entity)
                         }
                     }
                     if let updated = data[self.descriptorsMapping[index]]!["updated"].array {
-                        for var object in updated {
+                        for object in updated {
                             self.updateObject(object, entityName: entity)
                         }
                     }
                     if let deleted = data[self.descriptorsMapping[index]]!["deleted"].array {
-                        for var object in deleted {
+                        for object in deleted {
                             self.deleteObject(object, entityName: entity)
                         }
                     }
                 }
+            }
+            do {
+                try self.dataController.managedObjectContext.save()
+            } catch {
+                fatalError("Failed to save objects in sync process: \(error)")
             }
         })
     }
@@ -163,11 +182,63 @@ class SyncEngine {
             }
         }
         
-        do {
-            try dataController.managedObjectContext.save()
-        } catch {
-            NSLog("Failure to save new item in sync process: \(error)")
+        if(entityName == "Project") {
+            // We need to set a client as the parent
+            let request = NSFetchRequest(entityName: "Client")
             
+            let parentElement = NSPredicate(format: "uuid = %@", object["client_uuid"].string!)
+            request.predicate = parentElement
+            
+            let moc = self.dataController.managedObjectContext
+            
+            do {
+                let objects = try moc.executeFetchRequest(request)
+                if(objects.count > 0) {
+                    let Client = objects[0]
+                    
+                    (item as! ProjectObject).client = (Client as! ClientObject)
+                }
+            } catch {
+                fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
+            }
+        } else if(entityName == "Task") {
+            // We need to set a client as the parent
+            let request = NSFetchRequest(entityName: "Project")
+            
+            let parentElement = NSPredicate(format: "uuid = %@", object["project_uuid"].string!)
+            request.predicate = parentElement
+            
+            let moc = self.dataController.managedObjectContext
+            
+            do {
+                let objects = try moc.executeFetchRequest(request)
+                if(objects.count > 0) {
+                    let Project = objects[0]
+                    
+                    (item as! TaskObject).project = (Project as! ProjectObject)
+                }
+            } catch {
+                fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
+            }
+        } else if(entityName == "Time") {
+            // We need to set a client as the parent
+            let request = NSFetchRequest(entityName: "Task")
+            
+            let parentElement = NSPredicate(format: "uuid = %@", object["task_uuid"].string!)
+            request.predicate = parentElement
+            
+            let moc = self.dataController.managedObjectContext
+            
+            do {
+                let objects = try moc.executeFetchRequest(request)
+                if(objects.count > 0) {
+                    let Task = objects[0]
+                    
+                    (item as! TimeObject).task = (Task as! TaskObject)
+                }
+            } catch {
+                fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
+            }
         }
     }
     
@@ -191,13 +262,6 @@ class SyncEngine {
                         item.setValue(value.string, forKey: key)
                     }
                 }
-                
-                do {
-                    try dataController.managedObjectContext.save()
-                } catch {
-                    self.createObject(object, entityName: entityName)
-                    NSLog("Failure to alter item in sync process: \(error)")
-                }
             }
         } catch {
             fatalError("Failed to execute fetch request alter item in sync process: \(error)")
@@ -219,12 +283,6 @@ class SyncEngine {
                 let item = objects[0]
             
                 moc.deleteObject(item as! NSManagedObject)
-                
-                do {
-                    try moc.save()
-                } catch {
-                    fatalError("Failure to delete item in sync process: \(error)")
-                }
             }
         } catch {
             fatalError("Failed to execute fetch request for delete item in sync process: \(error)")
