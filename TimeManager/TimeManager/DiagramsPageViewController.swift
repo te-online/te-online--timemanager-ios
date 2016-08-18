@@ -23,7 +23,7 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
         self.delegate = self
         self.dataSource = self
         
-        let page1: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("page1")
+        let page1: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("YearChartView")
         let page2: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("page2")
         let page3: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("page3")
         let page4: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("page4")

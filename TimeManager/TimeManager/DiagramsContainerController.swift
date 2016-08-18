@@ -97,7 +97,6 @@ class DiagramsContainerController: UIViewController {
         if currentPage == 3 {
             CurrentNaviPositionLabel.text = FormattingHelper.fullDayAndDateFromDate(self.currentDate).uppercaseString
             TotalCaptionLabel.text = "Day total".uppercaseString
-            TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.getHoursForYearFromDate(self.currentDate))
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.recordedHoursForDay(self.currentDate))
         }
     }

@@ -63,7 +63,6 @@
             <string>Poppins-Medium</string>
             <string>Poppins-Medium</string>
             <string>Poppins-Medium</string>
-            <string>Poppins-Medium</string>
         </mutableArray>
         <mutableArray key="Poppins-Regular.ttf">
             <string>Poppins-Regular</string>
@@ -1346,7 +1345,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpc-s9-VHJ">
-                                <rect key="frame" x="0.0" y="106" width="700" height="514"/>
+                                <rect key="frame" x="0.0" y="106" width="680" height="494"/>
                                 <connections>
                                     <segue destination="38n-AD-tbP" kind="embed" id="ggw-gk-atK"/>
                                 </connections>
@@ -1471,9 +1470,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NBg-WQ-Sdm" firstAttribute="top" secondItem="Om7-G7-bru" secondAttribute="bottom" constant="-20" id="0Mc-3l-th6"/>
-                            <constraint firstItem="Tpc-s9-VHJ" firstAttribute="width" secondItem="9rr-ty-Amv" secondAttribute="width" id="0oe-pJ-syB"/>
+                            <constraint firstItem="Tpc-s9-VHJ" firstAttribute="width" secondItem="9rr-ty-Amv" secondAttribute="width" constant="-20" id="0oe-pJ-syB"/>
                             <constraint firstItem="BnF-f1-Hre" firstAttribute="bottom" secondItem="QgW-mk-nel" secondAttribute="bottom" id="6Wl-bD-4iM"/>
-                            <constraint firstItem="Tpc-s9-VHJ" firstAttribute="height" secondItem="9rr-ty-Amv" secondAttribute="height" constant="-86" id="A41-aB-YTX"/>
+                            <constraint firstItem="Tpc-s9-VHJ" firstAttribute="height" secondItem="9rr-ty-Amv" secondAttribute="height" constant="-106" id="A41-aB-YTX"/>
                             <constraint firstItem="QdI-pN-Q4B" firstAttribute="top" secondItem="Om7-G7-bru" secondAttribute="bottom" constant="-20" id="AHj-NE-iFl"/>
                             <constraint firstItem="ug8-ZC-LLl" firstAttribute="top" secondItem="Om7-G7-bru" secondAttribute="bottom" constant="-3" id="BJD-AG-lH7"/>
                             <constraint firstItem="BnF-f1-Hre" firstAttribute="leading" secondItem="ug8-ZC-LLl" secondAttribute="leading" id="Dbb-5E-wVo"/>
@@ -1488,7 +1487,7 @@
                             <constraint firstItem="BnF-f1-Hre" firstAttribute="top" secondItem="ug8-ZC-LLl" secondAttribute="bottom" constant="2" id="bwg-Yj-sY3"/>
                             <constraint firstItem="ug8-ZC-LLl" firstAttribute="leading" secondItem="QgW-mk-nel" secondAttribute="trailing" constant="86" id="ddL-z9-Jdg"/>
                             <constraint firstItem="Nam-1b-zFU" firstAttribute="leading" secondItem="NBg-WQ-Sdm" secondAttribute="leading" id="hdV-IN-ghX"/>
-                            <constraint firstItem="Tpc-s9-VHJ" firstAttribute="centerX" secondItem="9rr-ty-Amv" secondAttribute="centerX" id="ihf-7r-Hd9"/>
+                            <constraint firstItem="Tpc-s9-VHJ" firstAttribute="centerX" secondItem="9rr-ty-Amv" secondAttribute="centerX" constant="-10" id="ihf-7r-Hd9"/>
                             <constraint firstItem="QgW-mk-nel" firstAttribute="leading" secondItem="9rr-ty-Amv" secondAttribute="leadingMargin" constant="323" id="m5M-ZX-Zus"/>
                             <constraint firstItem="au4-KQ-9u3" firstAttribute="top" secondItem="Om7-G7-bru" secondAttribute="bottom" constant="-20" id="mge-En-ysZ"/>
                             <constraint firstItem="QdI-pN-Q4B" firstAttribute="leading" secondItem="9rr-ty-Amv" secondAttribute="leadingMargin" constant="237" id="usP-aY-dHP"/>
@@ -3260,10 +3259,10 @@ logo, colors, font choices and simp</string>
             </objects>
             <point key="canvasLocation" x="-429" y="2843"/>
         </scene>
-        <!--View Controller-->
+        <!--Year Chart View Controller-->
         <scene sceneID="lDZ-3P-KXD">
             <objects>
-                <viewController storyboardIdentifier="page1" id="mjC-Sf-JlH" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="YearChartView" id="mjC-Sf-JlH" customClass="YearChartViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1ji-QR-Wmh"/>
                         <viewControllerLayoutGuide type="bottom" id="ba7-NC-IMS"/>
@@ -3272,15 +3271,22 @@ logo, colors, font choices and simp</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ea4-b9-pM5">
-                                <rect key="frame" x="20" y="20" width="120" height="21"/>
-                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="25"/>
-                                <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4o-vh-MOt" customClass="ScatterChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.81568628549575806" green="0.22352941334247589" blue="0.062745101749897003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w4o-vh-MOt" firstAttribute="width" secondItem="4fJ-2a-qd0" secondAttribute="width" id="2Tb-q3-4hO"/>
+                            <constraint firstItem="w4o-vh-MOt" firstAttribute="height" secondItem="4fJ-2a-qd0" secondAttribute="height" id="OPx-Nh-ZaV"/>
+                            <constraint firstItem="w4o-vh-MOt" firstAttribute="centerX" secondItem="4fJ-2a-qd0" secondAttribute="centerX" id="P5S-NB-fKc"/>
+                            <constraint firstItem="w4o-vh-MOt" firstAttribute="centerY" secondItem="4fJ-2a-qd0" secondAttribute="centerY" id="mOs-lp-xSS"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="chartView" destination="w4o-vh-MOt" id="zYe-FF-FRt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldd-Pd-18G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
