@@ -287,18 +287,27 @@ class TimeTraveller {
     }
     
     func getHoursForYearFromDate(date: NSDate) -> Double {
+        // Determine the year of the given date
+        // Determine the first day of this year
+        // Determine the last day of this year
+        // Get the hours between the date (recordedHoursBetweenDates)
+        
         return 5
         // TODO
     }
     
     func getHoursForMonthFromDate(date: NSDate) -> Double {
+        // Determine the month of the given date
+        // Determine the first day of this month
+        // Determine the last day of this month
+        // Get the hours between the date (recordedHoursBetweenDates)
+        
         return 5
         // TODO
     }
     
     func getHoursForWeekFromDate(date: NSDate) -> Double {
-        return 5
-        // TODO
+        return self.recordedHoursForWeekFromDate(date)
     }
     
     func getWeeksInMonthFromDate(date: NSDate) -> [[NSDate]] {
@@ -306,25 +315,14 @@ class TimeTraveller {
         // TODO
     }
     
-    func getWeekNumberFromDate(date: NSDate) -> Int {
-        return 31
+    func getMonthsInYearFromDate(date: NSDate) -> [[NSDate]] {
+        return [[NSDate(), NSDate()]]
         // TODO
     }
     
     func getProjectsOfDay(date: NSDate) -> [ProjectObject] {
         return [ProjectObject()]
         // TODO
-    }
-    
-    func getProjectsOfWeek(date: NSDate) -> [ProjectObject] {
-        return [ProjectObject()]
-        // TODO
-        
-        // Create an array of all the times in the week
-        // Create a unique set of all the tasks with created times in the week
-        // Include the latest creation date in the set for each task
-        // sort the set by creation date
-        // Only use the first 5 entries
     }
     
 }

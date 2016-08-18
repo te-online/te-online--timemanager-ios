@@ -46,11 +46,14 @@ class FormattingHelper {
     }
     
     static func formatNiceDayFromDateAsString(date: NSDate) -> String {
+        return self.fullDayAndDateFromDate(date)
+    }
+    
+    static func fullDayAndDateFromDate(date: NSDate) -> String {
         var dateFormatter: NSDateFormatter!
         // Let's create a nice date format.
         dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        dateFormatter.timeStyle = .NoStyle
+        dateFormatter.dateFormat = "EEEE d.M.y" // Monday 1.8.2016
         
         return dateFormatter.stringFromDate(date)
     }
@@ -59,7 +62,34 @@ class FormattingHelper {
         var dateFormatter: NSDateFormatter!
         // Let's create a nice date format.
         dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "cccccc d.M."
+        dateFormatter.dateFormat = "cccccc d.M." // Mo 1.8.
+        
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    static func dayAndDateVeryShortFromDate(date: NSDate) -> String {
+        var dateFormatter: NSDateFormatter!
+        // Let's create a nice date format.
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEEEE, d. MMM y" // Mon, 1. Aug 2016
+        
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    static func dayAndDateFromDate(date: NSDate) -> String {
+        var dateFormatter: NSDateFormatter!
+        // Let's create a nice date format.
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEEEE d.M.y" // Mon 1.8.2016
+        
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    static func dayMonthYearFromDate(date: NSDate) -> String {
+        var dateFormatter: NSDateFormatter!
+        // Let's create a nice date format.
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd. MMMM y" // 01. August 2001
         
         return dateFormatter.stringFromDate(date)
     }
@@ -92,8 +122,17 @@ class FormattingHelper {
         var dateFormatter: NSDateFormatter!
         // Let's create a nice date format.
         dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "w / y"
+        dateFormatter.dateFormat = "w / y" // 34 / 2016
         
         return "week " + dateFormatter.stringFromDate(date)
+    }
+    
+    static func monthAndYearFromDate(date: NSDate) -> String {
+        var dateFormatter: NSDateFormatter!
+        // Let's create a nice date format.
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMMM y" // August 2016
+        
+        return dateFormatter.stringFromDate(date)
     }
 }

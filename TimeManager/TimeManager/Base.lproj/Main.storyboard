@@ -64,9 +64,9 @@
             <string>Poppins-Medium</string>
             <string>Poppins-Medium</string>
             <string>Poppins-Medium</string>
-            <string>Poppins-Medium</string>
         </mutableArray>
         <mutableArray key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
@@ -1342,11 +1342,11 @@
                         <viewControllerLayoutGuide type="bottom" id="p2z-aT-u0L"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9rr-ty-Amv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpc-s9-VHJ">
-                                <rect key="frame" x="0.0" y="106" width="600" height="514"/>
+                                <rect key="frame" x="0.0" y="106" width="700" height="514"/>
                                 <connections>
                                     <segue destination="38n-AD-tbP" kind="embed" id="ggw-gk-atK"/>
                                 </connections>
@@ -1379,7 +1379,6 @@
                                 </state>
                                 <connections>
                                     <action selector="MonthNavigationButtonPressed:" destination="HzZ-oo-cvq" eventType="touchUpInside" id="Agq-5S-pyX"/>
-                                    <action selector="YearNavigationButtonPressed:" destination="HzZ-oo-cvq" eventType="touchUpInside" id="X0E-Gi-nck"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdI-pN-Q4B">
@@ -1395,7 +1394,6 @@
                                 </state>
                                 <connections>
                                     <action selector="WeekNavigationButtonPressed:" destination="HzZ-oo-cvq" eventType="touchUpInside" id="P1y-7Z-Xrp"/>
-                                    <action selector="YearNavigationButtonPressed:" destination="HzZ-oo-cvq" eventType="touchUpInside" id="QsN-I8-LKj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgW-mk-nel">
@@ -1411,9 +1409,18 @@
                                 </state>
                                 <connections>
                                     <action selector="DayNavigationButtonPressed:" destination="HzZ-oo-cvq" eventType="touchUpInside" id="3Ys-kT-8d2"/>
-                                    <action selector="YearNavigationButtonPressed:" destination="HzZ-oo-cvq" eventType="touchUpInside" id="Hit-5Z-wMk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-EK-FBh">
+                                <rect key="frame" x="116" y="72" width="275" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="275" id="A4F-BI-WGN"/>
+                                    <constraint firstAttribute="height" constant="22" id="wF5-N2-yLL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nam-1b-zFU">
                                 <rect key="frame" x="86" y="68" width="30" height="30"/>
                                 <constraints>
@@ -1440,14 +1447,24 @@
                                     <action selector="NavigateToNextWeekButtonPressed:" destination="QPQ-WR-e8O" eventType="touchUpInside" id="4gI-3q-JA8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-EK-FBh">
-                                <rect key="frame" x="116" y="72" width="275" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.25 hrs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnF-f1-Hre">
+                                <rect key="frame" x="515" y="33" width="153" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="275" id="A4F-BI-WGN"/>
-                                    <constraint firstAttribute="height" constant="22" id="wF5-N2-yLL"/>
+                                    <constraint firstAttribute="height" constant="20" id="EBE-EI-4rT"/>
+                                    <constraint firstAttribute="width" constant="153" id="XD5-fL-3NL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="22"/>
+                                <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YEAR TOTAL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ug8-ZC-LLl">
+                                <rect key="frame" x="515" y="17" width="133" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="133" id="60z-be-hhv"/>
+                                    <constraint firstAttribute="height" constant="14" id="mCX-4F-z4g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="10"/>
+                                <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1455,8 +1472,11 @@
                         <constraints>
                             <constraint firstItem="NBg-WQ-Sdm" firstAttribute="top" secondItem="Om7-G7-bru" secondAttribute="bottom" constant="-20" id="0Mc-3l-th6"/>
                             <constraint firstItem="Tpc-s9-VHJ" firstAttribute="width" secondItem="9rr-ty-Amv" secondAttribute="width" id="0oe-pJ-syB"/>
+                            <constraint firstItem="BnF-f1-Hre" firstAttribute="bottom" secondItem="QgW-mk-nel" secondAttribute="bottom" id="6Wl-bD-4iM"/>
                             <constraint firstItem="Tpc-s9-VHJ" firstAttribute="height" secondItem="9rr-ty-Amv" secondAttribute="height" constant="-86" id="A41-aB-YTX"/>
                             <constraint firstItem="QdI-pN-Q4B" firstAttribute="top" secondItem="Om7-G7-bru" secondAttribute="bottom" constant="-20" id="AHj-NE-iFl"/>
+                            <constraint firstItem="ug8-ZC-LLl" firstAttribute="top" secondItem="Om7-G7-bru" secondAttribute="bottom" constant="-3" id="BJD-AG-lH7"/>
+                            <constraint firstItem="BnF-f1-Hre" firstAttribute="leading" secondItem="ug8-ZC-LLl" secondAttribute="leading" id="Dbb-5E-wVo"/>
                             <constraint firstItem="QgW-mk-nel" firstAttribute="top" secondItem="Om7-G7-bru" secondAttribute="bottom" constant="-20" id="EZP-JC-DTV"/>
                             <constraint firstItem="au4-KQ-9u3" firstAttribute="leading" secondItem="9rr-ty-Amv" secondAttribute="leadingMargin" constant="152" id="MNN-Nh-Qc5"/>
                             <constraint firstItem="1Up-18-z3W" firstAttribute="trailing" secondItem="QgW-mk-nel" secondAttribute="trailing" id="N3R-al-zao"/>
@@ -1465,6 +1485,8 @@
                             <constraint firstItem="Nam-1b-zFU" firstAttribute="top" secondItem="NBg-WQ-Sdm" secondAttribute="bottom" constant="15" id="Ptn-wx-WPz"/>
                             <constraint firstItem="TDS-EK-FBh" firstAttribute="top" secondItem="au4-KQ-9u3" secondAttribute="bottom" constant="19" id="aNo-3e-F3L"/>
                             <constraint firstItem="TDS-EK-FBh" firstAttribute="leading" secondItem="Nam-1b-zFU" secondAttribute="trailing" id="avf-lP-2xk"/>
+                            <constraint firstItem="BnF-f1-Hre" firstAttribute="top" secondItem="ug8-ZC-LLl" secondAttribute="bottom" constant="2" id="bwg-Yj-sY3"/>
+                            <constraint firstItem="ug8-ZC-LLl" firstAttribute="leading" secondItem="QgW-mk-nel" secondAttribute="trailing" constant="86" id="ddL-z9-Jdg"/>
                             <constraint firstItem="Nam-1b-zFU" firstAttribute="leading" secondItem="NBg-WQ-Sdm" secondAttribute="leading" id="hdV-IN-ghX"/>
                             <constraint firstItem="Tpc-s9-VHJ" firstAttribute="centerX" secondItem="9rr-ty-Amv" secondAttribute="centerX" id="ihf-7r-Hd9"/>
                             <constraint firstItem="QgW-mk-nel" firstAttribute="leading" secondItem="9rr-ty-Amv" secondAttribute="leadingMargin" constant="323" id="m5M-ZX-Zus"/>
@@ -1472,19 +1494,28 @@
                             <constraint firstItem="QdI-pN-Q4B" firstAttribute="leading" secondItem="9rr-ty-Amv" secondAttribute="leadingMargin" constant="237" id="usP-aY-dHP"/>
                             <constraint firstItem="Tpc-s9-VHJ" firstAttribute="top" secondItem="Om7-G7-bru" secondAttribute="bottom" constant="86" id="utG-Tg-aeQ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BJD-AG-lH7"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="700" height="600"/>
                     <connections>
                         <outlet property="CurrentNaviPositionLabel" destination="TDS-EK-FBh" id="Xzc-gk-e17"/>
                         <outlet property="DayNavigationButton" destination="QgW-mk-nel" id="DZm-9t-4Wq"/>
                         <outlet property="MonthNavigationButton" destination="au4-KQ-9u3" id="k2q-jb-CUe"/>
                         <outlet property="PageViewContainer" destination="Tpc-s9-VHJ" id="IJj-rj-T86"/>
+                        <outlet property="TotalCaptionLabel" destination="ug8-ZC-LLl" id="zOf-w7-6nU"/>
+                        <outlet property="TotalValueLabel" destination="BnF-f1-Hre" id="wRz-GJ-U27"/>
                         <outlet property="WeekNavigationButton" destination="QdI-pN-Q4B" id="zAI-Eh-9wS"/>
                         <outlet property="YearNavigationButton" destination="NBg-WQ-Sdm" id="v70-sd-FY3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Id-Ne-3lI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1204" y="2827"/>
+            <point key="canvasLocation" x="-1204" y="2862"/>
         </scene>
         <!--Projects-->
         <scene sceneID="1Ex-Uf-QUd">
@@ -1593,21 +1624,6 @@
                                         <constraint firstAttribute="height" constant="1" id="2d2-Ym-A5g"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.25 Hrs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnF-f1-Hre">
-                                    <rect key="frame" x="130" y="17" width="81" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="81" id="XD5-fL-3NL"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
-                                    <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CLIENT TOTAL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ug8-ZC-LLl">
-                                    <rect key="frame" x="130" y="6" width="81" height="14"/>
-                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
-                                    <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hck-76-w2e">
                                     <rect key="frame" x="70" y="17" width="50" height="20"/>
                                     <constraints>
@@ -1620,15 +1636,10 @@
                             </subviews>
                             <color key="backgroundColor" red="0.89803921568627454" green="0.94117647058823528" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="BnF-f1-Hre" firstAttribute="top" secondItem="ug8-ZC-LLl" secondAttribute="bottom" constant="-3" id="0vv-ZN-9Xt"/>
                                 <constraint firstItem="69p-To-XN8" firstAttribute="width" secondItem="e0u-Bj-sGh" secondAttribute="width" id="3ps-S0-aWe"/>
-                                <constraint firstItem="ug8-ZC-LLl" firstAttribute="width" secondItem="BnF-f1-Hre" secondAttribute="width" id="4zn-R8-rV0"/>
-                                <constraint firstItem="ug8-ZC-LLl" firstAttribute="leading" secondItem="BnF-f1-Hre" secondAttribute="leading" id="BV4-zW-jiX"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="g3m-CX-vKK" secondAttribute="bottom" constant="-5" id="GcO-IS-7d5"/>
                                 <constraint firstItem="Hck-76-w2e" firstAttribute="leading" secondItem="g3m-CX-vKK" secondAttribute="trailing" constant="7" id="L3x-kb-1Yq"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="69p-To-XN8" secondAttribute="bottom" constant="-8" id="QAU-fW-0kY"/>
-                                <constraint firstItem="BnF-f1-Hre" firstAttribute="leading" secondItem="Hck-76-w2e" secondAttribute="trailing" constant="10" id="TiQ-9N-s8g"/>
-                                <constraint firstItem="BnF-f1-Hre" firstAttribute="bottom" secondItem="Hck-76-w2e" secondAttribute="bottom" id="YhZ-lR-ul3"/>
                                 <constraint firstItem="g3m-CX-vKK" firstAttribute="leading" secondItem="e0u-Bj-sGh" secondAttribute="leadingMargin" constant="5" id="qJ2-iy-YkC"/>
                                 <constraint firstItem="69p-To-XN8" firstAttribute="leading" secondItem="e0u-Bj-sGh" secondAttribute="leadingMargin" constant="-8" id="qmG-1Q-rmF"/>
                                 <constraint firstItem="Hck-76-w2e" firstAttribute="bottom" secondItem="g3m-CX-vKK" secondAttribute="bottom" id="zJk-Od-pkS"/>
@@ -3247,7 +3258,7 @@ logo, colors, font choices and simp</string>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="mid" doubleSided="YES" id="38n-AD-tbP" customClass="DiagramsPageViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4DY-QB-Kei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-491" y="2849"/>
+            <point key="canvasLocation" x="-429" y="2843"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lDZ-3P-KXD">
