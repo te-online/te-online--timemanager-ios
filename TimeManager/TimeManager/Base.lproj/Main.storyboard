@@ -150,6 +150,7 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
         </mutableArray>
         <mutableArray key="Poppins-SemiBold.ttf">
             <string>Poppins-SemiBold</string>
@@ -449,6 +450,12 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No tasks in this week, yet.              Go ahead, do the hard work and see the tables fill themselves!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B01-kR-FAr">
+                                        <rect key="frame" x="22" y="43" width="234" height="70"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                        <color key="textColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -500,11 +507,11 @@
                                         <color key="textColor" red="0.51372549019607838" green="0.52549019607843139" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEEK" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nu0-fv-apa">
-                                        <rect key="frame" x="237" y="45" width="43" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THIS WEEK" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nu0-fv-apa">
+                                        <rect key="frame" x="237" y="45" width="70" height="23"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="9DH-cZ-XMg"/>
-                                            <constraint firstAttribute="width" constant="43" id="zM9-on-p19"/>
+                                            <constraint firstAttribute="height" constant="23" id="9DH-cZ-XMg"/>
+                                            <constraint firstAttribute="width" constant="70" id="zM9-on-p19"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                         <color key="textColor" red="0.51372549019607838" green="0.52549019607843139" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
@@ -568,6 +575,7 @@
                     <connections>
                         <outlet property="CurrentWeekLabel" destination="nTF-It-i3a" id="Efa-i0-q9V"/>
                         <outlet property="HoursCollectionView" destination="otr-Zf-z1H" id="dMS-hO-gwq"/>
+                        <outlet property="NoEntriesLabel" destination="B01-kR-FAr" id="lod-UH-BV7"/>
                         <outlet property="TasksCollectionView" destination="SVO-pr-9c2" id="1vL-2Y-mIs"/>
                         <outlet property="TodaysHoursMainLabel" destination="zzm-26-Icg" id="gqz-qh-AHd"/>
                         <outlet property="WeeksHoursMainLabel" destination="4Km-69-wRm" id="6Un-s4-2eQ"/>

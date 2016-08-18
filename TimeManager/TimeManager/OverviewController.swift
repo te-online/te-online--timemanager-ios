@@ -28,6 +28,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var WeeksHoursTableLabel: UILabel!
     
     @IBOutlet weak var CurrentWeekLabel: UILabel!
+    @IBOutlet weak var NoEntriesLabel: UILabel!
     
     @IBOutlet weak var TasksCollectionView: UICollectionView!
     @IBOutlet weak var HoursCollectionView: UICollectionView!
@@ -63,12 +64,6 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBAction func NavigateToNextWeekButtonPressed(sender: AnyObject) {
         // Add one week to the current date.
         self.currentDate = self.currentDate.dateByAddingTimeInterval((7 * 24 * 60 * 60))
-        // If currentdate variable is greater or equal to today, don't let them go into the future.
-        if (self.currentDate.compare(NSDate()) == NSComparisonResult.OrderedDescending || self.currentDate.compare(NSDate()) == NSComparisonResult.OrderedSame) {
-            (sender as! UIButton).enabled = false
-        } else {
-            (sender as! UIButton).enabled = true
-        }
         self.loadData()
     }
     
@@ -155,6 +150,12 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
                 dayValues: tt.recordedHoursForWeekInTaskFromDate(currentDate, task: (entry as TaskObject))
             )
             newTasks.append(newTask)
+        }
+        
+        if entries.count > 0 {
+            NoEntriesLabel.alpha = 0
+        } else {
+            NoEntriesLabel.alpha = 1
         }
         
         self.tasks = newTasks
