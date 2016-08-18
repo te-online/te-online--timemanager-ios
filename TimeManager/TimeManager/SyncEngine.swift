@@ -14,6 +14,7 @@ class SyncEngine {
     
     var entityMapping = ["Client", "Project", "Task", "Time"]
     var descriptorsMapping = ["clients", "projects", "tasks", "times"]
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     var dataController: AppDelegate! = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -107,15 +108,13 @@ class SyncEngine {
 //        NSLog("Data " + String(Data))
         NSLog("Synchronizing...")
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let lastCommit = defaults.stringForKey("lastCommit") ?? ""
+        let lastCommit = self.defaults.stringForKey("lastCommit") ?? ""
 
         RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data, "lastCommit": lastCommit], onCompletion: { (json: JSON) in
 //            NSLog("results " + String(json.array))
             if let commit = json[0]["commit"].string {
                 NSLog("commit " + commit)
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setValue(commit, forKey: "lastCommit")
+                self.defaults.setValue(commit, forKey: "lastCommit")
                 
                 for entries in self.Objects {
                     for entry in entries {

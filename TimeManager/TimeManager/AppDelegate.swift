@@ -133,7 +133,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func syncInBackground(completion: () -> Void) {
-        let syncActive = true
+        var syncActive = true
+        if (NSUserDefaults.standardUserDefaults().stringForKey("cloudSyncServer") == nil) {
+            NSLog("No Cloud Server given")
+            syncActive = false
+        }
         if(syncActive) {
             let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
             dispatch_async(dispatch_get_global_queue(priority, 0)) {

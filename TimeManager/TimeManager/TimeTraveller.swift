@@ -14,8 +14,10 @@ class TimeTraveller {
     var dataController: AppDelegate! = UIApplication.sharedApplication().delegate as! AppDelegate
     var calendar: NSCalendar = NSCalendar.currentCalendar()
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     init() {
-        calendar.firstWeekday = 2
+        calendar.firstWeekday = (self.defaults.integerForKey("startWeekWith") == 0) ? 2 : self.defaults.integerForKey("startWeekWith") - 1
     }
     
     func todaysRecordedHours() -> Double {

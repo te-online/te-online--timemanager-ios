@@ -13,7 +13,19 @@ typealias ServiceResponse = (JSON, NSError?) -> Void
 class RestApiManager: NSObject {
     static let sharedInstance = RestApiManager()
     
-    let baseURL = "http://localhost:4444/api/updateObjects"
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
+    var serviceUrl = ""
+    var baseURL = ""
+    
+    override init() {
+        self.serviceUrl = defaults.stringForKey("cloudSyncServer") ?? ""
+        if(self.serviceUrl == "localhost:4444") {
+            self.baseURL = "http://" + self.serviceUrl + "/api/updateObjects"
+        } else {
+            self.baseURL = "https://" + self.serviceUrl + "/api/updateObjects"
+        }
+    }
     
     func getRandomUser(onCompletion: (JSON) -> Void) {
         let route = baseURL
