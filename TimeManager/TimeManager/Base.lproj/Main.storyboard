@@ -151,6 +151,7 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
         </mutableArray>
         <mutableArray key="Poppins-SemiBold.ttf">
             <string>Poppins-SemiBold</string>
@@ -653,6 +654,15 @@
                                             <action selector="NavBarButtonStatisticsTouched:" destination="hje-Nn-7VH" eventType="touchUpInside" id="OV9-IQ-L0j"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="M4y-Uq-AgY">
+                                        <rect key="frame" x="33" y="474" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SYNCING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAz-xa-dJb">
+                                        <rect key="frame" x="6" y="498" width="74" height="23"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                        <color key="textColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -680,6 +690,10 @@
                             <constraint firstItem="1A1-ab-oz6" firstAttribute="centerY" secondItem="ZMc-Sh-oCB" secondAttribute="centerY" id="yV6-OP-SSB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="SyncingSpinner" destination="M4y-Uq-AgY" id="kKO-LU-Zmy"/>
+                        <outlet property="SyncingText" destination="EAz-xa-dJb" id="qrE-du-dsH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHz-3D-saZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

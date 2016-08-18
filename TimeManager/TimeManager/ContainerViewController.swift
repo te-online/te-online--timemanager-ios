@@ -15,8 +15,13 @@ class ContainerViewController: UIViewController {
     var statisticsScreenController: UIViewController!
     var currentViewController: UIViewController!
     
+    @IBOutlet weak var SyncingSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var SyncingText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hideSyncInProgress()
         
         // Load all the nice child views we're going to use.
         self.entriesScreenController = storyboard?.instantiateViewControllerWithIdentifier("EntriesViewController")
@@ -97,6 +102,16 @@ class ContainerViewController: UIViewController {
                 // Store current view controller, just in case.
                 self.currentViewController = newVC
         })
+    }
+    
+    func showSyncInProgress() {
+        SyncingSpinner.alpha = 1
+        SyncingText.alpha = 1
+    }
+    
+    func hideSyncInProgress() {
+        SyncingSpinner.alpha = 0
+        SyncingText.alpha = 0
     }
     
 }

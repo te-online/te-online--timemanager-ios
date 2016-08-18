@@ -59,18 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Support for background fetch
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
-//        if let tabBarController = window?.rootViewController as? UITabBarController,
-//            viewControllers = tabBarController.viewControllers as? [UIViewController] {
-//            for viewController in viewControllers {
-//                if let fetchViewController = viewController as? FetchViewController {
-//                    fetchViewController.fetch {
-//                        fetchViewController.updateUI()
-//                        completionHandler(.NewData)
-//                    }
-//                }
-//            }
-//        }
-        
         self.syncInBackground({
             NSLog("Sync in background completed")
             completionHandler(.NewData)
@@ -149,9 +137,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(syncActive) {
             let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
             dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                if let containerController = self.window?.rootViewController as? ContainerViewController {
+                    containerController.showSyncInProgress()
+                }
                 let se = SyncEngine()
                 se.doSyncJob()
                 dispatch_async(dispatch_get_main_queue()) {
+                    if let containerController = self.window?.rootViewController as? ContainerViewController {
+                        containerController.hideSyncInProgress()
+                    }
                     completion()
                 }
             }
