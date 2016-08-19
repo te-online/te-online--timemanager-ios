@@ -21,8 +21,8 @@ class DayChartView: UIViewController, ChartViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.months = ["MO 1.8.", "TU 2.8.", "WE 3.8.", "TH 4.8.", "FR 5.8.", "SA 6.8.", "SU 7.8."]
-        self.data = [5, 8.5, 2.75, 7.5, 7, 0, 0]
+        self.months = ["", "", "", "", ""]
+        self.data = [1.75, 3, 2, 2, 1.25]
         
         self.chartView.delegate = self
         // No description text.

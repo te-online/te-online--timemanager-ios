@@ -13,15 +13,7 @@
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="web" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="client" inverseEntity="Contact" syncable="YES"/>
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="client" inverseEntity="Project" syncable="YES"/>
-    </entity>
-    <entity name="Contact" representedClassName="Contact" syncable="YES">
-        <attribute name="client_uuid" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="commit" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="client" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="contacts" inverseEntity="Client" syncable="YES"/>
     </entity>
     <entity name="Project" representedClassName="Project" syncable="YES">
         <attribute name="changed" optional="YES" attributeType="Date" syncable="YES"/>
@@ -57,10 +49,9 @@
         <relationship name="task" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="times" inverseEntity="Task" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Client" positionX="-209" positionY="-360" width="128" height="253"/>
-        <element name="Contact" positionX="-0" positionY="-360" width="128" height="118"/>
-        <element name="Project" positionX="18" positionY="-90" width="128" height="193"/>
-        <element name="Task" positionX="189" positionY="-90" width="128" height="163"/>
-        <element name="Time" positionX="367" positionY="-90" width="128" height="178"/>
+        <element name="Client" positionX="-216" positionY="-360" width="128" height="238"/>
+        <element name="Project" positionX="-0" positionY="-360" width="128" height="193"/>
+        <element name="Task" positionX="216" positionY="-360" width="128" height="163"/>
+        <element name="Time" positionX="432" positionY="-360" width="128" height="178"/>
     </elements>
 </model>
