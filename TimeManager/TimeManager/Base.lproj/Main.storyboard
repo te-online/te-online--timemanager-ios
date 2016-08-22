@@ -153,6 +153,7 @@
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
             <string>Poppins-Regular</string>
+            <string>Poppins-Regular</string>
         </mutableArray>
         <mutableArray key="Poppins-SemiBold.ttf">
             <string>Poppins-SemiBold</string>
@@ -3375,7 +3376,7 @@ logo, colors, font choices and simp</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAs-ZI-sND" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="3541"/>
+            <point key="canvasLocation" x="-223" y="3600"/>
         </scene>
         <!--Day Chart View-->
         <scene sceneID="8XA-u2-zIv">
@@ -3386,29 +3387,72 @@ logo, colors, font choices and simp</string>
                         <viewControllerLayoutGuide type="bottom" id="VZ3-AL-NvU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="P4r-Rd-lpo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmS-7f-inb" customClass="HorizontalBarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1000" height="243"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.25 hrs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0o-1g-1Zq">
+                                <rect key="frame" x="295" y="290" width="132" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="132" id="eOp-pk-N86"/>
+                                    <constraint firstAttribute="height" constant="20" id="y1a-EC-72c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="22"/>
+                                <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wvu-d9-PgR">
+                                <rect key="frame" x="426" y="290" width="489" height="310"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="310" id="2my-TJ-QSZ"/>
+                                    <constraint firstAttribute="width" constant="489" id="qiD-Nr-3Nh"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="client" id="iJK-45-h0j">
+                                        <rect key="frame" x="0.0" y="28" width="489" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iJK-45-h0j" id="jR4-h7-LPH">
+                                            <rect key="frame" x="0.0" y="0.0" width="489" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subitem" id="HLz-df-xWe">
+                                        <rect key="frame" x="0.0" y="72" width="489" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HLz-df-xWe" id="NLm-L7-UE6">
+                                            <rect key="frame" x="0.0" y="0.0" width="489" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vmS-7f-inb" firstAttribute="centerX" secondItem="P4r-Rd-lpo" secondAttribute="centerX" id="BJS-hT-SbG"/>
-                            <constraint firstItem="vmS-7f-inb" firstAttribute="height" secondItem="P4r-Rd-lpo" secondAttribute="height" id="G2z-mN-RPt"/>
+                            <constraint firstItem="vmS-7f-inb" firstAttribute="height" secondItem="P4r-Rd-lpo" secondAttribute="height" constant="-357" id="G2z-mN-RPt"/>
+                            <constraint firstItem="Wvu-d9-PgR" firstAttribute="top" secondItem="i0o-1g-1Zq" secondAttribute="top" id="Kz2-v4-OXw"/>
+                            <constraint firstItem="i0o-1g-1Zq" firstAttribute="leading" secondItem="P4r-Rd-lpo" secondAttribute="leadingMargin" constant="275" id="Rgb-ff-UZO"/>
+                            <constraint firstItem="i0o-1g-1Zq" firstAttribute="top" secondItem="vmS-7f-inb" secondAttribute="bottom" constant="47" id="W2R-K1-oN1"/>
                             <constraint firstItem="vmS-7f-inb" firstAttribute="width" secondItem="P4r-Rd-lpo" secondAttribute="width" id="WVW-5v-ZCO"/>
-                            <constraint firstItem="vmS-7f-inb" firstAttribute="centerY" secondItem="P4r-Rd-lpo" secondAttribute="centerY" id="ZeY-vh-jHI"/>
+                            <constraint firstItem="vmS-7f-inb" firstAttribute="centerY" secondItem="P4r-Rd-lpo" secondAttribute="centerY" constant="-178.5" id="ZeY-vh-jHI"/>
+                            <constraint firstItem="Wvu-d9-PgR" firstAttribute="leading" secondItem="i0o-1g-1Zq" secondAttribute="trailing" constant="-1" id="q8k-e2-uda"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="1000" height="600"/>
                     <connections>
+                        <outlet property="DetailsTableView" destination="Wvu-d9-PgR" id="ugb-0i-ncu"/>
                         <outlet property="chartView" destination="vmS-7f-inb" id="L5j-me-M3E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EG7-Rd-1Cw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="3541"/>
+            <point key="canvasLocation" x="612" y="3600"/>
         </scene>
     </scenes>
     <resources>
