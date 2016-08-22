@@ -17,6 +17,7 @@ class SyncEngine {
     let defaults = NSUserDefaults.standardUserDefaults()
     
     var dataController: AppDelegate! = UIApplication.sharedApplication().delegate as! AppDelegate
+    var syncManagedObjectContext: NSManagedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).backgroundManagedObjectContext
     
     var Data: [String: [String: [AnyObject]]]!
     
@@ -66,7 +67,7 @@ class SyncEngine {
             let newElements = NSPredicate(format: "(commit = nil) AND (created = changed)")
             request.predicate = newElements
             
-            let moc = self.dataController.managedObjectContext
+            let moc = self.syncManagedObjectContext
             
             do {
                 let entries = try moc.executeFetchRequest(request)
@@ -119,7 +120,7 @@ class SyncEngine {
                 for entries in self.Objects {
                     for entry in entries {
                         if (((entry as! NSManagedObject).valueForKey("commit")?.isEqual(String("deleted"))) == nil) {
-//                            self.dataController.managedObjectContext.deleteObject(entry as! NSManagedObject)
+//                            self.syncManagedObjectContext.deleteObject(entry as! NSManagedObject)
 //                        } else {
                             entry.setValue(commit, forKey: "commit")
                         }
@@ -130,11 +131,11 @@ class SyncEngine {
                 
                 for entries in self.Deletables {
                     for entry in entries {
-                        self.dataController.managedObjectContext.deleteObject(entry as! NSManagedObject)
+                        self.syncManagedObjectContext.deleteObject(entry as! NSManagedObject)
                     }
                 }
                 
-                let moc = self.dataController.managedObjectContext
+                let moc = self.syncManagedObjectContext
                 do {
                     try moc.save()
                 } catch {
@@ -163,7 +164,7 @@ class SyncEngine {
                 }
             }
             do {
-                try self.dataController.managedObjectContext.save()
+                try self.syncManagedObjectContext.save()
             } catch {
                 fatalError("Failed to save objects in sync process: \(error)")
             }
@@ -171,8 +172,8 @@ class SyncEngine {
     }
     
     func createObject(object: JSON, entityName: String) {
-        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: dataController.managedObjectContext)
-        let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
+        let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: syncManagedObjectContext)
+        let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: syncManagedObjectContext)
         
         for (key, value) in object.dictionary! {
             if(key == "created" || key == "changed" || key == "start" || key == "end") {
@@ -189,7 +190,7 @@ class SyncEngine {
             let parentElement = NSPredicate(format: "uuid = %@", object["client_uuid"].string!)
             request.predicate = parentElement
             
-            let moc = self.dataController.managedObjectContext
+            let moc = self.syncManagedObjectContext
             
             do {
                 let objects = try moc.executeFetchRequest(request)
@@ -208,7 +209,7 @@ class SyncEngine {
             let parentElement = NSPredicate(format: "uuid = %@", object["project_uuid"].string!)
             request.predicate = parentElement
             
-            let moc = self.dataController.managedObjectContext
+            let moc = self.syncManagedObjectContext
             
             do {
                 let objects = try moc.executeFetchRequest(request)
@@ -227,7 +228,7 @@ class SyncEngine {
             let parentElement = NSPredicate(format: "uuid = %@", object["task_uuid"].string!)
             request.predicate = parentElement
             
-            let moc = self.dataController.managedObjectContext
+            let moc = self.syncManagedObjectContext
             
             do {
                 let objects = try moc.executeFetchRequest(request)
@@ -240,6 +241,11 @@ class SyncEngine {
                 fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
             }
         }
+        do {
+            try self.syncManagedObjectContext.save()
+        } catch {
+            fatalError("Failed to save objects in sync process: \(error)")
+        }
     }
     
     func updateObject(object: JSON, entityName: String) {
@@ -248,7 +254,7 @@ class SyncEngine {
         let thisElement = NSPredicate(format: "uuid = %@", object["uuid"].string!)
         request.predicate = thisElement
         
-        let moc = self.dataController.managedObjectContext
+        let moc = self.syncManagedObjectContext
         
         do {
             let objects = try moc.executeFetchRequest(request)
@@ -262,6 +268,8 @@ class SyncEngine {
                         item.setValue(value.string, forKey: key)
                     }
                 }
+            } else {
+                self.createObject(object, entityName: entityName)
             }
         } catch {
             fatalError("Failed to execute fetch request alter item in sync process: \(error)")
@@ -275,7 +283,7 @@ class SyncEngine {
         let thisElement = NSPredicate(format: "uuid = %@", object["uuid"].string!)
         request.predicate = thisElement
         
-        let moc = self.dataController.managedObjectContext
+        let moc = self.syncManagedObjectContext
         
         do {
             let objects = try moc.executeFetchRequest(request)
