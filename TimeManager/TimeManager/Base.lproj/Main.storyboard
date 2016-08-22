@@ -60,6 +60,8 @@
             <string>Poppins-Medium</string>
             <string>Poppins-Medium</string>
             <string>Poppins-Medium</string>
+            <string>Poppins-Medium</string>
+            <string>Poppins-Medium</string>
         </mutableArray>
         <mutableArray key="Poppins-Regular.ttf">
             <string>Poppins-Regular</string>
@@ -1613,19 +1615,34 @@
                                     <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69p-To-XN8" userLabel="Bottom Separator">
+                                <view tag="-1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69p-To-XN8" userLabel="Bottom Separator">
                                     <rect key="frame" x="0.0" y="39" width="600" height="1"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="2d2-Ym-A5g"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hck-76-w2e">
+                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hck-76-w2e">
                                     <rect key="frame" x="70" y="17" width="50" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="QwG-Dx-P6F"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                    <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110.25 Hrs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSP-xt-LMO">
+                                    <rect key="frame" x="130" y="17" width="81" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="81" id="ii5-PS-DUH"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                    <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CLIENT TOTAL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1J-Pw-tS4">
+                                    <rect key="frame" x="130" y="6" width="81" height="14"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
                                     <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -1636,8 +1653,13 @@
                                 <constraint firstAttribute="bottomMargin" secondItem="g3m-CX-vKK" secondAttribute="bottom" constant="-5" id="GcO-IS-7d5"/>
                                 <constraint firstItem="Hck-76-w2e" firstAttribute="leading" secondItem="g3m-CX-vKK" secondAttribute="trailing" constant="7" id="L3x-kb-1Yq"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="69p-To-XN8" secondAttribute="bottom" constant="-8" id="QAU-fW-0kY"/>
+                                <constraint firstItem="f1J-Pw-tS4" firstAttribute="leading" secondItem="MSP-xt-LMO" secondAttribute="leading" id="XEN-hr-DPT"/>
+                                <constraint firstItem="MSP-xt-LMO" firstAttribute="bottom" secondItem="Hck-76-w2e" secondAttribute="bottom" id="idZ-3P-CE9"/>
+                                <constraint firstItem="MSP-xt-LMO" firstAttribute="leading" secondItem="Hck-76-w2e" secondAttribute="trailing" constant="10" id="kPU-Ux-mMn"/>
+                                <constraint firstItem="MSP-xt-LMO" firstAttribute="top" secondItem="f1J-Pw-tS4" secondAttribute="bottom" constant="-3" id="pz8-W2-Bjc"/>
                                 <constraint firstItem="g3m-CX-vKK" firstAttribute="leading" secondItem="e0u-Bj-sGh" secondAttribute="leadingMargin" constant="5" id="qJ2-iy-YkC"/>
                                 <constraint firstItem="69p-To-XN8" firstAttribute="leading" secondItem="e0u-Bj-sGh" secondAttribute="leadingMargin" constant="-8" id="qmG-1Q-rmF"/>
+                                <constraint firstItem="f1J-Pw-tS4" firstAttribute="width" secondItem="MSP-xt-LMO" secondAttribute="width" id="ras-ZQ-VyU"/>
                                 <constraint firstItem="Hck-76-w2e" firstAttribute="bottom" secondItem="g3m-CX-vKK" secondAttribute="bottom" id="zJk-Od-pkS"/>
                             </constraints>
                         </collectionReusableView>

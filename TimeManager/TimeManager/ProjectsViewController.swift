@@ -235,7 +235,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
                 
                 // Update number of items in header view.
                 let itemCount = (fetchedResultsController != nil && fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections![0].numberOfObjects : 0
-                let itemCountLabel = headerView.viewWithTag(5) as! UILabel
+                let itemCountLabel = headerView.viewWithTag(2) as! UILabel
                 itemCountLabel.text = "#" + String(itemCount)
                 
                 // Update number of total client hours in header view.
