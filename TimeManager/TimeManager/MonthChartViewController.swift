@@ -52,11 +52,14 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         yl.axisMinValue = 0.0
         yl.axisLineColor = Colors.LightGrey
         yl.labelTextColor = Colors.MediumGrey
-        yl.xOffset = 22.5
+        yl.xOffset = 27.5
         yl.axisLineWidth = 1
         yl.drawTopYLabelEntryEnabled = false
         yl.drawGridLinesEnabled = false
         yl.setLabelCount(7, force: false)
+//        yl.valueFormatter = HoursNumberFormatter()
+        yl.valueFormatter = NSNumberFormatter()
+        yl.valueFormatter?.maximumFractionDigits = 0
         
         // Bottom axis.
         self.chartView.rightAxis.enabled = false
@@ -68,6 +71,8 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         xl.drawGridLinesEnabled = false
         xl.labelPosition = .Bottom
         xl.axisLineWidth = 1
+        xl.setLabelsToSkip(0)
+//        xl.valueFormatter = HoursNumberFormatterXAxis()
         
         // No border.
         self.chartView.borderLineWidth = 0
@@ -100,13 +105,15 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         
         // Options for the entries
         chartDataSet.setColor(Colors.LightBlue)
-        chartDataSet.drawValuesEnabled = false
+        chartDataSet.valueFont = UIFont(name: "Poppins-Regular", size: 14.0)!
+        chartDataSet.valueTextColor = Colors.MediumGrey
         chartDataSet.highlightColor = Colors.Blue
         chartDataSet.barBorderColor = Colors.Blue
         chartDataSet.barBorderWidth = 1
-        chartDataSet.barSpace = 0.75
+        chartDataSet.barSpace = 0.65
+        chartDataSet.valueFormatter = HoursNumberFormatter()
         
-        let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
+        let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
         self.chartView.data = chartData
         self.chartView.animate(yAxisDuration: 0.3)
     }

@@ -54,6 +54,7 @@
 		E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1571D5A275A00FB6166 /* SettingsController.swift */; };
 		E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1591D5A292600FB6166 /* EntriesViewController.swift */; };
 		E95B6A631D6B21CC00DC8BDA /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B6A621D6B21CC00DC8BDA /* DateHelper.swift */; };
+		E95B6A651D6BB56200DC8BDA /* HoursNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B6A641D6BB56200DC8BDA /* HoursNumberFormatter.swift */; };
 		E987E65E1D6B0C5700867AEF /* DayChartDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987E65D1D6B0C5700867AEF /* DayChartDetailController.swift */; };
 		E992CC291D66168D002E71AB /* YearChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC281D66168D002E71AB /* YearChartViewController.swift */; };
 		E992CC2B1D6628FC002E71AB /* MonthChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */; };
@@ -146,6 +147,7 @@
 		E958A1571D5A275A00FB6166 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		E958A1591D5A292600FB6166 /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		E95B6A621D6B21CC00DC8BDA /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		E95B6A641D6BB56200DC8BDA /* HoursNumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoursNumberFormatter.swift; sourceTree = "<group>"; };
 		E987E65D1D6B0C5700867AEF /* DayChartDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayChartDetailController.swift; sourceTree = "<group>"; };
 		E992CC281D66168D002E71AB /* YearChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearChartViewController.swift; sourceTree = "<group>"; };
 		E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthChartViewController.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				E992CC2C1D662BA6002E71AB /* WeekChartView.swift */,
 				E992CC2E1D662CC4002E71AB /* DayChartView.swift */,
 				E987E65D1D6B0C5700867AEF /* DayChartDetailController.swift */,
+				E95B6A641D6BB56200DC8BDA /* HoursNumberFormatter.swift */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				E9BA20CF1D5C6F9A0098F37D /* PassThroughCollectionView.swift in Sources */,
 				E9BE09FE1D65EBAC00799AB8 /* CustomNaviButton.swift in Sources */,
 				E92A06791D63123100A29710 /* TaskEditController.swift in Sources */,
+				E95B6A651D6BB56200DC8BDA /* HoursNumberFormatter.swift in Sources */,
 				E958A1281D5874A000FB6166 /* AppDelegate.swift in Sources */,
 				E906D01F1D5E154500C06C87 /* ClientDetailViewController.swift in Sources */,
 				E92A067D1D63307C00A29710 /* TaskDetailViewController.swift in Sources */,

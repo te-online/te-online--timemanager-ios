@@ -11,16 +11,15 @@ import UIKit
 class FormattingHelper {
     static var calendar: NSCalendar = NSCalendar.currentCalendar()
     
+    enum DateFormat {
+        case WeekAndDaySpan // Week 31 (1.8. – 7.8.)
+        case DayAndMonthShort // 1.8.
+    }
+    
     static func formatHoursAsString(hours: Double) -> String {
         var hoursString = ""
         
-        // If the hour is a whole number we don't want commas.
-//        if hours%1 == 0 {
-//            hoursString = hoursString + String(Int(hours))
-//        } else {
-//            hoursString = hoursString + String.localizedStringWithFormat("%.2f", hours)
-//        }
-        hoursString += String(format: "%g", hours)
+        hoursString += String.localizedStringWithFormat("%g", hours)
         
         // One hour vs multiple or zero hours.
         if hours != 1 {
@@ -124,7 +123,7 @@ class FormattingHelper {
         dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "w / y" // 34 / 2016
         
-        return "week " + dateFormatter.stringFromDate(date)
+        return "Week " + dateFormatter.stringFromDate(date)
     }
     
     static func monthAndYearFromDate(date: NSDate) -> String {
@@ -134,5 +133,26 @@ class FormattingHelper {
         dateFormatter.dateFormat = "MMMM y" // August 2016
         
         return dateFormatter.stringFromDate(date)
+    }
+    
+    static func dateFormat(format: DateFormat, date: NSDate) -> String {
+        var result = ""
+        // Let's create a nice date format.
+        var dateFormatter: NSDateFormatter!
+        dateFormatter = NSDateFormatter()
+
+        if format == .WeekAndDaySpan {
+            dateFormatter.dateFormat = "w" // 34
+            result += "Week " + dateFormatter.stringFromDate(date) + " / "
+            result += self.dateFormat(.DayAndMonthShort, date: DateHelper.getFirstDayOfWeekByDate(date))
+            result += " – "
+            result += self.dateFormat(.DayAndMonthShort, date: DateHelper.getLastDayOfWeekByDate(date))
+        }
+        if format == .DayAndMonthShort {
+            dateFormatter.dateFormat = "d.M." // 1.8.
+            result += dateFormatter.stringFromDate(date)
+        }
+        
+        return result
     }
 }

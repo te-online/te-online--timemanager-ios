@@ -21,6 +21,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
     var tt: TimeTraveller!
     
     var dateProjects = [ProjectObject]()
+    var currentProject: ProjectObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,8 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         xl.labelPosition = .OutsideChart
         xl.axisLineWidth = 0
         xl.drawAxisLineEnabled = false
+        xl.valueFormatter = NSNumberFormatter()
+        xl.valueFormatter?.maximumFractionDigits = 0
         
         self.chartView.extraLeftOffset = -100.0
         
@@ -94,11 +97,12 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         // Options for the entries
         chartDataSet.setColor(Colors.LightBlue)
         chartDataSet.valueFont = UIFont(name: "Poppins-Regular", size: 14.0)!
-        chartDataSet.valueTextColor = Colors.MediumGrey
+        chartDataSet.valueTextColor = Colors.DarkGrey
         chartDataSet.highlightColor = Colors.Blue
         chartDataSet.barBorderColor = UIColor.whiteColor()
         chartDataSet.barBorderWidth = 2
         chartDataSet.drawValuesEnabled = false
+        chartDataSet.valueFormatter = HoursNumberFormatter()
         
         let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         self.chartView.data = chartData
@@ -115,25 +119,51 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         self.setChart(self.months, values: rawValues)
     }
     
+    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        let index = (highlight.stackIndex < 0) ? 0 : highlight.stackIndex
+        if(self.dateProjects.count > index) {
+            self.currentProject = self.dateProjects[index]
+            self.DetailsTableView.reloadData()
+        }
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell
+        var cell: UITableViewCell = UITableViewCell()
         
         if(indexPath.section == 0) {
             cell = tableView.dequeueReusableCellWithIdentifier("client")!
-        } else {
+            if self.currentProject != nil {
+                cell.textLabel!.text = (self.currentProject.client! as ClientObject).name
+            } else {
+                cell.textLabel!.text = "Select a project to see details."
+            }
+        } else if(indexPath.section == 1) {
             cell = tableView.dequeueReusableCellWithIdentifier("subitem")!
+            if self.currentProject != nil {
+                cell.textLabel!.text = self.currentProject.name
+            } else {
+                cell.textLabel!.text = "-"
+            }
+        } else if(indexPath.section == 2) {
+            cell = tableView.dequeueReusableCellWithIdentifier("subitem")!
+            if self.currentProject != nil {
+                cell.textLabel!.text = (self.currentProject.tasks?.allObjects[indexPath.row] as! TaskObject).name
+            } else {
+                cell.textLabel!.text = "-"
+            }
         }
-        
-        cell.textLabel!.text = "Rich Industries"
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 2 && self.currentProject != nil {
+            return self.currentProject.tasks!.count
+        }
         return 1
     }
     

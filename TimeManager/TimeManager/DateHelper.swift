@@ -75,4 +75,24 @@ class DateHelper {
         return calendar.dateByAddingComponents(components, toDate: self.getFirstDayOfMonthByDate(date), options: []) ?? NSDate()
     }
     
+    static func getMonthNum(date: NSDate) -> Int {
+        let components = calendar.components([.Year, .Month], fromDate: date)
+        
+        return components.month
+    }
+    
+    static func getFirstDayOfWeekByDate(date: NSDate) -> NSDate {
+        let currentDateComponents = self.calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: date)
+        
+        return calendar.dateFromComponents(currentDateComponents) ?? NSDate()
+    }
+    
+    static func getLastDayOfWeekByDate(date: NSDate) -> NSDate {
+        let startOfWeek = self.getFirstDayOfWeekByDate(date)
+        var endOfWeek = self.getDateFor(.NextWeek, date: startOfWeek)
+        endOfWeek = self.getDateFor(.PreviousDay, date: endOfWeek)
+        
+        return endOfWeek
+    }
+    
 }

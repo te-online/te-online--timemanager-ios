@@ -44,11 +44,13 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         yl.axisMinValue = 0.0
         yl.axisLineColor = Colors.LightGrey
         yl.labelTextColor = Colors.MediumGrey
-        yl.xOffset = 22.5
+        yl.xOffset = 27.5
         yl.axisLineWidth = 1
         yl.drawTopYLabelEntryEnabled = false
         yl.drawGridLinesEnabled = false
         yl.setLabelCount(7, force: false)
+        yl.valueFormatter = NSNumberFormatter()
+        yl.valueFormatter?.maximumFractionDigits = 0
         
         // Bottom axis.
         self.chartView.rightAxis.enabled = false
@@ -98,6 +100,7 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         chartDataSet.barBorderColor = Colors.Blue
         chartDataSet.barBorderWidth = 1
         chartDataSet.barSpace = 0.55
+        chartDataSet.valueFormatter = HoursNumberFormatter()
         
         let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         self.chartView.data = chartData

@@ -313,35 +313,62 @@ class TimeTraveller {
     
     func getHoursForMonthByDate(date: NSDate) -> [Double] {
         // Go to the beginning of the month.
+        let firstDay = DateHelper.getFirstDayOfMonthByDate(date)
         // Add the hours of this week to the array.
+        var results: [Double] = []
+        results.append(self.getHoursForWeekFromDate(firstDay))
+        var currentWeekPointer = firstDay
+        let thisMonth = DateHelper.getMonthNum(currentWeekPointer)
         // Do this while the current date's month is the same as the starting week's month.
-        // Add one week to the current date.
-        // Add the hours of the current week to the array.
+        while DateHelper.getMonthNum(DateHelper.getDateFor(.NextWeek, date: currentWeekPointer)) == thisMonth {
+            // Add one month to the current date.
+            currentWeekPointer = DateHelper.getDateFor(.NextWeek, date: currentWeekPointer)
+            // Add the hours of the current month to the array.
+            results.append(self.getHoursForWeekFromDate(currentWeekPointer))
+        }
+        
         // Return the array.
-        return [47, 37.5, 24, 15.75]
-        // TODO
+        return results
     }
     
+    // ["WEEK 31 (1.8. – 7.8.)", "WEEK 32 (1.8. – 7.8.)", "WEEK 33 (1.8. – 7.8.)", "WEEK 34 (15.8. – 17.8.)"]
     func getWeeksForMonthByDate(date: NSDate) -> [String] {
         // Go to the beginning of the month.
-        // Add the formatted name of this week to the array.
+        let firstDay = DateHelper.getFirstDayOfMonthByDate(date)
+        // Add the hours of this week to the array.
+        var results: [String] = []
+        results.append(FormattingHelper.dateFormat(.WeekAndDaySpan, date: firstDay).uppercaseString)
+        var currentWeekPointer = firstDay
+        let thisMonth = DateHelper.getMonthNum(currentWeekPointer)
         // Do this while the current date's month is the same as the starting week's month.
-        // Add one week to the current date.
-        // Add the formatted name of the current week to the array.
-        // Return the array.
-        return ["WEEK 31 (1.8. – 7.8.)", "WEEK 32 (1.8. – 7.8.)", "WEEK 33 (1.8. – 7.8.)", "WEEK 34 (15.8. – 17.8.)"]
-        // TODO
+        while DateHelper.getMonthNum(DateHelper.getDateFor(.NextWeek, date: currentWeekPointer)) == thisMonth {
+            // Add one month to the current date.
+            currentWeekPointer = DateHelper.getDateFor(.NextWeek, date: currentWeekPointer)
+            // Add the hours of the current month to the array.
+            results.append(FormattingHelper.dateFormat(.WeekAndDaySpan, date: currentWeekPointer).uppercaseString)
+        }
+        
+        return results
     }
     
+    // [100, 120, 130, 20, 50, 60, 75, 230, 45, 98, 12, 25]
     func getHoursForYearByDate(date: NSDate) -> [Double] {
         // Go to the beginning of the year.
+        let firstDay = DateHelper.getFirstDayOfYearByDate(date)
         // Add the hours of this month to the array.
+        var results: [Double] = []
+        results.append(self.getHoursForMonthFromDate(firstDay))
+        var currentMonthPointer = firstDay
         // Do this for 11 months left.
-        // Add one month to the current date.
-        // Add the hours of the current month to the array.
+        for _ in 1...11 {
+            // Add one month to the current date.
+            currentMonthPointer = DateHelper.getDateFor(.NextMonth, date: currentMonthPointer)
+            // Add the hours of the current month to the array.
+            results.append(self.getHoursForMonthFromDate(currentMonthPointer))
+        }
+        
         // Return the array.
-        return [100, 120, 130, 20, 50, 60, 75, 230, 45, 98, 12, 25]
-        // TODO
+        return results
     }
     
     /*
@@ -361,16 +388,55 @@ class TimeTraveller {
         return values
     }
     
+    // [1.75, 3, 2, 2, 1.25]
     func recordedHoursInProjectsByDate(date: NSDate) -> [Double] {
         // Do the same as in tasks, but for projects and without limit and return raw values.
-        return [1.75, 3, 2, 2, 1.25]
-        // TODO
+        let projects = self.ProjectsByDate(date)
+        var hours: [Double] = []
+        for project in projects {
+            hours.append(self.recordedHoursForDateInProject(date, project: project))
+        }
+        
+        return hours
     }
     
     func ProjectsByDate(date: NSDate) -> [ProjectObject] {
-        // Do the same as in hours for projects, but return project objects.
-        return []
-        // TODO
+        // Create an array of all the times in the week
+        let startOfDay = self.getDayBegin(date)
+        let endOfDay = self.getDayEnd(date)
+        
+        let request = NSFetchRequest(entityName: "Time")
+        
+        let createdSort = NSSortDescriptor(key: "created", ascending: true)
+        request.sortDescriptors = [createdSort]
+        
+        let forDay = NSPredicate(format: "(start >= %@) AND (end < %@)", startOfDay, endOfDay)
+        request.predicate = forDay
+        
+        do {
+            let times = try self.dataController.managedObjectContext.executeFetchRequest(request)
+            // Create a unique set of all the tasks with created times in the week
+            var tasks: [TaskObject] = []
+            // Get all tasks.
+            for time in times {
+                tasks.append((time as! TimeObject).task!)
+            }
+            // Make them unique
+            let uniqueTasks = Array(Set(tasks))
+            // Get all projects.
+            var projects: [ProjectObject] = []
+            for task in uniqueTasks {
+                projects.append(task.project!)
+            }
+            // Make them unique.
+            var uniqueProjects = Array(Set(projects))
+            // sort the set by total hours
+            uniqueProjects = uniqueProjects.sort({ ($0 as ProjectObject).getTotalHours() > ($1 as ProjectObject).getTotalHours() })
+            // Only use the first 5 entries
+            return uniqueProjects
+        } catch {
+            fatalError("Failed to execute fetch request recent tasks for week: \(error)")
+        }
     }
     
 }
