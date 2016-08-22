@@ -53,12 +53,14 @@ class DiagramsContainerController: UIViewController {
     @IBAction func NavigateToPreviousPressed(sender: AnyObject) {
         // Subtract one week from the current date.
         self.currentDate = self.currentDate.dateByAddingTimeInterval((-1 * timeIntervals[currentPage]))
+        // TODO
         self.reloadData()
     }
     
     @IBAction func NavigateToNextPressed(sender: AnyObject) {
         // Add one week to the current date.
         self.currentDate = self.currentDate.dateByAddingTimeInterval((timeIntervals[currentPage]))
+        // TODO
         self.reloadData()
     }
     

@@ -53,6 +53,7 @@
 		E958A1541D59FDDF00FB6166 /* OverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1531D59FDDF00FB6166 /* OverviewController.swift */; };
 		E958A1581D5A275A00FB6166 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1571D5A275A00FB6166 /* SettingsController.swift */; };
 		E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1591D5A292600FB6166 /* EntriesViewController.swift */; };
+		E95B6A631D6B21CC00DC8BDA /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B6A621D6B21CC00DC8BDA /* DateHelper.swift */; };
 		E987E65E1D6B0C5700867AEF /* DayChartDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987E65D1D6B0C5700867AEF /* DayChartDetailController.swift */; };
 		E992CC291D66168D002E71AB /* YearChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC281D66168D002E71AB /* YearChartViewController.swift */; };
 		E992CC2B1D6628FC002E71AB /* MonthChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */; };
@@ -144,6 +145,7 @@
 		E958A1531D59FDDF00FB6166 /* OverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewController.swift; sourceTree = "<group>"; };
 		E958A1571D5A275A00FB6166 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		E958A1591D5A292600FB6166 /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
+		E95B6A621D6B21CC00DC8BDA /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		E987E65D1D6B0C5700867AEF /* DayChartDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayChartDetailController.swift; sourceTree = "<group>"; };
 		E992CC281D66168D002E71AB /* YearChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearChartViewController.swift; sourceTree = "<group>"; };
 		E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthChartViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
 				E92A067F1D6360B000A29710 /* FormattingHelper.swift */,
 				E9BE09C51D64D22F00799AB8 /* ErrorHandler.swift */,
+				E95B6A621D6B21CC00DC8BDA /* DateHelper.swift */,
 			);
 			name = HelperControllers;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				E911CEF41D61E05F0044AED6 /* Time+CoreDataProperties.swift in Sources */,
 				E9BA20CD1D5C65580098F37D /* ClientsViewController.swift in Sources */,
 				E9BA20D11D5DCAD00098F37D /* ProjectsViewController.swift in Sources */,
+				E95B6A631D6B21CC00DC8BDA /* DateHelper.swift in Sources */,
 				E911CEFB1D61E0760044AED6 /* ClientObject.swift in Sources */,
 				E911CEFF1D61E0760044AED6 /* Task.swift in Sources */,
 				E92A068A1D64542C00A29710 /* RestAPIManager.swift in Sources */,

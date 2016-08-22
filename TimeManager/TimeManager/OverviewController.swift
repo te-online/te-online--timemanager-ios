@@ -57,13 +57,13 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
 
     @IBAction func NavigateToPreviousWeekButtonPressed(sender: AnyObject) {
         // Subtract one week from the current date.
-        self.currentDate = self.currentDate.dateByAddingTimeInterval((-1 * 7 * 24 * 60 * 60))
+        self.currentDate = DateHelper.getDateFor(.PreviousWeek, date: self.currentDate)
         self.loadData()
     }
     
     @IBAction func NavigateToNextWeekButtonPressed(sender: AnyObject) {
         // Add one week to the current date.
-        self.currentDate = self.currentDate.dateByAddingTimeInterval((7 * 24 * 60 * 60))
+        self.currentDate = DateHelper.getDateFor(.NextWeek, date: self.currentDate)
         self.loadData()
     }
     

@@ -47,20 +47,6 @@ class DayChartView: UIViewController, ChartViewDelegate, UITableViewDelegate, UI
         
         let yl: ChartXAxis = chartView.xAxis
         yl.enabled = false
-//        yl.labelFont = UIFont(name: "Poppins-Regular", size: 14.0)!
-//        yl.axisMinValue = 0.0
-//        yl.axisLineColor = Colors.LightGrey
-//        yl.axisLineWidth = 0
-//        yl.drawAxisLineEnabled = false
-//        yl.labelTextColor = Colors.MediumGrey
-////        yl.xOffset = 22.5
-//        yl.yOffset = 20
-//        yl.labelPosition = .InsideChart
-//        yl.axisLineWidth = 1
-//        yl.drawTopYLabelEntryEnabled = false
-//        yl.drawGridLinesEnabled = false
-////        yl.line
-//        yl.setLabelCount(9, force: false)
         
         // Bottom axis.
         self.chartView.rightAxis.enabled = true
@@ -68,7 +54,6 @@ class DayChartView: UIViewController, ChartViewDelegate, UITableViewDelegate, UI
         xl.labelFont = UIFont(name: "Poppins-Regular", size: 12.0)!
         xl.labelTextColor = Colors.MediumGrey
         xl.axisLineColor = Colors.LightGrey
-//        xl.yOffset = -20.0
         xl.drawGridLinesEnabled = false
         xl.labelPosition = .OutsideChart
         xl.axisLineWidth = 0
@@ -96,24 +81,19 @@ class DayChartView: UIViewController, ChartViewDelegate, UITableViewDelegate, UI
         
         var dataEntries: [BarChartDataEntry] = []
         
-//        for i in 0..<dataPoints.count {
-            let dataEntry = BarChartDataEntry(values: values, xIndex: 0)
-            dataEntries.append(dataEntry)
-//        }
+        let dataEntry = BarChartDataEntry(values: values, xIndex: 0)
+        dataEntries.append(dataEntry)
         
         let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Weeks")
         
         // Options for the entries
         chartDataSet.setColor(Colors.LightBlue)
-//        chartDataSet.axisDependency = .Right
         chartDataSet.valueFont = UIFont(name: "Poppins-Regular", size: 14.0)!
         chartDataSet.valueTextColor = Colors.MediumGrey
         chartDataSet.highlightColor = Colors.Blue
         chartDataSet.barBorderColor = UIColor.whiteColor()
         chartDataSet.barBorderWidth = 2
         chartDataSet.drawValuesEnabled = false
-//        chartDataSet.barSpace = 0.0
-//        chartDataSet.barSpace = 0
         
         let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         self.chartView.data = chartData

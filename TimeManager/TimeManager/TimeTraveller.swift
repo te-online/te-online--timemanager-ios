@@ -287,23 +287,23 @@ class TimeTraveller {
     }
     
     func getHoursForYearFromDate(date: NSDate) -> Double {
-        // Determine the year of the given date
         // Determine the first day of this year
+        let firstDayOfYear = DateHelper.getFirstDayOfYearByDate(date)
         // Determine the last day of this year
+        let lastDayOfYear = DateHelper.getLastDayOfYearByDate(date)
         // Get the hours between the date (recordedHoursBetweenDates)
         
-        return 5
-        // TODO
+        return self.recordedHoursBetweenDates(firstDayOfYear, end: lastDayOfYear)
     }
     
     func getHoursForMonthFromDate(date: NSDate) -> Double {
-        // Determine the month of the given date
         // Determine the first day of this month
+        let firstDayOfMonth = DateHelper.getFirstDayOfMonthByDate(date)
         // Determine the last day of this month
+        let lastDayOfMonth = DateHelper.getLastDayOfMonthByDate(date)
         // Get the hours between the date (recordedHoursBetweenDates)
         
-        return 5
-        // TODO
+        return self.recordedHoursBetweenDates(firstDayOfMonth, end: lastDayOfMonth)
     }
     
     func getHoursForWeekFromDate(date: NSDate) -> Double {
