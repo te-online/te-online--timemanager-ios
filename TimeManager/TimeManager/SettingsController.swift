@@ -49,7 +49,6 @@ class SettingsController: UIViewController, UIPickerViewDataSource, UIPickerView
         } else {
             self.currentStartWeekWithSelection = self.defaults.integerForKey("startWeekWith") ?? 3
         }
-        NSLog(String(self.currentStartWeekWithSelection))
         self.StartWeekWithPickerView.selectRow((self.currentStartWeekWithSelection-1), inComponent: 0, animated: true)
         
         self.CloudSyncServerInputField.text = self.defaults.stringForKey("cloudSyncServer") ?? ""
@@ -83,6 +82,9 @@ class SettingsController: UIViewController, UIPickerViewDataSource, UIPickerView
         self.defaults.setValue(self.CloudSyncServerInputField.text, forKey: "cloudSyncServer")
         self.defaults.setValue(self.CloudSyncUserInputField.text, forKey: "cloudSyncUser")
         self.defaults.setValue(self.CloudSyncPasswordInputField.text, forKey: "cloudSyncPassword")
+        
+        // Sync on saving settings.
+        (UIApplication.sharedApplication().delegate as! AppDelegate).syncInBackground({})
     }
     
 }

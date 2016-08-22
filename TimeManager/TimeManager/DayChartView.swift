@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class DayChartView: UIViewController, ChartViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var chartView: HorizontalBarChartView!
     @IBOutlet weak var DetailsTableView: UITableView!
@@ -18,6 +18,9 @@ class DayChartView: UIViewController, ChartViewDelegate, UITableViewDelegate, UI
     var data: [Double]!
     
     var Colors = SharedColorPalette.sharedInstance
+    var tt: TimeTraveller!
+    
+    var dateProjects = [ProjectObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +70,10 @@ class DayChartView: UIViewController, ChartViewDelegate, UITableViewDelegate, UI
         // No legend.
         self.chartView.legend.enabled = false
         
+        self.tt = TimeTraveller()
+        
         // Set the data.
-        self.reloadData()
+        self.reloadData(NSDate())
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,8 +105,14 @@ class DayChartView: UIViewController, ChartViewDelegate, UITableViewDelegate, UI
         self.chartView.animate(yAxisDuration: 0.3)
     }
     
-    func reloadData() {
-        self.setChart(self.months, values: self.data)
+    func reloadData(forDate: NSDate) {
+        if(self.tt == nil) {
+            self.tt = TimeTraveller()
+        }
+        
+        let rawValues = tt.recordedHoursInProjectsByDate(forDate)
+        self.dateProjects = tt.ProjectsByDate(forDate)
+        self.setChart(self.months, values: rawValues)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

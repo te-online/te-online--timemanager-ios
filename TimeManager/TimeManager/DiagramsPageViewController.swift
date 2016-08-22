@@ -10,12 +10,11 @@ import UIKit
 
 class DiagramsPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     var pages = [UIViewController]()
+    var YearChartView: UIViewController!
+    var MonthChartView: UIViewController!
+    var WeekChartView: UIViewController!
+    var DayChartView: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,17 +22,22 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
         self.delegate = self
         self.dataSource = self
         
-        let page1: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("YearChartView")
-        let page2: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("MonthChartView")
-        let page3: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("WeekChartView")
-        let page4: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("DayChartView")
+        YearChartView = storyboard?.instantiateViewControllerWithIdentifier("YearChartView")
+        MonthChartView = storyboard?.instantiateViewControllerWithIdentifier("MonthChartView")
+        WeekChartView = storyboard?.instantiateViewControllerWithIdentifier("WeekChartView")
+        DayChartView = storyboard?.instantiateViewControllerWithIdentifier("DayChartView")
         
-        pages.append(page1)
-        pages.append(page2)
-        pages.append(page3)
-        pages.append(page4)
+        pages.append(YearChartView)
+        pages.append(MonthChartView)
+        pages.append(WeekChartView)
+        pages.append(DayChartView)
         
-        setViewControllers([page1], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        setViewControllers([YearChartView], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -68,8 +72,17 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
 //        }
     }
     
-    func reloadData() {
-        // Reload the data here
+    func reloadData(forDate: NSDate, currentView: Int) {
+        // Reload the data here.
+        if currentView == 0 {
+            (YearChartView as! YearChartViewController).reloadData(forDate)
+        } else if currentView == 1 {
+            (MonthChartView as! MonthChartViewController).reloadData(forDate)
+        } else if currentView == 2 {
+            (WeekChartView as! WeekChartViewController).reloadData(forDate)
+        } else if currentView == 3 {
+            (DayChartView as! DayChartViewController).reloadData(forDate)
+        }
     }
     
 }

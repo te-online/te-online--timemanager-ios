@@ -1350,7 +1350,7 @@
                                     <segue destination="38n-AD-tbP" kind="embed" id="ggw-gk-atK"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBg-WQ-Sdm">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBg-WQ-Sdm" customClass="CustomNaviButton" customModule="TimeManager" customModuleProvider="target">
                                 <rect key="frame" x="86" y="0.0" width="86" height="53"/>
                                 <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1359,13 +1359,13 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                 <state key="normal" title="Year">
-                                    <color key="titleColor" red="0.25098040699958801" green="0.56470590829849243" blue="0.87450981140136719" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="YearNavigationButtonPressed:" destination="HzZ-oo-cvq" eventType="touchUpInside" id="Wy2-9W-Akv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="au4-KQ-9u3">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="au4-KQ-9u3" customClass="CustomNaviButton" customModule="TimeManager" customModuleProvider="target">
                                 <rect key="frame" x="172" y="0.0" width="86" height="53"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1380,7 +1380,7 @@
                                     <action selector="MonthNavigationButtonPressed:" destination="HzZ-oo-cvq" eventType="touchUpInside" id="Agq-5S-pyX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdI-pN-Q4B">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdI-pN-Q4B" customClass="CustomNaviButton" customModule="TimeManager" customModuleProvider="target">
                                 <rect key="frame" x="257" y="0.0" width="86" height="53"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1395,7 +1395,7 @@
                                     <action selector="WeekNavigationButtonPressed:" destination="HzZ-oo-cvq" eventType="touchUpInside" id="P1y-7Z-Xrp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgW-mk-nel">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgW-mk-nel" customClass="CustomNaviButton" customModule="TimeManager" customModuleProvider="target">
                                 <rect key="frame" x="343" y="0.0" width="86" height="53"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -3378,10 +3378,10 @@ logo, colors, font choices and simp</string>
             </objects>
             <point key="canvasLocation" x="-223" y="3600"/>
         </scene>
-        <!--Day Chart View-->
+        <!--Day Chart View Controller-->
         <scene sceneID="8XA-u2-zIv">
             <objects>
-                <viewController storyboardIdentifier="DayChartView" id="lYg-yu-9K6" customClass="DayChartView" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DayChartView" id="lYg-yu-9K6" customClass="DayChartViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yqt-k8-bzU"/>
                         <viewControllerLayoutGuide type="bottom" id="VZ3-AL-NvU"/>

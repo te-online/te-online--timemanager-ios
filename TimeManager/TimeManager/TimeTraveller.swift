@@ -189,7 +189,7 @@ class TimeTraveller {
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDay = NSPredicate(format: "(start >= %@) AND (end <= %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, "deleted")
+        let forDay = NSPredicate(format: "(start >= %@) AND (end < %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, "deleted")
         request.predicate = forDay
         
         let moc = self.dataController.managedObjectContext
@@ -203,6 +203,7 @@ class TimeTraveller {
                     hoursCount += (entry as! TimeObject).getDurationInHours()
                 }
             }
+            NSLog("Times # " + String(entries.count))
         } catch {
             fatalError("Failed to execute fetch request for todays hours: \(error)")
         }
@@ -310,18 +311,65 @@ class TimeTraveller {
         return self.recordedHoursForWeekFromDate(date)
     }
     
-    func getWeeksInMonthFromDate(date: NSDate) -> [[NSDate]] {
-        return [[NSDate(), NSDate()]]
+    func getHoursForMonthByDate(date: NSDate) -> [Double] {
+        // Go to the beginning of the month.
+        // Add the hours of this week to the array.
+        // Do this while the current date's month is the same as the starting week's month.
+        // Add one week to the current date.
+        // Add the hours of the current week to the array.
+        // Return the array.
+        return [47, 37.5, 24, 15.75]
         // TODO
     }
     
-    func getMonthsInYearFromDate(date: NSDate) -> [[NSDate]] {
-        return [[NSDate(), NSDate()]]
+    func getWeeksForMonthByDate(date: NSDate) -> [String] {
+        // Go to the beginning of the month.
+        // Add the formatted name of this week to the array.
+        // Do this while the current date's month is the same as the starting week's month.
+        // Add one week to the current date.
+        // Add the formatted name of the current week to the array.
+        // Return the array.
+        return ["WEEK 31 (1.8. – 7.8.)", "WEEK 32 (1.8. – 7.8.)", "WEEK 33 (1.8. – 7.8.)", "WEEK 34 (15.8. – 17.8.)"]
         // TODO
     }
     
-    func getProjectsOfDay(date: NSDate) -> [ProjectObject] {
-        return [ProjectObject()]
+    func getHoursForYearByDate(date: NSDate) -> [Double] {
+        // Go to the beginning of the year.
+        // Add the hours of this month to the array.
+        // Do this for 11 months left.
+        // Add one month to the current date.
+        // Add the hours of the current month to the array.
+        // Return the array.
+        return [100, 120, 130, 20, 50, 60, 75, 230, 45, 98, 12, 25]
+        // TODO
+    }
+    
+    /*
+     *  Returns an array of the hours in a specific week, specified by a date in this week.
+     *  e.g. [5, 8.5, 2.75, 7.5, 7, 0, 0]
+     *
+     */
+    func recordedHoursForWeekByDate(date: NSDate) -> [Double] {
+        let weekDates = self.getWeekDatesFromDate(date)
+        
+        var values = [Double]()
+        
+        for weekDate in weekDates {
+            values.append(self.recordedHoursForDay(weekDate!))
+        }
+        
+        return values
+    }
+    
+    func recordedHoursInProjectsByDate(date: NSDate) -> [Double] {
+        // Do the same as in tasks, but for projects and without limit and return raw values.
+        return [1.75, 3, 2, 2, 1.25]
+        // TODO
+    }
+    
+    func ProjectsByDate(date: NSDate) -> [ProjectObject] {
+        // Do the same as in hours for projects, but return project objects.
+        return []
         // TODO
     }
     

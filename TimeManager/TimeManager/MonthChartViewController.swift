@@ -25,6 +25,7 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
     var data: [Double]!
     
     var Colors = SharedColorPalette.sharedInstance
+    var tt: TimeTraveller!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,8 +75,10 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         // No legend.
         self.chartView.legend.enabled = false
         
+        self.tt = TimeTraveller()
+        
         // Set the data.
-        self.reloadData()
+        self.reloadData(NSDate())
     }
     
     override func didReceiveMemoryWarning() {
@@ -108,8 +111,14 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         self.chartView.animate(yAxisDuration: 0.3)
     }
     
-    func reloadData() {
-        self.setChart(self.months, values: self.data)
+    func reloadData(forDate: NSDate) {
+        if(self.tt == nil) {
+            self.tt = TimeTraveller()
+        }
+        
+        let weeks = self.tt.getWeeksForMonthByDate(forDate)
+        let values = self.tt.getHoursForMonthByDate(forDate)
+        self.setChart(weeks, values: values)
     }
     
 }

@@ -17,6 +17,7 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
     var data: [Double]!
     
     var Colors = SharedColorPalette.sharedInstance
+    var tt: TimeTraveller!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,8 +67,10 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         // No legend.
         self.chartView.legend.enabled = false
         
+        self.tt = TimeTraveller()
+        
         // Set the data.
-        self.reloadData()
+        self.reloadData(NSDate())
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,8 +104,14 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         self.chartView.animate(yAxisDuration: 0.3)
     }
     
-    func reloadData() {
-        self.setChart(self.months, values: self.data)
+    func reloadData(forDate: NSDate) {
+        if(self.tt == nil) {
+            self.tt = TimeTraveller()
+        }
+
+        let days = tt.daysOfWeekFromDate(forDate)
+        let values = tt.recordedHoursForWeekByDate(forDate)
+        self.setChart(days, values: values)
     }
     
 }
