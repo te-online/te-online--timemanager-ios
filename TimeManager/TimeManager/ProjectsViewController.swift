@@ -254,6 +254,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         if indexPath.section == 0 {
             return CGSize(width: self.view.frame.width, height: 150)
         }
+        
         return super.getCellSize()
     }
     

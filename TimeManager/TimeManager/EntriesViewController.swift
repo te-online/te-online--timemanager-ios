@@ -45,7 +45,10 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         self.produceShadow(self.projectsController)
         self.produceShadow(self.tasksController)
         self.produceShadow(self.timesController)
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         // Show the first view.
         self.displayContentController(self.clientsController)
     }
@@ -246,7 +249,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
     }
     
     func visibleFrameForEmbeddededControllers() -> CGRect {
-        let showRect = CGRect(x: self.view!.frame.width /*/ 2*/, y: 0, width: self.view!.frame.width / 2, height: self.view!.frame.height)
+        let showRect = CGRect(x: self.view!.frame.width, y: 0, width: self.view!.frame.width / 2, height: self.view!.frame.height)
         return showRect
     }
     

@@ -147,6 +147,10 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         return reusableView
     }
     
+    override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return super.getCellSize()
+    }
+    
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.currentSelection = indexPath
         self.collectionView!.reloadData()

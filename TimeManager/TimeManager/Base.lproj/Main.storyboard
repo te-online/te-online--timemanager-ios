@@ -943,7 +943,7 @@
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" id="0xh-u6-1h7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.81568628549575806" green="0.22352941334247589" blue="0.062745101749897003" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rDb-Y8-5Gk">
                             <size key="itemSize" width="600" height="63"/>
                             <size key="headerReferenceSize" width="50" height="70"/>
@@ -986,6 +986,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="0.25098040699958801" green="0.56470590829849243" blue="0.87450981140136719" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="uD2-fc-9e4" firstAttribute="width" secondItem="rig-Ks-k5X" secondAttribute="width" id="50t-1C-Yd3"/>
                                     <constraint firstItem="uD2-fc-9e4" firstAttribute="leading" secondItem="rig-Ks-k5X" secondAttribute="leadingMargin" constant="-8" id="AOz-sv-i8S"/>
