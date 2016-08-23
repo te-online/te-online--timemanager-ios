@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiagramsContainerController: UIViewController {
+class DiagramsContainerController: UIViewController, DiagramsPageViewControllerDelegate {
     
     var currentDate = NSDate()
     var currentPage = 0
@@ -94,11 +94,18 @@ class DiagramsContainerController: UIViewController {
         self.MonthNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
         self.WeekNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
         self.DayNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
+        
+        (self.childViewControllers[0] as! DiagramsPageViewController).refreshDelegate = self
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func swipeToPage(page: Int) {
+        self.currentPage = page
+        self.reloadData()
     }
     
     func reloadData() {

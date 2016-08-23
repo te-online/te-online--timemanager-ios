@@ -3274,7 +3274,7 @@ logo, colors, font choices and simp</string>
         <!--Diagrams Page View Controller-->
         <scene sceneID="sZL-Jv-yzp">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="mid" doubleSided="YES" id="38n-AD-tbP" customClass="DiagramsPageViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="38n-AD-tbP" customClass="DiagramsPageViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4DY-QB-Kei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-429" y="2843"/>

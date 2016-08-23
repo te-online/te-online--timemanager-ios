@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DiagramsPageViewControllerDelegate {
+    func swipeToPage(page: Int)
+}
+
 class DiagramsPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var pages = [UIViewController]()
@@ -15,6 +19,10 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
     var MonthChartView: UIViewController!
     var WeekChartView: UIViewController!
     var DayChartView: UIViewController!
+    
+    var refreshDelegate: DiagramsPageViewControllerDelegate!
+    
+    var currentPage = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,18 +50,26 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let currentIndex = pages.indexOf(viewController)!
-        let previousIndex = abs((currentIndex - 1) % pages.count)
-        NSLog("previous " + String(previousIndex))
-        if previousIndex == 1 {
-            return nil
+        var previousIndex = currentIndex - 1
+        if currentIndex == 0 {
+            previousIndex = pages.count - 1
         }
+        
+        self.currentPage = previousIndex
         return pages[previousIndex]
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         let currentIndex = pages.indexOf(viewController)!
         let nextIndex = abs((currentIndex + 1) % pages.count)
+        
+        self.currentPage = nextIndex
         return pages[nextIndex]
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        NSLog("swipe to %@", String(self.currentPage))
+        self.refreshDelegate.swipeToPage(self.currentPage)
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
@@ -65,11 +81,12 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
     }
     
     func jumpTo(page: Int) {
-//        if self.currentIndex < page {
+        if self.currentPage < page {
             setViewControllers([pages[page]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
-//        } else if self.currentIndex > page {
+        } else if self.currentPage > page {
             setViewControllers([pages[page]], direction: UIPageViewControllerNavigationDirection.Reverse, animated: true, completion: nil)
-//        }
+        }
+        self.currentPage = page
     }
     
     func reloadData(forDate: NSDate, currentView: Int) {
