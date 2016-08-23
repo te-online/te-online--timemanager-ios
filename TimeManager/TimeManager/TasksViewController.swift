@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, ProjectEditDelegate, ProjectDetailViewControllerDelegate, TaskEditDelegate {
+class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, ProjectEditDelegate, ProjectDetailViewControllerDelegate, TaskCreateDelegate {
     
     var backgroundController: UIViewController!
     
@@ -64,15 +64,15 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
      **/
     
     @IBAction func saveTask(unwindSegue: UIStoryboardSegue) {
-        (unwindSegue.sourceViewController as! TaskEditController).delegate = self
+        (unwindSegue.sourceViewController as! TaskEditController).createDelegate = self
     }
     
     @IBAction func editProject(unwindSegue: UIStoryboardSegue) {
-        (unwindSegue.sourceViewController as! ProjectEditController).delegate = self
+        // Do nothing. Just for unwinding.
     }
     
     @IBAction func cancel(unwindSegue: UIStoryboardSegue) {
-        
+        // Do nothing. Just for unwinding.
     }
     
     /**
@@ -120,8 +120,20 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         }
     }
     
-    func saveNewProject(name: ProjectEditController.Project) {
-        // Do nothing.
+    func editProject(project: ProjectEditController.Project) {
+        let item = project.object
+        
+        let now = NSDate()
+        
+        item.setValue(project.name, forKey: "name")
+        item.setValue(now, forKey: "changed")
+        
+        do {
+            try dataController.managedObjectContext.save()
+            self.populateCurrentProjectDetails()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
     }
     
     /**

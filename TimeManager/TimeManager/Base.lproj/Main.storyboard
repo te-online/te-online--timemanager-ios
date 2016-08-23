@@ -1760,6 +1760,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="EditButtonPressed:" destination="Dab-a7-gou" eventType="touchUpInside" id="X43-O5-aA7"/>
+                                            <segue destination="tlN-sP-UUY" kind="presentation" identifier="editClient" modalPresentationStyle="formSheet" id="kZG-yn-k2n"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important client" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khq-gc-ITe">
@@ -2406,6 +2407,7 @@ logo, colors, font choices and simp</string>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="EditButtonPressed:" destination="YxS-38-BPG" eventType="touchUpInside" id="01H-mN-0cd"/>
+                                            <segue destination="ST2-pq-yuG" kind="presentation" identifier="editProject" modalPresentationStyle="formSheet" id="2O9-oO-7NE"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a shiny new website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxV-zt-49h">
@@ -2544,6 +2546,7 @@ logo, colors, font choices and simp</string>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="EditButtonPressed:" destination="mpw-sB-hAf" eventType="touchUpInside" id="gjV-f8-WEC"/>
+                                            <segue destination="h5H-FA-n5q" kind="presentation" identifier="editTask" modalPresentationStyle="formSheet" id="cQC-MK-ip3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5z-r4-dOs">
@@ -3406,4 +3409,9 @@ logo, colors, font choices and simp</string>
         <image name="settings-icon.png" width="24" height="25"/>
         <image name="statistics-icon.png" width="86" height="86"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="2O9-oO-7NE"/>
+        <segue reference="kZG-yn-k2n"/>
+        <segue reference="cQC-MK-ip3"/>
+    </inferredMetricsTieBreakers>
 </document>

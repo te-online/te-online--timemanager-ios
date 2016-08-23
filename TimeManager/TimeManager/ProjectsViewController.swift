@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, ProjectEditDelegate, ClientEditDelegate, ClientDetailViewControllerDelegate {
+class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, ProjectCreateDelegate, ClientEditDelegate, ClientDetailViewControllerDelegate {
     
     var backgroundController: UIViewController!
     
@@ -64,16 +64,15 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
      **/
     
     @IBAction func saveProject(unwindSegue: UIStoryboardSegue) {
-        NSLog("saving...")
-        (unwindSegue.sourceViewController as! ProjectEditController).delegate = self
+        (unwindSegue.sourceViewController as! ProjectEditController).createDelegate = self
     }
     
     @IBAction func editClient(unwindSegue: UIStoryboardSegue) {
-        (unwindSegue.sourceViewController as! ClientEditController).delegate = self
+        // Do nothing. Just for unwinding.
     }
     
     @IBAction func cancel(unwindSegue: UIStoryboardSegue) {
-        
+        // Do nothing. Just for unwinding.
     }
     
     /**
@@ -81,10 +80,6 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
      *   STORAGE ACTIONS
      *
      **/
-    
-    func editCurrentClient() {
-        // Do something.
-    }
     
     func deleteCurrentClient() {
         if currentClient != nil {
@@ -121,8 +116,24 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         }
     }
     
-    func saveNewClient(name: ClientEditController.Client) {
-        // Do nothing.
+    func editClient(client: ClientEditController.Client) {
+        let item = client.object
+        
+        let now = NSDate()
+        
+        item.setValue(client.name, forKey: "name")
+        item.setValue(client.street, forKey: "street")
+        item.setValue(client.postcode, forKey: "postcode")
+        item.setValue(client.city, forKey: "city")
+        item.setValue(client.note, forKey: "note")
+        item.setValue(now, forKey: "changed")
+        
+        do {
+            try dataController.managedObjectContext.save()
+            self.populateCurrentClientDetails()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
     }
     
     /**

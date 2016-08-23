@@ -8,20 +8,27 @@
 
 import UIKit
 
-protocol TaskEditDelegate {
+protocol TaskCreateDelegate {
     func saveNewTask(task: TaskEditController.Task)
+}
+protocol TaskEditDelegate {
+    func editTask(task: TaskEditController.Task)
 }
 
 class TaskEditController: UIViewController {
     
     struct Task {
         var name: String!
+        var object: TaskObject!
     }
     
     var currentTask: Task!
+    var editTaskObject: TaskObject!
+    var currentProject: ProjectObject!
     var saveIntent = false
     
-    var delegate: TaskEditDelegate?
+    var createDelegate: TaskCreateDelegate?
+    var editDelegate: TaskEditDelegate?
     
     var Colors = SharedColorPalette.sharedInstance
     
@@ -44,12 +51,21 @@ class TaskEditController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.currentTask = Task(name: "")
+        self.currentTask = Task(name: "", object: nil)
         
         // Make buttons look nicely.
         DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
         DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
         CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
+        
+        if self.editTaskObject != nil {
+            // Put data into the fields.
+            NameInputField.text = self.editTaskObject.name
+            
+            // Rename buttons.
+            DoneButtonTop.setTitle("Update", forState: .Normal)
+            DoneButtonBottom.setTitle("Update", forState: .Normal)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,7 +78,13 @@ class TaskEditController: UIViewController {
             // Store the input to make it accessible to the unwind segues target controller.
             self.currentTask.name = NameInputField.text!
             
-            self.delegate?.saveNewTask(self.currentTask)
+            if self.editTaskObject != nil {
+                self.currentTask.object = self.editTaskObject
+                self.editDelegate?.editTask(self.currentTask)
+            } else {
+                self.createDelegate?.saveNewTask(self.currentTask)
+            }
+            
         }
         
         super.viewWillDisappear(animated)

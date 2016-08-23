@@ -8,8 +8,12 @@
 
 import UIKit
 
-protocol ClientEditDelegate {
+protocol ClientCreateDelegate {
     func saveNewClient(name: ClientEditController.Client)
+}
+
+protocol ClientEditDelegate {
+    func editClient(client: ClientEditController.Client)
 }
 
 class ClientEditController: UIViewController {
@@ -20,12 +24,15 @@ class ClientEditController: UIViewController {
         var postcode: String!
         var city: String!
         var note: String!
+        var object: ClientObject!
     }
     
     var currentClient: Client!
+    var editClientObject: ClientObject!
     var saveIntent = false
     
-    var delegate: ClientEditDelegate?
+    var createDelegate: ClientCreateDelegate?
+    var editDelegate: ClientEditDelegate?
     
     var Colors = SharedColorPalette.sharedInstance
     
@@ -52,12 +59,24 @@ class ClientEditController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        currentClient = Client(name: "", street: "", postcode: "", city: "", note: "")
+        currentClient = Client(name: "", street: "", postcode: "", city: "", note: "", object: nil)
         
         // Make buttons look nicely.
         DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
         DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
         CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
+        
+        if self.editClientObject != nil {
+            // Put data into the fields.
+            NameInputField.text = self.editClientObject.name
+            StreetInputField.text = self.editClientObject.street
+            PostcodeInputField.text = self.editClientObject.postcode
+            CityInputField.text = self.editClientObject.city
+            NoteInputField.text = self.editClientObject.note
+            // Rename buttons.
+            DoneButtonTop.setTitle("Update", forState: .Normal)
+            DoneButtonBottom.setTitle("Update", forState: .Normal)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,8 +94,13 @@ class ClientEditController: UIViewController {
 
             let range: UITextRange = NoteInputField.textRangeFromPosition(NoteInputField.beginningOfDocument, toPosition: NoteInputField.endOfDocument)!
             currentClient.note = NoteInputField.textInRange(range)
-
-            self.delegate?.saveNewClient(currentClient)
+            
+            if self.editClientObject != nil {
+                currentClient.object = self.editClientObject
+                self.editDelegate?.editClient(currentClient)
+            } else {
+                self.createDelegate?.saveNewClient(currentClient)
+            }
         }
         
         super.viewWillDisappear(animated)

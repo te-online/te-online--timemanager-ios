@@ -10,7 +10,7 @@ import UIKit
 
 protocol TaskDetailViewControllerDelegate {
     func deleteCurrentTask()
-    func editCurrentTask()
+//    func editCurrentTask()
 }
 
 class TaskDetailViewController: UIViewController {
@@ -18,11 +18,18 @@ class TaskDetailViewController: UIViewController {
     var delegate: TaskDetailViewControllerDelegate?
     
     @IBAction func EditButtonPressed(sender: AnyObject) {
-        self.delegate?.editCurrentTask()
+//        self.delegate?.editCurrentTask()
     }
     
     @IBAction func DeleteButtonPressed(sender: AnyObject) {
         self.delegate?.deleteCurrentTask()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editTask" {
+            (segue.destinationViewController as! TaskEditController).editDelegate = (self.delegate as! TimesViewController)
+            (segue.destinationViewController as! TaskEditController).editTaskObject = (self.delegate as! TimesViewController).currentTask
+        }
     }
     
     override func viewDidLoad() {

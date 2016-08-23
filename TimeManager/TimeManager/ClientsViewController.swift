@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, ClientEditDelegate {
+class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, ClientCreateDelegate {
     
     var Colors = SharedColorPalette.sharedInstance
     
@@ -44,11 +44,11 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     
     @IBAction func saveClient(unwindSegue: UIStoryboardSegue) {
         NSLog(String(unwindSegue.sourceViewController))
-        (unwindSegue.sourceViewController as! ClientEditController).delegate = self
+        (unwindSegue.sourceViewController as! ClientEditController).createDelegate = self
     }
     
     @IBAction func cancelClient(unwindSegue: UIStoryboardSegue) {
-        
+        // Do nothing. Relax.
     }
     
     /**
@@ -210,32 +210,32 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case .Insert:
-            self.collectionView!.insertSections(NSIndexSet(index: sectionIndex))
-        case .Delete:
-            self.collectionView!.deleteSections(NSIndexSet(index: sectionIndex))
-        case .Move:
-            break
-        case .Update:
-            break
-        }
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
-        case .Insert:
-            self.collectionView!.insertItemsAtIndexPaths([newIndexPath!])
-        case .Delete:
-            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
-        case .Update:
-            configureCell(self.collectionView!.cellForItemAtIndexPath(indexPath!)!, indexPath: indexPath!)
-        case .Move:
-            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
-            self.collectionView!.insertItemsAtIndexPaths([indexPath!])
-        }
-    }
+//    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+//        switch type {
+//        case .Insert:
+//            self.collectionView!.insertSections(NSIndexSet(index: sectionIndex))
+//        case .Delete:
+//            self.collectionView!.deleteSections(NSIndexSet(index: sectionIndex))
+//        case .Move:
+//            break
+//        case .Update:
+//            break
+//        }
+//    }
+//    
+//    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+//        switch type {
+//        case .Insert:
+//            self.collectionView!.insertItemsAtIndexPaths([newIndexPath!])
+//        case .Delete:
+//            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
+//        case .Update:
+//            configureCell(self.collectionView!.cellForItemAtIndexPath(indexPath!)!, indexPath: indexPath!)
+//        case .Move:
+//            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
+//            self.collectionView!.insertItemsAtIndexPaths([indexPath!])
+//        }
+//    }
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.collectionView?.reloadData()

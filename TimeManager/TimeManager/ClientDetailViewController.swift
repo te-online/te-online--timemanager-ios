@@ -10,21 +10,29 @@ import UIKit
 
 protocol ClientDetailViewControllerDelegate {
     func deleteCurrentClient()
-    func editCurrentClient()
+//    var currentClient: ClientObject
 }
 
 class ClientDetailViewController: UIViewController {
     
     var delegate: ClientDetailViewControllerDelegate?
+    var currentClient: ClientObject!
     
     @IBAction func EditButtonPressed(sender: AnyObject) {
 //        NSLog("Client would be edited now")
-        self.delegate?.editCurrentClient()
+//        self.delegate?.editCurrentClient()
     }
     
     @IBAction func DeleteButtonPressed(sender: AnyObject) {
 //        NSLog("Client would be deleted now")
         self.delegate?.deleteCurrentClient()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editClient" {
+            (segue.destinationViewController as! ClientEditController).editDelegate = (self.delegate as! ProjectsViewController)
+            (segue.destinationViewController as! ClientEditController).editClientObject = (self.delegate as! ProjectsViewController).currentClient
+        }
     }
     
     override func viewDidLoad() {

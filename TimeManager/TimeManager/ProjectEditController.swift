@@ -8,20 +8,28 @@
 
 import UIKit
 
-protocol ProjectEditDelegate {
+protocol ProjectCreateDelegate {
     func saveNewProject(name: ProjectEditController.Project)
+}
+
+protocol ProjectEditDelegate {
+    func editProject(project: ProjectEditController.Project)
 }
 
 class ProjectEditController: UIViewController {
     
     struct Project {
         var name: String!
+        var object: ProjectObject!
     }
     
     var currentProject: Project!
+    var editProjectObject: ProjectObject!
+    var currentClientObject: ClientObject!
     var saveIntent = false
     
-    var delegate: ProjectEditDelegate?
+    var createDelegate: ProjectCreateDelegate?
+    var editDelegate: ProjectEditDelegate?
     
     var Colors = SharedColorPalette.sharedInstance
     
@@ -44,12 +52,21 @@ class ProjectEditController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        currentProject = Project(name: "")
+        currentProject = Project(name: "", object: nil)
         
         // Make buttons look nicely.
         DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
         DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
         CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
+        
+        if self.editProjectObject != nil {
+            // Put data into the fields.
+            NameInputField.text = self.editProjectObject.name
+            
+            // Rename buttons.
+            DoneButtonTop.setTitle("Update", forState: .Normal)
+            DoneButtonBottom.setTitle("Update", forState: .Normal)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,7 +79,13 @@ class ProjectEditController: UIViewController {
             // Store the input to make it accessible to the unwind segues target controller.
             currentProject.name = NameInputField.text!
         
-            self.delegate?.saveNewProject(currentProject)
+            if self.editProjectObject != nil {
+                currentProject.object = self.editProjectObject
+                self.editDelegate?.editProject(currentProject)
+            } else {
+                self.createDelegate?.saveNewProject(currentProject)
+            }
+            
         }
         
         super.viewWillDisappear(animated)

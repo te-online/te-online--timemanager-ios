@@ -8,8 +8,12 @@
 
 import UIKit
 
-protocol TimeEditDelegate {
+protocol TimeCreateDelegate {
     func saveNewTime(time: TimeEditController.Time)
+}
+
+protocol TimeEditDelegate {
+    func editTime(time: TimeEditController.Time)
 }
 
 class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
@@ -23,7 +27,8 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
     var currentTime: Time!
     var saveIntent = false
     
-    var delegate: TimeEditDelegate?
+    var createDelegate: TimeCreateDelegate?
+    var editDelegate: TimeEditDelegate?
     
     var PickerDurations = [String]()
     var currentDuration = ""
@@ -92,7 +97,7 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
             let duration: Double = Double(self.currentDuration)!
             self.currentTime.end = self.currentTime.start.dateByAddingTimeInterval((duration * 60 * 60) as NSTimeInterval)
         
-            self.delegate?.saveNewTime(self.currentTime)
+            self.createDelegate?.saveNewTime(self.currentTime)
         }
         
         super.viewWillDisappear(animated)

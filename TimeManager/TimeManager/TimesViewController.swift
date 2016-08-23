@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, TaskEditDelegate, TaskDetailViewControllerDelegate, TimeEditDelegate {
+class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, TaskEditDelegate, TaskDetailViewControllerDelegate, TimeCreateDelegate {
     
     var backgroundController: UIViewController!
     
@@ -64,15 +64,15 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
      **/
     
     @IBAction func saveTime(unwindSegue: UIStoryboardSegue) {
-        (unwindSegue.sourceViewController as! TimeEditController).delegate = self
+        (unwindSegue.sourceViewController as! TimeEditController).createDelegate = self
     }
     
     @IBAction func editTask(unwindSegue: UIStoryboardSegue) {
-        (unwindSegue.sourceViewController as! TaskEditController).delegate = self
+        // Do nothing. Just for unwinding.
     }
     
     @IBAction func cancel(unwindSegue: UIStoryboardSegue) {
-        
+        // Do nothing. Just for unwinding.
     }
     
     /**
@@ -80,10 +80,6 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
      *   STORAGE ACTIONS
      *
      **/
-    
-    func editCurrentTask() {
-        // Do something.
-    }
     
     func deleteCurrentTask() {
         if self.currentTask != nil {
@@ -122,8 +118,20 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         }
     }
     
-    func saveNewTask(name: TaskEditController.Task) {
-        // Do nothing.
+    func editTask(task: TaskEditController.Task) {
+        let item = task.object
+        
+        let now = NSDate()
+        
+        item.setValue(task.name, forKey: "name")
+        item.setValue(now, forKey: "changed")
+        
+        do {
+            try dataController.managedObjectContext.save()
+            self.populateCurrentTaskDetails()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
     }
     
     /**

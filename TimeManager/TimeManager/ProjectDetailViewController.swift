@@ -10,7 +10,7 @@ import UIKit
 
 protocol ProjectDetailViewControllerDelegate {
     func deleteCurrentProject()
-    func editCurrentProject()
+//    func editCurrentProject()
 }
 
 class ProjectDetailViewController: UIViewController {
@@ -18,11 +18,18 @@ class ProjectDetailViewController: UIViewController {
     var delegate: ProjectDetailViewControllerDelegate?
     
     @IBAction func EditButtonPressed(sender: AnyObject) {
-        self.delegate?.editCurrentProject()
+//        self.delegate?.editCurrentProject()
     }
     
     @IBAction func DeleteButtonPressed(sender: AnyObject) {
         self.delegate?.deleteCurrentProject()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editProject" {
+            (segue.destinationViewController as! ProjectEditController).editDelegate = (self.delegate as! TasksViewController)
+            (segue.destinationViewController as! ProjectEditController).editProjectObject = (self.delegate as! TasksViewController).currentProject
+        }
     }
     
     override func viewDidLoad() {
