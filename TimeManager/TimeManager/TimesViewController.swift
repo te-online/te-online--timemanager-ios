@@ -25,6 +25,8 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     
     var currentSelection: NSIndexPath!
     
+    var TaskNameScrollLabel: UILabel!
+    
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
         dataController = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -43,9 +45,11 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         // Show the first view.
         self.displayContentController(backgroundController!)
         
-        self.collectionView!.frame = CGRect(x: 0, y: 0, width: self.view!.frame.width, height: self.collectionView!.frame.height)
+        self.collectionView!.frame = CGRect(x: 0, y: 30, width: self.view!.frame.width, height: self.collectionView!.frame.height - 30)
         self.collectionView!.backgroundColor = UIColor.clearColor()
         self.view!.backgroundColor = UIColor.whiteColor()
+        
+        self.TaskNameScrollLabel = backgroundController!.view.viewWithTag(2) as! UILabel
     }
     
     override func didReceiveMemoryWarning() {
@@ -131,8 +135,10 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     func populateCurrentTaskDetails() {
         // Populate cells here
         
-        let ProjectNameLabel = backgroundController!.view.viewWithTag(3) as! UILabel
-        ProjectNameLabel.text = self.currentTask.name
+        let TaskNameLabel = backgroundController!.view.viewWithTag(3) as! UILabel
+        TaskNameLabel.text = self.currentTask.name
+        
+        self.TaskNameScrollLabel.text = String(format: "%@ > %@ > %@", self.currentTask.project!.client!.name!, self.currentTask.project!.name!, self.currentTask.name!)
         
         let ProjectPeriodLabel = backgroundController!.view.viewWithTag(6) as! UILabel
         ProjectPeriodLabel.text = self.dateFormatter.stringFromDate(self.currentTask.created!)
@@ -263,7 +269,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     
     override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: self.view.frame.width, height: 100)
+            return CGSize(width: self.view.frame.width, height: 70)
         }
         return super.getCellSize()
     }
@@ -279,6 +285,20 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         self.currentSelection = nil
         self.collectionView!.reloadData()
+    }
+    
+    override func scrollViewDidScroll(scrollView: (UIScrollView!)) {
+        let scrollPosition = scrollView.contentOffset.y
+        
+        if scrollPosition >= 95 && self.TaskNameScrollLabel.alpha < 1 {
+            UIView.animateWithDuration(0.25, animations: {() -> Void in
+                self.TaskNameScrollLabel.alpha = 1
+            })
+        } else if scrollPosition < 95 && self.TaskNameScrollLabel.alpha == 1 {
+            UIView.animateWithDuration(0.25, animations: {() -> Void in
+                self.TaskNameScrollLabel.alpha = 0
+            })
+        }
     }
     
     /**

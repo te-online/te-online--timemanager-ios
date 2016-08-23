@@ -25,6 +25,8 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     
     var currentSelection: NSIndexPath!
     
+    var ClientNameScrollLabel: UILabel!
+    
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
         dataController = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -43,9 +45,11 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         // Show the first view.
         self.displayContentController(backgroundController!)
         
-        self.collectionView!.frame = CGRect(x: 0, y: 0, width: self.view!.frame.width, height: self.collectionView!.frame.height)
+        self.collectionView!.frame = CGRect(x: 0, y: 30, width: self.view!.frame.width, height: self.collectionView!.frame.height - 30)
         self.collectionView!.backgroundColor = UIColor.clearColor()
         self.view!.backgroundColor = UIColor.whiteColor()
+        
+        self.ClientNameScrollLabel = backgroundController!.view.viewWithTag(3) as! UILabel
     }
     
     override func didReceiveMemoryWarning() {
@@ -133,8 +137,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let ClientNameLabel = backgroundController!.view.viewWithTag(4) as! UILabel
         ClientNameLabel.text = currentClient.name
         
-        let ClientNameScrollLabel = backgroundController!.view.viewWithTag(3) as! UILabel
-        ClientNameScrollLabel.text = currentClient.name
+        self.ClientNameScrollLabel.text = currentClient.name
         
         let ClientSinceLabel = backgroundController!.view.viewWithTag(7) as! UILabel
         ClientSinceLabel.text = self.dateFormatter.stringFromDate(currentClient.created!)
@@ -252,7 +255,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     
     override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: self.view.frame.width, height: 150)
+            return CGSize(width: self.view.frame.width, height: 120)
         }
         
         return super.getCellSize()
@@ -269,6 +272,24 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         self.currentSelection = nil
         self.collectionView!.reloadData()
+    }
+    
+    func scrolledTo(position: UICollectionViewScrollPosition) {
+        //
+    }
+    
+    override func scrollViewDidScroll(scrollView: (UIScrollView!)) {
+        let scrollPosition = scrollView.contentOffset.y
+        
+        if scrollPosition >= 145 && self.ClientNameScrollLabel.alpha < 1 {
+            UIView.animateWithDuration(0.25, animations: {() -> Void in
+                self.ClientNameScrollLabel.alpha = 1
+            })
+        } else if scrollPosition < 145 && self.ClientNameScrollLabel.alpha == 1 {
+            UIView.animateWithDuration(0.25, animations: {() -> Void in
+                self.ClientNameScrollLabel.alpha = 0
+            })
+        }
     }
     
     /**
