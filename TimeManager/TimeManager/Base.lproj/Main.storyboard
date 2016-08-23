@@ -167,11 +167,11 @@
                         <viewControllerLayoutGuide type="bottom" id="hPL-ei-49s"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eE8-vY-A0z">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKg-ce-HMm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -183,10 +183,12 @@
                             <constraint firstItem="AKg-ce-HMm" firstAttribute="height" secondItem="eE8-vY-A0z" secondAttribute="height" id="rZl-58-Jg2"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="150-JX-qVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1103" y="1465"/>
+            <point key="canvasLocation" x="-1303" y="1265"/>
         </scene>
         <!--Overview Controller-->
         <scene sceneID="Zsc-7W-6hj">
@@ -589,7 +591,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVQ-OM-tUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-934" y="724"/>
+            <point key="canvasLocation" x="-934" y="653"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="1TL-2z-7It">
@@ -1068,7 +1070,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqk-OV-25b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-379" y="1465"/>
+            <point key="canvasLocation" x="-874" y="1465"/>
         </scene>
         <!--Client Edit Controller-->
         <scene sceneID="G8x-jn-slb">
@@ -1301,7 +1303,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWe-EA-XYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lkp-8k-lqA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-379" y="2143"/>
+            <point key="canvasLocation" x="-847" y="2244"/>
         </scene>
         <!--Diagrams Container Controller-->
         <scene sceneID="H3f-Em-wOl">
@@ -1485,7 +1487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Id-Ne-3lI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1204" y="2862"/>
+            <point key="canvasLocation" x="-1577" y="2977"/>
         </scene>
         <!--Projects-->
         <scene sceneID="1Ex-Uf-QUd">
@@ -1642,7 +1644,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhX-ZS-xq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="1465"/>
+            <point key="canvasLocation" x="-243" y="1465"/>
         </scene>
         <!--Client Detail View Controller-->
         <scene sceneID="2Ts-U4-LhP">
@@ -1864,7 +1866,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beb-UQ-rK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="1967"/>
+            <point key="canvasLocation" x="-243" y="1979"/>
         </scene>
         <!--Times-->
         <scene sceneID="K1u-Be-PjS">
@@ -2135,7 +2137,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saC-z4-Pq0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="1465"/>
+            <point key="canvasLocation" x="1017" y="1465"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="gme-Ya-Dzm">
@@ -2310,7 +2312,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFi-Rl-Ukt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882" y="1465"/>
+            <point key="canvasLocation" x="385" y="1465"/>
         </scene>
         <!--Task Details View Controller Scene-->
         <scene sceneID="UMf-fs-ii6">
@@ -2480,7 +2482,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxw-Fl-oAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882" y="1967"/>
+            <point key="canvasLocation" x="385" y="1979"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="67c-MS-UfH">
@@ -2643,7 +2645,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6TG-5U-lAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1495" y="1967"/>
+            <point key="canvasLocation" x="1017" y="1979"/>
         </scene>
         <!--Project Edit Controller-->
         <scene sceneID="mSM-Or-fSV">
@@ -2814,7 +2816,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCP-MX-rXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UEN-6D-uJd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="251" y="2328"/>
+            <point key="canvasLocation" x="-243" y="2364"/>
         </scene>
         <!--Task Edit Controller-->
         <scene sceneID="X53-Dc-fjJ">
@@ -2985,7 +2987,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqs-06-yc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Z9B-mu-ACs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="882" y="2328"/>
+            <point key="canvasLocation" x="385" y="2410"/>
         </scene>
         <!--Time Edit Controller-->
         <scene sceneID="ZLL-Ou-0Mq">
@@ -3214,7 +3216,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YGX-FV-geP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Mnr-1z-QfV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1593" y="2565"/>
+            <point key="canvasLocation" x="1017" y="2565"/>
         </scene>
         <!--Diagrams Page View Controller-->
         <scene sceneID="sZL-Jv-yzp">
@@ -3222,7 +3224,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="38n-AD-tbP" customClass="DiagramsPageViewController" customModule="TimeManager" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4DY-QB-Kei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-429" y="2843"/>
+            <point key="canvasLocation" x="-770" y="2924"/>
         </scene>
         <!--Year Chart View Controller-->
         <scene sceneID="lDZ-3P-KXD">
@@ -3233,11 +3235,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ba7-NC-IMS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4fJ-2a-qd0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4o-vh-MOt" customClass="ScatterChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -3249,13 +3251,15 @@
                             <constraint firstItem="w4o-vh-MOt" firstAttribute="centerY" secondItem="4fJ-2a-qd0" secondAttribute="centerY" id="mOs-lp-xSS"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
                     <connections>
                         <outlet property="chartView" destination="w4o-vh-MOt" id="zYe-FF-FRt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldd-Pd-18G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="2862"/>
+            <point key="canvasLocation" x="-293" y="2777"/>
         </scene>
         <!--Month Chart View Controller-->
         <scene sceneID="VsG-9H-3cC">
@@ -3266,11 +3270,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cWl-1A-Tb2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ebM-aZ-bvF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6TR-oT-AuR" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -3282,13 +3286,15 @@
                             <constraint firstItem="6TR-oT-AuR" firstAttribute="centerX" secondItem="ebM-aZ-bvF" secondAttribute="centerX" id="dVn-2i-bFG"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
                     <connections>
                         <outlet property="chartView" destination="6TR-oT-AuR" id="Zye-Nb-rqz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h62-wP-3eb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="2862"/>
+            <point key="canvasLocation" x="-51" y="2777"/>
         </scene>
         <!--Week Chart View Controller-->
         <scene sceneID="vnV-xB-NlF">
@@ -3299,11 +3305,11 @@
                         <viewControllerLayoutGuide type="bottom" id="c6M-qR-JTZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Uyn-gd-5XQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3B-9t-7NZ" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -3315,13 +3321,15 @@
                             <constraint firstItem="r3B-9t-7NZ" firstAttribute="height" secondItem="Uyn-gd-5XQ" secondAttribute="height" id="fmp-FR-ipi"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
                     <connections>
                         <outlet property="chartView" destination="r3B-9t-7NZ" id="irF-m3-xxe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAs-ZI-sND" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-223" y="3600"/>
+            <point key="canvasLocation" x="-293" y="3038"/>
         </scene>
         <!--Day Chart View Controller-->
         <scene sceneID="8XA-u2-zIv">
@@ -3398,7 +3406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EG7-Rd-1Cw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="612" y="3600"/>
+            <point key="canvasLocation" x="349" y="3238"/>
         </scene>
     </scenes>
     <resources>
@@ -3411,9 +3419,9 @@
         <image name="statistics-icon.png" width="86" height="86"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2O9-oO-7NE"/>
         <segue reference="kZG-yn-k2n"/>
-        <segue reference="8GW-Mf-VKS"/>
+        <segue reference="OKW-vY-WJX"/>
         <segue reference="cQC-MK-ip3"/>
+        <segue reference="Ciq-Bt-Zfc"/>
     </inferredMetricsTieBreakers>
 </document>
