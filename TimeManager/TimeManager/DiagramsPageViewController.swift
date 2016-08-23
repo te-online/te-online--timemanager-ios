@@ -55,7 +55,6 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
             previousIndex = pages.count - 1
         }
         
-        self.currentPage = previousIndex
         return pages[previousIndex]
     }
     
@@ -63,11 +62,13 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
         let currentIndex = pages.indexOf(viewController)!
         let nextIndex = abs((currentIndex + 1) % pages.count)
         
-        self.currentPage = nextIndex
         return pages[nextIndex]
     }
     
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let viewController = self.viewControllers!.last!
+        self.currentPage = pages.indexOf(viewController)!
+        
         NSLog("swipe to %@", String(self.currentPage))
         self.refreshDelegate.swipeToPage(self.currentPage)
     }
