@@ -27,13 +27,6 @@ class RestApiManager: NSObject {
         }
     }
     
-    func getRandomUser(onCompletion: (JSON) -> Void) {
-        let route = baseURL
-        makeHTTPGetRequest(route, onCompletion: { json, err in
-            onCompletion(json as JSON)
-        })
-    }
-    
     func sendUpdateRequest(body: [String: AnyObject], onCompletion: (JSON) -> Void) {
         let route = baseURL
         makeHTTPPostRequest(route, body: body, onCompletion: { json, err in
@@ -66,10 +59,27 @@ class RestApiManager: NSObject {
         request.HTTPMethod = "POST"
         
         do {
-            // Set the POST body for the request
+            // Set the POST body for the request.
             let jsonBody = try NSJSONSerialization.dataWithJSONObject(body, options: [])
             request.HTTPBody = jsonBody
-            request.setValue("application/json", forHTTPHeaderField:"Content-Type")
+            
+            // Prepare the authentication parameters.
+            let user = defaults.stringForKey("cloudSyncUser")
+            let pass = defaults.stringForKey("cloudSyncPassword")
+            if user != nil && pass != nil && !(user?.isEmpty)! && !(user?.isEmpty)! {
+                let userPasswordString = String(format: "%@:%@", user!, pass!)
+                let userPasswordData = userPasswordString.dataUsingEncoding(NSUTF8StringEncoding)
+                let base64EncodedCredential = userPasswordData!.base64EncodedStringWithOptions([])
+                let authString = "Basic \(base64EncodedCredential)"
+                request.setValue(authString, forHTTPHeaderField: "Authorization")
+                NSLog("Sending auth.")
+            }
+            
+            
+            // Add the type header.
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            // Initiate the session.
             let session = NSURLSession.sharedSession()
             
             let task = session.dataTaskWithRequest(request, completionHandler: {(data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
