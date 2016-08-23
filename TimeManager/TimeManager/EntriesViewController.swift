@@ -203,6 +203,9 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         self.currentSelection.clientId = ""
         self.currentSelection.projectId = ""
         self.currentSelection.taskId = ""
+        (self.clientsController as! ClientsViewController).currentSelection = nil
+        (self.projectsController as! ProjectsViewController).currentSelection = nil
+        (self.tasksController as! TasksViewController).currentSelection = nil
         
         (self.projectsController as! CardOfViewDeckController).positionInvisible()
         (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
@@ -212,6 +215,8 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
     func didDeleteProject() {
         self.currentSelection.projectId = ""
         self.currentSelection.taskId = ""
+        (self.projectsController as! ProjectsViewController).currentSelection = nil
+        (self.tasksController as! TasksViewController).currentSelection = nil
         
         (self.tasksController as! CardOfViewDeckController).positionInvisible()
         (self.projectsController as! CardOfViewDeckController).positionActive()
@@ -220,6 +225,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
     
     func didDeleteTask() {
         self.currentSelection.taskId = ""
+        (self.tasksController as! TasksViewController).currentSelection = nil
         
         (self.timesController as! CardOfViewDeckController).positionInvisible()
         (self.tasksController as! CardOfViewDeckController).positionActive()
