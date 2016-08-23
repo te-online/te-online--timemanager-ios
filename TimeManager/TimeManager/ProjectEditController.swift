@@ -68,7 +68,7 @@ class ProjectEditController: UIViewController {
             DoneButtonBottom.setTitle("Update", forState: .Normal)
             
             // Change caption.
-            ModalTitleLabel.text = "Edit project entry".uppercaseString
+            ModalTitleLabel.text = "Edit project".uppercaseString
         }
         
         if self.currentClientObject != nil {

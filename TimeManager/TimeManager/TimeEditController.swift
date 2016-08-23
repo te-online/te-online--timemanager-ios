@@ -22,6 +22,7 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         var start: NSDate!
         var end: NSDate!
         var note: String!
+        var object: TimeObject!
     }
     
     var currentTime: Time!
@@ -59,7 +60,7 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.currentTime = Time(start: NSDate(), end: NSDate(), note: "")
+        self.currentTime = Time(start: NSDate(), end: NSDate(), note: "", object: nil)
         
         // Make buttons look nicely.
         DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
@@ -80,10 +81,30 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         currentDuration = PickerDurations.first!
         
-        // Set up the client, project and taskname
+        if self.currentTaskObject != nil {
+            ContextInfoLabel.text = String(format: "%@ > %@ > %@", self.currentTaskObject.project!.client!.name!, self.currentTaskObject.project!.name!, self.currentTaskObject!.name!)
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if self.editDelegate != nil {
+            self.editTimeObject = (self.editDelegate as! TimesViewController).getCurrentTime()
+        }
+        
         if self.editTimeObject != nil {
-            // Put data into the fields.
-//            NameInputField.text = self.editProjectObject.name
+            // TODO
+            // Editing of time entries is not implemented, yet.
+            NoteInputField.text = self.editTimeObject.note
+            
+            // Set the date picker view.
+            StartPickerView.setDate(self.editTimeObject.start!, animated: false)
+            
+            // Set the hours picker view.
+            let num = self.PickerDurations.indexOf(String(format: "%g", self.editTimeObject.getDurationInHours()))
+//            NSLog("num %@, %@, %@", String(num), String(self.PickerDurations), String(format: "%g", self.editTimeObject.getDurationInHours()))
+            if num != nil  {
+                DurationPickerView.selectRow(num!, inComponent: 0, animated: false)
+            }
             
             // Rename buttons.
             DoneButtonTop.setTitle("Update", forState: .Normal)
@@ -93,9 +114,7 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
             ModalTitleLabel.text = "Edit time entry".uppercaseString
         }
         
-        if self.currentTaskObject != nil {
-            ContextInfoLabel.text = String(format: "%@ > %@ > %@", self.currentTaskObject.project!.client!.name!, self.currentTaskObject.project!.name!, self.currentTaskObject!.name!)
-        }
+        super.viewDidAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -114,7 +133,12 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
             let duration: Double = Double(self.currentDuration)!
             self.currentTime.end = self.currentTime.start.dateByAddingTimeInterval((duration * 60 * 60) as NSTimeInterval)
         
-            self.createDelegate?.saveNewTime(self.currentTime)
+            if self.editTimeObject != nil {
+                self.currentTime.object = self.editTimeObject
+                self.editDelegate?.editTime(self.currentTime)
+            } else {
+                self.createDelegate?.saveNewTime(self.currentTime)
+            }
         }
         
         super.viewWillDisappear(animated)

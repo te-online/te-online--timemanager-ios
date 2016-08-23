@@ -14,6 +14,9 @@ class FormattingHelper {
     enum DateFormat {
         case WeekAndDaySpan // Week 31 (1.8. – 7.8.)
         case DayAndMonthShort // 1.8.
+        case DaynameDayMonthnameYear // Thu, 22. Aug 2001
+        case HoursMinutes // 9.00
+        case DayMonthnameYear // 15. August 2001
     }
     
     static func formatHoursAsString(hours: Double) -> String {
@@ -150,6 +153,18 @@ class FormattingHelper {
         }
         if format == .DayAndMonthShort {
             dateFormatter.dateFormat = "d.M." // 1.8.
+            result += dateFormatter.stringFromDate(date)
+        }
+        if format == .DaynameDayMonthnameYear {
+            dateFormatter.dateFormat = "EEE, d. MMM y" // Thu, 22. Aug 2001
+            result += dateFormatter.stringFromDate(date)
+        }
+        if format == .HoursMinutes {
+            dateFormatter.dateFormat = "k.mm" // 9.00
+            result += dateFormatter.stringFromDate(date)
+        }
+        if format == .DayMonthnameYear {
+            dateFormatter.dateFormat = "d. MMMM y" // 15. August 2001
             result += dateFormatter.stringFromDate(date)
         }
         

@@ -34,11 +34,11 @@ extension TimeObject {
     }
     
     func getDateString() -> String {
-        return FormattingHelper.formatNiceDayFromDateAsString(self.start!) // "Mon 19. August 2001"
+        return FormattingHelper.dateFormat(.DaynameDayMonthnameYear, date: self.start!) // "Mon 19. August 2001"
     }
     
     func getTimeSpanString() -> String {
-        return FormattingHelper.formatNiceDayFromDateAsString(self.start!)  + " – " + FormattingHelper.formatNiceDayFromDateAsString(self.end!)  // "12.00 – 14.00"
+        return String(format: "%@ – %@", FormattingHelper.dateFormat(.HoursMinutes, date: self.start!), FormattingHelper.dateFormat(.HoursMinutes, date: self.end!))  // "12.00 – 14.00"
     }
     
     func toJSON() -> Dictionary<String, AnyObject> {

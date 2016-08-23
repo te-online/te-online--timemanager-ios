@@ -21,8 +21,6 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     
     var fetchedResultsController: NSFetchedResultsController!
     
-    var dateFormatter: NSDateFormatter!
-    
     var currentSelection: NSIndexPath!
     
     var ProjectNameScrollLabel: UILabel!
@@ -30,11 +28,6 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
         dataController = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // Let's create a nice date format.
-        dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        dateFormatter.timeStyle = .NoStyle
         
         super.viewDidLoad()
         
@@ -151,7 +144,7 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         self.ProjectNameScrollLabel.text = String(format: "%@ > %@", self.currentProject.client!.name!, self.currentProject.name!)
         
         let ProjectPeriodLabel = backgroundController!.view.viewWithTag(6) as! UILabel
-        ProjectPeriodLabel.text = self.dateFormatter.stringFromDate(self.currentProject.created!)
+        ProjectPeriodLabel.text = FormattingHelper.dateFormat(.DayMonthnameYear, date: self.currentProject.created!)
     }
     
     func setParentProject(project: ProjectObject) {

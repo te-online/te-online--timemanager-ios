@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, TaskEditDelegate, TaskDetailViewControllerDelegate, TimeCreateDelegate {
+class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerDelegate, TaskEditDelegate, TaskDetailViewControllerDelegate, TimeCreateDelegate, TimeEditDelegate {
     
     var backgroundController: UIViewController!
     
@@ -21,8 +21,6 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     
     var fetchedResultsController: NSFetchedResultsController!
     
-    var dateFormatter: NSDateFormatter!
-    
     var currentSelection: NSIndexPath!
     
     var TaskNameScrollLabel: UILabel!
@@ -30,11 +28,6 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
         dataController = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // Let's create a nice date format.
-        dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        dateFormatter.timeStyle = .NoStyle
         
         super.viewDidLoad()
         
@@ -73,6 +66,16 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     
     @IBAction func cancel(unwindSegue: UIStoryboardSegue) {
         // Do nothing. Just for unwinding.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editTime" {
+            (segue.destinationViewController as! TimeEditController).editDelegate = self
+            if self.currentSelection != nil {
+                (segue.destinationViewController as! TimeEditController).editTimeObject = (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! TimeObject)
+            }
+            (segue.destinationViewController as! TimeEditController).currentTaskObject = self.currentTask
+        }
     }
     
     /**
@@ -134,6 +137,24 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         }
     }
     
+    func editTime(time: TimeEditController.Time) {
+        let item = time.object
+        
+        let now = NSDate()
+        
+        item.setValue(time.note, forKey: "note")
+        item.setValue(time.start, forKey: "start")
+        item.setValue(time.end, forKey: "end")
+        item.setValue(now, forKey: "changed")
+        
+        do {
+            try dataController.managedObjectContext.save()
+            self.collectionView!.reloadData()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+    }
+    
     /**
      *
      *    TIME CONFIGURATION
@@ -149,7 +170,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         self.TaskNameScrollLabel.text = String(format: "%@ > %@ > %@", self.currentTask.project!.client!.name!, self.currentTask.project!.name!, self.currentTask.name!)
         
         let ProjectPeriodLabel = backgroundController!.view.viewWithTag(6) as! UILabel
-        ProjectPeriodLabel.text = self.dateFormatter.stringFromDate(self.currentTask.created!)
+        ProjectPeriodLabel.text = FormattingHelper.dateFormat(.DayMonthnameYear, date: self.currentTask.created!)
     }
     
     func setParentTask(task: TaskObject) {
@@ -178,6 +199,8 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let TimeMetaLabel = cell.viewWithTag(2) as! UILabel
         TimeMetaLabel.text = Time.getDateString()
         
+        // TODO
+        // Payment tracking is not implemented, yet.
         let TimeUnpaidLabel = cell.viewWithTag(3) as! UILabel
         TimeUnpaidLabel.text = "Unpaid"
         
@@ -285,6 +308,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let correctedIndexPath = NSIndexPath(forItem: indexPath.item, inSection: indexPath.section - 1)
         self.currentSelection = correctedIndexPath
+        
         self.collectionView!.reloadData()
         
         super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
@@ -371,6 +395,20 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.collectionView?.reloadData()
+    }
+    
+    /**
+     *
+     *   HELPER
+     *
+     **/
+    
+    func getCurrentTime() -> TimeObject {
+        if self.currentSelection != nil {
+            return (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! TimeObject)
+        } else {
+            return TimeObject()
+        }
     }
     
 }

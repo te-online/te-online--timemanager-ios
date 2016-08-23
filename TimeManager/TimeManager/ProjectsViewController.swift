@@ -21,8 +21,6 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     
     var fetchedResultsController: NSFetchedResultsController!
     
-    var dateFormatter: NSDateFormatter!
-    
     var currentSelection: NSIndexPath!
     
     var ClientNameScrollLabel: UILabel!
@@ -30,11 +28,6 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
         dataController = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // Let's create a nice date format.
-        dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        dateFormatter.timeStyle = .NoStyle
         
         super.viewDidLoad()
         
@@ -151,7 +144,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         self.ClientNameScrollLabel.text = currentClient.name
         
         let ClientSinceLabel = backgroundController!.view.viewWithTag(7) as! UILabel
-        ClientSinceLabel.text = self.dateFormatter.stringFromDate(currentClient.created!)
+        ClientSinceLabel.text = FormattingHelper.dateFormat(.DayMonthnameYear, date: currentClient.created!)
         
         let ClientAddressLabel = backgroundController!.view.viewWithTag(8) as! UILabel
         ClientAddressLabel.text = (currentClient.street! + "\n" + currentClient.postcode! + " " + currentClient.city!)
