@@ -3446,6 +3446,7 @@ logo, colors, font choices and simp</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1000" height="600"/>
                     <connections>
+                        <outlet property="DetailsHoursLabel" destination="i0o-1g-1Zq" id="9PE-TY-aTo"/>
                         <outlet property="DetailsTableView" destination="Wvu-d9-PgR" id="ugb-0i-ncu"/>
                         <outlet property="chartView" destination="vmS-7f-inb" id="L5j-me-M3E"/>
                     </connections>

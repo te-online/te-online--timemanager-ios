@@ -116,6 +116,7 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
         self.chartView.data = chartData
         self.chartView.animate(yAxisDuration: 0.3)
+        self.chartView.highlightValue(nil)
     }
     
     func reloadData(forDate: NSDate) {

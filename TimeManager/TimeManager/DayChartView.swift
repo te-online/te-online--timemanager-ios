@@ -13,6 +13,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
     
     @IBOutlet weak var chartView: HorizontalBarChartView!
     @IBOutlet weak var DetailsTableView: UITableView!
+    @IBOutlet weak var DetailsHoursLabel: UILabel!
     
     var months: [String]!
     var data: [Double]!
@@ -22,6 +23,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
     
     var dateProjects = [ProjectObject]()
     var currentProject: ProjectObject!
+    var rawValues: [Double] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +79,9 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         
         // Set the data.
         self.reloadData(NSDate())
+        
+        // Set detail hours to zero.
+        self.DetailsHoursLabel.text = FormattingHelper.formatHoursAsString(0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,6 +112,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         self.chartView.data = chartData
         self.chartView.animate(yAxisDuration: 0.3)
+        self.chartView.highlightValue(nil)
     }
     
     func reloadData(forDate: NSDate) {
@@ -114,9 +120,9 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
             self.tt = TimeTraveller()
         }
         
-        let rawValues = tt.recordedHoursInProjectsByDate(forDate)
+        self.rawValues = tt.recordedHoursInProjectsByDate(forDate)
         self.dateProjects = tt.ProjectsByDate(forDate)
-        self.setChart(self.months, values: rawValues)
+        self.setChart(self.months, values: self.rawValues)
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
@@ -124,7 +130,15 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         if(self.dateProjects.count > index) {
             self.currentProject = self.dateProjects[index]
             self.DetailsTableView.reloadData()
+            
+            self.DetailsHoursLabel.text = FormattingHelper.formatHoursAsString(self.rawValues[index])
         }
+    }
+    
+    func chartValueNothingSelected(chartView: ChartViewBase) {
+        self.currentProject = nil
+        self.DetailsHoursLabel.text = FormattingHelper.formatHoursAsString(0)
+        self.DetailsTableView.reloadData()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -136,6 +150,8 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         
         if(indexPath.section == 0) {
             cell = tableView.dequeueReusableCellWithIdentifier("client")!
+            cell.textLabel?.font = UIFont(name: "Poppins-Medium", size: 20.0)!
+            cell.textLabel?.textColor = Colors.Blue
             if self.currentProject != nil {
                 cell.textLabel!.text = (self.currentProject.client! as ClientObject).name
             } else {
@@ -143,6 +159,8 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
             }
         } else if(indexPath.section == 1) {
             cell = tableView.dequeueReusableCellWithIdentifier("subitem")!
+            cell.textLabel?.font = UIFont(name: "Poppins-Medium", size: 16.0)!
+            cell.textLabel?.textColor = Colors.DarkGrey
             if self.currentProject != nil {
                 cell.textLabel!.text = self.currentProject.name
             } else {
@@ -150,6 +168,8 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
             }
         } else if(indexPath.section == 2) {
             cell = tableView.dequeueReusableCellWithIdentifier("subitem")!
+            cell.textLabel?.font = UIFont(name: "Poppins-Regular", size: 16.0)!
+            cell.textLabel?.textColor = Colors.DarkGrey
             if self.currentProject != nil {
                 cell.textLabel!.text = (self.currentProject.tasks?.allObjects[indexPath.row] as! TaskObject).name
             } else {
@@ -169,11 +189,24 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(section == 0) {
-            return "FOR"
+            return "For client"
         } else if(section == 1) {
-            return "PROJECT"
+            return "Project"
         }
-        return "TASKS"
+        return "Tasks"
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let myLabel = UILabel()
+        myLabel.frame = CGRectMake(15, 8, 320, 20)
+        myLabel.font = UIFont(name: "Poppins-Regular", size: 10.0)!
+        myLabel.textColor = Colors.Grey
+        myLabel.text = self.tableView(tableView, titleForHeaderInSection: section)?.uppercaseString
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.whiteColor()
+        headerView.addSubview(myLabel)
+        
+        return headerView
     }
     
 }
