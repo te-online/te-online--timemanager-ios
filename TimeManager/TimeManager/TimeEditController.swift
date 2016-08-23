@@ -67,6 +67,11 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
         CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
         
+        // Add border to textview.
+        NoteInputField.layer.borderWidth = 1.0
+        NoteInputField.layer.borderColor = Colors.LightGrey.CGColor
+        NoteInputField.layer.cornerRadius = 4.0
+        
         // Add durations to duration slider.
         for i in 0...12 {
             if i > 0 {

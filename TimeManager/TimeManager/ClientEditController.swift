@@ -66,6 +66,11 @@ class ClientEditController: UIViewController {
         DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
         CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
         
+        // Add border to textview.
+        NoteInputField.layer.borderWidth = 1.0
+        NoteInputField.layer.borderColor = Colors.LightGrey.CGColor
+        NoteInputField.layer.cornerRadius = 4.0
+
         if self.editClientObject != nil {
             // Put data into the fields.
             NameInputField.text = self.editClientObject.name
