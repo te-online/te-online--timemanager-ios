@@ -73,8 +73,7 @@ class RestApiManager: NSObject {
                 let authString = "Basic \(base64EncodedCredential)"
                 request.setValue(authString, forHTTPHeaderField: "Authorization")
                 NSLog("Sending auth.")
-            }
-            
+            }            
             
             // Add the type header.
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")

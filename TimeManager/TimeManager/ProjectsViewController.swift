@@ -338,7 +338,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     
     func visibleFrameForEmbeddedControllers() -> CGRect {
         // Let's give them a rect, where the nav bar is still visible (Nav Bar is 86px in width and full height).
-        let showRect = CGRect(x:0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.6)
+        let showRect = CGRect(x:0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         return showRect
     }
     

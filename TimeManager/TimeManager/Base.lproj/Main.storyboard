@@ -2445,7 +2445,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94901960784313721" green="1" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="kc7-s4-gTG" firstAttribute="height" secondItem="3CZ-jk-QMT" secondAttribute="height" id="0bz-yI-8ax"/>
                                     <constraint firstItem="kc7-s4-gTG" firstAttribute="leading" secondItem="3CZ-jk-QMT" secondAttribute="trailing" constant="8" id="3Ej-tH-XtS"/>
@@ -3419,9 +3418,9 @@
         <image name="statistics-icon.png" width="86" height="86"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="2O9-oO-7NE"/>
+        <segue reference="cln-V8-Md1"/>
         <segue reference="kZG-yn-k2n"/>
-        <segue reference="OKW-vY-WJX"/>
-        <segue reference="cQC-MK-ip3"/>
         <segue reference="Ciq-Bt-Zfc"/>
     </inferredMetricsTieBreakers>
 </document>

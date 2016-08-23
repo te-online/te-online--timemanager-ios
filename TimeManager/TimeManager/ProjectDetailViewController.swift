@@ -15,6 +15,8 @@ protocol ProjectDetailViewControllerDelegate {
 
 class ProjectDetailViewController: UIViewController {
     
+    let Colors = SharedColorPalette.sharedInstance
+    
     var delegate: ProjectDetailViewControllerDelegate?
     
     @IBAction func EditButtonPressed(sender: AnyObject) {
@@ -39,6 +41,7 @@ class ProjectDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = Colors.TasksCellGreen
     }
     
     override func didReceiveMemoryWarning() {

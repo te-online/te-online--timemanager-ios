@@ -55,6 +55,9 @@
 		E958A15A1D5A292600FB6166 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958A1591D5A292600FB6166 /* EntriesViewController.swift */; };
 		E95B6A631D6B21CC00DC8BDA /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B6A621D6B21CC00DC8BDA /* DateHelper.swift */; };
 		E95B6A651D6BB56200DC8BDA /* HoursNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B6A641D6BB56200DC8BDA /* HoursNumberFormatter.swift */; };
+		E95B6A6F1D6CF9A300DC8BDA /* Logo-01.png in Resources */ = {isa = PBXBuildFile; fileRef = E95B6A6E1D6CF9A300DC8BDA /* Logo-01.png */; };
+		E95B6A721D6CF9C500DC8BDA /* Logo-02.png in Resources */ = {isa = PBXBuildFile; fileRef = E95B6A701D6CF9C500DC8BDA /* Logo-02.png */; };
+		E95B6A731D6CF9C500DC8BDA /* Logo-03.png in Resources */ = {isa = PBXBuildFile; fileRef = E95B6A711D6CF9C500DC8BDA /* Logo-03.png */; };
 		E987E65E1D6B0C5700867AEF /* DayChartDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E987E65D1D6B0C5700867AEF /* DayChartDetailController.swift */; };
 		E992CC291D66168D002E71AB /* YearChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC281D66168D002E71AB /* YearChartViewController.swift */; };
 		E992CC2B1D6628FC002E71AB /* MonthChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */; };
@@ -147,6 +150,9 @@
 		E958A1591D5A292600FB6166 /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		E95B6A621D6B21CC00DC8BDA /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		E95B6A641D6BB56200DC8BDA /* HoursNumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoursNumberFormatter.swift; sourceTree = "<group>"; };
+		E95B6A6E1D6CF9A300DC8BDA /* Logo-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-01.png"; sourceTree = "<group>"; };
+		E95B6A701D6CF9C500DC8BDA /* Logo-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-02.png"; sourceTree = "<group>"; };
+		E95B6A711D6CF9C500DC8BDA /* Logo-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo-03.png"; sourceTree = "<group>"; };
 		E987E65D1D6B0C5700867AEF /* DayChartDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayChartDetailController.swift; sourceTree = "<group>"; };
 		E992CC281D66168D002E71AB /* YearChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearChartViewController.swift; sourceTree = "<group>"; };
 		E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthChartViewController.swift; sourceTree = "<group>"; };
@@ -334,6 +340,9 @@
 		E958A1481D59E8A700FB6166 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				E95B6A6E1D6CF9A300DC8BDA /* Logo-01.png */,
+				E95B6A701D6CF9C500DC8BDA /* Logo-02.png */,
+				E95B6A711D6CF9C500DC8BDA /* Logo-03.png */,
 				E9BE09D91D65E7B700799AB8 /* entries-icon-active.png */,
 				E9BE09DA1D65E7B700799AB8 /* entries-icon-active@2x.png */,
 				E9BE09DB1D65E7B700799AB8 /* entries-icon-active@3x.png */,
@@ -498,6 +507,7 @@
 				E9BA20E01D5DCE930098F37D /* arrow-right-grey@2x.png in Resources */,
 				E9BE09EC1D65E7B700799AB8 /* entries-icon-active@2x.png in Resources */,
 				E958A1351D5874A000FB6166 /* LaunchScreen.storyboard in Resources */,
+				E95B6A721D6CF9C500DC8BDA /* Logo-02.png in Resources */,
 				E906D01B1D5DFDD500C06C87 /* arrow-up-grey.png in Resources */,
 				E958A14F1D59E8CB00FB6166 /* Poppins-Light.ttf in Resources */,
 				E958A1511D59E8CB00FB6166 /* Poppins-Regular.ttf in Resources */,
@@ -505,6 +515,7 @@
 				E9BE09FA1D65E7B700799AB8 /* statistics-icon.png in Resources */,
 				E958A1321D5874A000FB6166 /* Assets.xcassets in Resources */,
 				E9BE09FB1D65E7B700799AB8 /* statistics-icon@2x.png in Resources */,
+				E95B6A6F1D6CF9A300DC8BDA /* Logo-01.png in Resources */,
 				E958A1501D59E8CB00FB6166 /* Poppins-Medium.ttf in Resources */,
 				E9BE09F51D65E7B700799AB8 /* overview-icon@2x.png in Resources */,
 				E958A1521D59E8CB00FB6166 /* Poppins-SemiBold.ttf in Resources */,
@@ -521,6 +532,7 @@
 				E9BA20D71D5DCE850098F37D /* arrow-right.png in Resources */,
 				E9BE09F81D65E7B700799AB8 /* statistics-icon-active@2x.png in Resources */,
 				E906D01C1D5DFDD500C06C87 /* arrow-up-grey@2x.png in Resources */,
+				E95B6A731D6CF9C500DC8BDA /* Logo-03.png in Resources */,
 				E958A14E1D59E8CB00FB6166 /* Poppins-Bold.ttf in Resources */,
 				E9BA20E11D5DCE930098F37D /* arrow-right-grey@3x.png in Resources */,
 				E9BE09D61D65E78B00799AB8 /* settings-icon.png in Resources */,
