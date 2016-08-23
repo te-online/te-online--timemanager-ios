@@ -43,7 +43,7 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         // Show the first view.
         self.displayContentController(backgroundController!)
         
-        self.collectionView!.frame = CGRect(x: 0, y: 30, width: self.view!.frame.width, height: self.collectionView!.frame.height - 30)
+        self.collectionView!.frame = CGRect(x: 0, y: 0, width: self.view!.frame.width, height: self.collectionView!.frame.height)
         self.collectionView!.backgroundColor = UIColor.clearColor()
         self.view!.backgroundColor = UIColor.whiteColor()
     }
@@ -250,7 +250,7 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     
     override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: self.view.frame.width, height: 150)
+            return CGSize(width: self.view.frame.width, height: 100)
         }
         return super.getCellSize()
     }

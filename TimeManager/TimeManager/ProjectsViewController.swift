@@ -43,7 +43,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         // Show the first view.
         self.displayContentController(backgroundController!)
         
-        self.collectionView!.frame = CGRect(x: 0, y: 30, width: self.view!.frame.width, height: self.collectionView!.frame.height - 30)
+        self.collectionView!.frame = CGRect(x: 0, y: 0, width: self.view!.frame.width, height: self.collectionView!.frame.height)
         self.collectionView!.backgroundColor = UIColor.clearColor()
         self.view!.backgroundColor = UIColor.whiteColor()
     }
