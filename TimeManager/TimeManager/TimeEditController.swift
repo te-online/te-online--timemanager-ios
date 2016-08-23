@@ -25,6 +25,8 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     var currentTime: Time!
+    var editTimeObject: TimeObject!
+    var currentTaskObject: TaskObject!
     var saveIntent = false
     
     var createDelegate: TimeCreateDelegate?
@@ -79,6 +81,21 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         currentDuration = PickerDurations.first!
         
         // Set up the client, project and taskname
+        if self.editTimeObject != nil {
+            // Put data into the fields.
+//            NameInputField.text = self.editProjectObject.name
+            
+            // Rename buttons.
+            DoneButtonTop.setTitle("Update", forState: .Normal)
+            DoneButtonBottom.setTitle("Update", forState: .Normal)
+            
+            // Change caption.
+            ModalTitleLabel.text = "Edit time entry".uppercaseString
+        }
+        
+        if self.currentTaskObject != nil {
+            ContextInfoLabel.text = String(format: "%@ > %@ > %@", self.currentTaskObject.project!.client!.name!, self.currentTaskObject.project!.name!, self.currentTaskObject!.name!)
+        }
     }
     
     override func didReceiveMemoryWarning() {

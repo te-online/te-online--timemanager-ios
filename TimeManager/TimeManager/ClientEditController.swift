@@ -76,6 +76,9 @@ class ClientEditController: UIViewController {
             // Rename buttons.
             DoneButtonTop.setTitle("Update", forState: .Normal)
             DoneButtonBottom.setTitle("Update", forState: .Normal)
+            
+            // Change caption.
+            ModalTitleLabel.text = "Edit client entry".uppercaseString
         }
     }
     

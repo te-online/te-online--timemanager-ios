@@ -33,6 +33,9 @@ class ClientDetailViewController: UIViewController {
             (segue.destinationViewController as! ClientEditController).editDelegate = (self.delegate as! ProjectsViewController)
             (segue.destinationViewController as! ClientEditController).editClientObject = (self.delegate as! ProjectsViewController).currentClient
         }
+        if segue.identifier == "newProject" {
+            (segue.destinationViewController as! ProjectEditController).currentClientObject = (self.delegate as! ProjectsViewController).currentClient
+        }
     }
     
     override func viewDidLoad() {

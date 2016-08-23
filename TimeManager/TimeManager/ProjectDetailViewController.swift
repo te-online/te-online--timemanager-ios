@@ -29,6 +29,10 @@ class ProjectDetailViewController: UIViewController {
         if segue.identifier == "editProject" {
             (segue.destinationViewController as! ProjectEditController).editDelegate = (self.delegate as! TasksViewController)
             (segue.destinationViewController as! ProjectEditController).editProjectObject = (self.delegate as! TasksViewController).currentProject
+            (segue.destinationViewController as! ProjectEditController).currentClientObject = (self.delegate as! TasksViewController).currentProject.client
+        }
+        if segue.identifier == "newTask" {
+            (segue.destinationViewController as! TaskEditController).currentProjectObject = (self.delegate as! TasksViewController).currentProject
         }
     }
     

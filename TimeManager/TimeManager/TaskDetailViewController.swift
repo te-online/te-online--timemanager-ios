@@ -29,6 +29,10 @@ class TaskDetailViewController: UIViewController {
         if segue.identifier == "editTask" {
             (segue.destinationViewController as! TaskEditController).editDelegate = (self.delegate as! TimesViewController)
             (segue.destinationViewController as! TaskEditController).editTaskObject = (self.delegate as! TimesViewController).currentTask
+            (segue.destinationViewController as! TaskEditController).currentProjectObject = (self.delegate as! TimesViewController).currentTask.project
+        }
+        if segue.identifier == "newTime" {
+            (segue.destinationViewController as! TimeEditController).currentTaskObject = (self.delegate as! TimesViewController).currentTask
         }
     }
     

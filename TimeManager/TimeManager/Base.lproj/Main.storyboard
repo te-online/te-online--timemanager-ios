@@ -1800,7 +1800,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="ST2-pq-yuG" kind="presentation" modalPresentationStyle="formSheet" id="OKW-vY-WJX"/>
+                                            <segue destination="ST2-pq-yuG" kind="presentation" identifier="newProject" modalPresentationStyle="formSheet" id="OKW-vY-WJX"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2377,7 +2377,7 @@ logo, colors, font choices and simp</string>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6o8-xJ-PV2">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Started" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6o8-xJ-PV2">
                                         <rect key="frame" x="13" y="68" width="343" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="Sux-dR-Hp7"/>
@@ -2438,7 +2438,7 @@ logo, colors, font choices and simp</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="h5H-FA-n5q" kind="presentation" modalPresentationStyle="formSheet" id="cln-V8-Md1"/>
+                                            <segue destination="h5H-FA-n5q" kind="presentation" identifier="newTask" modalPresentationStyle="formSheet" id="cln-V8-Md1"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2578,12 +2578,6 @@ logo, colors, font choices and simp</string>
                                         <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDE-16-cuz">
-                                        <rect key="frame" x="13" y="72" width="26" height="14"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
-                                        <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGe-D4-Y6S">
                                         <rect key="frame" x="401" y="82" width="89" height="34"/>
                                         <constraints>
@@ -2603,9 +2597,15 @@ logo, colors, font choices and simp</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="dH5-qh-WKQ" kind="presentation" modalPresentationStyle="formSheet" id="Ciq-Bt-Zfc"/>
+                                            <segue destination="dH5-qh-WKQ" kind="presentation" identifier="newTime" modalPresentationStyle="formSheet" id="Ciq-Bt-Zfc"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Started" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDE-16-cuz">
+                                        <rect key="frame" x="13" y="72" width="30" height="14"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="8"/>
+                                        <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -3084,22 +3084,6 @@ logo, colors, font choices and simp</string>
                                     <segue destination="Mnr-1z-QfV" kind="unwind" unwindAction="cancel:" id="rnh-X5-DT0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acme Corp. Acme Corp. &gt; Very important project &gt; Very very important task" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMc-Cb-O1G">
-                                <rect key="frame" x="20" y="463" width="360" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="360" id="aIJ-A6-vUA"/>
-                                    <constraint firstAttribute="height" constant="21" id="kft-ym-CxH"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="kzN-4m-cBu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="11"/>
-                                <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="kft-ym-CxH"/>
-                                    </mask>
-                                </variation>
-                            </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="OYu-9e-LJ8">
                                 <rect key="frame" x="20" y="81" width="360" height="60"/>
                                 <constraints>
@@ -3158,6 +3142,22 @@ logo, colors, font choices and simp</string>
                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="11"/>
                                 <color key="textColor" red="0.13725490870000001" green="0.13725490870000001" blue="0.13725490870000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acme Corp. Acme Corp. &gt; Very important project &gt; Very very important task" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMc-Cb-O1G">
+                                <rect key="frame" x="20" y="463" width="360" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="aIJ-A6-vUA"/>
+                                    <constraint firstAttribute="height" constant="21" id="kft-ym-CxH"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="kzN-4m-cBu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="11"/>
+                                <color key="textColor" red="0.51372551919999998" green="0.52549022440000004" blue="0.53333336109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kft-ym-CxH"/>
+                                    </mask>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

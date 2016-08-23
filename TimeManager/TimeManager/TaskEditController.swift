@@ -24,7 +24,7 @@ class TaskEditController: UIViewController {
     
     var currentTask: Task!
     var editTaskObject: TaskObject!
-    var currentProject: ProjectObject!
+    var currentProjectObject: ProjectObject!
     var saveIntent = false
     
     var createDelegate: TaskCreateDelegate?
@@ -65,6 +65,13 @@ class TaskEditController: UIViewController {
             // Rename buttons.
             DoneButtonTop.setTitle("Update", forState: .Normal)
             DoneButtonBottom.setTitle("Update", forState: .Normal)
+            
+            // Change caption.
+            ModalTitleLabel.text = "Edit task entry".uppercaseString
+        }
+        
+        if self.currentProjectObject != nil {
+            ContextInfoLabel.text = String(format: "%@ > %@", self.currentProjectObject.client!.name!, self.currentProjectObject!.name!)
         }
     }
     
