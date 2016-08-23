@@ -80,6 +80,8 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             } else {
                 self.currentSelection.projectId = ""
                 self.currentSelection.taskId = ""
+                (self.projectsController as! ProjectsViewController).currentSelection = nil
+                (self.tasksController as! TasksViewController).currentSelection = nil
             }
             
             (self.projectsController as! CardOfViewDeckController).positionActive()
@@ -93,6 +95,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
             } else {
                 self.currentSelection.taskId = ""
+                (self.tasksController as! TasksViewController).currentSelection = nil
             }
             
             (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
