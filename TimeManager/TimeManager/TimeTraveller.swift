@@ -53,7 +53,7 @@ class TimeTraveller {
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forWeek = NSPredicate(format: "(start >= %@) AND (end <= %@)", startOfWeek, endOfWeek)
+        let forWeek = NSPredicate(format: "(start > %@) AND (end <= %@)", startOfWeek, endOfWeek)
         request.predicate = forWeek
         
         do {

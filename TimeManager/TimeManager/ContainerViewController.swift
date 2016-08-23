@@ -37,11 +37,15 @@ class ContainerViewController: UIViewController {
         self.overviewScreenController = storyboard?.instantiateViewControllerWithIdentifier("OverviewScreenController")
         self.statisticsScreenController = storyboard?.instantiateViewControllerWithIdentifier("StatisticsScreenController")
         self.currentViewController = nil
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         // Show the first view.
         self.displayContentController(overviewScreenController!)
         
         self.correctButtons()
+        
+        super.viewDidAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -86,6 +90,7 @@ class ContainerViewController: UIViewController {
         return showRect
     }
     
+    // see also http://stackoverflow.com/questions/22676938/unbalanced-calls-to-begin-end-appearance-transitions-for-uiviewcontroller
     func cycleFromViewController(fromViewController oldVC: UIViewController!, toViewController newVC: UIViewController!) {
         if(oldVC == newVC || oldVC == nil || newVC == nil) {
             return
@@ -94,24 +99,22 @@ class ContainerViewController: UIViewController {
         oldVC.willMoveToParentViewController(nil)
         // Add new view controller.
         self.addChildViewController(newVC!)
-        // Make new view controller transparent.
-        newVC.view.alpha = 0
         // Make new view controller fit the available space.
         newVC.view.frame = self.visibleFrameForEmbeddedControllers()
-        // Add the new view.
-        self.view!.addSubview(newVC!.view)
+        // Make new view controller transparent.
+        newVC.view.alpha = 0
         // Transition the new view controller to visible and the old one to transparent.
         self.transitionFromViewController(oldVC, toViewController: newVC, duration: 0.25, options: [], animations: {() -> Void in
             newVC.view.alpha = 1
             oldVC.view.alpha = 0
             }, completion: {(finished: Bool) -> Void in
                 // Remove old view controller after animation.
-                oldVC.view.removeFromSuperview()
                 oldVC.removeFromParentViewController()
                 // Make sure new view controller knows they're home.
                 newVC.didMoveToParentViewController(self)
                 // Store current view controller, just in case.
                 self.currentViewController = newVC
+                // Correct the navi buttons appearance.
                 self.correctButtons()
         })
     }

@@ -112,7 +112,6 @@ class SyncEngine {
         let lastCommit = self.defaults.stringForKey("lastCommit") ?? ""
 
         RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data, "lastCommit": lastCommit], onCompletion: { (json: JSON) in
-//            NSLog("results " + String(json.array))
             if let commit = json[0]["commit"].string {
                 NSLog("commit " + commit)
                 self.defaults.setValue(commit, forKey: "lastCommit")
@@ -120,14 +119,16 @@ class SyncEngine {
                 for entries in self.Objects {
                     for entry in entries {
                         if (((entry as! NSManagedObject).valueForKey("commit")?.isEqual(String("deleted"))) == nil) {
-//                            self.syncManagedObjectContext.deleteObject(entry as! NSManagedObject)
-//                        } else {
                             entry.setValue(commit, forKey: "commit")
+                            
+                            do {
+                                try self.syncManagedObjectContext.save()
+                            } catch {
+                                fatalError("Failed to save commit to synced entries: \(error)")
+                            }
                         }
                     }
                 }
-                
-//                NSLog("Deletables " + String(self.Deletables))
                 
                 for entries in self.Deletables {
                     for entry in entries {
@@ -135,9 +136,8 @@ class SyncEngine {
                     }
                 }
                 
-                let moc = self.syncManagedObjectContext
                 do {
-                    try moc.save()
+                    try self.syncManagedObjectContext.save()
                 } catch {
                     fatalError("Failed to save commit to synced entries: \(error)")
                 }
