@@ -80,6 +80,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
             } else {
                 self.currentSelection.projectId = ""
                 self.currentSelection.taskId = ""
+                // Clear selection in views, right to this view.
                 (self.projectsController as! ProjectsViewController).currentSelection = nil
                 (self.tasksController as! TasksViewController).currentSelection = nil
             }
@@ -95,6 +96,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
             } else {
                 self.currentSelection.taskId = ""
+                // Clear selection in views, right to this view.
                 (self.tasksController as! TasksViewController).currentSelection = nil
             }
             
