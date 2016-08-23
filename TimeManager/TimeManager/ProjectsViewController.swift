@@ -78,6 +78,16 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         if currentClient != nil {
             let moc = self.dataController.managedObjectContext
             self.currentClient.setValue("deleted", forKey: "commit")
+            // Do this for children as well.
+            for project in self.currentClient.projects! {
+                (project as! ProjectObject).setValue("deleted", forKey: "commit")
+                for task in (project as! ProjectObject).tasks! {
+                    (task as! TaskObject).setValue("deleted", forKey: "commit")
+                    for time in (task as! TaskObject).times! {
+                        (time as! TimeObject).setValue("deleted", forKey: "commit")
+                    }
+                }
+            }
             
             do {
                 try moc.save()

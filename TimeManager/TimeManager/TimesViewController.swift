@@ -88,6 +88,10 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         if self.currentTask != nil {
             let moc = self.dataController.managedObjectContext
             self.currentTask.setValue("deleted", forKey: "commit")
+            // Do this for children as well.
+            for time in self.currentTask.times! {
+                (time as! TimeObject).setValue("deleted", forKey: "commit")
+            }
             
             do {
                 try moc.save()
