@@ -82,8 +82,8 @@ extension ClientObject {
             "city": self.city ?? "",
             "note": self.note ?? "",
             "commit": self.commit ?? "",
-            "created": FormattingHelper.getISOStringFromDate(self.created!),
-            "changed": FormattingHelper.getISOStringFromDate(self.changed!)
+            "created": FormattingHelper.dateFormat(FormattingHelper.DateFormat.ISOString, date: self.created!),
+            "changed": FormattingHelper.dateFormat(FormattingHelper.DateFormat.ISOString, date: self.changed!)
         ]
     }
 

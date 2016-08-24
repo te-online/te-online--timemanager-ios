@@ -19,6 +19,7 @@ class RestApiManager: NSObject {
     var baseURL = ""
     
     override init() {
+        // If the service URL is our debug URL, don't use https, otherwise we should and must.
         self.serviceUrl = defaults.stringForKey("cloudSyncServer") ?? ""
         if(self.serviceUrl == "localhost:4444") {
             self.baseURL = "http://" + self.serviceUrl + "/api/updateObjects"
@@ -29,12 +30,13 @@ class RestApiManager: NSObject {
     
     func sendUpdateRequest(body: [String: AnyObject], onCompletion: (JSON) -> Void) {
         let route = baseURL
+        // Send a request to the backend API with our body contents.
         makeHTTPPostRequest(route, body: body, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
     
-    // MARK: Perform a GET Request
+    // MARK: Perform a GET Request (not in use.)
     private func makeHTTPGetRequest(path: String, onCompletion: ServiceResponse) {
         let request = NSMutableURLRequest(URL: NSURL(string: path)!)
         
@@ -66,16 +68,20 @@ class RestApiManager: NSObject {
             // Prepare the authentication parameters.
             let user = defaults.stringForKey("cloudSyncUser")
             let pass = defaults.stringForKey("cloudSyncPassword")
+            // If we have a username and password, use it.
             if user != nil && pass != nil && !(user?.isEmpty)! && !(user?.isEmpty)! {
+                // We need an auth string in the format of user:pass
                 let userPasswordString = String(format: "%@:%@", user!, pass!)
+                // Base64 encode the credentials.
                 let userPasswordData = userPasswordString.dataUsingEncoding(NSUTF8StringEncoding)
                 let base64EncodedCredential = userPasswordData!.base64EncodedStringWithOptions([])
+                // Prepend the correct method.
                 let authString = "Basic \(base64EncodedCredential)"
+                // Add credentials to request.
                 request.setValue(authString, forHTTPHeaderField: "Authorization")
-                NSLog("Sending auth.")
             }            
             
-            // Add the type header.
+            // Add the json type header.
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
             // Initiate the session.

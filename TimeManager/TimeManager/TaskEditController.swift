@@ -70,6 +70,7 @@ class TaskEditController: UIViewController {
             ModalTitleLabel.text = "Edit task".uppercaseString
         }
         
+        // Give some orientation, where the user is.
         if self.currentProjectObject != nil {
             ContextInfoLabel.text = String(format: "%@ > %@", self.currentProjectObject.client!.name!, self.currentProjectObject!.name!)
         }

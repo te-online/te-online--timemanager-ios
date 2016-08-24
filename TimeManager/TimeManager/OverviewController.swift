@@ -36,9 +36,11 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // We are delegate for the list of tasks.
         TasksCollectionView.delegate = self
         TasksCollectionView.dataSource = self
         
+        // We are also delegate for the grid of hours.
         HoursCollectionView.delegate = self
         HoursCollectionView.dataSource = self
         
@@ -71,6 +73,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         if(collectionView == TasksCollectionView) {
             return self.tasks.count
         } else if(collectionView == HoursCollectionView) {
+            // There are 5 rows, times 7 day, equals 35 cells in total.
             return 35
         }
         
@@ -78,6 +81,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        // Configure the cell to have the task, project and client inside.
         if(collectionView == TasksCollectionView) {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("taskCell", forIndexPath: indexPath) as UICollectionViewCell
             
@@ -92,8 +96,10 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
             
             return cell
         } else if(collectionView == HoursCollectionView) {
+            // Configure the cell to show the correct value in the grid.
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("hourCell", forIndexPath: indexPath) as UICollectionViewCell
-
+            
+            // Get the row and column of this cell in our grid.
             let row = Int(floor(Double(indexPath.row) / 7))
             let column = Int(Double(indexPath.row) - Double(7 * row))
             
@@ -116,6 +122,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         var reusableView: UICollectionReusableView!
         reusableView = nil
         
+        // Add the names of the days to the header view.
         if(kind == UICollectionElementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "hoursDayLegend", forIndexPath: indexPath)
             
@@ -131,6 +138,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func loadData() {
+        // Load all the data for the current selected week.
         let tt = TimeTraveller()
         let today = tt.todaysRecordedHours()
         let thisWeek = tt.thisWeeksRecordedHours()
@@ -167,7 +175,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         WeeksHoursMainLabel.text = FormattingHelper.formatHoursAsString(thisWeek)
         // The value for the week currently selected.
         WeeksHoursTableLabel.text = FormattingHelper.formatHoursAsString(week)
-        CurrentWeekLabel.text = (FormattingHelper.weekAndYearFromDate(self.currentDate)).uppercaseString
+        CurrentWeekLabel.text = (FormattingHelper.dateFormat(.WeekAndYear, date: self.currentDate).uppercaseString).uppercaseString
         
         
         self.HoursCollectionView.reloadData()

@@ -37,6 +37,7 @@ extension TimeObject {
         return FormattingHelper.dateFormat(.DaynameDayMonthnameYear, date: self.start!) // "Mon 19. August 2001"
     }
     
+    // Returns a string describing the timespan the entry covers. E.g. 12.00 – 14.00
     func getTimeSpanString() -> String {
         return String(format: "%@ – %@", FormattingHelper.dateFormat(.HoursMinutes, date: self.start!), FormattingHelper.dateFormat(.HoursMinutes, date: self.end!))  // "12.00 – 14.00"
     }
@@ -45,12 +46,12 @@ extension TimeObject {
         return [
             "uuid": self.uuid ?? "",
             "task_uuid": self.task_uuid ?? "",
-            "start": FormattingHelper.getISOStringFromDate(self.start!),
-            "end": FormattingHelper.getISOStringFromDate(self.end!),
+            "start": FormattingHelper.dateFormat(.ISOString, date: self.start!),
+            "end": FormattingHelper.dateFormat(.ISOString, date: self.end!),
             "note": self.note ?? "",
             "commit": self.commit ?? "",
-            "created": FormattingHelper.getISOStringFromDate(self.created!),
-            "changed": FormattingHelper.getISOStringFromDate(self.changed!)
+            "created": FormattingHelper.dateFormat(.ISOString, date: self.created!),
+            "changed": FormattingHelper.dateFormat(.ISOString, date: self.changed!)
         ]
     }
     

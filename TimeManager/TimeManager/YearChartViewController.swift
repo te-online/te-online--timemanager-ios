@@ -26,6 +26,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         self.data = [100, 120, 130, 20, 50, 60, 75, 230, 45, 98, 12, 25]
         
         self.chartView.delegate = self
+        
         // No description text.
         self.chartView.descriptionText = ""
         
@@ -104,6 +105,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
     }
     
     func reloadData(forDate: NSDate) {
+        // Give some orientation, where the user is.
         if(self.tt == nil) {
             self.tt = TimeTraveller()
         }

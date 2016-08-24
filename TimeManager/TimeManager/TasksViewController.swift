@@ -100,7 +100,6 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     }
     
     func saveNewTask(task: TaskEditController.Task) {
-        NSLog("Task " + String(task))
         let entity = NSEntityDescription.entityForName("Task", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         

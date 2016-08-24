@@ -103,7 +103,6 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     }
     
     func saveNewTime(time: TimeEditController.Time) {
-        NSLog("Time " + String(time))
         let entity = NSEntityDescription.entityForName("Time", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
@@ -178,7 +177,6 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     }
     
     func setParentTask(task: TaskObject) {
-//        NSLog("Setting task to " + String(project) + " current " + String(self.currentProject))
         self.currentTask = task
         self.initializeFetchedResultsControllerWithCurrentTask()
         self.populateCurrentTaskDetails()

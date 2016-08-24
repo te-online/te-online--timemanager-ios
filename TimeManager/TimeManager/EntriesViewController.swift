@@ -32,6 +32,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         self.tasksController = storyboard?.instantiateViewControllerWithIdentifier("TasksViewController") as! UICollectionViewController
         self.timesController = storyboard?.instantiateViewControllerWithIdentifier("TimesViewController") as! UICollectionViewController
         
+        // Currently there is nothing selected. The view only just did load.
         self.currentSelection = Selection(clientId: "", projectId: "", taskId: "")
         
         (self.clientsController as! CardOfViewDeckController).delegate = self
@@ -39,9 +40,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         (self.tasksController as! CardOfViewDeckController).delegate = self
         (self.timesController as! CardOfViewDeckController).delegate = self
         
-        self.view.layer.masksToBounds = true
-        
-        // Get some shadows from the factory.
+        // Get some shadows delivered from the factory.
         self.produceShadow(self.projectsController)
         self.produceShadow(self.tasksController)
         self.produceShadow(self.timesController)
@@ -62,22 +61,24 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         let shadowPath: UIBezierPath = UIBezierPath()
         shadowPath.moveToPoint(CGPointMake(0.0, 0.0))
         shadowPath.addLineToPoint(CGPointMake(0.0, CGRectGetHeight(viewController.view.frame)))
-        shadowPath.addLineToPoint(CGPointMake(-4.0, CGRectGetHeight(viewController.view.frame)))
-        shadowPath.addLineToPoint(CGPointMake(-4.0, 0.0))
+        shadowPath.addLineToPoint(CGPointMake(-2.0, CGRectGetHeight(viewController.view.frame)))
+        shadowPath.addLineToPoint(CGPointMake(-2.0, 0.0))
         shadowPath.closePath()
         
         viewController.view.layer.masksToBounds = false
         viewController.view.layer.shadowColor = UIColor.init(colorLiteralRed: 0.48, green: 0.48, blue: 0.48, alpha: 1.0).CGColor
-        viewController.view.layer.shadowRadius = 4
-        viewController.view.layer.shadowOpacity = 0.5
+        viewController.view.layer.shadowRadius = 2
+        viewController.view.layer.shadowOpacity = 0.3
         viewController.view.layer.shadowPath = shadowPath.CGPath
     }
     
     func didSelectItemAtIndexPath(viewController: UICollectionViewController, indexPath: NSIndexPath) {
         if(viewController == self.clientsController) {
+            // If this is the first selection: Show the projects list.
             if(self.currentSelection.clientId.isEmpty) {
                 transitionInViewController(lastViewController: self.clientsController, newViewController: self.projectsController)
             } else {
+                // Reset the following views in the hierarchy.
                 self.currentSelection.projectId = ""
                 self.currentSelection.taskId = ""
                 // Clear selection in views, right to this view.
@@ -85,50 +86,61 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
                 (self.tasksController as! TasksViewController).currentSelection = nil
             }
             
+            // Show the project's controller.
             (self.projectsController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
-
+            
+            // Set the current client.
             let currentClient = (self.clientsController as! ClientsViewController).getCurrentClient()
             (self.projectsController as! ProjectsViewController).setParentClient(currentClient)
             self.currentSelection.clientId = currentClient.uuid
         } else if(viewController == self.projectsController) {
+            // If this is the first selection: Show the task's list.
             if(self.currentSelection.projectId.isEmpty) {
                 transitionInViewController(lastViewController: self.projectsController, newViewController: self.tasksController)
             } else {
+                // Reset the following views in the hierarchy.
                 self.currentSelection.taskId = ""
                 // Clear selection in views, right to this view.
                 (self.tasksController as! TasksViewController).currentSelection = nil
             }
             
+            // Show the tasks's controller
             (self.projectsController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.tasksController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
+            // Set the current project.
             let currentProject = (self.projectsController as! ProjectsViewController).getCurrentProject()
             (self.tasksController as! TasksViewController).setParentProject(currentProject)
             self.currentSelection.projectId = currentProject.uuid
         } else if(viewController == self.tasksController) {
+            // If this is the first selection: Show the time's list.
             if(self.currentSelection.taskId.isEmpty) {
                 transitionInViewController(lastViewController: self.tasksController, newViewController: self.timesController)
             }
             
+            // Show the time's controller.
             (self.tasksController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.timesController as! CardOfViewDeckController).positionActive()
             self.repositionCards()
             
+            // Set the current selected task.
             let currentTask = (self.tasksController as! TasksViewController).getCurrentTask()
             (self.timesController as! TimesViewController).setParentTask(currentTask)
             self.currentSelection.taskId = currentTask.uuid
         } else if(viewController == self.timesController) {
-            // Do nothing.
+            // Do nothing. This is handled by somebody else.
         }
     }
     
     func mightNavigateLeft(sender: UICollectionViewController) {
+        // Client's list cannot navigate left.
         if(sender == self.clientsController) {
             return
         }
         
+        // If one of the views wants to navigate to the left side, let them do so.
         if(sender == self.projectsController && !self.currentSelection.projectId.isEmpty) {
             (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.projectsController as! CardOfViewDeckController).positionSideBySideRight()
@@ -150,10 +162,12 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
     }
     
     internal func mightNavigateRight(sender: UICollectionViewController) {
+        // Time's list cannot navigate right.
         if(sender == self.timesController) {
             return
         }
         
+        // If one of the views wants to navigate to the right side, let them do so.
         if(sender == self.clientsController && !self.currentSelection.clientId.isEmpty) {
             (self.clientsController as! CardOfViewDeckController).positionSideBySideLeft()
             (self.projectsController as! CardOfViewDeckController).positionSideBySideRight()
@@ -174,6 +188,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         }
     }
     
+    // Delegate this task to all child controllers.
     func repositionCards() {
         (self.clientsController as! CardOfViewDeckController).repositionCard()
         (self.projectsController as! CardOfViewDeckController).repositionCard()
@@ -181,6 +196,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         (self.timesController as! CardOfViewDeckController).repositionCard()
     }
     
+    // Move the others sticky with their neighbours. The cards are a bit gooey.
     func mightMoveWithOtherCards(sender: UICollectionViewController) {
         if(sender == self.clientsController) {
             (self.projectsController as! CardOfViewDeckController).moveCardRightHandWithOtherCardsCenterPosition((self.clientsController as! CardOfViewDeckController).getX())
@@ -199,6 +215,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
 
     }
     
+    // Reset all selections when the client was deleted.
     func didDeleteClient() {
         self.currentSelection.clientId = ""
         self.currentSelection.projectId = ""
@@ -212,6 +229,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         self.repositionCards()
     }
     
+    // Reset all selections when the project was deleted.
     func didDeleteProject() {
         self.currentSelection.projectId = ""
         self.currentSelection.taskId = ""
@@ -223,6 +241,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         self.repositionCards()
     }
     
+    // Reset all selections when the task was deleted.
     func didDeleteTask() {
         self.currentSelection.taskId = ""
         (self.tasksController as! TasksViewController).currentSelection = nil
@@ -264,6 +283,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         return showRect
     }
     
+    // Set the correct position to the view controllers, when transitioning one in.
     func transitionInViewController(lastViewController prevVC: UIViewController!, newViewController newVC: UIViewController!) {
         self.displayContentControllerLater(newVC)
         if(prevVC.view!.frame.minX > 0) {

@@ -700,6 +700,7 @@
                     </view>
                     <connections>
                         <outlet property="EntriesButton" destination="cGx-II-c1F" id="8va-vV-2jl"/>
+                        <outlet property="NaviView" destination="1A1-ab-oz6" id="Oct-fy-pwa"/>
                         <outlet property="OverviewButton" destination="aM6-K5-8Ns" id="0sR-8N-nkH"/>
                         <outlet property="StatisticsButton" destination="yTn-ax-adf" id="tNV-rw-PnN"/>
                         <outlet property="SyncingSpinner" destination="M4y-Uq-AgY" id="kKO-LU-Zmy"/>
@@ -3368,7 +3369,7 @@
                                         <rect key="frame" x="0.0" y="28" width="489" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iJK-45-h0j" id="jR4-h7-LPH">
-                                            <rect key="frame" x="0.0" y="0.0" width="489" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="489" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -3376,7 +3377,7 @@
                                         <rect key="frame" x="0.0" y="72" width="489" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HLz-df-xWe" id="NLm-L7-UE6">
-                                            <rect key="frame" x="0.0" y="0.0" width="489" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="489" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

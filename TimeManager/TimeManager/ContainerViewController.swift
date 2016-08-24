@@ -17,6 +17,7 @@ class ContainerViewController: UIViewController {
     
     @IBOutlet weak var SyncingSpinner: UIActivityIndicatorView!
     @IBOutlet weak var SyncingText: UILabel!
+    @IBOutlet weak var NaviView: UIView!
     
     @IBOutlet weak var OverviewButton: UIButton!
     @IBOutlet weak var EntriesButton: UIButton!
@@ -25,9 +26,10 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Hide the sync progress, visible due to storyboard.
         self.hideSyncInProgress()
         
-        // Load nice background images for highlighted state for our navi buttons
+        // Load nice background images for highlighted state for our navi buttons.
         self.OverviewButton.setBackgroundImage(UIImage(named: "overview-icon-active.png"), forState: .Selected)
         self.EntriesButton.setBackgroundImage(UIImage(named: "entries-icon-active.png"), forState: .Selected)
         self.StatisticsButton.setBackgroundImage(UIImage(named: "statistics-icon-active.png"), forState: .Selected)
@@ -40,9 +42,9 @@ class ContainerViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        // Show the first view.
+        // Show the first subview, once this view fully appeared.
         self.displayContentController(overviewScreenController!)
-        
+        // Set the correct state for the navi buttons.
         self.correctButtons()
         
         super.viewDidAppear(animated)
@@ -54,8 +56,7 @@ class ContainerViewController: UIViewController {
     }
     
     @IBAction func dismissSettings(unwindSegue: UIStoryboardSegue) {
-        // We might want to save the settings at some point here.
-        // Or just get rid of the modal window.
+        // Just get rid of the modal window.
         
     }
     
@@ -112,14 +113,18 @@ class ContainerViewController: UIViewController {
                 oldVC.removeFromParentViewController()
                 // Make sure new view controller knows they're home.
                 newVC.didMoveToParentViewController(self)
+                // Send the new view to the back.
+                self.view!.bringSubviewToFront(self.NaviView)
                 // Store current view controller, just in case.
                 self.currentViewController = newVC
                 // Correct the navi buttons appearance.
                 self.correctButtons()
-        })
+            }
+        )
     }
     
     func correctButtons() {
+        // Set the selected navi button based on the current view controller.
         if self.currentViewController == self.overviewScreenController {
             self.OverviewButton.selected = true
             self.EntriesButton.selected = false

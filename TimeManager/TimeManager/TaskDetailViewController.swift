@@ -18,7 +18,7 @@ class TaskDetailViewController: UIViewController {
     var delegate: TaskDetailViewControllerDelegate?
     
     @IBAction func EditButtonPressed(sender: AnyObject) {
-//        self.delegate?.editCurrentTask()
+        // Do nothing. Segue does the rest.
     }
     
     @IBAction func DeleteButtonPressed(sender: AnyObject) {
@@ -26,6 +26,7 @@ class TaskDetailViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Pass over the correct data for the correct segue.
         if segue.identifier == "editTask" {
             (segue.destinationViewController as! TaskEditController).editDelegate = (self.delegate as! TimesViewController)
             (segue.destinationViewController as! TaskEditController).editTaskObject = (self.delegate as! TimesViewController).currentTask

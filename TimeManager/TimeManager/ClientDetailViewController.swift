@@ -19,16 +19,15 @@ class ClientDetailViewController: UIViewController {
     var currentClient: ClientObject!
     
     @IBAction func EditButtonPressed(sender: AnyObject) {
-//        NSLog("Client would be edited now")
-//        self.delegate?.editCurrentClient()
+        // Do nothing. Segue does the rest.
     }
     
     @IBAction func DeleteButtonPressed(sender: AnyObject) {
-//        NSLog("Client would be deleted now")
         self.delegate?.deleteCurrentClient()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Pass over the correct data for the correct segue.
         if segue.identifier == "editClient" {
             (segue.destinationViewController as! ClientEditController).editDelegate = (self.delegate as! ProjectsViewController)
             (segue.destinationViewController as! ClientEditController).editClientObject = (self.delegate as! ProjectsViewController).currentClient

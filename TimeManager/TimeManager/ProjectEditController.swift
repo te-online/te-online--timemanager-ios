@@ -71,6 +71,7 @@ class ProjectEditController: UIViewController {
             ModalTitleLabel.text = "Edit project".uppercaseString
         }
         
+        // Give some orientation, where the user is.
         if self.currentClientObject != nil {
             ContextInfoLabel.text =  self.currentClientObject.name!
         }

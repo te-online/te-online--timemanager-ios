@@ -58,7 +58,6 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
      **/
     
     func saveNewClient(client: ClientEditController.Client) {
-        NSLog("Name" + String(client))
         let entity = NSEntityDescription.entityForName("Client", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
@@ -206,9 +205,13 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         }
     }
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        
-    }
+    /**
+     *
+     *   This doesn't work, because we manipulate the index for the invisible cell at the top.
+     *   When we do this and there is a change in the data of the fetched results controller, we'll get an error.
+     *   Maybe with some kind of manipulation it could be solved.
+     *
+     **/
     
 //    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
 //        switch type {

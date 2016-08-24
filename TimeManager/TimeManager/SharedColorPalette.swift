@@ -33,6 +33,7 @@ class SharedColorPalette {
     let TasksCellGreen = UIColor(red: SharedColorPalette.convertRGB(206), green: SharedColorPalette.convertRGB(238), blue: SharedColorPalette.convertRGB(212), alpha: 1)
     let TasksCellActiveGreen = UIColor(red: SharedColorPalette.convertRGB(216), green: SharedColorPalette.convertRGB(243), blue: SharedColorPalette.convertRGB(221), alpha: 1)
     
+    // Convert a 0-255 RGB value to a decimal value between 0 and 1.
     static func convertRGB(rgb: Int) -> CGFloat {
         return CGFloat(rgb) / 255
     }

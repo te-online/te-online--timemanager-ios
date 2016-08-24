@@ -86,6 +86,7 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         currentDuration = PickerDurations.first!
         
+        // Give some orientation, where the user is.
         if self.currentTaskObject != nil {
             ContextInfoLabel.text = String(format: "%@ > %@ > %@", self.currentTaskObject.project!.client!.name!, self.currentTaskObject.project!.name!, self.currentTaskObject!.name!)
         }
@@ -97,8 +98,6 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
         
         if self.editTimeObject != nil {
-            // TODO
-            // Editing of time entries is not implemented, yet.
             NoteInputField.text = self.editTimeObject.note
             
             // Set the date picker view.
@@ -106,7 +105,6 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
             
             // Set the hours picker view.
             let num = self.PickerDurations.indexOf(String(format: "%g", self.editTimeObject.getDurationInHours()))
-//            NSLog("num %@, %@, %@", String(num), String(self.PickerDurations), String(format: "%g", self.editTimeObject.getDurationInHours()))
             if num != nil  {
                 DurationPickerView.selectRow(num!, inComponent: 0, animated: false)
             }

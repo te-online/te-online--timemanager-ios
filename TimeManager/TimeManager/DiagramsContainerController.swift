@@ -53,7 +53,7 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
     }
     
     @IBAction func NavigateToPreviousPressed(sender: AnyObject) {
-        // Subtract one week from the current date.
+        // Subtract one unit from the current date.
         if currentPage == 0 {
             self.currentDate = DateHelper.getDateFor(.PreviousYear, date: self.currentDate)
         } else if currentPage == 1 {
@@ -63,13 +63,12 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
         } else if currentPage == 3 {
             self.currentDate = DateHelper.getDateFor(.PreviousDay, date: self.currentDate)
         }
-//        self.currentDate = self.currentDate.dateByAddingTimeInterval((-1 * timeIntervals[currentPage]))
-        // TODO
+
         self.reloadData()
     }
     
     @IBAction func NavigateToNextPressed(sender: AnyObject) {
-        // Add one week to the current date.
+        // Add one unit to the current date.
         if currentPage == 0 {
             self.currentDate = DateHelper.getDateFor(.NextYear, date: self.currentDate)
         } else if currentPage == 1 {
@@ -79,7 +78,7 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
         } else if currentPage == 3 {
             self.currentDate = DateHelper.getDateFor(.NextDay, date: self.currentDate)
         }
-        // TODO
+        
         self.reloadData()
     }
     
@@ -89,7 +88,7 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
         tt = TimeTraveller()
         self.rephraseLabels()
         
-        // Load nice background images for highlighted state for our navi buttons
+        // Set nice text colors for highlighted state for our navi buttons.
         self.YearNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
         self.MonthNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
         self.WeekNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
@@ -117,29 +116,25 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
     func rephraseLabels() {
         // Rewrite the total hours and current date position label.
         if currentPage == 0 {
-            CurrentNaviPositionLabel.text = String(FormattingHelper.getYearFromDate(self.currentDate))
             TotalCaptionLabel.text = "Year total".uppercaseString
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.getHoursForYearFromDate(self.currentDate))
             
             CurrentNaviPositionLabel.text = String(FormattingHelper.getYearFromDate(self.currentDate))
         } else if currentPage == 1 {
-            CurrentNaviPositionLabel.text = FormattingHelper.monthAndYearFromDate(self.currentDate).uppercaseString
             TotalCaptionLabel.text = "Month total".uppercaseString
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.getHoursForMonthFromDate(self.currentDate))
             
-            CurrentNaviPositionLabel.text = FormattingHelper.monthAndYearFromDate(self.currentDate).uppercaseString
+            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.MonthAndYear, date: self.currentDate).uppercaseString
         } else if currentPage == 2 {
-            CurrentNaviPositionLabel.text = FormattingHelper.weekAndYearFromDate(self.currentDate).uppercaseString
             TotalCaptionLabel.text = "Week total".uppercaseString
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.recordedHoursForWeekFromDate(self.currentDate))
             
-            CurrentNaviPositionLabel.text = FormattingHelper.weekAndYearFromDate(self.currentDate).uppercaseString
+            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.WeekAndYear, date: self.currentDate).uppercaseString
         } else if currentPage == 3 {
-            CurrentNaviPositionLabel.text = FormattingHelper.fullDayAndDateFromDate(self.currentDate).uppercaseString
             TotalCaptionLabel.text = "Day total".uppercaseString
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.recordedHoursForDay(self.currentDate))
             
-            CurrentNaviPositionLabel.text = FormattingHelper.fullDayAndDateFromDate(self.currentDate).uppercaseString
+            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.DaynameAndDate, date: self.currentDate).uppercaseString
         }
         
         self.correctButtons()
@@ -151,7 +146,6 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
             self.MonthNavigationButton.selected = false
             self.WeekNavigationButton.selected = false
             self.DayNavigationButton.selected = false
-            NSLog(String(self.YearNavigationButton.selected))
         } else if self.currentPage == 1 {
             self.YearNavigationButton.selected = false
             self.MonthNavigationButton.selected = true

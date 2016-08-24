@@ -83,7 +83,7 @@ class SettingsController: UIViewController, UIPickerViewDataSource, UIPickerView
         self.defaults.setValue(self.CloudSyncUserInputField.text, forKey: "cloudSyncUser")
         self.defaults.setValue(self.CloudSyncPasswordInputField.text, forKey: "cloudSyncPassword")
         
-        // Sync on saving settings.
+        // Attempt to sync on saving settings.
         (UIApplication.sharedApplication().delegate as! AppDelegate).syncInBackground({})
     }
     

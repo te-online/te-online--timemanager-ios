@@ -104,6 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return coordinator
     }()
 
+    // The context for usage in main thread.
     lazy var managedObjectContext: NSManagedObjectContext = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
@@ -112,6 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return managedObjectContext
     }()
     
+    // The private context for usage in background mode.
     lazy var backgroundManagedObjectContext: NSManagedObjectContext = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
@@ -147,18 +149,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    // Call sync without completion handler.
     func syncInIntervals() {
         self.syncInBackground({})
     }
     
     func syncInBackground(completion: () -> Void) {
         var syncActive = true
+        // If the user saved a cloud server address in the settings, we can sync, otherwise we don't.
         if (NSUserDefaults.standardUserDefaults().stringForKey("cloudSyncServer") == nil) {
-            NSLog("No Cloud Server given")
+            NSLog("Error: No Cloud Server given.")
             syncActive = false
         }
         if(syncActive) {
             let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            // Dispatch the sync task to a background thread.
             dispatch_async(dispatch_get_global_queue(priority, 0)) {
                 dispatch_async(dispatch_get_main_queue()) {
                     if let containerController = self.window?.rootViewController as? ContainerViewController {

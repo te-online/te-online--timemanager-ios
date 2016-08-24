@@ -68,8 +68,8 @@ extension ProjectObject {
             "name": self.name ?? "",
             "client_uuid": self.client_uuid ?? "",
             "commit": self.commit ?? "",
-            "created": FormattingHelper.getISOStringFromDate(self.created!),
-            "changed": FormattingHelper.getISOStringFromDate(self.changed!)
+            "created": FormattingHelper.dateFormat(.ISOString, date: self.created!),
+            "changed": FormattingHelper.dateFormat(.ISOString, date: self.changed!)
         ]
     }
 

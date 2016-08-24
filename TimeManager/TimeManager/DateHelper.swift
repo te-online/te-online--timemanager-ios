@@ -22,6 +22,7 @@ class DateHelper {
         case NextYear
     }
     
+    // Can get you a variety of dates in relation to a given date.
     static func getDateFor(dateType: ShiftType, date: NSDate) -> NSDate {
         let components = NSDateComponents()
         
@@ -46,12 +47,14 @@ class DateHelper {
         return self.calendar.dateByAddingComponents(components, toDate: date, options: []) ?? NSDate()
     }
     
+    // Gets the very first day of a year.
     static func getFirstDayOfYearByDate(date: NSDate) -> NSDate {
         let components = calendar.components([.Year], fromDate: date)
         
         return calendar.dateFromComponents(components) ?? NSDate()
     }
     
+    // Gets the very last day of a year.
     static func getLastDayOfYearByDate(date: NSDate) -> NSDate {
         let components = calendar.components([.Year], fromDate: date)
         components.year = 1
@@ -62,12 +65,14 @@ class DateHelper {
         return calendar.dateByAddingComponents(components, toDate: self.getFirstDayOfYearByDate(date), options: []) ?? NSDate()
     }
     
+    // Gets the very first day of a month.
     static func getFirstDayOfMonthByDate(date: NSDate) -> NSDate {
         let components = calendar.components([.Year, .Month], fromDate: date)
         
         return calendar.dateFromComponents(components) ?? NSDate()
     }
     
+    // Gets the very last day of a month.
     static func getLastDayOfMonthByDate(date: NSDate) -> NSDate {
         let components = calendar.components([.Month], fromDate: date)
         components.month = 1
@@ -75,18 +80,21 @@ class DateHelper {
         return calendar.dateByAddingComponents(components, toDate: self.getFirstDayOfMonthByDate(date), options: []) ?? NSDate()
     }
     
+    // Gets the number of the current month for comparison. E.g. December -> 12
     static func getMonthNum(date: NSDate) -> Int {
         let components = calendar.components([.Year, .Month], fromDate: date)
         
         return components.month
     }
     
+    // Gets the very first day of a week.
     static func getFirstDayOfWeekByDate(date: NSDate) -> NSDate {
         let currentDateComponents = self.calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: date)
         
         return calendar.dateFromComponents(currentDateComponents) ?? NSDate()
     }
     
+    // Gets the very last day of a week.
     static func getLastDayOfWeekByDate(date: NSDate) -> NSDate {
         let startOfWeek = self.getFirstDayOfWeekByDate(date)
         var endOfWeek = self.getDateFor(.NextWeek, date: startOfWeek)

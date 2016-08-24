@@ -10,15 +10,8 @@ import Foundation
 import Charts
 
 class HoursNumberFormatter: NSNumberFormatter {
+    // Format chart labels as hour values.
     override func stringFromNumber(number: NSNumber) -> String? {
         return FormattingHelper.formatHoursAsString(Double(number))
-    }
-}
-
-class HoursNumberFormatterXAxis: ChartXAxisValueFormatter {
-    @objc func stringForXValue(index: Int, original: String, viewPortHandler: ChartViewPortHandler) -> String {
-        NSLog("index %@ original %@", index, original)
-//        return FormattingHelper.formatHoursAsString(Double(original)!)
-        return "12 hrs."
     }
 }

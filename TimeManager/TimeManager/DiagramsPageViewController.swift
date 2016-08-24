@@ -66,10 +66,10 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
     }
     
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        // Find the current view controller after an animation has finished to update the views.
         let viewController = self.viewControllers!.last!
         self.currentPage = pages.indexOf(viewController)!
         
-        NSLog("swipe to %@", String(self.currentPage))
         self.refreshDelegate.swipeToPage(self.currentPage)
     }
     
@@ -82,6 +82,7 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
     }
     
     func jumpTo(page: Int) {
+        // Jump to a specific page and maintain user's orientation by using the correct slide direction.
         if self.currentPage < page {
             setViewControllers([pages[page]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         } else if self.currentPage > page {
@@ -91,7 +92,7 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
     }
     
     func reloadData(forDate: NSDate, currentView: Int) {
-        // Reload the data here.
+        // Delegate the reloading when the date has changed.
         if currentView == 0 {
             (YearChartView as! YearChartViewController).reloadData(forDate)
         } else if currentView == 1 {

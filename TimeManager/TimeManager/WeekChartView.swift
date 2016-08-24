@@ -26,6 +26,7 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         self.data = [5, 8.5, 2.75, 7.5, 7, 0, 0]
         
         self.chartView.delegate = self
+        
         // No description text.
         self.chartView.descriptionText = ""
         

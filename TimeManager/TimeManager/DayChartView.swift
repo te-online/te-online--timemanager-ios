@@ -115,6 +115,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         self.chartView.highlightValue(nil)
     }
     
+    // Give some orientation, where the user is.
     func reloadData(forDate: NSDate) {
         if(self.tt == nil) {
             self.tt = TimeTraveller()
@@ -126,6 +127,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
     }
     
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        // Once a value is selected, we search for the correspoding project object in our list and display the data.
         let index = (highlight.stackIndex < 0) ? 0 : highlight.stackIndex
         if(self.dateProjects.count > index) {
             self.currentProject = self.dateProjects[index]
@@ -145,6 +147,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         return 3
     }
     
+    // Format the cells; the client cell, the project cell and the cell when there is no selection.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell = UITableViewCell()
         
@@ -196,6 +199,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         return "Tasks"
     }
     
+    // Add a nicely formatted section header to the table view.
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let myLabel = UILabel()
         myLabel.frame = CGRectMake(15, 8, 320, 20)

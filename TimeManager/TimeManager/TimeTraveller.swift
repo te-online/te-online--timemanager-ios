@@ -20,19 +20,21 @@ class TimeTraveller {
         calendar.firstWeekday = (self.defaults.integerForKey("startWeekWith") == 0) ? 2 : self.defaults.integerForKey("startWeekWith") - 1
     }
     
+    // The sum of the hours, recorded on this day.
     func todaysRecordedHours() -> Double {
-        // Find all time entries from today and sum up hours
         let today = NSDate()
+        
         return self.recordedHoursForDay(today)
     }
     
+    // The sum of the hours, recorded in this week.
     func thisWeeksRecordedHours() -> Double {
-        // Determine all days in this week
         let today = NSDate()
         
         return self.recordedHoursForWeekFromDate(today)
     }
     
+    // The sum of the hours recorded in the given week.
     func recordedHoursForWeekFromDate(date: NSDate) -> Double {
         let currentDateComponents = self.calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: date)
         
@@ -42,6 +44,7 @@ class TimeTraveller {
         return self.recordedHoursBetweenDates(startOfWeek!, end: endOfWeek)
     }
     
+    // The five most recent tasks in a week.
     func fiveMostRecentTasksInWeekByDate(date: NSDate) -> [TaskObject] {
         // Create an array of all the times in the week
         let weekDates = self.getWeekDatesFromDate(date)
@@ -97,6 +100,7 @@ class TimeTraveller {
         return values
     }
     
+    // The sum of the recorded hours for a project on a given date.
     func recordedHoursForDateInProject(date: NSDate, project: ProjectObject) -> Double {
         let dayBegin = self.getDayBegin(date)
         let dayEnd = self.getDayEnd(date)
@@ -149,6 +153,7 @@ class TimeTraveller {
         return values
     }
     
+    // The sum of the recorded hours for a task on a given date.
     func recordedHoursForDateInTask(date: NSDate, task: TaskObject) -> Double {
         let dayBegin = self.getDayBegin(date)
         let dayEnd = self.getDayEnd(date)
@@ -179,7 +184,7 @@ class TimeTraveller {
         return hoursCount
     }
 
-    
+    // The hours that were recorded between two dates.
     func recordedHoursBetweenDates(start: NSDate, end: NSDate) -> Double {
         let dayBegin = self.getDayBegin(start)
         let dayEnd = self.getDayEnd(end)
@@ -192,25 +197,23 @@ class TimeTraveller {
         let forDay = NSPredicate(format: "(start >= %@) AND (end < %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, "deleted")
         request.predicate = forDay
         
-        let moc = self.dataController.managedObjectContext
-        
         var hoursCount: Double = 0
         
         do {
-            let entries = try moc.executeFetchRequest(request)
+            let entries = try self.dataController.managedObjectContext.executeFetchRequest(request)
             if entries.count > 0 {
                 for entry in entries {
                     hoursCount += (entry as! TimeObject).getDurationInHours()
                 }
             }
-            NSLog("Times # " + String(entries.count))
         } catch {
-            fatalError("Failed to execute fetch request for todays hours: \(error)")
+            fatalError("Failed to execute fetch request for today's hours: \(error)")
         }
         
         return hoursCount
     }
     
+    // The hours that were recorded on a specific day.
     func recordedHoursForDay(day: NSDate) -> Double {
         let dayBegin = self.getDayBegin(day)
         let dayEnd = self.getDayEnd(day)
@@ -241,23 +244,26 @@ class TimeTraveller {
         return hoursCount
     }
     
-    
+    // Alias for daysOfWeekFromDate for today.
     func daysOfCurrentWeek() -> [String] {
         let today = NSDate()
         return self.daysOfWeekFromDate(today)
     }
     
+    // An array of day descriptions for the collection view header.
+    // E.g. ["Mo 1.8.", "Tu 2.8.", "Th 3.8.", ... ]
     func daysOfWeekFromDate(date: NSDate) -> [String] {
         let dates = self.getWeekDatesFromDate(date)
         
         var formattedDays: [String] = []
         for date in dates {
-            formattedDays.append(FormattingHelper.formatDateWithShortDayAndDate(date!).uppercaseString)
+            formattedDays.append(FormattingHelper.dateFormat(.ShortDaynameDayMonth, date: date!).uppercaseString)
         }
         
         return formattedDays
     }
     
+    // Get the beginning of a given day.
     func getDayBegin(day: NSDate) -> NSDate {
         let dayBeginComponents: NSDateComponents = self.calendar.components([.Day,.Month,.Year], fromDate: day)
         dayBeginComponents.hour = 0
@@ -267,6 +273,7 @@ class TimeTraveller {
         return self.calendar.dateFromComponents(dayBeginComponents)! ?? NSDate()
     }
     
+    // Get the end of a given day.
     func getDayEnd(day: NSDate) -> NSDate {
         let dayEndComponents: NSDateComponents = self.calendar.components([.Day,.Month,.Year], fromDate: day)
         dayEndComponents.hour = 23
@@ -276,6 +283,7 @@ class TimeTraveller {
         return self.calendar.dateFromComponents(dayEndComponents)! ?? NSDate()
     }
     
+    // Get the dates of all days in a specific week.
     func getWeekDatesFromDate(date: NSDate) -> [NSDate?] {
         let currentDateComponents = self.calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: date)
         let startOfWeek = calendar.dateFromComponents(currentDateComponents)
@@ -287,6 +295,7 @@ class TimeTraveller {
         return dates
     }
     
+    // Get the hours for a year from a date in this year.
     func getHoursForYearFromDate(date: NSDate) -> Double {
         // Determine the first day of this year
         let firstDayOfYear = DateHelper.getFirstDayOfYearByDate(date)
@@ -297,6 +306,7 @@ class TimeTraveller {
         return self.recordedHoursBetweenDates(firstDayOfYear, end: lastDayOfYear)
     }
     
+    // Get the hours for a month from a date in this month.
     func getHoursForMonthFromDate(date: NSDate) -> Double {
         // Determine the first day of this month
         let firstDayOfMonth = DateHelper.getFirstDayOfMonthByDate(date)
@@ -307,10 +317,12 @@ class TimeTraveller {
         return self.recordedHoursBetweenDates(firstDayOfMonth, end: lastDayOfMonth)
     }
     
+    // Alias for recordedHoursForWeekFromDate
     func getHoursForWeekFromDate(date: NSDate) -> Double {
         return self.recordedHoursForWeekFromDate(date)
     }
     
+    // Get the hours for a week from a date in this week.
     func getHoursForMonthByDate(date: NSDate) -> [Double] {
         // Go to the beginning of the month.
         let firstDay = DateHelper.getFirstDayOfMonthByDate(date)
@@ -400,6 +412,7 @@ class TimeTraveller {
         return hours
     }
     
+    // Return a list of projects that have been worked on, on a secific day.
     func ProjectsByDate(date: NSDate) -> [ProjectObject] {
         // Create an array of all the times in the week
         let startOfDay = self.getDayBegin(date)

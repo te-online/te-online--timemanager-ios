@@ -20,7 +20,7 @@ class ProjectDetailViewController: UIViewController {
     var delegate: ProjectDetailViewControllerDelegate?
     
     @IBAction func EditButtonPressed(sender: AnyObject) {
-//        self.delegate?.editCurrentProject()
+        // Do nothing. Segue does the rest.
     }
     
     @IBAction func DeleteButtonPressed(sender: AnyObject) {
@@ -28,6 +28,7 @@ class ProjectDetailViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Pass over the correct data for the correct segue.
         if segue.identifier == "editProject" {
             (segue.destinationViewController as! ProjectEditController).editDelegate = (self.delegate as! TasksViewController)
             (segue.destinationViewController as! ProjectEditController).editProjectObject = (self.delegate as! TasksViewController).currentProject

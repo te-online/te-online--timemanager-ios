@@ -99,7 +99,6 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     }
     
     func saveNewProject(project: ProjectEditController.Project) {
-        NSLog("Project " + String(project))
         let entity = NSEntityDescription.entityForName("Project", inManagedObjectContext: dataController.managedObjectContext)
         let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
         
@@ -164,7 +163,6 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     }
     
     func setParentClient(client: ClientObject) {
-//        NSLog("Setting client to " + String(client) + " current " + String(self.currentClient))
         self.currentClient = client
         self.initializeFetchedResultsControllerWithCurrentClient()
         self.populateCurrentClientDetails()
@@ -367,38 +365,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
     }
-    
-//    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-//        
-//    }
-//    
-//    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-//        switch type {
-//        case .Insert:
-//            self.collectionView!.insertSections(NSIndexSet(index: sectionIndex))
-//        case .Delete:
-//            self.collectionView!.deleteSections(NSIndexSet(index: sectionIndex))
-//        case .Move:
-//            break
-//        case .Update:
-//            break
-//        }
-//    }
-//    
-//    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-//        switch type {
-//        case .Insert:
-//            self.collectionView!.insertItemsAtIndexPaths([newIndexPath!])
-//        case .Delete:
-//            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
-//        case .Update:
-//            configureCell(self.collectionView!.cellForItemAtIndexPath(indexPath!)!, indexPath: indexPath!)
-//        case .Move:
-//            self.collectionView!.deleteItemsAtIndexPaths([indexPath!])
-//            self.collectionView!.insertItemsAtIndexPaths([indexPath!])
-//        }
-//    }
-//    
+       
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.collectionView?.reloadData()
     }

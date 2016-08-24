@@ -45,8 +45,8 @@ extension TaskObject {
             "name": self.name ?? "",
             "project_uuid": self.project_uuid ?? "",
             "commit": self.commit ?? "",
-            "created": FormattingHelper.getISOStringFromDate(self.created!),
-            "changed": FormattingHelper.getISOStringFromDate(self.changed!)
+            "created": FormattingHelper.dateFormat(.ISOString, date: self.created!),
+            "changed": FormattingHelper.dateFormat(.ISOString, date: self.changed!)
         ]
     }
     

@@ -34,6 +34,7 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         self.data = [47, 37.5, 24, 15.75]
         
         self.chartView.delegate = self
+        
         // No description text.
         self.chartView.descriptionText = ""
         
@@ -57,7 +58,6 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         yl.drawTopYLabelEntryEnabled = false
         yl.drawGridLinesEnabled = false
         yl.setLabelCount(7, force: false)
-//        yl.valueFormatter = HoursNumberFormatter()
         yl.valueFormatter = NSNumberFormatter()
         yl.valueFormatter?.maximumFractionDigits = 0
         
@@ -72,7 +72,6 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         xl.labelPosition = .Bottom
         xl.axisLineWidth = 1
         xl.setLabelsToSkip(0)
-//        xl.valueFormatter = HoursNumberFormatterXAxis()
         
         // No border.
         self.chartView.borderLineWidth = 0
@@ -119,7 +118,9 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         self.chartView.highlightValue(nil)
     }
     
+    
     func reloadData(forDate: NSDate) {
+        // Give some orientation, where the user is.
         if(self.tt == nil) {
             self.tt = TimeTraveller()
         }
