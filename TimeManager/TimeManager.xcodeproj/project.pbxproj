@@ -213,43 +213,43 @@
 		E92A06701D63054700A29710 /* SinglePageControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E958A1531D59FDDF00FB6166 /* OverviewController.swift */,
-				E958A1591D5A292600FB6166 /* EntriesViewController.swift */,
 				E92A06851D63BDFA00A29710 /* DiagramsContainerController.swift */,
+				E958A1591D5A292600FB6166 /* EntriesViewController.swift */,
+				E958A1531D59FDDF00FB6166 /* OverviewController.swift */,
 			);
-			name = SinglePageControllers;
+			path = SinglePageControllers;
 			sourceTree = "<group>";
 		};
 		E92A06711D63057100A29710 /* ModalViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
 				E9404C601D61CCEF008ED9A3 /* ClientEditController.swift */,
 				E911CF021D62109C0044AED6 /* ProjectEditController.swift */,
+				E958A1571D5A275A00FB6166 /* SettingsController.swift */,
 				E92A06781D63123100A29710 /* TaskEditController.swift */,
 				E92A067A1D631EF600A29710 /* TimeEditController.swift */,
 			);
-			name = ModalViewControllers;
+			path = ModalViewControllers;
 			sourceTree = "<group>";
 		};
 		E92A06721D63058B00A29710 /* CardsViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */,
 				E92A06741D6305C500A29710 /* Cards */,
 				E92A06751D6305DF00A29710 /* StickyBackgrounds */,
+				E958A1401D58A97700FB6166 /* CardOfViewDeckController.swift */,
 			);
-			name = CardsViewControllers;
+			path = CardsViewControllers;
 			sourceTree = "<group>";
 		};
 		E92A06731D6305A500A29710 /* HelperControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E9BA20CE1D5C6F9A0098F37D /* PassThroughCollectionView.swift */,
-				E95B6A641D6BB56200DC8BDA /* HoursNumberFormatter.swift */,
 				E9BE09FD1D65EBAC00799AB8 /* CustomNaviButton.swift */,
+				E95B6A641D6BB56200DC8BDA /* HoursNumberFormatter.swift */,
+				E9BA20CE1D5C6F9A0098F37D /* PassThroughCollectionView.swift */,
 			);
-			name = HelperControllers;
+			path = HelperControllers;
 			sourceTree = "<group>";
 		};
 		E92A06741D6305C500A29710 /* Cards */ = {
@@ -260,7 +260,7 @@
 				E9BA20D21D5DCAEF0098F37D /* TasksViewController.swift */,
 				E9BA20D41D5DCAFE0098F37D /* TimesViewController.swift */,
 			);
-			name = Cards;
+			path = Cards;
 			sourceTree = "<group>";
 		};
 		E92A06751D6305DF00A29710 /* StickyBackgrounds */ = {
@@ -270,31 +270,31 @@
 				E92A06761D630E0300A29710 /* ProjectDetailViewController.swift */,
 				E92A067C1D63307C00A29710 /* TaskDetailViewController.swift */,
 			);
-			name = StickyBackgrounds;
+			path = StickyBackgrounds;
 			sourceTree = "<group>";
 		};
 		E9404C641D61D9D6008ED9A3 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
-				E911CEF61D61E0760044AED6 /* ClientObject.swift */,
-				E911CEF81D61E0760044AED6 /* Project.swift */,
-				E911CEF91D61E0760044AED6 /* Time.swift */,
-				E911CEFA1D61E0760044AED6 /* Task.swift */,
 				E911CEEC1D61E05F0044AED6 /* ClientObject+CoreDataProperties.swift */,
+				E911CEF61D61E0760044AED6 /* ClientObject.swift */,
 				E911CEEE1D61E05F0044AED6 /* Project+CoreDataProperties.swift */,
+				E911CEF81D61E0760044AED6 /* Project.swift */,
 				E911CEF01D61E05F0044AED6 /* Task+CoreDataProperties.swift */,
+				E911CEFA1D61E0760044AED6 /* Task.swift */,
 				E911CEEF1D61E05F0044AED6 /* Time+CoreDataProperties.swift */,
+				E911CEF91D61E0760044AED6 /* Time.swift */,
 			);
-			name = ManagedObjects;
+			path = ManagedObjects;
 			sourceTree = "<group>";
 		};
 		E958A11B1D58749F00FB6166 = {
 			isa = PBXGroup;
 			children = (
-				E958A1261D5874A000FB6166 /* TimeManager */,
-				E958A1251D5874A000FB6166 /* Products */,
-				EA5C055D97C7FACEDCC1D688 /* Pods */,
 				19CDB253AF599BDF0459EBB8 /* Frameworks */,
+				EA5C055D97C7FACEDCC1D688 /* Pods */,
+				E958A1251D5874A000FB6166 /* Products */,
+				E958A1261D5874A000FB6166 /* TimeManager */,
 			);
 			sourceTree = "<group>";
 		};
@@ -310,21 +310,21 @@
 			isa = PBXGroup;
 			children = (
 				E9404C641D61D9D6008ED9A3 /* ManagedObjects */,
-				E958A1481D59E8A700FB6166 /* Ressources */,
-				E958A1271D5874A000FB6166 /* AppDelegate.swift */,
-				E958A12B1D5874A000FB6166 /* Main.storyboard */,
-				E958A1311D5874A000FB6166 /* Assets.xcassets */,
-				E958A1331D5874A000FB6166 /* LaunchScreen.storyboard */,
-				E958A1361D5874A000FB6166 /* Info.plist */,
-				E958A12E1D5874A000FB6166 /* TimeManager.xcdatamodeld */,
-				E958A1461D59D5F500FB6166 /* ContainerViewController.swift */,
-				E95B6A681D6CE96100DC8BDA /* Sync */,
 				E95B6A691D6CE97200DC8BDA /* HelperClasses */,
 				E92A06731D6305A500A29710 /* HelperControllers */,
 				E92A06701D63054700A29710 /* SinglePageControllers */,
 				E92A06721D63058B00A29710 /* CardsViewControllers */,
 				E92A06711D63057100A29710 /* ModalViewControllers */,
 				E95B6A661D6CE93600DC8BDA /* Charts */,
+				E958A1481D59E8A700FB6166 /* Ressources */,
+				E95B6A681D6CE96100DC8BDA /* Sync */,
+				E958A1271D5874A000FB6166 /* AppDelegate.swift */,
+				E958A1311D5874A000FB6166 /* Assets.xcassets */,
+				E958A1461D59D5F500FB6166 /* ContainerViewController.swift */,
+				E958A1361D5874A000FB6166 /* Info.plist */,
+				E958A1331D5874A000FB6166 /* LaunchScreen.storyboard */,
+				E958A12B1D5874A000FB6166 /* Main.storyboard */,
+				E958A12E1D5874A000FB6166 /* TimeManager.xcdatamodeld */,
 			);
 			path = TimeManager;
 			sourceTree = "<group>";
@@ -335,6 +335,23 @@
 				E95B6A6E1D6CF9A300DC8BDA /* Logo-01.png */,
 				E95B6A701D6CF9C500DC8BDA /* Logo-02.png */,
 				E95B6A711D6CF9C500DC8BDA /* Logo-03.png */,
+				E958A1491D59E8CB00FB6166 /* Poppins-Bold.ttf */,
+				E958A14A1D59E8CB00FB6166 /* Poppins-Light.ttf */,
+				E958A14B1D59E8CB00FB6166 /* Poppins-Medium.ttf */,
+				E958A14C1D59E8CB00FB6166 /* Poppins-Regular.ttf */,
+				E958A14D1D59E8CB00FB6166 /* Poppins-SemiBold.ttf */,
+				E906D0121D5DFDD500C06C87 /* arrow-down-grey.png */,
+				E906D0131D5DFDD500C06C87 /* arrow-down-grey@2x.png */,
+				E906D0141D5DFDD500C06C87 /* arrow-down-grey@3x.png */,
+				E9BA20DC1D5DCE930098F37D /* arrow-right-grey.png */,
+				E9BA20DD1D5DCE930098F37D /* arrow-right-grey@2x.png */,
+				E9BA20DE1D5DCE930098F37D /* arrow-right-grey@3x.png */,
+				E9BA20D61D5DCE850098F37D /* arrow-right.png */,
+				E9BA20D81D5DCE8C0098F37D /* arrow-right@2x.png */,
+				E9BA20D91D5DCE8C0098F37D /* arrow-right@3x.png */,
+				E906D0151D5DFDD500C06C87 /* arrow-up-grey.png */,
+				E906D0161D5DFDD500C06C87 /* arrow-up-grey@2x.png */,
+				E906D0171D5DFDD500C06C87 /* arrow-up-grey@3x.png */,
 				E9BE09D91D65E7B700799AB8 /* entries-icon-active.png */,
 				E9BE09DA1D65E7B700799AB8 /* entries-icon-active@2x.png */,
 				E9BE09DB1D65E7B700799AB8 /* entries-icon-active@3x.png */,
@@ -347,34 +364,17 @@
 				E9BE09E21D65E7B700799AB8 /* overview-icon.png */,
 				E9BE09E31D65E7B700799AB8 /* overview-icon@2x.png */,
 				E9BE09E41D65E7B700799AB8 /* overview-icon@3x.png */,
+				E9BE09D31D65E78B00799AB8 /* settings-icon.png */,
+				E9BE09D41D65E78B00799AB8 /* settings-icon@2x.png */,
+				E9BE09D51D65E78B00799AB8 /* settings-icon@3x.png */,
 				E9BE09E51D65E7B700799AB8 /* statistics-icon-active.png */,
 				E9BE09E61D65E7B700799AB8 /* statistics-icon-active@2x.png */,
 				E9BE09E71D65E7B700799AB8 /* statistics-icon-active@3x.png */,
 				E9BE09E81D65E7B700799AB8 /* statistics-icon.png */,
 				E9BE09E91D65E7B700799AB8 /* statistics-icon@2x.png */,
 				E9BE09EA1D65E7B700799AB8 /* statistics-icon@3x.png */,
-				E9BE09D31D65E78B00799AB8 /* settings-icon.png */,
-				E9BE09D41D65E78B00799AB8 /* settings-icon@2x.png */,
-				E9BE09D51D65E78B00799AB8 /* settings-icon@3x.png */,
-				E906D0121D5DFDD500C06C87 /* arrow-down-grey.png */,
-				E906D0131D5DFDD500C06C87 /* arrow-down-grey@2x.png */,
-				E906D0141D5DFDD500C06C87 /* arrow-down-grey@3x.png */,
-				E906D0151D5DFDD500C06C87 /* arrow-up-grey.png */,
-				E906D0161D5DFDD500C06C87 /* arrow-up-grey@2x.png */,
-				E906D0171D5DFDD500C06C87 /* arrow-up-grey@3x.png */,
-				E9BA20D61D5DCE850098F37D /* arrow-right.png */,
-				E9BA20D81D5DCE8C0098F37D /* arrow-right@2x.png */,
-				E9BA20D91D5DCE8C0098F37D /* arrow-right@3x.png */,
-				E9BA20DC1D5DCE930098F37D /* arrow-right-grey.png */,
-				E9BA20DD1D5DCE930098F37D /* arrow-right-grey@2x.png */,
-				E9BA20DE1D5DCE930098F37D /* arrow-right-grey@3x.png */,
-				E958A1491D59E8CB00FB6166 /* Poppins-Bold.ttf */,
-				E958A14A1D59E8CB00FB6166 /* Poppins-Light.ttf */,
-				E958A14B1D59E8CB00FB6166 /* Poppins-Medium.ttf */,
-				E958A14C1D59E8CB00FB6166 /* Poppins-Regular.ttf */,
-				E958A14D1D59E8CB00FB6166 /* Poppins-SemiBold.ttf */,
 			);
-			name = Ressources;
+			path = Ressources;
 			sourceTree = "<group>";
 		};
 		E95B6A661D6CE93600DC8BDA /* Charts */ = {
@@ -383,18 +383,18 @@
 				E95B6A671D6CE93D00DC8BDA /* ChartViews */,
 				E92A06831D63BBA800A29710 /* DiagramsPageViewController.swift */,
 			);
-			name = Charts;
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		E95B6A671D6CE93D00DC8BDA /* ChartViews */ = {
 			isa = PBXGroup;
 			children = (
-				E992CC281D66168D002E71AB /* YearChartViewController.swift */,
+				E992CC2E1D662CC4002E71AB /* DayChartView.swift */,
 				E992CC2A1D6628FC002E71AB /* MonthChartViewController.swift */,
 				E992CC2C1D662BA6002E71AB /* WeekChartView.swift */,
-				E992CC2E1D662CC4002E71AB /* DayChartView.swift */,
+				E992CC281D66168D002E71AB /* YearChartViewController.swift */,
 			);
-			name = ChartViews;
+			path = ChartViews;
 			sourceTree = "<group>";
 		};
 		E95B6A681D6CE96100DC8BDA /* Sync */ = {
@@ -403,18 +403,18 @@
 				E92A06891D64542C00A29710 /* RestAPIManager.swift */,
 				E92A06871D644D1600A29710 /* SyncEngine.swift */,
 			);
-			name = Sync;
+			path = Sync;
 			sourceTree = "<group>";
 		};
 		E95B6A691D6CE97200DC8BDA /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
-				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
-				E92A067F1D6360B000A29710 /* FormattingHelper.swift */,
-				E92A06811D63643500A29710 /* TimeTraveller.swift */,
 				E95B6A621D6B21CC00DC8BDA /* DateHelper.swift */,
+				E92A067F1D6360B000A29710 /* FormattingHelper.swift */,
+				E906D0221D5E271300C06C87 /* SharedColorPalette.swift */,
+				E92A06811D63643500A29710 /* TimeTraveller.swift */,
 			);
-			name = HelperClasses;
+			path = HelperClasses;
 			sourceTree = "<group>";
 		};
 		EA5C055D97C7FACEDCC1D688 /* Pods */ = {
@@ -647,6 +647,7 @@
 				E958A12C1D5874A000FB6166 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		E958A1331D5874A000FB6166 /* LaunchScreen.storyboard */ = {
@@ -655,6 +656,7 @@
 				E958A1341D5874A000FB6166 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

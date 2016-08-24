@@ -43,7 +43,6 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     **/
     
     @IBAction func saveClient(unwindSegue: UIStoryboardSegue) {
-        NSLog(String(unwindSegue.sourceViewController))
         (unwindSegue.sourceViewController as! ClientEditController).createDelegate = self
     }
     

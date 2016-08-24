@@ -60,8 +60,6 @@ class DateHelper {
         components.year = 1
 //        components.day = -1
         
-        NSLog(String(calendar.dateByAddingComponents(components, toDate: self.getFirstDayOfYearByDate(date), options: [])))
-        
         return calendar.dateByAddingComponents(components, toDate: self.getFirstDayOfYearByDate(date), options: []) ?? NSDate()
     }
     
