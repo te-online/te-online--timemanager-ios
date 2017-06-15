@@ -9,24 +9,24 @@
 import UIKit
 
 class FormattingHelper {
-    static var calendar: NSCalendar = NSCalendar.currentCalendar()
+    static var calendar: Calendar = Calendar.current
     
     enum DateFormat {
-        case WeekAndDaySpan             // Week 31 (1.8. – 7.8.)
-        case DayAndMonthShort           // 1.8.
-        case DaynameDayMonthnameYear    // Thu, 22. Aug 2001
-        case HoursMinutes               // 9.00
-        case DayMonthnameYear           // 15. August 2001
-        case DaynameAndDate             // Monday 1.8.2016
-        case ShortDaynameDayMonth       // Mo 1.8.
-        case ShortDaynameDayMonthYear   // Mon 1.8.2016
-        case ISOString                  // 2016-08-01T23:49:25+02:00
-        case WeekAndYear                // 34 / 2016
-        case MonthAndYear               // August 2016
+        case weekAndDaySpan             // Week 31 (1.8. – 7.8.)
+        case dayAndMonthShort           // 1.8.
+        case daynameDayMonthnameYear    // Thu, 22. Aug 2001
+        case hoursMinutes               // 9.00
+        case dayMonthnameYear           // 15. August 2001
+        case daynameAndDate             // Monday 1.8.2016
+        case shortDaynameDayMonth       // Mo 1.8.
+        case shortDaynameDayMonthYear   // Mon 1.8.2016
+        case isoString                  // 2016-08-01T23:49:25+02:00
+        case weekAndYear                // 34 / 2016
+        case monthAndYear               // August 2016
     }
     
     // Formats a plain Double as hours. E.g. 12.0 -> "12 hrs." / 0.75 -> "0.75 hrs."
-    static func formatHoursAsString(hours: Double) -> String {
+    static func formatHoursAsString(_ hours: Double) -> String {
         var hoursString = ""
         
         hoursString += String.localizedStringWithFormat("%g", hours)
@@ -42,7 +42,7 @@ class FormattingHelper {
     }
     
     // Adds a unit to a simple number. E.g. (2, project, projects) -> "2 projects"
-    static func formatSomeNumberWithUnit(number: Int, unitSingular: String, unitPlural: String) -> String {
+    static func formatSomeNumberWithUnit(_ number: Int, unitSingular: String, unitPlural: String) -> String {
         var numberString = String(number)
         
         // One hour vs multiple or zero hours.
@@ -56,78 +56,78 @@ class FormattingHelper {
     }
     
     // Gets the year as integer from a date object.
-    static func getYearFromDate(date: NSDate) -> Int {
-        let createdComponents: NSDateComponents = NSCalendar.currentCalendar().components([.Year], fromDate: date)
-        return createdComponents.year
+    static func getYearFromDate(_ date: Date) -> Int {
+        let createdComponents: DateComponents = (Calendar.current as NSCalendar).components([.year], from: date)
+        return createdComponents.year!
     }
     
     // Gets a date object from a given ISO Time String.
-    static func getDateFromISOString(dateString: String) -> NSDate {
-        let formatter: NSDateFormatter = NSDateFormatter()
+    static func getDateFromISOString(_ dateString: String) -> Date {
+        let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         // Always use this locale when parsing fixed format date strings
-        let posix: NSLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let posix: Locale = Locale(identifier: "en_US_POSIX")
         formatter.locale = posix
         
-        return formatter.dateFromString(dateString) ?? NSDate()
+        return formatter.date(from: dateString) ?? Date()
     }
     
     // Formats a date as a string with a given format from a set of formats.
-    static func dateFormat(format: DateFormat, date: NSDate) -> String {
+    static func dateFormat(_ format: DateFormat, date: Date) -> String {
         var result = ""
         // Let's create a nice date format.
-        var dateFormatter: NSDateFormatter!
-        dateFormatter = NSDateFormatter()
+        var dateFormatter: DateFormatter!
+        dateFormatter = DateFormatter()
 
-        if format == .WeekAndDaySpan {
+        if format == .weekAndDaySpan {
             dateFormatter.dateFormat = "w" // 34
-            result += "Week " + dateFormatter.stringFromDate(date) + " / "
-            result += self.dateFormat(.DayAndMonthShort, date: DateHelper.getFirstDayOfWeekByDate(date))
+            result += "Week " + dateFormatter.string(from: date) + " / "
+            result += self.dateFormat(.dayAndMonthShort, date: DateHelper.getFirstDayOfWeekByDate(date))
             result += " – "
-            result += self.dateFormat(.DayAndMonthShort, date: DateHelper.getLastDayOfWeekByDate(date))
+            result += self.dateFormat(.dayAndMonthShort, date: DateHelper.getLastDayOfWeekByDate(date))
         }
-        else if format == .DayAndMonthShort {
+        else if format == .dayAndMonthShort {
             dateFormatter.dateFormat = "d.M." // 1.8.
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
-        else if format == .DaynameDayMonthnameYear {
+        else if format == .daynameDayMonthnameYear {
             dateFormatter.dateFormat = "EEE, d. MMM y" // Thu, 22. Aug 2001
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
-        else if format == .HoursMinutes {
+        else if format == .hoursMinutes {
             dateFormatter.dateFormat = "k.mm" // 9.00
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
-        else if format == .DayMonthnameYear {
+        else if format == .dayMonthnameYear {
             dateFormatter.dateFormat = "d. MMMM y" // 15. August 2001
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
-        else if format == .DaynameAndDate {
+        else if format == .daynameAndDate {
             dateFormatter.dateFormat = "EEEE d.M.y"
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
-        else if format == .ShortDaynameDayMonth {
+        else if format == .shortDaynameDayMonth {
             dateFormatter.dateFormat = "cccccc d.M."
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
-        else if format == .ShortDaynameDayMonthYear {
+        else if format == .shortDaynameDayMonthYear {
             dateFormatter.dateFormat = "EEEEEE d.M.y"
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
-        else if format == .ISOString {
-            let enUSPosixLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        else if format == .isoString {
+            let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
             dateFormatter.locale = enUSPosixLocale
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
             
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
-        else if format == .WeekAndYear {
+        else if format == .weekAndYear {
             dateFormatter.dateFormat = "w / y"
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
-        else if format == .MonthAndYear {
+        else if format == .monthAndYear {
             dateFormatter.dateFormat = "MMMM y"
-            result += dateFormatter.stringFromDate(date)
+            result += dateFormatter.string(from: date)
         }
         
         return result

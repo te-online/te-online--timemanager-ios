@@ -10,7 +10,7 @@ import UIKit
 
 class DiagramsContainerController: UIViewController, DiagramsPageViewControllerDelegate {
     
-    var currentDate = NSDate()
+    var currentDate = Date()
     var currentPage = 0
     var timeIntervals: [Double] = [365 * 24 * 60 * 60, 30 * 24 * 60 * 60, 7 * 24 * 60 * 60, 24 * 60 * 60]
     
@@ -28,55 +28,55 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
     @IBOutlet weak var TotalValueLabel: UILabel!
     
     
-    @IBAction func YearNavigationButtonPressed(sender: AnyObject) {
+    @IBAction func YearNavigationButtonPressed(_ sender: AnyObject) {
         (self.childViewControllers[0] as! DiagramsPageViewController).jumpTo(0)
         self.currentPage = 0
         self.rephraseLabels()
     }
     
-    @IBAction func MonthNavigationButtonPressed(sender: AnyObject) {
+    @IBAction func MonthNavigationButtonPressed(_ sender: AnyObject) {
         (self.childViewControllers[0] as! DiagramsPageViewController).jumpTo(1)
         self.currentPage = 1
         self.rephraseLabels()
     }
     
-    @IBAction func WeekNavigationButtonPressed(sender: AnyObject) {
+    @IBAction func WeekNavigationButtonPressed(_ sender: AnyObject) {
         (self.childViewControllers[0] as! DiagramsPageViewController).jumpTo(2)
         self.currentPage = 2
         self.rephraseLabels()
     }
     
-    @IBAction func DayNavigationButtonPressed(sender: AnyObject) {
+    @IBAction func DayNavigationButtonPressed(_ sender: AnyObject) {
         (self.childViewControllers[0] as! DiagramsPageViewController).jumpTo(3)
         self.currentPage = 3
         self.rephraseLabels()
     }
     
-    @IBAction func NavigateToPreviousPressed(sender: AnyObject) {
+    @IBAction func NavigateToPreviousPressed(_ sender: AnyObject) {
         // Subtract one unit from the current date.
         if currentPage == 0 {
-            self.currentDate = DateHelper.getDateFor(.PreviousYear, date: self.currentDate)
+            self.currentDate = DateHelper.getDateFor(.previousYear, date: self.currentDate)
         } else if currentPage == 1 {
-            self.currentDate = DateHelper.getDateFor(.PreviousMonth, date: self.currentDate)
+            self.currentDate = DateHelper.getDateFor(.previousMonth, date: self.currentDate)
         } else if currentPage == 2 {
-            self.currentDate = DateHelper.getDateFor(.PreviousWeek, date: self.currentDate)
+            self.currentDate = DateHelper.getDateFor(.previousWeek, date: self.currentDate)
         } else if currentPage == 3 {
-            self.currentDate = DateHelper.getDateFor(.PreviousDay, date: self.currentDate)
+            self.currentDate = DateHelper.getDateFor(.previousDay, date: self.currentDate)
         }
 
         self.reloadData()
     }
     
-    @IBAction func NavigateToNextPressed(sender: AnyObject) {
+    @IBAction func NavigateToNextPressed(_ sender: AnyObject) {
         // Add one unit to the current date.
         if currentPage == 0 {
-            self.currentDate = DateHelper.getDateFor(.NextYear, date: self.currentDate)
+            self.currentDate = DateHelper.getDateFor(.nextYear, date: self.currentDate)
         } else if currentPage == 1 {
-            self.currentDate = DateHelper.getDateFor(.NextMonth, date: self.currentDate)
+            self.currentDate = DateHelper.getDateFor(.nextMonth, date: self.currentDate)
         } else if currentPage == 2 {
-            self.currentDate = DateHelper.getDateFor(.NextWeek, date: self.currentDate)
+            self.currentDate = DateHelper.getDateFor(.nextWeek, date: self.currentDate)
         } else if currentPage == 3 {
-            self.currentDate = DateHelper.getDateFor(.NextDay, date: self.currentDate)
+            self.currentDate = DateHelper.getDateFor(.nextDay, date: self.currentDate)
         }
         
         self.reloadData()
@@ -89,10 +89,10 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
         self.rephraseLabels()
         
         // Set nice text colors for highlighted state for our navi buttons.
-        self.YearNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
-        self.MonthNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
-        self.WeekNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
-        self.DayNavigationButton.setTitleColor(Color.Blue, forState: .Selected)
+        self.YearNavigationButton.setTitleColor(Color.Blue, for: .selected)
+        self.MonthNavigationButton.setTitleColor(Color.Blue, for: .selected)
+        self.WeekNavigationButton.setTitleColor(Color.Blue, for: .selected)
+        self.DayNavigationButton.setTitleColor(Color.Blue, for: .selected)
         
         (self.childViewControllers[0] as! DiagramsPageViewController).refreshDelegate = self
     }
@@ -102,7 +102,7 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
         // Dispose of any resources that can be recreated.
     }
     
-    func swipeToPage(page: Int) {
+    func swipeToPage(_ page: Int) {
         self.currentPage = page
         self.reloadData()
     }
@@ -116,25 +116,25 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
     func rephraseLabels() {
         // Rewrite the total hours and current date position label.
         if currentPage == 0 {
-            TotalCaptionLabel.text = "Year total".uppercaseString
+            TotalCaptionLabel.text = "Year total".uppercased()
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.getHoursForYearFromDate(self.currentDate))
             
             CurrentNaviPositionLabel.text = String(FormattingHelper.getYearFromDate(self.currentDate))
         } else if currentPage == 1 {
-            TotalCaptionLabel.text = "Month total".uppercaseString
+            TotalCaptionLabel.text = "Month total".uppercased()
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.getHoursForMonthFromDate(self.currentDate))
             
-            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.MonthAndYear, date: self.currentDate).uppercaseString
+            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.MonthAndYear, date: self.currentDate).uppercased()
         } else if currentPage == 2 {
-            TotalCaptionLabel.text = "Week total".uppercaseString
+            TotalCaptionLabel.text = "Week total".uppercased()
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.recordedHoursForWeekFromDate(self.currentDate))
             
-            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.WeekAndYear, date: self.currentDate).uppercaseString
+            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.WeekAndYear, date: self.currentDate).uppercased()
         } else if currentPage == 3 {
-            TotalCaptionLabel.text = "Day total".uppercaseString
+            TotalCaptionLabel.text = "Day total".uppercased()
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.recordedHoursForDay(self.currentDate))
             
-            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.DaynameAndDate, date: self.currentDate).uppercaseString
+            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.DaynameAndDate, date: self.currentDate).uppercased()
         }
         
         self.correctButtons()
@@ -142,25 +142,25 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
     
     func correctButtons() {
         if self.currentPage == 0 {
-            self.YearNavigationButton.selected = true
-            self.MonthNavigationButton.selected = false
-            self.WeekNavigationButton.selected = false
-            self.DayNavigationButton.selected = false
+            self.YearNavigationButton.isSelected = true
+            self.MonthNavigationButton.isSelected = false
+            self.WeekNavigationButton.isSelected = false
+            self.DayNavigationButton.isSelected = false
         } else if self.currentPage == 1 {
-            self.YearNavigationButton.selected = false
-            self.MonthNavigationButton.selected = true
-            self.WeekNavigationButton.selected = false
-            self.DayNavigationButton.selected = false
+            self.YearNavigationButton.isSelected = false
+            self.MonthNavigationButton.isSelected = true
+            self.WeekNavigationButton.isSelected = false
+            self.DayNavigationButton.isSelected = false
         } else if self.currentPage == 2 {
-            self.YearNavigationButton.selected = false
-            self.MonthNavigationButton.selected = false
-            self.WeekNavigationButton.selected = true
-            self.DayNavigationButton.selected = false
+            self.YearNavigationButton.isSelected = false
+            self.MonthNavigationButton.isSelected = false
+            self.WeekNavigationButton.isSelected = true
+            self.DayNavigationButton.isSelected = false
         } else if self.currentPage == 3 {
-            self.YearNavigationButton.selected = false
-            self.MonthNavigationButton.selected = false
-            self.WeekNavigationButton.selected = false
-            self.DayNavigationButton.selected = true
+            self.YearNavigationButton.isSelected = false
+            self.MonthNavigationButton.isSelected = false
+            self.WeekNavigationButton.isSelected = false
+            self.DayNavigationButton.isSelected = true
         }
     }
     

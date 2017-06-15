@@ -14,10 +14,10 @@ import CoreData
 
 extension ClientObject {
 
-    @NSManaged var changed: NSDate?
+    @NSManaged var changed: Date?
     @NSManaged var city: String?
     @NSManaged var commit: String?
-    @NSManaged var created: NSDate?
+    @NSManaged var created: Date?
     @NSManaged var email: String?
     @NSManaged var uuid: String?
     @NSManaged var name: String?
@@ -75,15 +75,15 @@ extension ClientObject {
     
     func toJSON() -> Dictionary<String, AnyObject> {
         return [
-            "uuid": self.uuid ?? "",
-            "name": self.name ?? "",
-            "street": self.street ?? "",
-            "postcode": self.postcode ?? "",
+            "uuid": self.uuid as AnyObject ?? "" as AnyObject,
+            "name": self.name as AnyObject ?? "" as AnyObject,
+            "street": self.street as AnyObject ?? "" as AnyObject,
+            "postcode": self.postcode as AnyObject ?? "",
             "city": self.city ?? "",
             "note": self.note ?? "",
             "commit": self.commit ?? "",
-            "created": FormattingHelper.dateFormat(FormattingHelper.DateFormat.ISOString, date: self.created!),
-            "changed": FormattingHelper.dateFormat(FormattingHelper.DateFormat.ISOString, date: self.changed!)
+            "created": FormattingHelper.dateFormat(FormattingHelper.DateFormat.isoString, date: self.created!),
+            "changed": FormattingHelper.dateFormat(FormattingHelper.DateFormat.isoString, date: self.changed!)
         ]
     }
 

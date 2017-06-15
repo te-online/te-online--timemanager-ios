@@ -9,94 +9,94 @@
 import UIKit
 
 class DateHelper {
-    static let calendar = NSCalendar.currentCalendar()
+    static let calendar = Calendar.current
     
     enum ShiftType {
-        case PreviousDay
-        case NextDay
-        case PreviousWeek
-        case NextWeek
-        case PreviousMonth
-        case NextMonth
-        case PreviousYear
-        case NextYear
+        case previousDay
+        case nextDay
+        case previousWeek
+        case nextWeek
+        case previousMonth
+        case nextMonth
+        case previousYear
+        case nextYear
     }
     
     // Can get you a variety of dates in relation to a given date.
-    static func getDateFor(dateType: ShiftType, date: NSDate) -> NSDate {
-        let components = NSDateComponents()
+    static func getDateFor(_ dateType: ShiftType, date: Date) -> Date {
+        var components = DateComponents()
         
-        if(dateType == .PreviousDay) {
+        if(dateType == .previousDay) {
             components.day = -1
-        } else if(dateType == .NextDay) {
+        } else if(dateType == .nextDay) {
             components.day = 1
-        } else if(dateType == .PreviousWeek) {
+        } else if(dateType == .previousWeek) {
             components.weekOfYear = -1
-        } else if(dateType == .NextWeek) {
+        } else if(dateType == .nextWeek) {
             components.weekOfYear = 1
-        } else if(dateType == .PreviousMonth) {
+        } else if(dateType == .previousMonth) {
             components.month = -1
-        } else if(dateType == .NextMonth) {
+        } else if(dateType == .nextMonth) {
             components.month = 1
-        } else if(dateType == .PreviousYear) {
+        } else if(dateType == .previousYear) {
             components.year = -1
-        }  else if(dateType == .NextYear) {
+        }  else if(dateType == .nextYear) {
             components.year = 1
         }
         
-        return self.calendar.dateByAddingComponents(components, toDate: date, options: []) ?? NSDate()
+        return (self.calendar as NSCalendar).date(byAdding: components, to: date, options: []) ?? Date()
     }
     
     // Gets the very first day of a year.
-    static func getFirstDayOfYearByDate(date: NSDate) -> NSDate {
-        let components = calendar.components([.Year], fromDate: date)
+    static func getFirstDayOfYearByDate(_ date: Date) -> Date {
+        let components = (calendar as NSCalendar).components([.year], from: date)
         
-        return calendar.dateFromComponents(components) ?? NSDate()
+        return calendar.date(from: components) ?? Date()
     }
     
     // Gets the very last day of a year.
-    static func getLastDayOfYearByDate(date: NSDate) -> NSDate {
-        let components = calendar.components([.Year], fromDate: date)
+    static func getLastDayOfYearByDate(_ date: Date) -> Date {
+        var components = (calendar as NSCalendar).components([.year], from: date)
         components.year = 1
 //        components.day = -1
         
-        return calendar.dateByAddingComponents(components, toDate: self.getFirstDayOfYearByDate(date), options: []) ?? NSDate()
+        return (calendar as NSCalendar).date(byAdding: components, to: self.getFirstDayOfYearByDate(date), options: []) ?? Date()
     }
     
     // Gets the very first day of a month.
-    static func getFirstDayOfMonthByDate(date: NSDate) -> NSDate {
-        let components = calendar.components([.Year, .Month], fromDate: date)
+    static func getFirstDayOfMonthByDate(_ date: Date) -> Date {
+        let components = (calendar as NSCalendar).components([.year, .month], from: date)
         
-        return calendar.dateFromComponents(components) ?? NSDate()
+        return calendar.date(from: components) ?? Date()
     }
     
     // Gets the very last day of a month.
-    static func getLastDayOfMonthByDate(date: NSDate) -> NSDate {
-        let components = calendar.components([.Month], fromDate: date)
+    static func getLastDayOfMonthByDate(_ date: Date) -> Date {
+        var components = (calendar as NSCalendar).components([.month], from: date)
         components.month = 1
         
-        return calendar.dateByAddingComponents(components, toDate: self.getFirstDayOfMonthByDate(date), options: []) ?? NSDate()
+        return (calendar as NSCalendar).date(byAdding: components, to: self.getFirstDayOfMonthByDate(date), options: []) ?? Date()
     }
     
     // Gets the number of the current month for comparison. E.g. December -> 12
-    static func getMonthNum(date: NSDate) -> Int {
-        let components = calendar.components([.Year, .Month], fromDate: date)
+    static func getMonthNum(_ date: Date) -> Int {
+        let components = (calendar as NSCalendar).components([.year, .month], from: date)
         
-        return components.month
+        return components.month!
     }
     
     // Gets the very first day of a week.
-    static func getFirstDayOfWeekByDate(date: NSDate) -> NSDate {
-        let currentDateComponents = self.calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: date)
+    static func getFirstDayOfWeekByDate(_ date: Date) -> Date {
+        let currentDateComponents = (self.calendar as NSCalendar).components([.yearForWeekOfYear, .weekOfYear ], from: date)
         
-        return calendar.dateFromComponents(currentDateComponents) ?? NSDate()
+        return calendar.date(from: currentDateComponents) ?? Date()
     }
     
     // Gets the very last day of a week.
-    static func getLastDayOfWeekByDate(date: NSDate) -> NSDate {
+    static func getLastDayOfWeekByDate(_ date: Date) -> Date {
         let startOfWeek = self.getFirstDayOfWeekByDate(date)
-        var endOfWeek = self.getDateFor(.NextWeek, date: startOfWeek)
-        endOfWeek = self.getDateFor(.PreviousDay, date: endOfWeek)
+        var endOfWeek = self.getDateFor(.nextWeek, date: startOfWeek)
+        endOfWeek = self.getDateFor(.previousDay, date: endOfWeek)
         
         return endOfWeek
     }

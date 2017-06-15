@@ -11,56 +11,56 @@ import CoreData
 
 class TimeTraveller {
     
-    var dataController: AppDelegate! = UIApplication.sharedApplication().delegate as! AppDelegate
-    var calendar: NSCalendar = NSCalendar.currentCalendar()
+    var dataController: AppDelegate! = UIApplication.shared.delegate as! AppDelegate
+    var calendar: Calendar = Calendar.current
     
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     init() {
-        calendar.firstWeekday = (self.defaults.integerForKey("startWeekWith") == 0) ? 2 : self.defaults.integerForKey("startWeekWith") - 1
+        calendar.firstWeekday = (self.defaults.integer(forKey: "startWeekWith") == 0) ? 2 : self.defaults.integer(forKey: "startWeekWith") - 1
     }
     
     // The sum of the hours, recorded on this day.
     func todaysRecordedHours() -> Double {
-        let today = NSDate()
+        let today = Date()
         
         return self.recordedHoursForDay(today)
     }
     
     // The sum of the hours, recorded in this week.
     func thisWeeksRecordedHours() -> Double {
-        let today = NSDate()
+        let today = Date()
         
         return self.recordedHoursForWeekFromDate(today)
     }
     
     // The sum of the hours recorded in the given week.
-    func recordedHoursForWeekFromDate(date: NSDate) -> Double {
-        let currentDateComponents = self.calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: date)
+    func recordedHoursForWeekFromDate(_ date: Date) -> Double {
+        let currentDateComponents = (self.calendar as NSCalendar).components([.yearForWeekOfYear, .weekOfYear ], from: date)
         
-        let startOfWeek = calendar.dateFromComponents(currentDateComponents)
-        let endOfWeek = startOfWeek!.dateByAddingTimeInterval(60 * 60 * 24 * 7)
+        let startOfWeek = calendar.date(from: currentDateComponents)
+        let endOfWeek = startOfWeek!.addingTimeInterval(60 * 60 * 24 * 7)
         
         return self.recordedHoursBetweenDates(startOfWeek!, end: endOfWeek)
     }
     
     // The five most recent tasks in a week.
-    func fiveMostRecentTasksInWeekByDate(date: NSDate) -> [TaskObject] {
+    func fiveMostRecentTasksInWeekByDate(_ date: Date) -> [TaskObject] {
         // Create an array of all the times in the week
         let weekDates = self.getWeekDatesFromDate(date)
-        let startOfWeek = self.getDayBegin(weekDates[0] ?? NSDate())
-        let endOfWeek = self.getDayEnd(weekDates[6] ?? NSDate())
+        let startOfWeek = self.getDayBegin(weekDates[0] ?? Date())
+        let endOfWeek = self.getDayEnd(weekDates[6] ?? Date())
         
-        let request = NSFetchRequest(entityName: "Time")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forWeek = NSPredicate(format: "(start > %@) AND (end <= %@)", startOfWeek, endOfWeek)
+        let forWeek = NSPredicate(format: "(start > %@) AND (end <= %@)", startOfWeek as CVarArg, endOfWeek as CVarArg)
         request.predicate = forWeek
         
         do {
-            let times = try self.dataController.managedObjectContext.executeFetchRequest(request)
+            let times = try self.dataController.managedObjectContext.fetch(request)
             // Create a unique set of all the tasks with created times in the week
             var tasks: [TaskObject] = []
             // Get all tasks.
@@ -70,7 +70,7 @@ class TimeTraveller {
             // Make them unique
             var uniqueTasks = Array(Set(tasks))
             // sort the set by total hours
-            uniqueTasks = uniqueTasks.sort({ ($0 as TaskObject).getTotalHours() > ($1 as TaskObject).getTotalHours() })
+            uniqueTasks = uniqueTasks.sorted(by: { ($0 as TaskObject).getTotalHours() > ($1 as TaskObject).getTotalHours() })
             // Only use the first 5 entries
             return Array(uniqueTasks.prefix(5))
         } catch {
@@ -83,7 +83,7 @@ class TimeTraveller {
      *  e.g. ["5 hrs.", "12 hrs", "-", "1.25 hrs.", "6 hrs.", "-", "-"]
      *
     */
-    func recordedHoursForWeekInProjectFromDate(date: NSDate, project: ProjectObject) -> [String] {
+    func recordedHoursForWeekInProjectFromDate(_ date: Date, project: ProjectObject) -> [String] {
         let weekDates = self.getWeekDatesFromDate(date)
         
         var values = [String]()
@@ -101,16 +101,16 @@ class TimeTraveller {
     }
     
     // The sum of the recorded hours for a project on a given date.
-    func recordedHoursForDateInProject(date: NSDate, project: ProjectObject) -> Double {
+    func recordedHoursForDateInProject(_ date: Date, project: ProjectObject) -> Double {
         let dayBegin = self.getDayBegin(date)
         let dayEnd = self.getDayEnd(date)
         
-        let request = NSFetchRequest(entityName: "Time")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDayAndProject = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (task.project = %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, project, "deleted")
+        let forDayAndProject = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (task.project = %@) AND ((commit == nil) OR (commit != %@))", dayBegin as CVarArg, dayEnd as CVarArg, project, "deleted")
         request.predicate = forDayAndProject
         
         let moc = self.dataController.managedObjectContext
@@ -118,7 +118,7 @@ class TimeTraveller {
         var hoursCount: Double = 0
         
         do {
-            let entries = try moc.executeFetchRequest(request)
+            let entries = try moc.fetch(request)
             if entries.count > 0 {
                 for entry in entries {
                     hoursCount += (entry as! TimeObject).getDurationInHours()
@@ -136,7 +136,7 @@ class TimeTraveller {
      *  e.g. ["5 hrs.", "12 hrs", "-", "1.25 hrs.", "6 hrs.", "-", "-"]
      *
      */
-    func recordedHoursForWeekInTaskFromDate(date: NSDate, task: TaskObject) -> [String] {
+    func recordedHoursForWeekInTaskFromDate(_ date: Date, task: TaskObject) -> [String] {
         let weekDates = self.getWeekDatesFromDate(date)
         
         var values = [String]()
@@ -154,16 +154,16 @@ class TimeTraveller {
     }
     
     // The sum of the recorded hours for a task on a given date.
-    func recordedHoursForDateInTask(date: NSDate, task: TaskObject) -> Double {
+    func recordedHoursForDateInTask(_ date: Date, task: TaskObject) -> Double {
         let dayBegin = self.getDayBegin(date)
         let dayEnd = self.getDayEnd(date)
         
-        let request = NSFetchRequest(entityName: "Time")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDayAndProject = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (task = %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, task, "deleted")
+        let forDayAndProject = NSPredicate(format: "(start >= %@) AND (end <= %@) AND (task = %@) AND ((commit == nil) OR (commit != %@))", dayBegin as CVarArg, dayEnd as CVarArg, task, "deleted")
         request.predicate = forDayAndProject
         
         let moc = self.dataController.managedObjectContext
@@ -171,7 +171,7 @@ class TimeTraveller {
         var hoursCount: Double = 0
         
         do {
-            let entries = try moc.executeFetchRequest(request)
+            let entries = try moc.fetch(request)
             if entries.count > 0 {
                 for entry in entries {
                     hoursCount += (entry as! TimeObject).getDurationInHours()
@@ -185,22 +185,22 @@ class TimeTraveller {
     }
 
     // The hours that were recorded between two dates.
-    func recordedHoursBetweenDates(start: NSDate, end: NSDate) -> Double {
+    func recordedHoursBetweenDates(_ start: Date, end: Date) -> Double {
         let dayBegin = self.getDayBegin(start)
         let dayEnd = self.getDayEnd(end)
         
-        let request = NSFetchRequest(entityName: "Time")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDay = NSPredicate(format: "(start >= %@) AND (end < %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, "deleted")
+        let forDay = NSPredicate(format: "(start >= %@) AND (end < %@) AND ((commit == nil) OR (commit != %@))", dayBegin as CVarArg, dayEnd as CVarArg, "deleted")
         request.predicate = forDay
         
         var hoursCount: Double = 0
         
         do {
-            let entries = try self.dataController.managedObjectContext.executeFetchRequest(request)
+            let entries = try self.dataController.managedObjectContext.fetch(request)
             if entries.count > 0 {
                 for entry in entries {
                     hoursCount += (entry as! TimeObject).getDurationInHours()
@@ -214,16 +214,16 @@ class TimeTraveller {
     }
     
     // The hours that were recorded on a specific day.
-    func recordedHoursForDay(day: NSDate) -> Double {
+    func recordedHoursForDay(_ day: Date) -> Double {
         let dayBegin = self.getDayBegin(day)
         let dayEnd = self.getDayEnd(day)
         
-        let request = NSFetchRequest(entityName: "Time")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDay = NSPredicate(format: "(start >= %@) AND (start <= %@) AND ((commit == nil) OR (commit != %@))", dayBegin, dayEnd, "deleted")
+        let forDay = NSPredicate(format: "(start >= %@) AND (start <= %@) AND ((commit == nil) OR (commit != %@))", dayBegin as CVarArg, dayEnd as CVarArg, "deleted")
         request.predicate = forDay
         
         let moc = self.dataController.managedObjectContext
@@ -231,7 +231,7 @@ class TimeTraveller {
         var hoursCount: Double = 0
         
         do {
-            let entries = try moc.executeFetchRequest(request)
+            let entries = try moc.fetch(request)
             if entries.count > 0 {
                 for entry in entries {
                     hoursCount += (entry as! TimeObject).getDurationInHours()
@@ -246,57 +246,57 @@ class TimeTraveller {
     
     // Alias for daysOfWeekFromDate for today.
     func daysOfCurrentWeek() -> [String] {
-        let today = NSDate()
+        let today = Date()
         return self.daysOfWeekFromDate(today)
     }
     
     // An array of day descriptions for the collection view header.
     // E.g. ["Mo 1.8.", "Tu 2.8.", "Th 3.8.", ... ]
-    func daysOfWeekFromDate(date: NSDate) -> [String] {
+    func daysOfWeekFromDate(_ date: Date) -> [String] {
         let dates = self.getWeekDatesFromDate(date)
         
         var formattedDays: [String] = []
         for date in dates {
-            formattedDays.append(FormattingHelper.dateFormat(.ShortDaynameDayMonth, date: date!).uppercaseString)
+            formattedDays.append(FormattingHelper.dateFormat(.ShortDaynameDayMonth, date: date!).uppercased())
         }
         
         return formattedDays
     }
     
     // Get the beginning of a given day.
-    func getDayBegin(day: NSDate) -> NSDate {
-        let dayBeginComponents: NSDateComponents = self.calendar.components([.Day,.Month,.Year], fromDate: day)
+    func getDayBegin(_ day: Date) -> Date {
+        var dayBeginComponents: DateComponents = (self.calendar as NSCalendar).components([.day,.month,.year], from: day)
         dayBeginComponents.hour = 0
         dayBeginComponents.minute = 0
         dayBeginComponents.second = 0
         
-        return self.calendar.dateFromComponents(dayBeginComponents)! ?? NSDate()
+        return self.calendar.date(from: dayBeginComponents)! ?? Date()
     }
     
     // Get the end of a given day.
-    func getDayEnd(day: NSDate) -> NSDate {
-        let dayEndComponents: NSDateComponents = self.calendar.components([.Day,.Month,.Year], fromDate: day)
+    func getDayEnd(_ day: Date) -> Date {
+        var dayEndComponents: DateComponents = (self.calendar as NSCalendar).components([.day,.month,.year], from: day)
         dayEndComponents.hour = 23
         dayEndComponents.minute = 59
         dayEndComponents.second = 59
         
-        return self.calendar.dateFromComponents(dayEndComponents)! ?? NSDate()
+        return self.calendar.date(from: dayEndComponents)! ?? Date()
     }
     
     // Get the dates of all days in a specific week.
-    func getWeekDatesFromDate(date: NSDate) -> [NSDate?] {
-        let currentDateComponents = self.calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: date)
-        let startOfWeek = calendar.dateFromComponents(currentDateComponents)
+    func getWeekDatesFromDate(_ date: Date) -> [Date?] {
+        let currentDateComponents = (self.calendar as NSCalendar).components([.yearForWeekOfYear, .weekOfYear ], from: date)
+        let startOfWeek = calendar.date(from: currentDateComponents)
         var dates = [startOfWeek]
         for i in 1...6 {
-            dates.append(startOfWeek?.dateByAddingTimeInterval(60 * 60 * 24 * Double(i)))
+            dates.append(startOfWeek?.addingTimeInterval(60 * 60 * 24 * Double(i)))
         }
         
         return dates
     }
     
     // Get the hours for a year from a date in this year.
-    func getHoursForYearFromDate(date: NSDate) -> Double {
+    func getHoursForYearFromDate(_ date: Date) -> Double {
         // Determine the first day of this year
         let firstDayOfYear = DateHelper.getFirstDayOfYearByDate(date)
         // Determine the last day of this year
@@ -307,7 +307,7 @@ class TimeTraveller {
     }
     
     // Get the hours for a month from a date in this month.
-    func getHoursForMonthFromDate(date: NSDate) -> Double {
+    func getHoursForMonthFromDate(_ date: Date) -> Double {
         // Determine the first day of this month
         let firstDayOfMonth = DateHelper.getFirstDayOfMonthByDate(date)
         // Determine the last day of this month
@@ -318,12 +318,12 @@ class TimeTraveller {
     }
     
     // Alias for recordedHoursForWeekFromDate
-    func getHoursForWeekFromDate(date: NSDate) -> Double {
+    func getHoursForWeekFromDate(_ date: Date) -> Double {
         return self.recordedHoursForWeekFromDate(date)
     }
     
     // Get the hours for a week from a date in this week.
-    func getHoursForMonthByDate(date: NSDate) -> [Double] {
+    func getHoursForMonthByDate(_ date: Date) -> [Double] {
         // Go to the beginning of the month.
         let firstDay = DateHelper.getFirstDayOfMonthByDate(date)
         // Add the hours of this week to the array.
@@ -332,9 +332,9 @@ class TimeTraveller {
         var currentWeekPointer = firstDay
         let thisMonth = DateHelper.getMonthNum(currentWeekPointer)
         // Do this while the current date's month is the same as the starting week's month.
-        while DateHelper.getMonthNum(DateHelper.getDateFor(.NextWeek, date: currentWeekPointer)) == thisMonth {
+        while DateHelper.getMonthNum(DateHelper.getDateFor(.nextWeek, date: currentWeekPointer)) == thisMonth {
             // Add one month to the current date.
-            currentWeekPointer = DateHelper.getDateFor(.NextWeek, date: currentWeekPointer)
+            currentWeekPointer = DateHelper.getDateFor(.nextWeek, date: currentWeekPointer)
             // Add the hours of the current month to the array.
             results.append(self.getHoursForWeekFromDate(currentWeekPointer))
         }
@@ -344,27 +344,27 @@ class TimeTraveller {
     }
     
     // ["WEEK 31 (1.8. – 7.8.)", "WEEK 32 (1.8. – 7.8.)", "WEEK 33 (1.8. – 7.8.)", "WEEK 34 (15.8. – 17.8.)"]
-    func getWeeksForMonthByDate(date: NSDate) -> [String] {
+    func getWeeksForMonthByDate(_ date: Date) -> [String] {
         // Go to the beginning of the month.
         let firstDay = DateHelper.getFirstDayOfMonthByDate(date)
         // Add the hours of this week to the array.
         var results: [String] = []
-        results.append(FormattingHelper.dateFormat(.WeekAndDaySpan, date: firstDay).uppercaseString)
+        results.append(FormattingHelper.dateFormat(.WeekAndDaySpan, date: firstDay).uppercased())
         var currentWeekPointer = firstDay
         let thisMonth = DateHelper.getMonthNum(currentWeekPointer)
         // Do this while the current date's month is the same as the starting week's month.
-        while DateHelper.getMonthNum(DateHelper.getDateFor(.NextWeek, date: currentWeekPointer)) == thisMonth {
+        while DateHelper.getMonthNum(DateHelper.getDateFor(.nextWeek, date: currentWeekPointer)) == thisMonth {
             // Add one month to the current date.
-            currentWeekPointer = DateHelper.getDateFor(.NextWeek, date: currentWeekPointer)
+            currentWeekPointer = DateHelper.getDateFor(.nextWeek, date: currentWeekPointer)
             // Add the hours of the current month to the array.
-            results.append(FormattingHelper.dateFormat(.WeekAndDaySpan, date: currentWeekPointer).uppercaseString)
+            results.append(FormattingHelper.dateFormat(.WeekAndDaySpan, date: currentWeekPointer).uppercased())
         }
         
         return results
     }
     
     // [100, 120, 130, 20, 50, 60, 75, 230, 45, 98, 12, 25]
-    func getHoursForYearByDate(date: NSDate) -> [Double] {
+    func getHoursForYearByDate(_ date: Date) -> [Double] {
         // Go to the beginning of the year.
         let firstDay = DateHelper.getFirstDayOfYearByDate(date)
         // Add the hours of this month to the array.
@@ -374,7 +374,7 @@ class TimeTraveller {
         // Do this for 11 months left.
         for _ in 1...11 {
             // Add one month to the current date.
-            currentMonthPointer = DateHelper.getDateFor(.NextMonth, date: currentMonthPointer)
+            currentMonthPointer = DateHelper.getDateFor(.nextMonth, date: currentMonthPointer)
             // Add the hours of the current month to the array.
             results.append(self.getHoursForMonthFromDate(currentMonthPointer))
         }
@@ -388,7 +388,7 @@ class TimeTraveller {
      *  e.g. [5, 8.5, 2.75, 7.5, 7, 0, 0]
      *
      */
-    func recordedHoursForWeekByDate(date: NSDate) -> [Double] {
+    func recordedHoursForWeekByDate(_ date: Date) -> [Double] {
         let weekDates = self.getWeekDatesFromDate(date)
         
         var values = [Double]()
@@ -401,7 +401,7 @@ class TimeTraveller {
     }
     
     // [1.75, 3, 2, 2, 1.25]
-    func recordedHoursInProjectsByDate(date: NSDate) -> [Double] {
+    func recordedHoursInProjectsByDate(_ date: Date) -> [Double] {
         // Do the same as in tasks, but for projects and without limit and return raw values.
         let projects = self.ProjectsByDate(date)
         var hours: [Double] = []
@@ -413,21 +413,21 @@ class TimeTraveller {
     }
     
     // Return a list of projects that have been worked on, on a secific day.
-    func ProjectsByDate(date: NSDate) -> [ProjectObject] {
+    func ProjectsByDate(_ date: Date) -> [ProjectObject] {
         // Create an array of all the times in the week
         let startOfDay = self.getDayBegin(date)
         let endOfDay = self.getDayEnd(date)
         
-        let request = NSFetchRequest(entityName: "Time")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
         
-        let forDay = NSPredicate(format: "(start >= %@) AND (end < %@)", startOfDay, endOfDay)
+        let forDay = NSPredicate(format: "(start >= %@) AND (end < %@)", startOfDay as CVarArg, endOfDay as CVarArg)
         request.predicate = forDay
         
         do {
-            let times = try self.dataController.managedObjectContext.executeFetchRequest(request)
+            let times = try self.dataController.managedObjectContext.fetch(request)
             // Create a unique set of all the tasks with created times in the week
             var tasks: [TaskObject] = []
             // Get all tasks.
@@ -444,7 +444,7 @@ class TimeTraveller {
             // Make them unique.
             var uniqueProjects = Array(Set(projects))
             // sort the set by total hours
-            uniqueProjects = uniqueProjects.sort({ ($0 as ProjectObject).getTotalHours() > ($1 as ProjectObject).getTotalHours() })
+            uniqueProjects = uniqueProjects.sorted(by: { ($0 as ProjectObject).getTotalHours() > ($1 as ProjectObject).getTotalHours() })
             // Only use the first 5 entries
             return uniqueProjects
         } catch {

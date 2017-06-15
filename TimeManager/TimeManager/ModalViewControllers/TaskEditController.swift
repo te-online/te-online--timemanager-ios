@@ -9,10 +9,10 @@
 import UIKit
 
 protocol TaskCreateDelegate {
-    func saveNewTask(task: TaskEditController.Task)
+    func saveNewTask(_ task: TaskEditController.Task)
 }
 protocol TaskEditDelegate {
-    func editTask(task: TaskEditController.Task)
+    func editTask(_ task: TaskEditController.Task)
 }
 
 class TaskEditController: UIViewController {
@@ -40,11 +40,11 @@ class TaskEditController: UIViewController {
     @IBOutlet weak var DoneButtonBottom: UIButton!
     @IBOutlet weak var CancelButtonBottom: UIButton!
     
-    @IBAction func DoneButtonBottomPressed(sender: AnyObject) {
+    @IBAction func DoneButtonBottomPressed(_ sender: AnyObject) {
         self.saveIntent = true
     }
     
-    @IBAction func DoneButtonTopPressed(sender: AnyObject) {
+    @IBAction func DoneButtonTopPressed(_ sender: AnyObject) {
         self.saveIntent = true
     }
     
@@ -54,20 +54,20 @@ class TaskEditController: UIViewController {
         self.currentTask = Task(name: "", object: nil)
         
         // Make buttons look nicely.
-        DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
-        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
-        CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
+        DoneButtonTop.layer.borderColor = Colors.MediumBlue.cgColor
+        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.cgColor
+        CancelButtonBottom.layer.borderColor = Colors.MediumRed.cgColor
         
         if self.editTaskObject != nil {
             // Put data into the fields.
             NameInputField.text = self.editTaskObject.name
             
             // Rename buttons.
-            DoneButtonTop.setTitle("Update", forState: .Normal)
-            DoneButtonBottom.setTitle("Update", forState: .Normal)
+            DoneButtonTop.setTitle("Update", for: UIControlState())
+            DoneButtonBottom.setTitle("Update", for: UIControlState())
             
             // Change caption.
-            ModalTitleLabel.text = "Edit task".uppercaseString
+            ModalTitleLabel.text = "Edit task".uppercased()
         }
         
         // Give some orientation, where the user is.
@@ -81,7 +81,7 @@ class TaskEditController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         if self.saveIntent {
             // Store the input to make it accessible to the unwind segues target controller.
             self.currentTask.name = NameInputField.text!

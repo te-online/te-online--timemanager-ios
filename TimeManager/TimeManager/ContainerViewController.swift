@@ -30,18 +30,18 @@ class ContainerViewController: UIViewController {
         self.hideSyncInProgress()
         
         // Load nice background images for highlighted state for our navi buttons.
-        self.OverviewButton.setBackgroundImage(UIImage(named: "overview-icon-active.png"), forState: .Selected)
-        self.EntriesButton.setBackgroundImage(UIImage(named: "entries-icon-active.png"), forState: .Selected)
-        self.StatisticsButton.setBackgroundImage(UIImage(named: "statistics-icon-active.png"), forState: .Selected)
+        self.OverviewButton.setBackgroundImage(UIImage(named: "overview-icon-active.png"), for: .selected)
+        self.EntriesButton.setBackgroundImage(UIImage(named: "entries-icon-active.png"), for: .selected)
+        self.StatisticsButton.setBackgroundImage(UIImage(named: "statistics-icon-active.png"), for: .selected)
         
         // Load all the nice child views we're going to use.
-        self.entriesScreenController = storyboard?.instantiateViewControllerWithIdentifier("EntriesViewController")
-        self.overviewScreenController = storyboard?.instantiateViewControllerWithIdentifier("OverviewScreenController")
-        self.statisticsScreenController = storyboard?.instantiateViewControllerWithIdentifier("StatisticsScreenController")
+        self.entriesScreenController = storyboard?.instantiateViewController(withIdentifier: "EntriesViewController")
+        self.overviewScreenController = storyboard?.instantiateViewController(withIdentifier: "OverviewScreenController")
+        self.statisticsScreenController = storyboard?.instantiateViewController(withIdentifier: "StatisticsScreenController")
         self.currentViewController = nil
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         // Show the first subview, once this view fully appeared.
         self.displayContentController(overviewScreenController!)
         // Set the correct state for the navi buttons.
@@ -55,24 +55,24 @@ class ContainerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func dismissSettings(unwindSegue: UIStoryboardSegue) {
+    @IBAction func dismissSettings(_ unwindSegue: UIStoryboardSegue) {
         // Just get rid of the modal window.
         
     }
     
-    @IBAction func NavBarButtonOverviewTouched(sender: AnyObject) {
+    @IBAction func NavBarButtonOverviewTouched(_ sender: AnyObject) {
         self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.overviewScreenController)
     }
     
-    @IBAction func NavBarButtonEntriesTouched(sender: AnyObject) {
+    @IBAction func NavBarButtonEntriesTouched(_ sender: AnyObject) {
         self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.entriesScreenController)
     }
     
-    @IBAction func NavBarButtonStatisticsTouched(sender: AnyObject) {
+    @IBAction func NavBarButtonStatisticsTouched(_ sender: AnyObject) {
         self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.statisticsScreenController)
     }
     
-    func displayContentController(content: UIViewController!) {
+    func displayContentController(_ content: UIViewController!) {
         // Add the new view controller.
         self.addChildViewController(content!)
         // Make sure the view fits perfectly into our layout.
@@ -80,7 +80,7 @@ class ContainerViewController: UIViewController {
         // Add the new view.
         self.view!.addSubview(content!.view)
         // Tell the child that it now lives at their parents.
-        content!.didMoveToParentViewController(self)
+        content!.didMove(toParentViewController: self)
         // Store the current view controller, just in case.
         self.currentViewController = content
     }
@@ -97,7 +97,7 @@ class ContainerViewController: UIViewController {
             return
         }
         // Prepare removing from parent.
-        oldVC.willMoveToParentViewController(nil)
+        oldVC.willMove(toParentViewController: nil)
         // Add new view controller.
         self.addChildViewController(newVC!)
         // Make new view controller fit the available space.
@@ -105,16 +105,16 @@ class ContainerViewController: UIViewController {
         // Make new view controller transparent.
         newVC.view.alpha = 0
         // Transition the new view controller to visible and the old one to transparent.
-        self.transitionFromViewController(oldVC, toViewController: newVC, duration: 0.25, options: [], animations: {() -> Void in
+        self.transition(from: oldVC, to: newVC, duration: 0.25, options: [], animations: {() -> Void in
             newVC.view.alpha = 1
             oldVC.view.alpha = 0
             }, completion: {(finished: Bool) -> Void in
                 // Remove old view controller after animation.
                 oldVC.removeFromParentViewController()
                 // Make sure new view controller knows they're home.
-                newVC.didMoveToParentViewController(self)
+                newVC.didMove(toParentViewController: self)
                 // Send the new view to the back.
-                self.view!.bringSubviewToFront(self.NaviView)
+                self.view!.bringSubview(toFront: self.NaviView)
                 // Store current view controller, just in case.
                 self.currentViewController = newVC
                 // Correct the navi buttons appearance.
@@ -126,19 +126,19 @@ class ContainerViewController: UIViewController {
     func correctButtons() {
         // Set the selected navi button based on the current view controller.
         if self.currentViewController == self.overviewScreenController {
-            self.OverviewButton.selected = true
-            self.EntriesButton.selected = false
-            self.StatisticsButton.selected = false
+            self.OverviewButton.isSelected = true
+            self.EntriesButton.isSelected = false
+            self.StatisticsButton.isSelected = false
         }
         if self.currentViewController == self.entriesScreenController {
-            self.OverviewButton.selected = false
-            self.EntriesButton.selected = true
-            self.StatisticsButton.selected = false
+            self.OverviewButton.isSelected = false
+            self.EntriesButton.isSelected = true
+            self.StatisticsButton.isSelected = false
         }
         if self.currentViewController == self.statisticsScreenController {
-            self.OverviewButton.selected = false
-            self.EntriesButton.selected = false
-            self.StatisticsButton.selected = true
+            self.OverviewButton.isSelected = false
+            self.EntriesButton.isSelected = false
+            self.StatisticsButton.isSelected = true
         }
     }
     

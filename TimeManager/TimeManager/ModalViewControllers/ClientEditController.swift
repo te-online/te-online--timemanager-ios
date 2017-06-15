@@ -9,11 +9,11 @@
 import UIKit
 
 protocol ClientCreateDelegate {
-    func saveNewClient(name: ClientEditController.Client)
+    func saveNewClient(_ name: ClientEditController.Client)
 }
 
 protocol ClientEditDelegate {
-    func editClient(client: ClientEditController.Client)
+    func editClient(_ client: ClientEditController.Client)
 }
 
 class ClientEditController: UIViewController {
@@ -48,11 +48,11 @@ class ClientEditController: UIViewController {
     @IBOutlet weak var CityInputField: UITextField!
     @IBOutlet weak var NoteInputField: UITextView!
     
-    @IBAction func DoneButtonTopPressed(sender: AnyObject) {
+    @IBAction func DoneButtonTopPressed(_ sender: AnyObject) {
         self.saveIntent = true
     }
     
-    @IBAction func DoneButtonBottomPressed(sender: AnyObject) {
+    @IBAction func DoneButtonBottomPressed(_ sender: AnyObject) {
         self.saveIntent = true
     }
     
@@ -62,13 +62,13 @@ class ClientEditController: UIViewController {
         currentClient = Client(name: "", street: "", postcode: "", city: "", note: "", object: nil)
         
         // Make buttons look nicely.
-        DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
-        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
-        CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
+        DoneButtonTop.layer.borderColor = Colors.MediumBlue.cgColor
+        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.cgColor
+        CancelButtonBottom.layer.borderColor = Colors.MediumRed.cgColor
         
         // Add border to textview.
         NoteInputField.layer.borderWidth = 1.0
-        NoteInputField.layer.borderColor = Colors.LightGrey.CGColor
+        NoteInputField.layer.borderColor = Colors.LightGrey.cgColor
         NoteInputField.layer.cornerRadius = 4.0
 
         if self.editClientObject != nil {
@@ -79,11 +79,11 @@ class ClientEditController: UIViewController {
             CityInputField.text = self.editClientObject.city
             NoteInputField.text = self.editClientObject.note
             // Rename buttons.
-            DoneButtonTop.setTitle("Update", forState: .Normal)
-            DoneButtonBottom.setTitle("Update", forState: .Normal)
+            DoneButtonTop.setTitle("Update", for: UIControlState())
+            DoneButtonBottom.setTitle("Update", for: UIControlState())
             
             // Change caption.
-            ModalTitleLabel.text = "Edit client".uppercaseString
+            ModalTitleLabel.text = "Edit client".uppercased()
         }
     }
     
@@ -92,7 +92,7 @@ class ClientEditController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         if(self.saveIntent) {
             // Store the input to make it accessible to the unwind segues target controller.
             currentClient.name = NameInputField.text!
@@ -100,8 +100,8 @@ class ClientEditController: UIViewController {
             currentClient.postcode = PostcodeInputField.text!
             currentClient.city = CityInputField.text!
 
-            let range: UITextRange = NoteInputField.textRangeFromPosition(NoteInputField.beginningOfDocument, toPosition: NoteInputField.endOfDocument)!
-            currentClient.note = NoteInputField.textInRange(range)
+            let range: UITextRange = NoteInputField.textRange(from: NoteInputField.beginningOfDocument, to: NoteInputField.endOfDocument)!
+            currentClient.note = NoteInputField.text(in: range)
             
             if self.editClientObject != nil {
                 currentClient.object = self.editClientObject

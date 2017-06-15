@@ -462,6 +462,7 @@
 					E958A1231D58749F00FB6166 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = H7M8RD22PJ;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -760,6 +761,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.te-online.TimeManager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -775,6 +777,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.te-online.TimeManager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

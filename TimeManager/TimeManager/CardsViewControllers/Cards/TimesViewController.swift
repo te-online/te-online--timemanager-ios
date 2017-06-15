@@ -19,28 +19,28 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     
     var dataController: AppDelegate!
     
-    var fetchedResultsController: NSFetchedResultsController!
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
-    var currentSelection: NSIndexPath!
+    var currentSelection: IndexPath!
     
     var TaskNameScrollLabel: UILabel!
     
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
-        dataController = UIApplication.sharedApplication().delegate as! AppDelegate
+        dataController = UIApplication.shared.delegate as! AppDelegate
         
         super.viewDidLoad()
         
         // Load all the nice child views we're going to use.
-        self.backgroundController = storyboard?.instantiateViewControllerWithIdentifier("TimesInfoBackground")
+        self.backgroundController = storyboard?.instantiateViewController(withIdentifier: "TimesInfoBackground")
         (self.backgroundController as! TaskDetailViewController).delegate = self
         
         // Show the first view.
         self.displayContentController(backgroundController!)
         
         self.collectionView!.frame = CGRect(x: 0, y: 30, width: self.view!.frame.width, height: self.collectionView!.frame.height - 30)
-        self.collectionView!.backgroundColor = UIColor.clearColor()
-        self.view!.backgroundColor = UIColor.whiteColor()
+        self.collectionView!.backgroundColor = UIColor.clear
+        self.view!.backgroundColor = UIColor.white
         
         self.TaskNameScrollLabel = backgroundController!.view.viewWithTag(2) as! UILabel
     }
@@ -56,25 +56,25 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
      *
      **/
     
-    @IBAction func saveTime(unwindSegue: UIStoryboardSegue) {
-        (unwindSegue.sourceViewController as! TimeEditController).createDelegate = self
+    @IBAction func saveTime(_ unwindSegue: UIStoryboardSegue) {
+        (unwindSegue.source as! TimeEditController).createDelegate = self
     }
     
-    @IBAction func editTask(unwindSegue: UIStoryboardSegue) {
+    @IBAction func editTask(_ unwindSegue: UIStoryboardSegue) {
         // Do nothing. Just for unwinding.
     }
     
-    @IBAction func cancel(unwindSegue: UIStoryboardSegue) {
+    @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {
         // Do nothing. Just for unwinding.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editTime" {
-            (segue.destinationViewController as! TimeEditController).editDelegate = self
+            (segue.destination as! TimeEditController).editDelegate = self
             if self.currentSelection != nil {
-                (segue.destinationViewController as! TimeEditController).editTimeObject = (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! TimeObject)
+                (segue.destination as! TimeEditController).editTimeObject = (fetchedResultsController.object(at: self.currentSelection) as! TimeObject)
             }
-            (segue.destinationViewController as! TimeEditController).currentTaskObject = self.currentTask
+            (segue.destination as! TimeEditController).currentTaskObject = self.currentTask
         }
     }
     
@@ -102,14 +102,14 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         }
     }
     
-    func saveNewTime(time: TimeEditController.Time) {
-        let entity = NSEntityDescription.entityForName("Time", inManagedObjectContext: dataController.managedObjectContext)
-        let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
+    func saveNewTime(_ time: TimeEditController.Time) {
+        let entity = NSEntityDescription.entity(forEntityName: "Time", in: dataController.managedObjectContext)
+        let item = NSManagedObject(entity: entity!, insertInto: dataController.managedObjectContext)
         
-        let now = NSDate()
+        let now = Date()
         
         item.setValue(self.currentTask, forKey: "task")
-        item.setValue(NSUUID().UUIDString, forKey: "uuid")
+        item.setValue(UUID().uuidString, forKey: "uuid")
         item.setValue(self.currentTask.uuid, forKey: "task_uuid")
         item.setValue(time.start, forKey: "start")
         item.setValue(time.end, forKey: "end")
@@ -124,13 +124,13 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         }
     }
     
-    func editTask(task: TaskEditController.Task) {
+    func editTask(_ task: TaskEditController.Task) {
         let item = task.object
         
-        let now = NSDate()
+        let now = Date()
         
-        item.setValue(task.name, forKey: "name")
-        item.setValue(now, forKey: "changed")
+        item?.setValue(task.name, forKey: "name")
+        item?.setValue(now, forKey: "changed")
         
         do {
             try dataController.managedObjectContext.save()
@@ -140,15 +140,15 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         }
     }
     
-    func editTime(time: TimeEditController.Time) {
+    func editTime(_ time: TimeEditController.Time) {
         let item = time.object
         
-        let now = NSDate()
+        let now = Date()
         
-        item.setValue(time.note, forKey: "note")
-        item.setValue(time.start, forKey: "start")
-        item.setValue(time.end, forKey: "end")
-        item.setValue(now, forKey: "changed")
+        item?.setValue(time.note, forKey: "note")
+        item?.setValue(time.start, forKey: "start")
+        item?.setValue(time.end, forKey: "end")
+        item?.setValue(now, forKey: "changed")
         
         do {
             try dataController.managedObjectContext.save()
@@ -173,10 +173,10 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         self.TaskNameScrollLabel.text = String(format: "%@ > %@ > %@", self.currentTask.project!.client!.name!, self.currentTask.project!.name!, self.currentTask.name!)
         
         let ProjectPeriodLabel = backgroundController!.view.viewWithTag(6) as! UILabel
-        ProjectPeriodLabel.text = FormattingHelper.dateFormat(.DayMonthnameYear, date: self.currentTask.created!)
+        ProjectPeriodLabel.text = FormattingHelper.dateFormat(.dayMonthnameYear, date: self.currentTask.created!)
     }
     
-    func setParentTask(task: TaskObject) {
+    func setParentTask(_ task: TaskObject) {
         self.currentTask = task
         self.initializeFetchedResultsControllerWithCurrentTask()
         self.populateCurrentTaskDetails()
@@ -189,11 +189,11 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
      *
      **/
     
-    func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
+    func configureCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
         cell.backgroundColor = Colors.ProjectsCellBlue
         
-        let correctedIndexPath = NSIndexPath(forItem: indexPath.item, inSection: indexPath.section - 1)
-        let Time = fetchedResultsController.objectAtIndexPath(correctedIndexPath) as! TimeObject
+        let correctedIndexPath = IndexPath(item: indexPath.item, section: indexPath.section - 1)
+        let Time = fetchedResultsController.object(at: correctedIndexPath) as! TimeObject
         
         let TimeDurationLabel = cell.viewWithTag(1) as! UILabel
         TimeDurationLabel.text = Time.getHoursString()
@@ -212,40 +212,40 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         let TimeNoteLabel = cell.viewWithTag(5) as! UILabel
         TimeNoteLabel.text = Time.note
         
-        if currentSelection != nil && indexPath.isEqual(currentSelection) {
+        if currentSelection != nil && (indexPath == currentSelection) {
             cell.contentView.backgroundColor = Colors.VeryLightGrey
         } else {
-            cell.contentView.backgroundColor = UIColor.whiteColor()
+            cell.contentView.backgroundColor = UIColor.white
         }
     }
     
-    func configureInvisibleCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.clearColor()
-        cell.userInteractionEnabled = false
+    func configureInvisibleCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+        cell.isUserInteractionEnabled = false
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: UICollectionViewCell
         
         if indexPath.section == 0 {
-            cell = collectionView.dequeueReusableCellWithReuseIdentifier("empty", forIndexPath: indexPath) as UICollectionViewCell!
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "empty", for: indexPath) as UICollectionViewCell!
             self.configureInvisibleCell(cell, indexPath: indexPath)
         } else {
-            cell = collectionView.dequeueReusableCellWithReuseIdentifier("TimeCell", forIndexPath: indexPath) as UICollectionViewCell!
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeCell", for: indexPath) as UICollectionViewCell!
             self.configureCell(cell, indexPath: indexPath)
         }
         
         return cell
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         if fetchedResultsController == nil {
             return 2
         }
         return fetchedResultsController.sections!.count + 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(section == 0) {
             return 1
         } else {
@@ -258,20 +258,20 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         }
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         var reusableView: UICollectionReusableView!
         reusableView = nil
         
         if(kind == UICollectionElementKindSectionHeader) {
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "TimesHeadCell", forIndexPath: indexPath)
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "TimesHeadCell", for: indexPath)
             
             if(indexPath.section == 0) {
-                headerView.backgroundColor = UIColor.clearColor()
+                headerView.backgroundColor = UIColor.clear
                 headerView.alpha = 0
-                headerView.userInteractionEnabled = false
+                headerView.isUserInteractionEnabled = false
             } else {
-                headerView.backgroundColor = UIColor.whiteColor()
+                headerView.backgroundColor = UIColor.white
                 
                 // Update number of items in header view.
                 let itemCount = (fetchedResultsController != nil && fetchedResultsController.sections!.count > 0) ? fetchedResultsController.sections![0].numberOfObjects : 0
@@ -300,36 +300,36 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         return reusableView
     }
     
-    override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    override func collectionView(_ myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
             return CGSize(width: self.view.frame.width, height: 70)
         }
         return super.getCellSize()
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let correctedIndexPath = NSIndexPath(forItem: indexPath.item, inSection: indexPath.section - 1)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let correctedIndexPath = IndexPath(item: indexPath.item, section: indexPath.section - 1)
         self.currentSelection = correctedIndexPath
         
         self.collectionView!.reloadData()
         
-        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
-    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         self.currentSelection = nil
         self.collectionView!.reloadData()
     }
     
-    override func scrollViewDidScroll(scrollView: (UIScrollView!)) {
+    override func scrollViewDidScroll(_ scrollView: (UIScrollView!)) {
         let scrollPosition = scrollView.contentOffset.y
         
         if scrollPosition >= 95 && self.TaskNameScrollLabel.alpha < 1 {
-            UIView.animateWithDuration(0.25, animations: {() -> Void in
+            UIView.animate(withDuration: 0.25, animations: {() -> Void in
                 self.TaskNameScrollLabel.alpha = 1
             })
         } else if scrollPosition < 95 && self.TaskNameScrollLabel.alpha == 1 {
-            UIView.animateWithDuration(0.25, animations: {() -> Void in
+            UIView.animate(withDuration: 0.25, animations: {() -> Void in
                 self.TaskNameScrollLabel.alpha = 0
             })
         }
@@ -341,7 +341,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
      *
      **/
     
-    func displayContentController(content: UIViewController!) {
+    func displayContentController(_ content: UIViewController!) {
         // Add the new view controller.
         self.addChildViewController(content!)
         // Make sure the view fits perfectly into our layout.
@@ -349,17 +349,17 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         // Add the new view.
         self.view!.insertSubview(content!.view, belowSubview: self.collectionView!)
         // Tell the child that it now lives at their parents.
-        content!.didMoveToParentViewController(self)
-        content!.view.userInteractionEnabled = true
+        content!.didMove(toParentViewController: self)
+        content!.view.isUserInteractionEnabled = true
         
         let EditButton = content!.view.viewWithTag(4) as! UIButton
-        EditButton.layer.borderColor = Colors.MediumGrey.CGColor
+        EditButton.layer.borderColor = Colors.MediumGrey.cgColor
         
         let DeleteButton = content!.view.viewWithTag(5) as! UIButton
-        DeleteButton.layer.borderColor = Colors.MediumRed.CGColor
+        DeleteButton.layer.borderColor = Colors.MediumRed.cgColor
         
         let CreateButton = content!.view.viewWithTag(7) as! UIButton
-        CreateButton.layer.borderColor = Colors.MediumBlue.CGColor
+        CreateButton.layer.borderColor = Colors.MediumBlue.cgColor
     }
     
     func visibleFrameForEmbeddedControllers() -> CGRect {
@@ -375,7 +375,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
      **/
     
     func initializeFetchedResultsControllerWithCurrentTask() {
-        let request = NSFetchRequest(entityName: "Time")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
@@ -395,7 +395,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         }
     }
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.collectionView?.reloadData()
     }
     
@@ -407,7 +407,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     
     func getCurrentTime() -> TimeObject {
         if self.currentSelection != nil {
-            return (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! TimeObject)
+            return (fetchedResultsController.object(at: self.currentSelection) as! TimeObject)
         } else {
             return TimeObject()
         }

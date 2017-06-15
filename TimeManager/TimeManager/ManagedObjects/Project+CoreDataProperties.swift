@@ -14,11 +14,11 @@ import CoreData
 
 extension ProjectObject {
 
-    @NSManaged var changed: NSDate?
+    @NSManaged var changed: Date?
     @NSManaged var client_uuid: String?
     @NSManaged var color: String?
     @NSManaged var commit: String?
-    @NSManaged var created: NSDate?
+    @NSManaged var created: Date?
     @NSManaged var uuid: String?
     @NSManaged var name: String?
     @NSManaged var note: String?
@@ -64,12 +64,12 @@ extension ProjectObject {
     
     func toJSON() -> Dictionary<String, AnyObject> {
         return [
-            "uuid": self.uuid ?? "",
-            "name": self.name ?? "",
-            "client_uuid": self.client_uuid ?? "",
-            "commit": self.commit ?? "",
-            "created": FormattingHelper.dateFormat(.ISOString, date: self.created!),
-            "changed": FormattingHelper.dateFormat(.ISOString, date: self.changed!)
+            "uuid": self.uuid as AnyObject ?? "" as AnyObject,
+            "name": self.name as AnyObject ?? "" as AnyObject,
+            "client_uuid": self.client_uuid as AnyObject ?? "" as AnyObject,
+            "commit": self.commit as AnyObject ?? "",
+            "created": FormattingHelper.dateFormat(.isoString, date: self.created!),
+            "changed": FormattingHelper.dateFormat(.isoString, date: self.changed!)
         ]
     }
 

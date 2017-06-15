@@ -40,7 +40,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         self.chartView.pinchZoomEnabled = false
         
         // Left axis.
-        let yl: ChartYAxis = chartView.leftAxis
+        let yl: YAxis = chartView.leftAxis
         yl.labelFont = UIFont(name: "Poppins-Regular", size: 14.0)!
         yl.axisMinValue = 0.0
         yl.axisLineColor = Colors.LightGrey
@@ -53,7 +53,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         
         // Bottom axis.
         self.chartView.rightAxis.enabled = false
-        let xl: ChartXAxis = chartView.xAxis
+        let xl: XAxis = chartView.xAxis
         xl.labelFont = UIFont(name: "Poppins-Regular", size: 14.0)!
         xl.labelTextColor = Colors.MediumGrey
         xl.axisLineColor = Colors.LightGrey
@@ -71,7 +71,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         self.tt = TimeTraveller()
         
         // Set the data.
-        self.reloadData(NSDate())
+        self.reloadData(Date())
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,17 +79,17 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func setChart(dataPoints: [String], values: [Double]) {
+    func setChart(_ dataPoints: [String], values: [Double]) {
         self.chartView.noDataText = "No data."
         
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            let dataEntry = ChartDataEntry(x: values[i], y: Double(i))
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = ScatterChartDataSet(yVals: dataEntries, label: "Months")
+        let chartDataSet = ScatterChartDataSet(values: dataEntries, label: "Months")
         
         // Options for the entries
         chartDataSet.setColor(Colors.MediumBlue)
@@ -104,7 +104,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         self.chartView.highlightValue(nil)
     }
     
-    func reloadData(forDate: NSDate) {
+    func reloadData(_ forDate: Date) {
         // Give some orientation, where the user is.
         if(self.tt == nil) {
             self.tt = TimeTraveller()

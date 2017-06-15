@@ -14,19 +14,19 @@ import CoreData
 
 extension TimeObject {
 
-    @NSManaged var changed: NSDate?
+    @NSManaged var changed: Date?
     @NSManaged var commit: String?
-    @NSManaged var created: NSDate?
-    @NSManaged var end: NSDate?
+    @NSManaged var created: Date?
+    @NSManaged var end: Date?
     @NSManaged var uuid: String?
     @NSManaged var note: String?
-    @NSManaged var start: NSDate?
+    @NSManaged var start: Date?
     @NSManaged var task_uuid: String?
     @NSManaged var task: TaskObject?
     
     func getDurationInHours() -> Double {
-        let createdComponents: NSDateComponents = NSCalendar.currentCalendar().components([.Hour, .Minute], fromDate: self.start!, toDate: self.end!, options: [])
-        return (Double(createdComponents.hour) + (Double(createdComponents.minute) / 60)) ?? 0
+        let createdComponents: DateComponents = (Calendar.current as NSCalendar).components([.hour, .minute], from: self.start!, to: self.end!, options: [])
+        return (Double(createdComponents.hour!) + (Double(createdComponents.minute!) / 60)) ?? 0
     }
     
     func getHoursString() -> String {
@@ -34,24 +34,24 @@ extension TimeObject {
     }
     
     func getDateString() -> String {
-        return FormattingHelper.dateFormat(.DaynameDayMonthnameYear, date: self.start!) // "Mon 19. August 2001"
+        return FormattingHelper.dateFormat(.daynameDayMonthnameYear, date: self.start!) // "Mon 19. August 2001"
     }
     
     // Returns a string describing the timespan the entry covers. E.g. 12.00 – 14.00
     func getTimeSpanString() -> String {
-        return String(format: "%@ – %@", FormattingHelper.dateFormat(.HoursMinutes, date: self.start!), FormattingHelper.dateFormat(.HoursMinutes, date: self.end!))  // "12.00 – 14.00"
+        return String(format: "%@ – %@", FormattingHelper.dateFormat(.hoursMinutes, date: self.start!), FormattingHelper.dateFormat(.hoursMinutes, date: self.end!))  // "12.00 – 14.00"
     }
     
     func toJSON() -> Dictionary<String, AnyObject> {
         return [
-            "uuid": self.uuid ?? "",
-            "task_uuid": self.task_uuid ?? "",
-            "start": FormattingHelper.dateFormat(.ISOString, date: self.start!),
-            "end": FormattingHelper.dateFormat(.ISOString, date: self.end!),
+            "uuid": self.uuid as AnyObject ?? "" as AnyObject,
+            "task_uuid": self.task_uuid as AnyObject ?? "" as AnyObject,
+            "start": FormattingHelper.dateFormat(.isoString, date: self.start!),
+            "end": FormattingHelper.dateFormat(.isoString, date: self.end!),
             "note": self.note ?? "",
             "commit": self.commit ?? "",
-            "created": FormattingHelper.dateFormat(.ISOString, date: self.created!),
-            "changed": FormattingHelper.dateFormat(.ISOString, date: self.changed!)
+            "created": FormattingHelper.dateFormat(.isoString, date: self.created!),
+            "changed": FormattingHelper.dateFormat(.isoString, date: self.changed!)
         ]
     }
     

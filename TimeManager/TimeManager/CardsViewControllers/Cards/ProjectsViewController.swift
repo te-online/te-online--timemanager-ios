@@ -19,28 +19,28 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     
     var dataController: AppDelegate!
     
-    var fetchedResultsController: NSFetchedResultsController!
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
-    var currentSelection: NSIndexPath!
+    var currentSelection: IndexPath!
     
     var ClientNameScrollLabel: UILabel!
     
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
-        dataController = UIApplication.sharedApplication().delegate as! AppDelegate
+        dataController = UIApplication.shared.delegate as! AppDelegate
         
         super.viewDidLoad()
         
         // Load all the nice child views we're going to use.
-        self.backgroundController = storyboard?.instantiateViewControllerWithIdentifier("ProjectsInfoBackground")
+        self.backgroundController = storyboard?.instantiateViewController(withIdentifier: "ProjectsInfoBackground")
         (self.backgroundController as! ClientDetailViewController).delegate = self
         
         // Show the first view.
         self.displayContentController(backgroundController!)
         
         self.collectionView!.frame = CGRect(x: 0, y: 30, width: self.view!.frame.width, height: self.collectionView!.frame.height - 30)
-        self.collectionView!.backgroundColor = UIColor.clearColor()
-        self.view!.backgroundColor = UIColor.whiteColor()
+        self.collectionView!.backgroundColor = UIColor.clear
+        self.view!.backgroundColor = UIColor.white
         
         self.ClientNameScrollLabel = backgroundController!.view.viewWithTag(3) as! UILabel
     }
@@ -56,15 +56,15 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
      *
      **/
     
-    @IBAction func saveProject(unwindSegue: UIStoryboardSegue) {
-        (unwindSegue.sourceViewController as! ProjectEditController).createDelegate = self
+    @IBAction func saveProject(_ unwindSegue: UIStoryboardSegue) {
+        (unwindSegue.source as! ProjectEditController).createDelegate = self
     }
     
-    @IBAction func editClient(unwindSegue: UIStoryboardSegue) {
+    @IBAction func editClient(_ unwindSegue: UIStoryboardSegue) {
         // Do nothing. Just for unwinding.
     }
     
-    @IBAction func cancel(unwindSegue: UIStoryboardSegue) {
+    @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {
         // Do nothing. Just for unwinding.
     }
     
@@ -98,14 +98,14 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         }
     }
     
-    func saveNewProject(project: ProjectEditController.Project) {
-        let entity = NSEntityDescription.entityForName("Project", inManagedObjectContext: dataController.managedObjectContext)
-        let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
+    func saveNewProject(_ project: ProjectEditController.Project) {
+        let entity = NSEntityDescription.entity(forEntityName: "Project", in: dataController.managedObjectContext)
+        let item = NSManagedObject(entity: entity!, insertInto: dataController.managedObjectContext)
         
-        let now = NSDate()
+        let now = Date()
         
         item.setValue(currentClient, forKey: "client")
-        item.setValue(NSUUID().UUIDString, forKey: "uuid")
+        item.setValue(UUID().uuidString, forKey: "uuid")
         item.setValue(currentClient.uuid, forKey: "client_uuid")
         item.setValue(project.name, forKey: "name")
         item.setValue(now, forKey: "changed")
@@ -118,17 +118,17 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         }
     }
     
-    func editClient(client: ClientEditController.Client) {
+    func editClient(_ client: ClientEditController.Client) {
         let item = client.object
         
-        let now = NSDate()
+        let now = Date()
         
-        item.setValue(client.name, forKey: "name")
-        item.setValue(client.street, forKey: "street")
-        item.setValue(client.postcode, forKey: "postcode")
-        item.setValue(client.city, forKey: "city")
-        item.setValue(client.note, forKey: "note")
-        item.setValue(now, forKey: "changed")
+        item?.setValue(client.name, forKey: "name")
+        item?.setValue(client.street, forKey: "street")
+        item?.setValue(client.postcode, forKey: "postcode")
+        item?.setValue(client.city, forKey: "city")
+        item?.setValue(client.note, forKey: "note")
+        item?.setValue(now, forKey: "changed")
         
         do {
             try dataController.managedObjectContext.save()
@@ -153,7 +153,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         self.ClientNameScrollLabel.text = currentClient.name
         
         let ClientSinceLabel = backgroundController!.view.viewWithTag(7) as! UILabel
-        ClientSinceLabel.text = FormattingHelper.dateFormat(.DayMonthnameYear, date: currentClient.created!)
+        ClientSinceLabel.text = FormattingHelper.dateFormat(.dayMonthnameYear, date: currentClient.created!)
         
         let ClientAddressLabel = backgroundController!.view.viewWithTag(8) as! UILabel
         ClientAddressLabel.text = (currentClient.street! + "\n" + currentClient.postcode! + " " + currentClient.city!)
@@ -162,7 +162,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         ClientNoteLabel.text = currentClient.note
     }
     
-    func setParentClient(client: ClientObject) {
+    func setParentClient(_ client: ClientObject) {
         self.currentClient = client
         self.initializeFetchedResultsControllerWithCurrentClient()
         self.populateCurrentClientDetails()
@@ -175,11 +175,11 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
      *
      **/
     
-    func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
+    func configureCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
         cell.backgroundColor = Colors.ProjectsCellBlue
         
-        let correctedIndexPath = NSIndexPath(forItem: indexPath.item, inSection: indexPath.section - 1)
-        let Project = fetchedResultsController.objectAtIndexPath(correctedIndexPath) as! ProjectObject
+        let correctedIndexPath = IndexPath(item: indexPath.item, section: indexPath.section - 1)
+        let Project = fetchedResultsController.object(at: correctedIndexPath) as! ProjectObject
         
         let ProjectNameLabel = cell.viewWithTag(1) as! UILabel
         ProjectNameLabel.text = Project.name
@@ -187,40 +187,40 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         let ProjectMetaLabel = cell.viewWithTag(2) as! UILabel
         ProjectMetaLabel.text = Project.getMetaString()
         
-        if currentSelection != nil && correctedIndexPath.isEqual(currentSelection) {
+        if currentSelection != nil && (correctedIndexPath == currentSelection) {
             cell.contentView.backgroundColor = Colors.ProjectsCellActiveBlue
         } else {
             cell.contentView.backgroundColor = Colors.ProjectsCellBlue
         }
     }
     
-    func configureInvisibleCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.clearColor()
-        cell.userInteractionEnabled = false
+    func configureInvisibleCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+        cell.isUserInteractionEnabled = false
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: UICollectionViewCell
         
         if indexPath.section == 0 {
-            cell = collectionView.dequeueReusableCellWithReuseIdentifier("empty", forIndexPath: indexPath) as UICollectionViewCell!
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "empty", for: indexPath) as UICollectionViewCell!
             self.configureInvisibleCell(cell, indexPath: indexPath)
         } else {
-            cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProjectCell", forIndexPath: indexPath) as UICollectionViewCell!
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as UICollectionViewCell!
             self.configureCell(cell, indexPath: indexPath)
         }
         
         return cell
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         if fetchedResultsController == nil {
             return 2
         }
         return fetchedResultsController.sections!.count + 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(section == 0) {
             return 1
         } else {
@@ -233,18 +233,18 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         }
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         var reusableView: UICollectionReusableView!
         reusableView = nil
         
         if(kind == UICollectionElementKindSectionHeader) {
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "ProjectsHeadCell", forIndexPath: indexPath)
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ProjectsHeadCell", for: indexPath)
             
             if(indexPath.section == 0) {
-                headerView.backgroundColor = UIColor.clearColor()
+                headerView.backgroundColor = UIColor.clear
                 headerView.alpha = 0
-                headerView.userInteractionEnabled = false
+                headerView.isUserInteractionEnabled = false
             } else {
                 headerView.backgroundColor = Colors.ProjectsCellBlue
                 
@@ -265,7 +265,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         return reusableView
     }
     
-    override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    override func collectionView(_ myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
             return CGSize(width: self.view.frame.width, height: 120)
         }
@@ -273,32 +273,32 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         return super.getCellSize()
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let correctedIndexPath = NSIndexPath(forItem: indexPath.item, inSection: indexPath.section - 1)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let correctedIndexPath = IndexPath(item: indexPath.item, section: indexPath.section - 1)
         self.currentSelection = correctedIndexPath
         self.collectionView!.reloadData()
         
-        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
-    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         self.currentSelection = nil
         self.collectionView!.reloadData()
     }
     
-    func scrolledTo(position: UICollectionViewScrollPosition) {
+    func scrolledTo(_ position: UICollectionViewScrollPosition) {
         //
     }
     
-    override func scrollViewDidScroll(scrollView: (UIScrollView!)) {
+    override func scrollViewDidScroll(_ scrollView: (UIScrollView!)) {
         let scrollPosition = scrollView.contentOffset.y
         
         if scrollPosition >= 145 && self.ClientNameScrollLabel.alpha < 1 {
-            UIView.animateWithDuration(0.25, animations: {() -> Void in
+            UIView.animate(withDuration: 0.25, animations: {() -> Void in
                 self.ClientNameScrollLabel.alpha = 1
             })
         } else if scrollPosition < 145 && self.ClientNameScrollLabel.alpha == 1 {
-            UIView.animateWithDuration(0.25, animations: {() -> Void in
+            UIView.animate(withDuration: 0.25, animations: {() -> Void in
                 self.ClientNameScrollLabel.alpha = 0
             })
         }
@@ -310,7 +310,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
      *
      **/
     
-    func displayContentController(content: UIViewController!) {
+    func displayContentController(_ content: UIViewController!) {
         // Add the new view controller.
         self.addChildViewController(content!)
         // Make sure the view fits perfectly into our layout.
@@ -319,19 +319,19 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         self.view!.insertSubview(content!.view, belowSubview: self.collectionView!)
         //        self.view!.addSubview(content!.view)
         // Tell the child that it now lives at their parents.
-        content!.didMoveToParentViewController(self)
-        content!.view.userInteractionEnabled = true
+        content!.didMove(toParentViewController: self)
+        content!.view.isUserInteractionEnabled = true
         
         content!.view.viewWithTag(1)!.backgroundColor = Colors.ProjectsCellBlue
         
         let EditButton = content!.view.viewWithTag(5) as! UIButton
-        EditButton.layer.borderColor = Colors.MediumGrey.CGColor
+        EditButton.layer.borderColor = Colors.MediumGrey.cgColor
         
         let DeleteButton = content!.view.viewWithTag(6) as! UIButton
-        DeleteButton.layer.borderColor = Colors.MediumRed.CGColor
+        DeleteButton.layer.borderColor = Colors.MediumRed.cgColor
         
         let CreateButton = content!.view.viewWithTag(12) as! UIButton
-        CreateButton.layer.borderColor = Colors.MediumBlue.CGColor
+        CreateButton.layer.borderColor = Colors.MediumBlue.cgColor
     }
     
     func visibleFrameForEmbeddedControllers() -> CGRect {
@@ -347,7 +347,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
      **/
     
     func initializeFetchedResultsControllerWithCurrentClient() {
-        let request = NSFetchRequest(entityName: "Project")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
         
         let createdSort = NSSortDescriptor(key: "created", ascending: true)
         request.sortDescriptors = [createdSort]
@@ -366,7 +366,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         }
     }
        
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.collectionView?.reloadData()
     }
     
@@ -378,7 +378,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
     
     func getCurrentProject() -> ProjectObject {
         if self.currentSelection != nil {
-            return (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! ProjectObject)
+            return (fetchedResultsController.object(at: self.currentSelection) as! ProjectObject)
         } else {
             return ProjectObject()
         }

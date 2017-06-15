@@ -9,9 +9,9 @@
 import UIKit
 
 class CustomNaviButton: UIButton {
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            if (highlighted) {
+            if (isHighlighted) {
                 self.alpha = 0.5
             }
             else {

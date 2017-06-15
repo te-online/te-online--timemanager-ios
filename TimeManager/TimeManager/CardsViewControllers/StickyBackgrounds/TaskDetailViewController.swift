@@ -17,23 +17,23 @@ class TaskDetailViewController: UIViewController {
     
     var delegate: TaskDetailViewControllerDelegate?
     
-    @IBAction func EditButtonPressed(sender: AnyObject) {
+    @IBAction func EditButtonPressed(_ sender: AnyObject) {
         // Do nothing. Segue does the rest.
     }
     
-    @IBAction func DeleteButtonPressed(sender: AnyObject) {
+    @IBAction func DeleteButtonPressed(_ sender: AnyObject) {
         self.delegate?.deleteCurrentTask()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pass over the correct data for the correct segue.
         if segue.identifier == "editTask" {
-            (segue.destinationViewController as! TaskEditController).editDelegate = (self.delegate as! TimesViewController)
-            (segue.destinationViewController as! TaskEditController).editTaskObject = (self.delegate as! TimesViewController).currentTask
-            (segue.destinationViewController as! TaskEditController).currentProjectObject = (self.delegate as! TimesViewController).currentTask.project
+            (segue.destination as! TaskEditController).editDelegate = (self.delegate as! TimesViewController)
+            (segue.destination as! TaskEditController).editTaskObject = (self.delegate as! TimesViewController).currentTask
+            (segue.destination as! TaskEditController).currentProjectObject = (self.delegate as! TimesViewController).currentTask.project
         }
         if segue.identifier == "newTime" {
-            (segue.destinationViewController as! TimeEditController).currentTaskObject = (self.delegate as! TimesViewController).currentTask
+            (segue.destination as! TimeEditController).currentTaskObject = (self.delegate as! TimesViewController).currentTask
         }
     }
     

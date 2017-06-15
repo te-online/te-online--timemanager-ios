@@ -27,10 +27,10 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         super.viewDidLoad()
         
         // Load all the nice child views we're going to use.
-        self.clientsController = storyboard?.instantiateViewControllerWithIdentifier("ClientsViewController") as! UICollectionViewController
-        self.projectsController = storyboard?.instantiateViewControllerWithIdentifier("ProjectsViewController") as! UICollectionViewController
-        self.tasksController = storyboard?.instantiateViewControllerWithIdentifier("TasksViewController") as! UICollectionViewController
-        self.timesController = storyboard?.instantiateViewControllerWithIdentifier("TimesViewController") as! UICollectionViewController
+        self.clientsController = storyboard?.instantiateViewController(withIdentifier: "ClientsViewController") as! UICollectionViewController
+        self.projectsController = storyboard?.instantiateViewController(withIdentifier: "ProjectsViewController") as! UICollectionViewController
+        self.tasksController = storyboard?.instantiateViewController(withIdentifier: "TasksViewController") as! UICollectionViewController
+        self.timesController = storyboard?.instantiateViewController(withIdentifier: "TimesViewController") as! UICollectionViewController
         
         // Currently there is nothing selected. The view only just did load.
         self.currentSelection = Selection(clientId: "", projectId: "", taskId: "")
@@ -46,7 +46,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         self.produceShadow(self.timesController)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Show the first view.
         self.displayContentController(self.clientsController)
@@ -57,22 +57,22 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         // Dispose of any resources that can be recreated.
     }
     
-    func produceShadow(viewController: UIViewController) {
+    func produceShadow(_ viewController: UIViewController) {
         let shadowPath: UIBezierPath = UIBezierPath()
-        shadowPath.moveToPoint(CGPointMake(0.0, 0.0))
-        shadowPath.addLineToPoint(CGPointMake(0.0, CGRectGetHeight(viewController.view.frame)))
-        shadowPath.addLineToPoint(CGPointMake(-2.0, CGRectGetHeight(viewController.view.frame)))
-        shadowPath.addLineToPoint(CGPointMake(-2.0, 0.0))
-        shadowPath.closePath()
+        shadowPath.move(to: CGPoint(x: 0.0, y: 0.0))
+        shadowPath.addLine(to: CGPoint(x: 0.0, y: viewController.view.frame.height))
+        shadowPath.addLine(to: CGPoint(x: -2.0, y: viewController.view.frame.height))
+        shadowPath.addLine(to: CGPoint(x: -2.0, y: 0.0))
+        shadowPath.close()
         
         viewController.view.layer.masksToBounds = false
-        viewController.view.layer.shadowColor = UIColor.init(colorLiteralRed: 0.48, green: 0.48, blue: 0.48, alpha: 1.0).CGColor
+        viewController.view.layer.shadowColor = UIColor.init(colorLiteralRed: 0.48, green: 0.48, blue: 0.48, alpha: 1.0).cgColor
         viewController.view.layer.shadowRadius = 2
         viewController.view.layer.shadowOpacity = 0.3
-        viewController.view.layer.shadowPath = shadowPath.CGPath
+        viewController.view.layer.shadowPath = shadowPath.cgPath
     }
     
-    func didSelectItemAtIndexPath(viewController: UICollectionViewController, indexPath: NSIndexPath) {
+    func didSelectItemAtIndexPath(_ viewController: UICollectionViewController, indexPath: IndexPath) {
         if(viewController == self.clientsController) {
             // If this is the first selection: Show the projects list.
             if(self.currentSelection.clientId.isEmpty) {
@@ -134,7 +134,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         }
     }
     
-    func mightNavigateLeft(sender: UICollectionViewController) {
+    func mightNavigateLeft(_ sender: UICollectionViewController) {
         // Client's list cannot navigate left.
         if(sender == self.clientsController) {
             return
@@ -161,7 +161,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         }
     }
     
-    internal func mightNavigateRight(sender: UICollectionViewController) {
+    internal func mightNavigateRight(_ sender: UICollectionViewController) {
         // Time's list cannot navigate right.
         if(sender == self.timesController) {
             return
@@ -197,7 +197,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
     }
     
     // Move the others sticky with their neighbours. The cards are a bit gooey.
-    func mightMoveWithOtherCards(sender: UICollectionViewController) {
+    func mightMoveWithOtherCards(_ sender: UICollectionViewController) {
         if(sender == self.clientsController) {
             (self.projectsController as! CardOfViewDeckController).moveCardRightHandWithOtherCardsCenterPosition((self.clientsController as! CardOfViewDeckController).getX())
         }
@@ -251,7 +251,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         self.repositionCards()
     }
     
-    func displayContentController(content: UIViewController!) {
+    func displayContentController(_ content: UIViewController!) {
         // Add the new view controller.
         self.addChildViewController(content!)
         // Make sure the view fits perfectly into our layout.
@@ -259,10 +259,10 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         // Add the new view.
         self.view!.addSubview(content!.view)
         // Tell the child that it now lives at their parents.
-        content!.didMoveToParentViewController(self)
+        content!.didMove(toParentViewController: self)
     }
     
-    func displayContentControllerLater(content: UIViewController!) {
+    func displayContentControllerLater(_ content: UIViewController!) {
         // Add the new view controller.
         self.addChildViewController(content!)
         // Make sure the view fits perfectly into our layout.
@@ -270,7 +270,7 @@ class EntriesViewController: UIViewController, UICollectionViewDelegate, CardOfV
         // Add the new view.
         self.view!.addSubview(content!.view)
         // Tell the child that it now lives at their parents.
-        content!.didMoveToParentViewController(self)
+        content!.didMove(toParentViewController: self)
     }
     
     func visibleFrameForFirstEmbeddedController() -> CGRect {

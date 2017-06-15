@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DiagramsPageViewControllerDelegate {
-    func swipeToPage(page: Int)
+    func swipeToPage(_ page: Int)
 }
 
 class DiagramsPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
@@ -30,17 +30,17 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
         self.delegate = self
         self.dataSource = self
         
-        YearChartView = storyboard?.instantiateViewControllerWithIdentifier("YearChartView")
-        MonthChartView = storyboard?.instantiateViewControllerWithIdentifier("MonthChartView")
-        WeekChartView = storyboard?.instantiateViewControllerWithIdentifier("WeekChartView")
-        DayChartView = storyboard?.instantiateViewControllerWithIdentifier("DayChartView")
+        YearChartView = storyboard?.instantiateViewController(withIdentifier: "YearChartView")
+        MonthChartView = storyboard?.instantiateViewController(withIdentifier: "MonthChartView")
+        WeekChartView = storyboard?.instantiateViewController(withIdentifier: "WeekChartView")
+        DayChartView = storyboard?.instantiateViewController(withIdentifier: "DayChartView")
         
         pages.append(YearChartView)
         pages.append(MonthChartView)
         pages.append(WeekChartView)
         pages.append(DayChartView)
         
-        setViewControllers([YearChartView], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        setViewControllers([YearChartView], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,8 +48,8 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
         // Dispose of any resources that can be recreated.
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        let currentIndex = pages.indexOf(viewController)!
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        let currentIndex = pages.index(of: viewController)!
         var previousIndex = currentIndex - 1
         if currentIndex == 0 {
             previousIndex = pages.count - 1
@@ -58,40 +58,40 @@ class DiagramsPageViewController: UIPageViewController, UIPageViewControllerData
         return pages[previousIndex]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        let currentIndex = pages.indexOf(viewController)!
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        let currentIndex = pages.index(of: viewController)!
         let nextIndex = abs((currentIndex + 1) % pages.count)
         
         return pages[nextIndex]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         // Find the current view controller after an animation has finished to update the views.
         let viewController = self.viewControllers!.last!
-        self.currentPage = pages.indexOf(viewController)!
+        self.currentPage = pages.index(of: viewController)!
         
         self.refreshDelegate.swipeToPage(self.currentPage)
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pages.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
     
-    func jumpTo(page: Int) {
+    func jumpTo(_ page: Int) {
         // Jump to a specific page and maintain user's orientation by using the correct slide direction.
         if self.currentPage < page {
-            setViewControllers([pages[page]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+            setViewControllers([pages[page]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
         } else if self.currentPage > page {
-            setViewControllers([pages[page]], direction: UIPageViewControllerNavigationDirection.Reverse, animated: true, completion: nil)
+            setViewControllers([pages[page]], direction: UIPageViewControllerNavigationDirection.reverse, animated: true, completion: nil)
         }
         self.currentPage = page
     }
     
-    func reloadData(forDate: NSDate, currentView: Int) {
+    func reloadData(_ forDate: Date, currentView: Int) {
         // Delegate the reloading when the date has changed.
         if currentView == 0 {
             (YearChartView as! YearChartViewController).reloadData(forDate)

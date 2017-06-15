@@ -19,7 +19,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
     
     var tasks = [RecentTask]()
     var days = [String]()
-    var currentDate = NSDate()
+    var currentDate = Date()
     
     var weekTotal: Int!
 
@@ -52,24 +52,24 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.loadData()
         super.viewWillAppear(animated)
     }
 
-    @IBAction func NavigateToPreviousWeekButtonPressed(sender: AnyObject) {
+    @IBAction func NavigateToPreviousWeekButtonPressed(_ sender: AnyObject) {
         // Subtract one week from the current date.
-        self.currentDate = DateHelper.getDateFor(.PreviousWeek, date: self.currentDate)
+        self.currentDate = DateHelper.getDateFor(.previousWeek, date: self.currentDate)
         self.loadData()
     }
     
-    @IBAction func NavigateToNextWeekButtonPressed(sender: AnyObject) {
+    @IBAction func NavigateToNextWeekButtonPressed(_ sender: AnyObject) {
         // Add one week to the current date.
-        self.currentDate = DateHelper.getDateFor(.NextWeek, date: self.currentDate)
+        self.currentDate = DateHelper.getDateFor(.nextWeek, date: self.currentDate)
         self.loadData()
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == TasksCollectionView) {
             return self.tasks.count
         } else if(collectionView == HoursCollectionView) {
@@ -80,10 +80,10 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Configure the cell to have the task, project and client inside.
         if(collectionView == TasksCollectionView) {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("taskCell", forIndexPath: indexPath) as UICollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "taskCell", for: indexPath) as UICollectionViewCell
             
             let ProjectNameLabel = cell.viewWithTag(1) as! UILabel
             ProjectNameLabel.text = self.tasks[indexPath.row].projectName
@@ -97,7 +97,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
             return cell
         } else if(collectionView == HoursCollectionView) {
             // Configure the cell to show the correct value in the grid.
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("hourCell", forIndexPath: indexPath) as UICollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourCell", for: indexPath) as UICollectionViewCell
             
             // Get the row and column of this cell in our grid.
             let row = Int(floor(Double(indexPath.row) / 7))
@@ -114,17 +114,17 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
             return cell
         }
         
-        return collectionView.dequeueReusableCellWithReuseIdentifier("", forIndexPath: indexPath) as UICollectionViewCell
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath) as UICollectionViewCell
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         var reusableView: UICollectionReusableView!
         reusableView = nil
         
         // Add the names of the days to the header view.
         if(kind == UICollectionElementKindSectionHeader) {
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "hoursDayLegend", forIndexPath: indexPath)
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "hoursDayLegend", for: indexPath)
             
             for i in 1...7 {
                 let Label = headerView.viewWithTag(i) as! UILabel
@@ -175,7 +175,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         WeeksHoursMainLabel.text = FormattingHelper.formatHoursAsString(thisWeek)
         // The value for the week currently selected.
         WeeksHoursTableLabel.text = FormattingHelper.formatHoursAsString(week)
-        CurrentWeekLabel.text = (FormattingHelper.dateFormat(.WeekAndYear, date: self.currentDate).uppercaseString).uppercaseString
+        CurrentWeekLabel.text = (FormattingHelper.dateFormat(.WeekAndYear, date: self.currentDate).uppercaseString).uppercased()
         
         
         self.HoursCollectionView.reloadData()

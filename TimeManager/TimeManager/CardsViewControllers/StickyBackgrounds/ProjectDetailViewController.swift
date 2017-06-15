@@ -19,23 +19,23 @@ class ProjectDetailViewController: UIViewController {
     
     var delegate: ProjectDetailViewControllerDelegate?
     
-    @IBAction func EditButtonPressed(sender: AnyObject) {
+    @IBAction func EditButtonPressed(_ sender: AnyObject) {
         // Do nothing. Segue does the rest.
     }
     
-    @IBAction func DeleteButtonPressed(sender: AnyObject) {
+    @IBAction func DeleteButtonPressed(_ sender: AnyObject) {
         self.delegate?.deleteCurrentProject()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pass over the correct data for the correct segue.
         if segue.identifier == "editProject" {
-            (segue.destinationViewController as! ProjectEditController).editDelegate = (self.delegate as! TasksViewController)
-            (segue.destinationViewController as! ProjectEditController).editProjectObject = (self.delegate as! TasksViewController).currentProject
-            (segue.destinationViewController as! ProjectEditController).currentClientObject = (self.delegate as! TasksViewController).currentProject.client
+            (segue.destination as! ProjectEditController).editDelegate = (self.delegate as! TasksViewController)
+            (segue.destination as! ProjectEditController).editProjectObject = (self.delegate as! TasksViewController).currentProject
+            (segue.destination as! ProjectEditController).currentClientObject = (self.delegate as! TasksViewController).currentProject.client
         }
         if segue.identifier == "newTask" {
-            (segue.destinationViewController as! TaskEditController).currentProjectObject = (self.delegate as! TasksViewController).currentProject
+            (segue.destination as! TaskEditController).currentProjectObject = (self.delegate as! TasksViewController).currentProject
         }
     }
     

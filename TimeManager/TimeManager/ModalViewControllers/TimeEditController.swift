@@ -9,18 +9,18 @@
 import UIKit
 
 protocol TimeCreateDelegate {
-    func saveNewTime(time: TimeEditController.Time)
+    func saveNewTime(_ time: TimeEditController.Time)
 }
 
 protocol TimeEditDelegate {
-    func editTime(time: TimeEditController.Time)
+    func editTime(_ time: TimeEditController.Time)
 }
 
 class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     struct Time {
-        var start: NSDate!
-        var end: NSDate!
+        var start: Date!
+        var end: Date!
         var note: String!
         var object: TimeObject!
     }
@@ -49,27 +49,27 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet weak var DoneButtonBottom: UIButton!
     @IBOutlet weak var DoneButtonTop: UIButton!
     
-    @IBAction func DoneButtonTopPressed(sender: AnyObject) {
+    @IBAction func DoneButtonTopPressed(_ sender: AnyObject) {
         self.saveIntent = true
     }
     
-    @IBAction func DoneButtonBottomPressed(sender: AnyObject) {
+    @IBAction func DoneButtonBottomPressed(_ sender: AnyObject) {
         self.saveIntent = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.currentTime = Time(start: NSDate(), end: NSDate(), note: "", object: nil)
+        self.currentTime = Time(start: Date(), end: Date(), note: "", object: nil)
         
         // Make buttons look nicely.
-        DoneButtonTop.layer.borderColor = Colors.MediumBlue.CGColor
-        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.CGColor
-        CancelButtonBottom.layer.borderColor = Colors.MediumRed.CGColor
+        DoneButtonTop.layer.borderColor = Colors.MediumBlue.cgColor
+        DoneButtonBottom.layer.borderColor = Colors.MediumBlue.cgColor
+        CancelButtonBottom.layer.borderColor = Colors.MediumRed.cgColor
         
         // Add border to textview.
         NoteInputField.layer.borderWidth = 1.0
-        NoteInputField.layer.borderColor = Colors.LightGrey.CGColor
+        NoteInputField.layer.borderColor = Colors.LightGrey.cgColor
         NoteInputField.layer.cornerRadius = 4.0
         
         // Add durations to duration slider.
@@ -92,7 +92,7 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if self.editDelegate != nil {
             self.editTimeObject = (self.editDelegate as! TimesViewController).getCurrentTime()
         }
@@ -101,20 +101,20 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
             NoteInputField.text = self.editTimeObject.note
             
             // Set the date picker view.
-            StartPickerView.setDate(self.editTimeObject.start!, animated: false)
+            StartPickerView.setDate(self.editTimeObject.start! as Date, animated: false)
             
             // Set the hours picker view.
-            let num = self.PickerDurations.indexOf(String(format: "%g", self.editTimeObject.getDurationInHours()))
+            let num = self.PickerDurations.index(of: String(format: "%g", self.editTimeObject.getDurationInHours()))
             if num != nil  {
                 DurationPickerView.selectRow(num!, inComponent: 0, animated: false)
             }
             
             // Rename buttons.
-            DoneButtonTop.setTitle("Update", forState: .Normal)
-            DoneButtonBottom.setTitle("Update", forState: .Normal)
+            DoneButtonTop.setTitle("Update", for: UIControlState())
+            DoneButtonBottom.setTitle("Update", for: UIControlState())
             
             // Change caption.
-            ModalTitleLabel.text = "Edit time entry".uppercaseString
+            ModalTitleLabel.text = "Edit time entry".uppercased()
         }
         
         super.viewDidAppear(animated)
@@ -125,16 +125,16 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         if self.saveIntent {
             // Store the input to make it accessible to the unwind segues target controller.
-            let range: UITextRange = NoteInputField.textRangeFromPosition(NoteInputField.beginningOfDocument, toPosition: NoteInputField.endOfDocument)!
-            self.currentTime.note = NoteInputField.textInRange(range)
+            let range: UITextRange = NoteInputField.textRange(from: NoteInputField.beginningOfDocument, to: NoteInputField.endOfDocument)!
+            self.currentTime.note = NoteInputField.text(in: range)
         
             self.currentTime.start = StartPickerView.date
         
             let duration: Double = Double(self.currentDuration)!
-            self.currentTime.end = self.currentTime.start.dateByAddingTimeInterval((duration * 60 * 60) as NSTimeInterval)
+            self.currentTime.end = self.currentTime.start.addingTimeInterval((duration * 60 * 60) as TimeInterval)
         
             if self.editTimeObject != nil {
                 self.currentTime.object = self.editTimeObject
@@ -147,19 +147,19 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         super.viewWillDisappear(animated)
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return PickerDurations.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return PickerDurations[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.currentDuration = PickerDurations[row]
     }
     

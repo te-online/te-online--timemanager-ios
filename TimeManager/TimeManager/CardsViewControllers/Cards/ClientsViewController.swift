@@ -15,16 +15,16 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     
     var dataController: AppDelegate!
     
-    var fetchedResultsController: NSFetchedResultsController!
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
-    var currentSelection: NSIndexPath!
+    var currentSelection: IndexPath!
     
     override func viewDidLoad() {
         // Let's get our data controller from the App Delegate.
-        dataController = UIApplication.sharedApplication().delegate as! AppDelegate
+        dataController = UIApplication.shared.delegate as! AppDelegate
         
-        self.collectionView!.backgroundColor = UIColor.clearColor()
-        self.view!.backgroundColor = UIColor.whiteColor()
+        self.collectionView!.backgroundColor = UIColor.clear
+        self.view!.backgroundColor = UIColor.white
         
         self.initializeFetchedResultsController()
         
@@ -42,11 +42,11 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
      *
     **/
     
-    @IBAction func saveClient(unwindSegue: UIStoryboardSegue) {
-        (unwindSegue.sourceViewController as! ClientEditController).createDelegate = self
+    @IBAction func saveClient(_ unwindSegue: UIStoryboardSegue) {
+        (unwindSegue.source as! ClientEditController).createDelegate = self
     }
     
-    @IBAction func cancelClient(unwindSegue: UIStoryboardSegue) {
+    @IBAction func cancelClient(_ unwindSegue: UIStoryboardSegue) {
         // Do nothing. Relax.
     }
     
@@ -56,13 +56,13 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
      *
      **/
     
-    func saveNewClient(client: ClientEditController.Client) {
-        let entity = NSEntityDescription.entityForName("Client", inManagedObjectContext: dataController.managedObjectContext)
-        let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: dataController.managedObjectContext)
+    func saveNewClient(_ client: ClientEditController.Client) {
+        let entity = NSEntityDescription.entity(forEntityName: "Client", in: dataController.managedObjectContext)
+        let item = NSManagedObject(entity: entity!, insertInto: dataController.managedObjectContext)
         
-        let now = NSDate()
+        let now = Date()
         
-        item.setValue(NSUUID().UUIDString, forKey: "uuid")
+        item.setValue(UUID().uuidString, forKey: "uuid")
         item.setValue(client.name, forKey: "name")
         item.setValue(client.street, forKey: "street")
         item.setValue(client.postcode, forKey: "postcode")
@@ -84,10 +84,10 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
      *
      **/
     
-    func configureCell(cell: UICollectionViewCell, indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.whiteColor()
+    func configureCell(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.white
         
-        let Client = fetchedResultsController.objectAtIndexPath(indexPath) as! ClientObject
+        let Client = fetchedResultsController.object(at: indexPath) as! ClientObject
         
         let ClientNameLabel = cell.viewWithTag(1) as! UILabel
         ClientNameLabel.text = Client.name
@@ -95,41 +95,41 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         let ClientMetaLabel = cell.viewWithTag(2) as! UILabel
         ClientMetaLabel.text = Client.getMetaString()
         
-        if currentSelection != nil && indexPath.isEqual(currentSelection) {
+        if currentSelection != nil && (indexPath == currentSelection) {
             cell.contentView.backgroundColor = Colors.VeryLightGrey
         } else {
-            cell.contentView.backgroundColor = UIColor.whiteColor()
+            cell.contentView.backgroundColor = UIColor.white
         }
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return fetchedResultsController.sections!.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: UICollectionViewCell
         
-        cell = collectionView.dequeueReusableCellWithReuseIdentifier("ClientCell", forIndexPath: indexPath) as UICollectionViewCell!
+        cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClientCell", for: indexPath) as UICollectionViewCell!
         self.configureCell(cell, indexPath: indexPath)
         
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return fetchedResultsController.sections![section].numberOfObjects
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var reusableView: UICollectionReusableView!
         reusableView = nil
         
         if(kind == UICollectionElementKindSectionHeader) {
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "ClientsHeadCell", forIndexPath: indexPath)
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ClientsHeadCell", for: indexPath)
             
-            headerView.backgroundColor = UIColor.whiteColor()
+            headerView.backgroundColor = UIColor.white
             
             let NewButton = headerView.viewWithTag(3) as! UIButton
-            NewButton.layer.borderColor = UIColor(colorLiteralRed: 0.537254902, green: 0.8, blue: 1, alpha: 1).CGColor
+            NewButton.layer.borderColor = UIColor(colorLiteralRed: 0.537254902, green: 0.8, blue: 1, alpha: 1).cgColor
             NewButton.layer.cornerRadius = 2
             NewButton.layer.borderWidth = 1
             NewButton.layer.masksToBounds = true
@@ -145,18 +145,18 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
         return reusableView
     }
     
-    override func collectionView(myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    override func collectionView(_ myView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         return super.getCellSize()
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.currentSelection = indexPath
         self.collectionView!.reloadData()
         
-        super.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
-    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         self.currentSelection = nil
         self.collectionView!.reloadData()
     }
@@ -167,13 +167,13 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
      *
      **/
     
-    func getClientIdForIndexPath(indexPath: NSIndexPath) -> String {
-        return (fetchedResultsController.objectAtIndexPath(indexPath) as! ClientObject).uuid!
+    func getClientIdForIndexPath(_ indexPath: IndexPath) -> String {
+        return (fetchedResultsController.object(at: indexPath) as! ClientObject).uuid!
     }
     
     func getCurrentClient() -> ClientObject {
         if self.currentSelection != nil {
-            return (fetchedResultsController.objectAtIndexPath(self.currentSelection) as! ClientObject)
+            return (fetchedResultsController.object(at: self.currentSelection) as! ClientObject)
         } else {
             return ClientObject()
         }
@@ -186,7 +186,7 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
      **/
     
     func initializeFetchedResultsController() {
-        let request = NSFetchRequest(entityName: "Client")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Client")
         let nameSort = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [nameSort]
         
@@ -239,7 +239,7 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
 //        }
 //    }
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.collectionView?.reloadData()
     }
     

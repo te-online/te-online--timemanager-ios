@@ -48,15 +48,15 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         self.chartView.pinchZoomEnabled = false
         
         // Left axis.
-        let lA: ChartYAxis = chartView.leftAxis
+        let lA: YAxis = chartView.leftAxis
         lA.enabled = false
         
-        let yl: ChartXAxis = chartView.xAxis
+        let yl: XAxis = chartView.xAxis
         yl.enabled = false
         
         // Bottom axis.
         self.chartView.rightAxis.enabled = true
-        let xl: ChartYAxis = chartView.rightAxis
+        let xl: YAxis = chartView.rightAxis
         xl.labelFont = UIFont(name: "Poppins-Regular", size: 12.0)!
         xl.labelTextColor = Colors.MediumGrey
         xl.axisLineColor = Colors.LightGrey
@@ -64,7 +64,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         xl.labelPosition = .OutsideChart
         xl.axisLineWidth = 0
         xl.drawAxisLineEnabled = false
-        xl.valueFormatter = NSNumberFormatter()
+        xl.valueFormatter = NumberFormatter() as! IAxisValueFormatter
         xl.valueFormatter?.maximumFractionDigits = 0
         
         self.chartView.extraLeftOffset = -100.0
@@ -78,7 +78,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         self.tt = TimeTraveller()
         
         // Set the data.
-        self.reloadData(NSDate())
+        self.reloadData(Date())
         
         // Set detail hours to zero.
         self.DetailsHoursLabel.text = FormattingHelper.formatHoursAsString(0)
@@ -89,7 +89,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    func setChart(dataPoints: [String], values: [Double]) {
+    func setChart(_ dataPoints: [String], values: [Double]) {
         self.chartView.noDataText = "No data."
         
         var dataEntries: [BarChartDataEntry] = []
@@ -97,17 +97,17 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         let dataEntry = BarChartDataEntry(values: values, xIndex: 0)
         dataEntries.append(dataEntry)
         
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Weeks")
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Weeks")
         
         // Options for the entries
         chartDataSet.setColor(Colors.LightBlue)
         chartDataSet.valueFont = UIFont(name: "Poppins-Regular", size: 14.0)!
         chartDataSet.valueTextColor = Colors.DarkGrey
         chartDataSet.highlightColor = Colors.Blue
-        chartDataSet.barBorderColor = UIColor.whiteColor()
+        chartDataSet.barBorderColor = UIColor.white
         chartDataSet.barBorderWidth = 2
         chartDataSet.drawValuesEnabled = false
-        chartDataSet.valueFormatter = HoursNumberFormatter()
+        chartDataSet.valueFormatter = HoursNumberFormatter() as! IValueFormatter
         
         let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
         self.chartView.data = chartData
@@ -116,7 +116,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
     }
     
     // Give some orientation, where the user is.
-    func reloadData(forDate: NSDate) {
+    func reloadData(_ forDate: Date) {
         if(self.tt == nil) {
             self.tt = TimeTraveller()
         }
@@ -126,7 +126,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         self.setChart(self.months, values: self.rawValues)
     }
     
-    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
         // Once a value is selected, we search for the correspoding project object in our list and display the data.
         let index = (highlight.stackIndex < 0) ? 0 : highlight.stackIndex
         if(self.dateProjects.count > index) {
@@ -137,22 +137,22 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         }
     }
     
-    func chartValueNothingSelected(chartView: ChartViewBase) {
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
         self.currentProject = nil
         self.DetailsHoursLabel.text = FormattingHelper.formatHoursAsString(0)
         self.DetailsTableView.reloadData()
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
     // Format the cells; the client cell, the project cell and the cell when there is no selection.
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell = UITableViewCell()
         
         if(indexPath.section == 0) {
-            cell = tableView.dequeueReusableCellWithIdentifier("client")!
+            cell = tableView.dequeueReusableCell(withIdentifier: "client")!
             cell.textLabel?.font = UIFont(name: "Poppins-Medium", size: 20.0)!
             cell.textLabel?.textColor = Colors.Blue
             if self.currentProject != nil {
@@ -161,7 +161,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
                 cell.textLabel!.text = "Select a project to see details."
             }
         } else if(indexPath.section == 1) {
-            cell = tableView.dequeueReusableCellWithIdentifier("subitem")!
+            cell = tableView.dequeueReusableCell(withIdentifier: "subitem")!
             cell.textLabel?.font = UIFont(name: "Poppins-Medium", size: 16.0)!
             cell.textLabel?.textColor = Colors.DarkGrey
             if self.currentProject != nil {
@@ -170,7 +170,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
                 cell.textLabel!.text = "-"
             }
         } else if(indexPath.section == 2) {
-            cell = tableView.dequeueReusableCellWithIdentifier("subitem")!
+            cell = tableView.dequeueReusableCell(withIdentifier: "subitem")!
             cell.textLabel?.font = UIFont(name: "Poppins-Regular", size: 16.0)!
             cell.textLabel?.textColor = Colors.DarkGrey
             if self.currentProject != nil {
@@ -183,14 +183,14 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 && self.currentProject != nil {
             return self.currentProject.tasks!.count
         }
         return 1
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(section == 0) {
             return "For client"
         } else if(section == 1) {
@@ -200,14 +200,14 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
     }
     
     // Add a nicely formatted section header to the table view.
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let myLabel = UILabel()
-        myLabel.frame = CGRectMake(15, 8, 320, 20)
+        myLabel.frame = CGRect(x: 15, y: 8, width: 320, height: 20)
         myLabel.font = UIFont(name: "Poppins-Regular", size: 10.0)!
         myLabel.textColor = Colors.Grey
-        myLabel.text = self.tableView(tableView, titleForHeaderInSection: section)?.uppercaseString
+        myLabel.text = self.tableView(tableView, titleForHeaderInSection: section)?.uppercased()
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.whiteColor()
+        headerView.backgroundColor = UIColor.white
         headerView.addSubview(myLabel)
         
         return headerView

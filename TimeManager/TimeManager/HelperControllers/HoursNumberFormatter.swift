@@ -9,9 +9,9 @@
 import Foundation
 import Charts
 
-class HoursNumberFormatter: NSNumberFormatter {
+class HoursNumberFormatter: NumberFormatter {
     // Format chart labels as hour values.
-    override func stringFromNumber(number: NSNumber) -> String? {
+    override func string(from number: NSNumber) -> String? {
         return FormattingHelper.formatHoursAsString(Double(number))
     }
 }

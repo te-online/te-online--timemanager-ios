@@ -15,7 +15,7 @@ class SettingsController: UIViewController, UIPickerViewDataSource, UIPickerView
     var WeekDays = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     
     var currentStartWeekWithSelection: Int!
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     @IBOutlet weak var DoneButtonTop: UIButton!
     @IBOutlet weak var DoneButtonBottom: UIButton!
@@ -26,34 +26,34 @@ class SettingsController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet weak var CloudSyncUserInputField: UITextField!
     @IBOutlet weak var CloudSyncPasswordInputField: UITextField!
     
-    @IBAction func DoneButtonTopPressed(sender: AnyObject) {
+    @IBAction func DoneButtonTopPressed(_ sender: AnyObject) {
         self.saveSettings()
     }
     
-    @IBAction func DoneButtonBottomPressed(sender: AnyObject) {
+    @IBAction func DoneButtonBottomPressed(_ sender: AnyObject) {
         self.saveSettings()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.DoneButtonTop.layer.borderColor = self.Colors.MediumBlue.CGColor
-        self.DoneButtonBottom.layer.borderColor = self.Colors.MediumBlue.CGColor
-        self.CancelButtonBottom.layer.borderColor = self.Colors.MediumRed.CGColor
+        self.DoneButtonTop.layer.borderColor = self.Colors.MediumBlue.cgColor
+        self.DoneButtonBottom.layer.borderColor = self.Colors.MediumBlue.cgColor
+        self.CancelButtonBottom.layer.borderColor = self.Colors.MediumRed.cgColor
         
         self.StartWeekWithPickerView.dataSource = self
         self.StartWeekWithPickerView.delegate = self
 
-        if self.defaults.integerForKey("startWeekWith") == 0 {
+        if self.defaults.integer(forKey: "startWeekWith") == 0 {
             self.currentStartWeekWithSelection = 3
         } else {
-            self.currentStartWeekWithSelection = self.defaults.integerForKey("startWeekWith") ?? 3
+            self.currentStartWeekWithSelection = self.defaults.integer(forKey: "startWeekWith") ?? 3
         }
         self.StartWeekWithPickerView.selectRow((self.currentStartWeekWithSelection-1), inComponent: 0, animated: true)
         
-        self.CloudSyncServerInputField.text = self.defaults.stringForKey("cloudSyncServer") ?? ""
-        self.CloudSyncUserInputField.text = self.defaults.stringForKey("cloudSyncUser") ?? ""
-        self.CloudSyncPasswordInputField.text = self.defaults.stringForKey("cloudSyncPassword") ?? ""
+        self.CloudSyncServerInputField.text = self.defaults.string(forKey: "cloudSyncServer") ?? ""
+        self.CloudSyncUserInputField.text = self.defaults.string(forKey: "cloudSyncUser") ?? ""
+        self.CloudSyncPasswordInputField.text = self.defaults.string(forKey: "cloudSyncPassword") ?? ""
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,19 +61,19 @@ class SettingsController: UIViewController, UIPickerViewDataSource, UIPickerView
         // Dispose of any resources that can be recreated.
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return self.WeekDays.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.WeekDays[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.currentStartWeekWithSelection = row+1
     }
     
@@ -84,7 +84,7 @@ class SettingsController: UIViewController, UIPickerViewDataSource, UIPickerView
         self.defaults.setValue(self.CloudSyncPasswordInputField.text, forKey: "cloudSyncPassword")
         
         // Attempt to sync on saving settings.
-        (UIApplication.sharedApplication().delegate as! AppDelegate).syncInBackground({})
+        (UIApplication.shared.delegate as! AppDelegate).syncInBackground({})
     }
     
 }

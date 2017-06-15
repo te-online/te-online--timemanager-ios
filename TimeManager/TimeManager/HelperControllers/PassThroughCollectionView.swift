@@ -11,9 +11,9 @@ import UIKit
 class PassThroughCollectionView: UICollectionView {
     
     // Pass through touches to views behing this collectionsviews invisible cell.
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         for subview in subviews as [UIView] {
-            if !subview.hidden && subview.alpha > 0 && subview.userInteractionEnabled && subview.pointInside(convertPoint(point, toView: subview), withEvent: event) && subview.isMemberOfClass(UICollectionViewCell) {
+            if !subview.isHidden && subview.alpha > 0 && subview.isUserInteractionEnabled && subview.point(inside: convert(point, to: subview), with: event) && subview.isMember(of: UICollectionViewCell) {
                 return true
             }
         }

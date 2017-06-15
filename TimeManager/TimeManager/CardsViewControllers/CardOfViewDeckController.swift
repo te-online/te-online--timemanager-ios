@@ -9,10 +9,10 @@
 import UIKit
 
 protocol CardOfViewDeckControllerDelegate {
-    func didSelectItemAtIndexPath(viewController: UICollectionViewController, indexPath: NSIndexPath)
-    func mightNavigateLeft(sender: UICollectionViewController)
-    func mightNavigateRight(sender: UICollectionViewController)
-    func mightMoveWithOtherCards(sender: UICollectionViewController)
+    func didSelectItemAtIndexPath(_ viewController: UICollectionViewController, indexPath: IndexPath)
+    func mightNavigateLeft(_ sender: UICollectionViewController)
+    func mightNavigateRight(_ sender: UICollectionViewController)
+    func mightMoveWithOtherCards(_ sender: UICollectionViewController)
     func repositionCards()
     func didDeleteClient()
     func didDeleteProject()
@@ -29,16 +29,16 @@ class CardOfViewDeckController: UICollectionViewController {
     var startX: Double = 0
     
     enum CardMode {
-        case Active
-        case SideBySideLeft
-        case SideBySideRight
-        case InTheDeck
-        case Invisible
+        case active
+        case sideBySideLeft
+        case sideBySideRight
+        case inTheDeck
+        case invisible
     }
     
     enum CardType {
-        case FirstCard
-        case DeckCard
+        case firstCard
+        case deckCard
     }
     
     override func viewDidLoad() {
@@ -49,8 +49,8 @@ class CardOfViewDeckController: UICollectionViewController {
         (self as UIViewController).view.addGestureRecognizer(pgr)
         pgr
         
-        self.cardType = CardType.DeckCard
-        self.cardMode = CardMode.InTheDeck
+        self.cardType = CardType.deckCard
+        self.cardMode = CardMode.inTheDeck
         
         self.collectionView?.delegate = self
     }
@@ -60,19 +60,19 @@ class CardOfViewDeckController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func handlePan(pgr: UIPanGestureRecognizer) {
-        if pgr.state == .Began {
+    func handlePan(_ pgr: UIPanGestureRecognizer) {
+        if pgr.state == .began {
             self.startX = Double(pgr.view!.center.x)
         }
-        if pgr.state == .Changed {
+        if pgr.state == .changed {
             // Okay, the user panned something. Let's figure out what!
             var center: CGPoint = pgr.view!.center
-            let translation: CGPoint = pgr.translationInView(pgr.view!)
+            let translation: CGPoint = pgr.translation(in: pgr.view!)
             
             var xPos: CGFloat = 0
             
             // If card is first card
-            if(cardType == CardType.FirstCard) {
+            if(cardType == CardType.firstCard) {
                 // If movement is to the right
                 if((translation.x + center.x) > center.x) {
                     // move card until middle of parent frame
@@ -103,41 +103,41 @@ class CardOfViewDeckController: UICollectionViewController {
             // There might be other cards that need to move because of this one...
             self.delegate?.mightMoveWithOtherCards(self)
             
-            center = CGPointMake(xPos, pgr.view!.center.y)
+            center = CGPoint(x: xPos, y: pgr.view!.center.y)
             pgr.view!.center = center
-            pgr.setTranslation(CGPointZero, inView: pgr.view!)
+            pgr.setTranslation(CGPoint.zero, in: pgr.view!)
         }
-        if(pgr.state == .Ended) {
+        if(pgr.state == .ended) {
             // Okay, the user ended panning. Clean up the mess.
             self.delegate?.repositionCards()
         }
     }
     
-    func moveCardFromLeft(x: Double) {
+    func moveCardFromLeft(_ x: Double) {
         var center: CGPoint = self.view!.center
         let xPos: CGFloat = CGFloat(x) + self.view!.frame.width / 2
-        center = CGPointMake(xPos, self.view!.center.y)
+        center = CGPoint(x: xPos, y: self.view!.center.y)
         self.view!.center = center
     }
     
-    func moveCardFromRight(x: Double) {
+    func moveCardFromRight(_ x: Double) {
         var center: CGPoint = self.view!.center
         let xPos: CGFloat = CGFloat(x) - self.view!.frame.width / 2
-        center = CGPointMake(xPos, self.view!.center.y)
+        center = CGPoint(x: xPos, y: self.view!.center.y)
         self.view!.center = center
     }
     
-    func moveCardRightHandWithOtherCardsCenterPosition(x: Double) {
+    func moveCardRightHandWithOtherCardsCenterPosition(_ x: Double) {
         var center: CGPoint = self.view!.center
         let xPos: CGFloat = CGFloat(x) + self.view!.frame.width
-        center = CGPointMake(xPos, self.view!.center.y)
+        center = CGPoint(x: xPos, y: self.view!.center.y)
         self.view!.center = center
     }
     
-    func moveCardLeftHandWithOtherCardsCenterPosition(x: Double) {
+    func moveCardLeftHandWithOtherCardsCenterPosition(_ x: Double) {
         var center: CGPoint = self.view!.center
         let xPos: CGFloat = CGFloat(x) - self.view!.frame.width
-        center = CGPointMake(xPos, self.view!.center.y)
+        center = CGPoint(x: xPos, y: self.view!.center.y)
         self.view!.center = center
     }
     
@@ -155,13 +155,13 @@ class CardOfViewDeckController: UICollectionViewController {
     
     func repositionCard() {
         // If card is first card
-        if(cardType == CardType.FirstCard) {
+        if(cardType == CardType.firstCard) {
             // position card back to starting point
             let xPos = self.view!.frame.width / 2
-            UIView.animateWithDuration(0.25, animations: {() -> Void in
-                self.view!.center = CGPointMake(xPos, self.view!.center.y)
+            UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                self.view!.center = CGPoint(x: xPos, y: self.view!.center.y)
                 self.view!.alpha = 1
-                if(self.cardMode == CardMode.InTheDeck) {
+                if(self.cardMode == CardMode.inTheDeck) {
                     self.view!.alpha = 0.3
                 } else {
                     self.view!.alpha = 1
@@ -170,50 +170,50 @@ class CardOfViewDeckController: UICollectionViewController {
         } else {
             var xPos: CGFloat = 0
             // If card is side by side left
-            if(cardMode == CardMode.SideBySideLeft) {
+            if(cardMode == CardMode.sideBySideLeft) {
                 // Position card to side by side left
                 xPos = self.view!.frame.width / 2
                 self.view!.alpha = 1
-                UIView.animateWithDuration(0.25, animations: {() -> Void in
-                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                    self.view!.center = CGPoint(x: xPos, y: self.view!.center.y)
                     self.view!.alpha = 1
                 })
             }
             // If card is side by side right
-            if(cardMode == CardMode.SideBySideRight) {
+            if(cardMode == CardMode.sideBySideRight) {
                 // Position card to side by side right
                 xPos = self.view!.frame.width + (self.view!.frame.width / 2)
-                UIView.animateWithDuration(0.25, animations: {() -> Void in
-                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                    self.view!.center = CGPoint(x: xPos, y: self.view!.center.y)
                     self.view!.alpha = 1
                 })
             }
             // If card is active
-            if(cardMode == CardMode.Active) {
+            if(cardMode == CardMode.active) {
                 // Position card to active
                 xPos = self.view!.frame.width + self.view!.frame.width / 2
-                UIView.animateWithDuration(0.25, animations: {() -> Void in
-                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                    self.view!.center = CGPoint(x: xPos, y: self.view!.center.y)
                     self.view!.alpha = 1
                 })
             }
             // If card is invisible
-            if(cardMode == CardMode.Invisible) {
+            if(cardMode == CardMode.invisible) {
                 // Position card to invisible
                 xPos = self.view!.frame.width * 2 + self.view!.frame.width / 2
-                UIView.animateWithDuration(0.25, animations: {() -> Void in
-                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                    self.view!.center = CGPoint(x: xPos, y: self.view!.center.y)
                 })
-                UIView.animateWithDuration(0.3, animations: {() -> Void in
+                UIView.animate(withDuration: 0.3, animations: {() -> Void in
                     self.view!.alpha = 0
                 })
             }
             // If card is in the deck
-            if(cardMode == CardMode.InTheDeck) {
+            if(cardMode == CardMode.inTheDeck) {
                 // Position card to in the deck
                 xPos = self.view!.frame.width / 2
-                UIView.animateWithDuration(0.25, animations: {() -> Void in
-                    self.view!.center = CGPointMake(xPos, self.view!.center.y)
+                UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                    self.view!.center = CGPoint(x: xPos, y: self.view!.center.y)
                     self.view!.alpha = 0.5
                 })
             }
@@ -223,50 +223,50 @@ class CardOfViewDeckController: UICollectionViewController {
     // Active is essentially the same as SideBySideRight, but more speaking in some cases.
     func positionActive() {
         // Position the card as active.
-        self.cardMode = CardMode.Active
+        self.cardMode = CardMode.active
         // Make sure, the card is on the right edge of the view.
         // Make sure, the card is completely visible
     }
     
     func positionInTheDeck() {
         // Position the card as being in the deck.
-        self.cardMode = CardMode.InTheDeck
+        self.cardMode = CardMode.inTheDeck
         // Make sure, the card is on the left edge of the view (slightly off to see that there is a deck.)
         // Make sure, the card is dimm.
     }
     
     func positionSideBySideLeft() {
         // Position the card side by side left.
-        self.cardMode = CardMode.SideBySideLeft
+        self.cardMode = CardMode.sideBySideLeft
         // Make sure, the card is on the left edge of the view.
         // Make sure the card is completely visible.
     }
     
     func positionSideBySideRight() {
         // Position the card side by side right.
-        self.cardMode = CardMode.SideBySideRight
+        self.cardMode = CardMode.sideBySideRight
         // Make sure, the card is on the right edge of the view.
         // Make sure, the card is completely visible.
     }
     
     func positionInvisible() {
         // Position the card side by side right.
-        self.cardMode = CardMode.Invisible
+        self.cardMode = CardMode.invisible
         // Make sure, the card is on the right edge of the view.
         // Make sure, the card is completely visible.
     }
     
-    func setCardType(type: CardType) {
+    func setCardType(_ type: CardType) {
         // Set the mode of the card here.
         self.cardType = type
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         collectionView.reloadData()
         return self.getCellSize()
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         (self.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = self.getCellSize()
         self.collectionView!.collectionViewLayout.invalidateLayout()
     }
@@ -276,10 +276,10 @@ class CardOfViewDeckController: UICollectionViewController {
     }
     
     func getCellSize() -> CGSize {
-        return CGSizeMake(self.view.frame.width, 63)
+        return CGSize(width: self.view.frame.width, height: 63)
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.delegate?.didSelectItemAtIndexPath(self, indexPath: indexPath)
     }
     
