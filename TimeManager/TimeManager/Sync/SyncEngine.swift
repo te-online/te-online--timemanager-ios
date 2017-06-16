@@ -111,8 +111,6 @@ class SyncEngine {
         RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data as AnyObject, "lastCommit": lastCommit as AnyObject], onCompletion: { (json: JSON) in
             // If we get something back that looks like a new commit number, we apply it to all touched items.
             
-            NSLog("Response: %@", json["commit"].string ?? "<no json response>")
-            
             if let commit = json["commit"].string {
                 NSLog("New commit: %@", commit)
                 // Save it to the defaults.
@@ -121,7 +119,7 @@ class SyncEngine {
                 // All sent objects will now get the new commit number from the server, because they were saved.
                 for entries in self.Objects {
                     for entry in entries {
-                        if ((((entry as! NSManagedObject).value(forKey: "commit") as AnyObject).isEqual(String("deleted"))) == nil) {
+                        if (!(((entry as! NSManagedObject).value(forKey: "commit") as AnyObject).isEqual(String("deleted")))) {
                             entry.setValue(commit, forKey: "commit")
                             
                             do {
