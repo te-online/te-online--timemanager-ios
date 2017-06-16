@@ -124,17 +124,17 @@ class DiagramsContainerController: UIViewController, DiagramsPageViewControllerD
             TotalCaptionLabel.text = "Month total".uppercased()
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.getHoursForMonthFromDate(self.currentDate))
             
-            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.MonthAndYear, date: self.currentDate).uppercased()
+            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.monthAndYear, date: self.currentDate).uppercased()
         } else if currentPage == 2 {
             TotalCaptionLabel.text = "Week total".uppercased()
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.recordedHoursForWeekFromDate(self.currentDate))
             
-            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.WeekAndYear, date: self.currentDate).uppercased()
+            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.weekAndYear, date: self.currentDate).uppercased()
         } else if currentPage == 3 {
             TotalCaptionLabel.text = "Day total".uppercased()
             TotalValueLabel.text = FormattingHelper.formatHoursAsString(tt.recordedHoursForDay(self.currentDate))
             
-            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.DaynameAndDate, date: self.currentDate).uppercased()
+            CurrentNaviPositionLabel.text = FormattingHelper.dateFormat(.daynameAndDate, date: self.currentDate).uppercased()
         }
         
         self.correctButtons()

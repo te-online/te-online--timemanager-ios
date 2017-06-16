@@ -46,12 +46,12 @@ extension TimeObject {
         return [
             "uuid": self.uuid as AnyObject ?? "" as AnyObject,
             "task_uuid": self.task_uuid as AnyObject ?? "" as AnyObject,
-            "start": FormattingHelper.dateFormat(.isoString, date: self.start!),
-            "end": FormattingHelper.dateFormat(.isoString, date: self.end!),
-            "note": self.note ?? "",
-            "commit": self.commit ?? "",
-            "created": FormattingHelper.dateFormat(.isoString, date: self.created!),
-            "changed": FormattingHelper.dateFormat(.isoString, date: self.changed!)
+            "start": FormattingHelper.dateFormat(.isoString, date: self.start!) as AnyObject,
+            "end": FormattingHelper.dateFormat(.isoString, date: self.end!) as AnyObject,
+            "note": self.note as AnyObject ?? "" as AnyObject,
+            "commit": self.commit as AnyObject ?? "" as AnyObject,
+            "created": FormattingHelper.dateFormat(.isoString, date: self.created!) as AnyObject,
+            "changed": FormattingHelper.dateFormat(.isoString, date: self.changed!) as AnyObject
         ]
     }
     

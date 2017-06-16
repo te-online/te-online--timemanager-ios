@@ -44,9 +44,9 @@ extension TaskObject {
             "uuid": self.uuid as AnyObject ?? "" as AnyObject,
             "name": self.name as AnyObject ?? "" as AnyObject,
             "project_uuid": self.project_uuid as AnyObject ?? "" as AnyObject,
-            "commit": self.commit as AnyObject ?? "",
-            "created": FormattingHelper.dateFormat(.isoString, date: self.created!),
-            "changed": FormattingHelper.dateFormat(.isoString, date: self.changed!)
+            "commit": self.commit as AnyObject ?? "" as AnyObject,
+            "created": FormattingHelper.dateFormat(.isoString, date: self.created!) as AnyObject,
+            "changed": FormattingHelper.dateFormat(.isoString, date: self.changed!) as AnyObject
         ]
     }
     

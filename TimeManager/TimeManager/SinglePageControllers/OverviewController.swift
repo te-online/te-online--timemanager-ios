@@ -175,7 +175,7 @@ class OverviewController: UIViewController, UICollectionViewDataSource, UICollec
         WeeksHoursMainLabel.text = FormattingHelper.formatHoursAsString(thisWeek)
         // The value for the week currently selected.
         WeeksHoursTableLabel.text = FormattingHelper.formatHoursAsString(week)
-        CurrentWeekLabel.text = (FormattingHelper.dateFormat(.WeekAndYear, date: self.currentDate).uppercaseString).uppercased()
+        CurrentWeekLabel.text = (FormattingHelper.dateFormat(.weekAndYear, date: self.currentDate).uppercased()).uppercased()
         
         
         self.HoursCollectionView.reloadData()

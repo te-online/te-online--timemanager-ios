@@ -108,9 +108,12 @@ class SyncEngine {
         // The last commit numer is either stored in the defaults or ... empty.
         let lastCommit = self.defaults.string(forKey: "lastCommit") ?? ""
 
-        RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data, "lastCommit": lastCommit], onCompletion: { (json: JSON) in
+        RestApiManager.sharedInstance.sendUpdateRequest( ["data": Data as AnyObject, "lastCommit": lastCommit as AnyObject], onCompletion: { (json: JSON) in
             // If we get something back that looks like a new commit number, we apply it to all touched items.
-            if let commit = json[0]["commit"].string {
+            
+            NSLog("Response: %@", json["commit"].string ?? "<no json response>")
+            
+            if let commit = json["commit"].string {
                 NSLog("New commit: %@", commit)
                 // Save it to the defaults.
                 self.defaults.setValue(commit, forKey: "lastCommit")
@@ -118,7 +121,7 @@ class SyncEngine {
                 // All sent objects will now get the new commit number from the server, because they were saved.
                 for entries in self.Objects {
                     for entry in entries {
-                        if (((entry as! NSManagedObject).valueForKey("commit")?.isEqual(String("deleted"))) == nil) {
+                        if ((((entry as! NSManagedObject).value(forKey: "commit") as AnyObject).isEqual(String("deleted"))) == nil) {
                             entry.setValue(commit, forKey: "commit")
                             
                             do {
@@ -133,7 +136,7 @@ class SyncEngine {
                 // All objects flagged for deletion will now be permanently deleted.
                 for entries in self.Deletables {
                     for entry in entries {
-                        self.syncManagedObjectContext.deleteObject(entry as! NSManagedObject)
+                        self.syncManagedObjectContext.delete(entry as! NSManagedObject)
                     }
                 }
                 
@@ -146,9 +149,9 @@ class SyncEngine {
             }
             
             // Wow, it's like christmas: We also get some data back from the server.
-            if let data = json[0]["data"].dictionary {
+            if let data = json["data"].dictionary {
                 // We want to check every entity for elements.
-                for (index, entity) in self.entityMapping.enumerate() {
+                for (index, entity) in self.entityMapping.enumerated() {
                     // Are there created ones? Create them.
                     if let created = data[self.descriptorsMapping[index]]!["created"].array {
                         for object in created {

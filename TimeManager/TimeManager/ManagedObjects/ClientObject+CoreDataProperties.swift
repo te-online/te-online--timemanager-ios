@@ -78,12 +78,12 @@ extension ClientObject {
             "uuid": self.uuid as AnyObject ?? "" as AnyObject,
             "name": self.name as AnyObject ?? "" as AnyObject,
             "street": self.street as AnyObject ?? "" as AnyObject,
-            "postcode": self.postcode as AnyObject ?? "",
-            "city": self.city ?? "",
-            "note": self.note ?? "",
-            "commit": self.commit ?? "",
-            "created": FormattingHelper.dateFormat(FormattingHelper.DateFormat.isoString, date: self.created!),
-            "changed": FormattingHelper.dateFormat(FormattingHelper.DateFormat.isoString, date: self.changed!)
+            "postcode": self.postcode as AnyObject ?? "" as AnyObject,
+            "city": self.city as AnyObject ?? "" as AnyObject,
+            "note": self.note as AnyObject ?? "" as AnyObject,
+            "commit": self.commit as AnyObject ?? "" as AnyObject,
+            "created": FormattingHelper.dateFormat(FormattingHelper.DateFormat.isoString, date: self.created!) as AnyObject,
+            "changed": FormattingHelper.dateFormat(FormattingHelper.DateFormat.isoString, date: self.changed!) as AnyObject
         ]
     }
 

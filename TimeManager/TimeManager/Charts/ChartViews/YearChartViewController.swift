@@ -59,7 +59,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         xl.axisLineColor = Colors.LightGrey
         xl.yOffset = 15.0
         xl.drawGridLinesEnabled = false
-        xl.labelPosition = .Bottom
+        xl.labelPosition = .bottom
         xl.axisLineWidth = 1
         
         // No border.
@@ -94,12 +94,15 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         // Options for the entries
         chartDataSet.setColor(Colors.MediumBlue)
         chartDataSet.drawValuesEnabled = false
-        chartDataSet.scatterShape = .Circle
+        // TODO: chartDataSet.scatterShape = .Circle
         chartDataSet.scatterShapeSize = 16
         chartDataSet.highlightColor = Colors.LightBlue
         
-        let chartData = ScatterChartData(xVals: months, dataSet: chartDataSet)
+        let chartData = ScatterChartData(dataSet: chartDataSet)
         self.chartView.data = chartData
+//        TODO: self.chartView.valueFormatter = DefaultAxisValueFormatter {
+//            return months[Int($0)]
+//        }
         self.chartView.animate(yAxisDuration: 0.3)
         self.chartView.highlightValue(nil)
     }

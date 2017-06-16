@@ -257,7 +257,7 @@ class TimeTraveller {
         
         var formattedDays: [String] = []
         for date in dates {
-            formattedDays.append(FormattingHelper.dateFormat(.ShortDaynameDayMonth, date: date!).uppercased())
+            formattedDays.append(FormattingHelper.dateFormat(.shortDaynameDayMonth, date: date!).uppercased())
         }
         
         return formattedDays
@@ -349,7 +349,7 @@ class TimeTraveller {
         let firstDay = DateHelper.getFirstDayOfMonthByDate(date)
         // Add the hours of this week to the array.
         var results: [String] = []
-        results.append(FormattingHelper.dateFormat(.WeekAndDaySpan, date: firstDay).uppercased())
+        results.append(FormattingHelper.dateFormat(.weekAndDaySpan, date: firstDay).uppercased())
         var currentWeekPointer = firstDay
         let thisMonth = DateHelper.getMonthNum(currentWeekPointer)
         // Do this while the current date's month is the same as the starting week's month.
@@ -357,7 +357,7 @@ class TimeTraveller {
             // Add one month to the current date.
             currentWeekPointer = DateHelper.getDateFor(.nextWeek, date: currentWeekPointer)
             // Add the hours of the current month to the array.
-            results.append(FormattingHelper.dateFormat(.WeekAndDaySpan, date: currentWeekPointer).uppercased())
+            results.append(FormattingHelper.dateFormat(.weekAndDaySpan, date: currentWeekPointer).uppercased())
         }
         
         return results

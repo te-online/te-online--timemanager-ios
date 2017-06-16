@@ -28,7 +28,7 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         self.chartView.delegate = self
         
         // No description text.
-        self.chartView.descriptionText = ""
+        self.chartView.chartDescription?.text = ""
         
         // No grid.
         self.chartView.drawGridBackgroundEnabled = false
@@ -42,7 +42,7 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         // Left axis.
         let yl: YAxis = chartView.leftAxis
         yl.labelFont = UIFont(name: "Poppins-Regular", size: 14.0)!
-        yl.axisMinValue = 0.0
+        yl.axisMinimum = 0.0
         yl.axisLineColor = Colors.LightGrey
         yl.labelTextColor = Colors.MediumGrey
         yl.xOffset = 27.5
@@ -51,7 +51,7 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         yl.drawGridLinesEnabled = false
         yl.setLabelCount(7, force: false)
         yl.valueFormatter = NumberFormatter() as! IAxisValueFormatter
-        yl.valueFormatter?.maximumFractionDigits = 0
+        // TOOD: yl.valueFormatter?.maximumFractionDigits = 0
         
         // Bottom axis.
         self.chartView.rightAxis.enabled = false
@@ -61,8 +61,9 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         xl.axisLineColor = Colors.LightGrey
         xl.yOffset = 15.0
         xl.drawGridLinesEnabled = false
-        xl.labelPosition = .Bottom
+        xl.labelPosition = .bottom
         xl.axisLineWidth = 1
+        
         
         // No border.
         self.chartView.borderLineWidth = 0
@@ -87,8 +88,8 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         var dataEntries: [BarChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
-            let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
-            dataEntries.append(dataEntry)
+            let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
+            dataEntries.append(dataEntry as! BarChartDataEntry)
         }
         
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "Weeks")
@@ -100,10 +101,11 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         chartDataSet.highlightColor = Colors.Blue
         chartDataSet.barBorderColor = Colors.Blue
         chartDataSet.barBorderWidth = 1
-        chartDataSet.barSpace = 0.55
-        chartDataSet.valueFormatter = HoursNumberFormatter() as! IValueFormatter
+        // TODO: chartDataSet.barSpace = 0.55
+        chartDataSet.valueFormatter = HoursNumberFormatter() as? IValueFormatter
         
-        let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
+        let chartData = BarChartData(dataSet: chartDataSet)
+        // TODO: xVals: months, 
         self.chartView.data = chartData
         self.chartView.animate(yAxisDuration: 0.3)
         self.chartView.highlightValue(nil)

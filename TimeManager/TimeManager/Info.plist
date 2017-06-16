@@ -30,6 +30,8 @@
 		<dict>
 			<key>localhost</key>
 			<string></string>
+			<key>192.168.178.80</key>
+			<string></string>
 		</dict>
 	</dict>
 	<key>UIAppFonts</key>

@@ -21,15 +21,18 @@ class RestApiManager: NSObject {
     override init() {
         // If the service URL is our debug URL, don't use https, otherwise we should and must.
         self.serviceUrl = defaults.string(forKey: "cloudSyncServer") ?? ""
-        if(self.serviceUrl == "localhost:4444") {
+        if(self.serviceUrl == "192.168.178.80:8888/nextcloud-server/index.php/apps/timemanager") {
             self.baseURL = "http://" + self.serviceUrl + "/api/updateObjects"
+            // self.baseURL = "http://192.168.178.80:4444/api/updateObjects"
         } else {
             self.baseURL = "https://" + self.serviceUrl + "/api/updateObjects"
         }
+        NSLog("%@", self.baseURL)
     }
     
     func sendUpdateRequest(_ body: [String: AnyObject], onCompletion: @escaping (JSON) -> Void) {
         let route = baseURL
+        NSLog("%@", body)
         // Send a request to the backend API with our body contents.
         makeHTTPPostRequest(route, body: body, onCompletion: { json, err in
             onCompletion(json as JSON)
@@ -88,6 +91,7 @@ class RestApiManager: NSObject {
             let session = URLSession.shared
             
             let task = session.dataTask(with: request as URLRequest, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) -> Void in
+                NSLog("%@", String(data: data!, encoding: String.Encoding.utf8) ?? "Data could not be printed")
                 if let jsonData = data {
                     let json:JSON = JSON(data: jsonData)
                     onCompletion(json, nil)

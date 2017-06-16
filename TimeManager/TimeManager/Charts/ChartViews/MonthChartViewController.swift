@@ -58,8 +58,8 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         yl.drawTopYLabelEntryEnabled = false
         yl.drawGridLinesEnabled = false
         yl.setLabelCount(7, force: false)
-        yl.valueFormatter = NumberFormatter() as! IAxisValueFormatter
-        yl.valueFormatter?.maximumFractionDigits = 0
+        // TODO: yl.valueFormatter = NumberFormatter() as! IAxisValueFormatter
+        // TODO: yl.valueFormatter?.maximumFractionDigits = 0
         
         // Bottom axis.
         self.chartView.rightAxis.enabled = false
@@ -69,9 +69,9 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         xl.axisLineColor = Colors.LightGrey
         xl.yOffset = 15.0
         xl.drawGridLinesEnabled = false
-        xl.labelPosition = .Bottom
+        xl.labelPosition = .bottom
         xl.axisLineWidth = 1
-        xl.setLabelsToSkip(0)
+        xl.setLabelCount(99999, force: true)
         
         // No border.
         self.chartView.borderLineWidth = 0
@@ -96,7 +96,7 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         var dataEntries: [BarChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
-            let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
+            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
             dataEntries.append(dataEntry)
         }
         
@@ -109,10 +109,11 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         chartDataSet.highlightColor = Colors.Blue
         chartDataSet.barBorderColor = Colors.Blue
         chartDataSet.barBorderWidth = 1
-        chartDataSet.barSpace = 0.65
+        // TODO: chartDataSet.barSpace = 0.65
         chartDataSet.valueFormatter = HoursNumberFormatter() as! IValueFormatter
         
-        let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
+        let chartData = BarChartData(dataSet: chartDataSet)
+        // TODO: xVals: dataPoints
         self.chartView.data = chartData
         self.chartView.animate(yAxisDuration: 0.3)
         self.chartView.highlightValue(nil)

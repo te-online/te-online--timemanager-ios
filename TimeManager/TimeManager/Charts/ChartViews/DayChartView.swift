@@ -61,11 +61,11 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         xl.labelTextColor = Colors.MediumGrey
         xl.axisLineColor = Colors.LightGrey
         xl.drawGridLinesEnabled = false
-        xl.labelPosition = .OutsideChart
+        xl.labelPosition = .outsideChart
         xl.axisLineWidth = 0
         xl.drawAxisLineEnabled = false
         xl.valueFormatter = NumberFormatter() as! IAxisValueFormatter
-        xl.valueFormatter?.maximumFractionDigits = 0
+        // TODO: xl.valueFormatter?.maximumFractionDigits = 0
         
         self.chartView.extraLeftOffset = -100.0
         
@@ -94,7 +94,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         
         var dataEntries: [BarChartDataEntry] = []
         
-        let dataEntry = BarChartDataEntry(values: values, xIndex: 0)
+        let dataEntry = BarChartDataEntry(x: 0, yValues: values)
         dataEntries.append(dataEntry)
         
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "Weeks")
@@ -109,7 +109,8 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         chartDataSet.drawValuesEnabled = false
         chartDataSet.valueFormatter = HoursNumberFormatter() as! IValueFormatter
         
-        let chartData = BarChartData(xVals: months, dataSet: chartDataSet)
+        let chartData = BarChartData(dataSet: chartDataSet)
+        // TODO: xVals: months,
         self.chartView.data = chartData
         self.chartView.animate(yAxisDuration: 0.3)
         self.chartView.highlightValue(nil)
