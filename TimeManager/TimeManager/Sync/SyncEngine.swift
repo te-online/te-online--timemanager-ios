@@ -17,6 +17,7 @@ class SyncEngine {
     var descriptorsMapping = ["clients", "projects", "tasks", "times"]
     
     let defaults = UserDefaults.standard
+    var appDelegate: AppDelegate = (UIApplication.shared.delegate as! AppDelegate)
     var syncManagedObjectContext: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     var Data: [String: [String: [AnyObject]]]!
