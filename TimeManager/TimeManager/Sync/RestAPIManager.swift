@@ -32,7 +32,7 @@ class RestApiManager: NSObject {
     
     func sendUpdateRequest(_ body: [String: AnyObject], onCompletion: @escaping (JSON) -> Void) {
         let route = baseURL
-        NSLog("%@", body)
+//        NSLog("%@", body)
         // Send a request to the backend API with our body contents.
         makeHTTPPostRequest(route, body: body, onCompletion: { json, err in
             onCompletion(json as JSON)
@@ -91,7 +91,7 @@ class RestApiManager: NSObject {
             let session = URLSession.shared
             
             let task = session.dataTask(with: request as URLRequest, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) -> Void in
-                NSLog("%@", String(data: data!, encoding: String.Encoding.utf8) ?? "Data could not be printed")
+                NSLog("response: %@", String(data: data!, encoding: String.Encoding.utf8) ?? "Data could not be printed")
                 if let jsonData = data {
                     let json:JSON = JSON(data: jsonData)
                     onCompletion(json, nil)

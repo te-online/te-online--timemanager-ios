@@ -17,7 +17,7 @@ class SyncEngine {
     var descriptorsMapping = ["clients", "projects", "tasks", "times"]
     
     let defaults = UserDefaults.standard
-    var syncManagedObjectContext: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).backgroundManagedObjectContext
+    var syncManagedObjectContext: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
     var Data: [String: [String: [AnyObject]]]!
     
@@ -177,6 +177,8 @@ class SyncEngine {
             } catch {
                 fatalError("Failed to save objects in sync process: \(error)")
             }
+            
+            self.appDelegate.saveContext()
         })
     }
     
@@ -259,6 +261,8 @@ class SyncEngine {
         } catch {
             fatalError("Failed to save objects in sync process: \(error)")
         }
+        
+        self.appDelegate.saveContext()
     }
     
     // This function tries to update objects that come from the server. If there is no local copy, they will be created.
@@ -289,7 +293,8 @@ class SyncEngine {
         } catch {
             fatalError("Failed to execute fetch request alter item in sync process: \(error)")
         }
-
+        
+        self.appDelegate.saveContext()
     }
     
     // This function deleted objects that were marked as deleted by the server.
@@ -311,6 +316,7 @@ class SyncEngine {
             fatalError("Failed to execute fetch request for delete item in sync process: \(error)")
         }
         
+        self.appDelegate.saveContext()
     }
     
     // Let's convert all the fancy ManagedObjects to plain (JSON-ish) text.
