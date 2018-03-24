@@ -91,11 +91,22 @@ class RestApiManager: NSObject {
             let session = URLSession.shared
             
             let task = session.dataTask(with: request as URLRequest, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) -> Void in
-                NSLog("response: %@", String(data: data!, encoding: String.Encoding.utf8) ?? "Data could not be printed")
+                if let printData = data {
+                    NSLog("response: %@", String(data: printData, encoding: String.Encoding.utf8) ?? "Data could not be printed")
+                } else {
+                    NSLog("Data could not be printed")
+                }
                 if let jsonData = data {
                     let json:JSON = JSON(data: jsonData)
+                    if (json == JSON.null) {
+                        // Empty response / no response
+                        self.defaults.setValue(true, forKey: "syncError")
+                    } else {
+                        self.defaults.setValue(false, forKey: "syncError")
+                    }
                     onCompletion(json, nil)
                 } else {
+                    self.defaults.setValue(true, forKey: "syncError")
                     onCompletion(JSON.null, error as NSError?)
                 }
             })
