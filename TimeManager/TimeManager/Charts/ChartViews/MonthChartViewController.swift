@@ -110,7 +110,7 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         chartDataSet.barBorderColor = Colors.Blue
         chartDataSet.barBorderWidth = 1
         // TODO: chartDataSet.barSpace = 0.65
-        chartDataSet.valueFormatter = HoursNumberFormatter() as! IValueFormatter
+        chartDataSet.valueFormatter = HoursNumberFormatter() as? IValueFormatter
         
         let chartData = BarChartData(dataSet: chartDataSet)
         // TODO: xVals: dataPoints

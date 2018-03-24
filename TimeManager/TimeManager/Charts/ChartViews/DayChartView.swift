@@ -64,7 +64,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         xl.labelPosition = .outsideChart
         xl.axisLineWidth = 0
         xl.drawAxisLineEnabled = false
-        xl.valueFormatter = NumberFormatter() as! IAxisValueFormatter
+        xl.valueFormatter = NumberFormatter() as? IAxisValueFormatter
         // TODO: xl.valueFormatter?.maximumFractionDigits = 0
         
         self.chartView.extraLeftOffset = -100.0
@@ -107,7 +107,7 @@ class DayChartViewController: UIViewController, ChartViewDelegate, UITableViewDe
         chartDataSet.barBorderColor = UIColor.white
         chartDataSet.barBorderWidth = 2
         chartDataSet.drawValuesEnabled = false
-        chartDataSet.valueFormatter = HoursNumberFormatter() as! IValueFormatter
+        chartDataSet.valueFormatter = HoursNumberFormatter() as? IValueFormatter
         
         let chartData = BarChartData(dataSet: chartDataSet)
         // TODO: xVals: months,

@@ -50,7 +50,7 @@ class WeekChartViewController: UIViewController, ChartViewDelegate {
         yl.drawTopYLabelEntryEnabled = false
         yl.drawGridLinesEnabled = false
         yl.setLabelCount(7, force: false)
-        yl.valueFormatter = NumberFormatter() as! IAxisValueFormatter
+        yl.valueFormatter = NumberFormatter() as? IAxisValueFormatter
         // TOOD: yl.valueFormatter?.maximumFractionDigits = 0
         
         // Bottom axis.
