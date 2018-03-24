@@ -170,12 +170,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         containerController.showSyncInProgress()
                     }
                 }
+                let group = DispatchGroup()
+                group.enter()
+                
                 let se = SyncEngine()
-                se.doSyncJob()
-                completion()
+                
                 DispatchQueue.main.async {
-                    if let containerController = self.window?.rootViewController as? ContainerViewController {
-                        containerController.hideSyncInProgress()
+                    se.doSyncJob()
+                    group.leave()
+                }
+                
+                completion()
+                
+                group.notify(queue: .main) {
+                    DispatchQueue.main.async {
+                        if let containerController = self.window?.rootViewController as? ContainerViewController {
+                            containerController.hideSyncInProgress()
+                            containerController.showSyncError()
+                            if UserDefaults.standard.bool(forKey: "syncError") {
+                                containerController.showSyncError()
+                            } else {
+                                containerController.hideSyncError()
+                            }
+                        }
                     }
                 }
             }

@@ -16,6 +16,7 @@ class ContainerViewController: UIViewController {
     var currentViewController: UIViewController!
     
     @IBOutlet weak var SyncingSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var SyncErrorLabel: UILabel!
     @IBOutlet weak var SyncingText: UILabel!
     @IBOutlet weak var NaviView: UIView!
     
@@ -23,11 +24,18 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var EntriesButton: UIButton!
     @IBOutlet weak var StatisticsButton: UIButton!
     
+    let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Hide the sync progress, visible due to storyboard.
         self.hideSyncInProgress()
+        if UserDefaults.standard.bool(forKey: "syncError") {
+            self.showSyncError()
+        } else {
+            self.hideSyncError()
+        }
         
         // Load nice background images for highlighted state for our navi buttons.
         self.OverviewButton.setBackgroundImage(UIImage(named: "overview-icon-active.png"), for: .selected)
@@ -154,6 +162,18 @@ class ContainerViewController: UIViewController {
         if SyncingSpinner != nil && SyncingText != nil {
             SyncingSpinner.alpha = 0
             SyncingText.alpha = 0
+        }
+    }
+    
+    func showSyncError() {
+        if SyncErrorLabel != nil {
+            SyncErrorLabel.alpha = 1
+        }
+    }
+    
+    func hideSyncError() {
+        if SyncErrorLabel != nil {
+            SyncErrorLabel.alpha = 0
         }
     }
     
