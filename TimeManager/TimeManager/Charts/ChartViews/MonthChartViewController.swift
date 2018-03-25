@@ -71,7 +71,8 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         xl.drawGridLinesEnabled = false
         xl.labelPosition = .bottom
         xl.axisLineWidth = 1
-        xl.setLabelCount(99999, force: true)
+//        xl.setLabelCount(99999, force: true)
+        xl.setLabelCount(4, force: false)
         
         // No border.
         self.chartView.borderLineWidth = 0
@@ -117,6 +118,7 @@ class MonthChartViewController: UIViewController, ChartViewDelegate {
         self.chartView.data = chartData
         self.chartView.animate(yAxisDuration: 0.3)
         self.chartView.highlightValue(nil)
+        self.chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
     }
     
     

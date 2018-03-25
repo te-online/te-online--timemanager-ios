@@ -28,7 +28,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         self.chartView.delegate = self
         
         // No description text.
-        self.chartView.descriptionText = ""
+        self.chartView.chartDescription!.text = ""
         
         // No grid.
         self.chartView.drawGridBackgroundEnabled = false
@@ -42,7 +42,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         // Left axis.
         let yl: YAxis = chartView.leftAxis
         yl.labelFont = UIFont(name: "Poppins-Regular", size: 14.0)!
-        yl.axisMinValue = 0.0
+        yl.axisMinimum = 0
         yl.axisLineColor = Colors.LightGrey
         yl.labelTextColor = Colors.MediumGrey
         yl.xOffset = 22.5
@@ -50,6 +50,11 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         yl.drawTopYLabelEntryEnabled = false
         yl.drawGridLinesEnabled = false
         yl.setLabelCount(7, force: false)
+//        let numFormatter = NumberFormatter()
+//        numFormatter.minimumFractionDigits = 0
+//        numFormatter.maximumFractionDigits = 0
+//        numFormatter.minimumIntegerDigits = 1
+//        yl.valueFormatter = DefaultAxisValueFormatter(formatter: numFormatter)
         
         // Bottom axis.
         self.chartView.rightAxis.enabled = false
@@ -61,6 +66,8 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         xl.drawGridLinesEnabled = false
         xl.labelPosition = .bottom
         xl.axisLineWidth = 1
+        xl.setLabelCount(12, force: true)
+        xl.valueFormatter = IndexAxisValueFormatter(values: self.months)
         
         // No border.
         self.chartView.borderLineWidth = 0
@@ -85,7 +92,7 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(x: values[i], y: Double(i))
+            let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
             dataEntries.append(dataEntry)
         }
         
@@ -94,15 +101,12 @@ class YearChartViewController: UIViewController, ChartViewDelegate {
         // Options for the entries
         chartDataSet.setColor(Colors.MediumBlue)
         chartDataSet.drawValuesEnabled = false
-        // TODO: chartDataSet.scatterShape = .Circle
+        chartDataSet.setScatterShape(.circle)
         chartDataSet.scatterShapeSize = 16
         chartDataSet.highlightColor = Colors.LightBlue
         
         let chartData = ScatterChartData(dataSet: chartDataSet)
         self.chartView.data = chartData
-//        TODO: self.chartView.valueFormatter = DefaultAxisValueFormatter {
-//            return months[Int($0)]
-//        }
         self.chartView.animate(yAxisDuration: 0.3)
         self.chartView.highlightValue(nil)
     }
