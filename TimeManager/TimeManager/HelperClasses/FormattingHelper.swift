@@ -64,7 +64,7 @@ class FormattingHelper {
     // Gets a date object from a given ISO Time String.
     static func getDateFromISOString(_ dateString: String) -> Date {
         let formatter: DateFormatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         // Always use this locale when parsing fixed format date strings
         let posix: Locale = Locale(identifier: "en_US_POSIX")
         formatter.locale = posix
@@ -117,7 +117,7 @@ class FormattingHelper {
         else if format == .isoString {
             let enUSPosixLocale = Locale(identifier: "en_US_POSIX")
             dateFormatter.locale = enUSPosixLocale
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
             result += dateFormatter.string(from: date)
         }
