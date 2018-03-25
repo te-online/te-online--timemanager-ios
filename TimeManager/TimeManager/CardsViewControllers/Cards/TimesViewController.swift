@@ -383,7 +383,7 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
     func initializeFetchedResultsControllerWithCurrentTask() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Time")
         
-        let createdSort = NSSortDescriptor(key: "created", ascending: true)
+        let createdSort = NSSortDescriptor(key: "start", ascending: true)
         request.sortDescriptors = [createdSort]
         
         // We don't need entries that are flagged for deletion. However, commit will only compare to a string if not nil, but nil is okay, too.

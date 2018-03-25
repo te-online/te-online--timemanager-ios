@@ -187,7 +187,7 @@ class ClientsViewController: CardOfViewDeckController, NSFetchedResultsControlle
     
     func initializeFetchedResultsController() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Client")
-        let nameSort = NSSortDescriptor(key: "name", ascending: true)
+        let nameSort = NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         request.sortDescriptors = [nameSort]
         
         let notDeleted = NSPredicate(format: "((commit == nil) OR (commit != %@))", "deleted")
