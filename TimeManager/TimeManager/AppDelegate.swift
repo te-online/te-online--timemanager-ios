@@ -125,26 +125,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data Saving support
 
     func saveContext () {
-        if managedObjectContext.hasChanges {
-            do {
-                try managedObjectContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
+        managedObjectContext.performAndWait {
+            if managedObjectContext.hasChanges {
+                do {
+                    try managedObjectContext.save()
+                } catch {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nserror = error as NSError
+                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                    abort()
+                }
             }
         }
-        if backgroundManagedObjectContext.hasChanges {
-            do {
-                try backgroundManagedObjectContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
+        
+        backgroundManagedObjectContext.performAndWait {
+            if backgroundManagedObjectContext.hasChanges {
+                do {
+                    try backgroundManagedObjectContext.save()
+                } catch {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nserror = error as NSError
+                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                    abort()
+                }
             }
         }
     }
@@ -165,37 +170,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let priority = DispatchQueue.GlobalQueuePriority.default
             // Dispatch the sync task to a background thread.
             DispatchQueue.global(priority: priority).async {
-                DispatchQueue.main.async {
-                    if let containerController = self.window?.rootViewController as? ContainerViewController {
-                        containerController.showSyncInProgress()
-                    }
+                if let containerController = self.window?.rootViewController as? ContainerViewController {
+                    containerController.showSyncInProgress()
                 }
-                let group = DispatchGroup()
-                group.enter()
-                
+            
                 let se = SyncEngine()
                 
-                DispatchQueue.main.async {
+                self.backgroundManagedObjectContext.performAndWait {
                     se.doSyncJob()
-                    group.leave()
-                }
-                
-                completion()
-                
-                group.notify(queue: .main) {
-                    DispatchQueue.main.async {
-                        if let containerController = self.window?.rootViewController as? ContainerViewController {
-                            containerController.hideSyncInProgress()
+                    
+                    if let containerController = self.window?.rootViewController as? ContainerViewController {
+                        containerController.hideSyncInProgress()
+                        containerController.showSyncError()
+                        if UserDefaults.standard.bool(forKey: "syncError") {
                             containerController.showSyncError()
-                            if UserDefaults.standard.bool(forKey: "syncError") {
-                                containerController.showSyncError()
-                            } else {
-                                containerController.hideSyncError()
-                            }
+                        } else {
+                            containerController.hideSyncError()
                         }
                     }
                 }
+                
+                completion()
             }
+        } else {
+            completion()
         }
     }
 

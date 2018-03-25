@@ -18,7 +18,7 @@ class SyncEngine {
     
     let defaults = UserDefaults.standard
     var appDelegate: AppDelegate = (UIApplication.shared.delegate as! AppDelegate)
-    var syncManagedObjectContext: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+    var syncManagedObjectContext: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).backgroundManagedObjectContext
     
     var Data: [String: [String: [AnyObject]]]!
     
@@ -113,36 +113,44 @@ class SyncEngine {
             // If we get something back that looks like a new commit number, we apply it to all touched items.
             
             if let commit = json["commit"].string {
-                NSLog("New commit: %@", commit)
-                // Save it to the defaults.
-                self.defaults.setValue(commit, forKey: "lastCommit")
-                
-                // All sent objects will now get the new commit number from the server, because they were saved.
-                for entries in self.Objects {
-                    for entry in entries {
-                        if (!(((entry as! NSManagedObject).value(forKey: "commit") as AnyObject).isEqual(String("deleted")))) {
-                            entry.setValue(commit, forKey: "commit")
-                            
-                            do {
-                                try self.syncManagedObjectContext.save()
-                            } catch {
-                                fatalError("Failed to save commit to synced entries: \(error)")
+                self.syncManagedObjectContext.performAndWait {
+                    NSLog("New commit: %@", commit)
+                    // Save it to the defaults.
+                    self.defaults.setValue(commit, forKey: "lastCommit")
+                    
+                    // All sent objects will now get the new commit number from the server, because they were saved.
+                    for entries in self.Objects {
+                        for entry in entries {
+                            if (!(((entry as! NSManagedObject).value(forKey: "commit") as AnyObject).isEqual(String("deleted")))) {
+                                entry.setValue(commit, forKey: "commit")
+                                
+                                self.syncManagedObjectContext.performAndWait {
+                                    do {
+                                        try self.syncManagedObjectContext.save()
+                                    } catch {
+                                        fatalError("Failed to save commit to synced entries: \(error)")
+                                    }
+                                }
                             }
                         }
                     }
                 }
                 
-                // All objects flagged for deletion will now be permanently deleted.
-                for entries in self.Deletables {
-                    for entry in entries {
-                        self.syncManagedObjectContext.delete(entry as! NSManagedObject)
+                self.syncManagedObjectContext.performAndWait {
+                    // All objects flagged for deletion will now be permanently deleted.
+                    for entries in self.Deletables {
+                        for entry in entries {
+                            self.syncManagedObjectContext.delete(entry as! NSManagedObject)
+                        }
                     }
-                }
+                }                
                 
-                do {
-                    try self.syncManagedObjectContext.save()
-                } catch {
-                    fatalError("Failed to save commit to synced entries: \(error)")
+                self.syncManagedObjectContext.performAndWait {
+                    do {
+                        try self.syncManagedObjectContext.save()
+                    } catch {
+                        fatalError("Failed to save commit to synced entries: \(error)")
+                    }
                 }
                 
             }
@@ -173,10 +181,12 @@ class SyncEngine {
             }
             
             // Just to be sure: Save everything.
-            do {
-                try self.syncManagedObjectContext.save()
-            } catch {
-                fatalError("Failed to save objects in sync process: \(error)")
+            self.syncManagedObjectContext.performAndWait {
+                do {
+                    try self.syncManagedObjectContext.save()
+                } catch {
+                    fatalError("Failed to save objects in sync process: \(error)")
+                }
             }
             
             self.appDelegate.saveContext()
@@ -185,82 +195,86 @@ class SyncEngine {
     
     // This function creates an object from the remote server in Core Data.
     func createObject(_ object: JSON, entityName: String) {
-        let entity = NSEntityDescription.entity(forEntityName: entityName, in: syncManagedObjectContext)
-        let item = NSManagedObject(entity: entity!, insertInto: syncManagedObjectContext)
+        self.syncManagedObjectContext.performAndWait {
+            let entity = NSEntityDescription.entity(forEntityName: entityName, in: syncManagedObjectContext)
+            let item = NSManagedObject(entity: entity!, insertInto: syncManagedObjectContext)
         
-        // 4 fields actually need to be converted from string to date, before they can be inserted into Core Data.
-        for (key, value) in object.dictionary! {
-            if(key == "created" || key == "changed" || key == "start" || key == "end") {
-                item.setValue(FormattingHelper.getDateFromISOString(value.string!), forKey: key)
-            } else {
-                item.setValue(value.string, forKey: key)
-            }
-        }
-        
-        if(entityName == "Project") {
-            // We need to set a client as the parent. Let's find him a parent.
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Client")
-            
-            let parentElement = NSPredicate(format: "uuid = %@", object["client_uuid"].string!)
-            request.predicate = parentElement
-            
-            let moc = self.syncManagedObjectContext
-            
-            do {
-                let objects = try moc.fetch(request)
-                if(objects.count > 0) {
-                    let Client = objects[0]
-                    
-                    (item as! ProjectObject).client = (Client as! ClientObject)
+            // 4 fields actually need to be converted from string to date, before they can be inserted into Core Data.
+            for (key, value) in object.dictionary! {
+                if(key == "created" || key == "changed" || key == "start" || key == "end") {
+                    item.setValue(FormattingHelper.getDateFromISOString(value.string!), forKey: key)
+                } else {
+                    item.setValue(value.string, forKey: key)
                 }
-            } catch {
-                fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
             }
-        } else if(entityName == "Task") {
-            // We need to set a project as the parent. Let's find him a parent.
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
             
-            let parentElement = NSPredicate(format: "uuid = %@", object["project_uuid"].string!)
-            request.predicate = parentElement
-            
-            let moc = self.syncManagedObjectContext
-            
-            do {
-                let objects = try moc.fetch(request)
-                if(objects.count > 0) {
-                    let Project = objects[0]
-                    
-                    (item as! TaskObject).project = (Project as! ProjectObject)
+            if(entityName == "Project") {
+                // We need to set a client as the parent. Let's find him a parent.
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Client")
+                
+                let parentElement = NSPredicate(format: "uuid = %@", object["client_uuid"].string!)
+                request.predicate = parentElement
+                
+                let moc = self.syncManagedObjectContext
+                
+                do {
+                    let objects = try moc.fetch(request)
+                    if(objects.count > 0) {
+                        let Client = objects[0]
+                        
+                        (item as! ProjectObject).client = (Client as! ClientObject)
+                    }
+                } catch {
+                    fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
                 }
-            } catch {
-                fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
-            }
-        } else if(entityName == "Time") {
-            // We need to set a task as the parent. Let's find him a parent.
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
-            
-            let parentElement = NSPredicate(format: "uuid = %@", object["task_uuid"].string!)
-            request.predicate = parentElement
-            
-            let moc = self.syncManagedObjectContext
-            
-            do {
-                let objects = try moc.fetch(request)
-                if(objects.count > 0) {
-                    let Task = objects[0]
-                    
-                    (item as! TimeObject).task = (Task as! TaskObject)
+            } else if(entityName == "Task") {
+                // We need to set a project as the parent. Let's find him a parent.
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
+                
+                let parentElement = NSPredicate(format: "uuid = %@", object["project_uuid"].string!)
+                request.predicate = parentElement
+                
+                let moc = self.syncManagedObjectContext
+                
+                do {
+                    let objects = try moc.fetch(request)
+                    if(objects.count > 0) {
+                        let Project = objects[0]
+                        
+                        (item as! TaskObject).project = (Project as! ProjectObject)
+                    }
+                } catch {
+                    fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
                 }
-            } catch {
-                fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
+            } else if(entityName == "Time") {
+                // We need to set a task as the parent. Let's find him a parent.
+                let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
+                
+                let parentElement = NSPredicate(format: "uuid = %@", object["task_uuid"].string!)
+                request.predicate = parentElement
+                
+                let moc = self.syncManagedObjectContext
+                
+                do {
+                    let objects = try moc.fetch(request)
+                    if(objects.count > 0) {
+                        let Task = objects[0]
+                        
+                        (item as! TimeObject).task = (Task as! TaskObject)
+                    }
+                } catch {
+                    fatalError("Failed to execute fetch request for parent client in sync process: \(error)")
+                }
             }
         }
         
         // Save everything.
-        do {
-            try self.syncManagedObjectContext.save()
-        } catch {
-            fatalError("Failed to save objects in sync process: \(error)")
+        self.syncManagedObjectContext.performAndWait {
+            do {
+                try self.syncManagedObjectContext.save()
+            } catch {
+                fatalError("Failed to save objects in sync process: \(error)")
+            }
         }
         
         self.appDelegate.saveContext()
@@ -268,31 +282,33 @@ class SyncEngine {
     
     // This function tries to update objects that come from the server. If there is no local copy, they will be created.
     func updateObject(_ object: JSON, entityName: String) {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        
-        let thisElement = NSPredicate(format: "uuid = %@", object["uuid"].string!)
-        request.predicate = thisElement
-        
-        do {
-            let objects = try self.syncManagedObjectContext.fetch(request)
-            if(objects.count > 0) {
-                let item = objects[0]
-                
-                // If there is an object like the updated one, just replace all the attributes with the new ones.
-                for (key, value) in object.dictionary! {
-                    // 4 fields actually need to be converted from string to date, before they can be inserted into Core Data.
-                    if(key == "created" || key == "changed" || key == "start" || key == "end") {
-                        (item as AnyObject).setValue(FormattingHelper.getDateFromISOString(value.string!), forKey: key)
-                    } else {
-                        (item as AnyObject).setValue(value.string, forKey: key)
+        self.syncManagedObjectContext.performAndWait {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            
+            let thisElement = NSPredicate(format: "uuid = %@", object["uuid"].string!)
+            request.predicate = thisElement
+            
+            do {
+                let objects = try self.syncManagedObjectContext.fetch(request)
+                if(objects.count > 0) {
+                    let item = objects[0]
+                    
+                    // If there is an object like the updated one, just replace all the attributes with the new ones.
+                    for (key, value) in object.dictionary! {
+                        // 4 fields actually need to be converted from string to date, before they can be inserted into Core Data.
+                        if(key == "created" || key == "changed" || key == "start" || key == "end") {
+                            (item as AnyObject).setValue(FormattingHelper.getDateFromISOString(value.string!), forKey: key)
+                        } else {
+                            (item as AnyObject).setValue(value.string, forKey: key)
+                        }
                     }
+                } else {
+                    // Okay, can't find it. Let's create one.
+                    self.createObject(object, entityName: entityName)
                 }
-            } else {
-                // Okay, can't find it. Let's create one.
-                self.createObject(object, entityName: entityName)
+            } catch {
+                fatalError("Failed to execute fetch request alter item in sync process: \(error)")
             }
-        } catch {
-            fatalError("Failed to execute fetch request alter item in sync process: \(error)")
         }
         
         self.appDelegate.saveContext()
@@ -300,21 +316,23 @@ class SyncEngine {
     
     // This function deleted objects that were marked as deleted by the server.
     func deleteObject(_ object: JSON, entityName: String) {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        
-        let thisElement = NSPredicate(format: "uuid = %@", object["uuid"].string!)
-        request.predicate = thisElement
-        
-        do {
-            let objects = try self.syncManagedObjectContext.fetch(request)
-            // Found it? Just delete it.
-            if(objects.count > 0) {
-                let item = objects[0]
+        self.syncManagedObjectContext.performAndWait {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
             
-                self.syncManagedObjectContext.delete(item as! NSManagedObject)
+            let thisElement = NSPredicate(format: "uuid = %@", object["uuid"].string!)
+            request.predicate = thisElement
+            
+            do {
+                let objects = try self.syncManagedObjectContext.fetch(request)
+                // Found it? Just delete it.
+                if(objects.count > 0) {
+                    let item = objects[0]
+                    
+                    self.syncManagedObjectContext.delete(item as! NSManagedObject)
+                }
+            } catch {
+                fatalError("Failed to execute fetch request for delete item in sync process: \(error)")
             }
-        } catch {
-            fatalError("Failed to execute fetch request for delete item in sync process: \(error)")
         }
         
         self.appDelegate.saveContext()
