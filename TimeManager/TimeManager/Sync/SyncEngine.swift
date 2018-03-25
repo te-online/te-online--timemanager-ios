@@ -190,6 +190,9 @@ class SyncEngine {
             }
             
             self.appDelegate.saveContext()
+            self.syncManagedObjectContext.performAndWait {
+                self.syncManagedObjectContext.refreshAllObjects()
+            }
             self.appDelegate.syncEnded(error: (json == JSON.null))
         })
     }
