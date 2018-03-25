@@ -513,13 +513,10 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="M4y-Uq-AgY">
-                                        <rect key="frame" x="33" y="907" width="20" height="20"/>
+                                        <rect key="frame" x="33" y="869" width="20" height="20"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SYNCING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAz-xa-dJb">
-                                        <rect key="frame" x="0.0" y="931" width="86" height="23"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="23" id="G1t-sx-vPm"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="899.5" width="86" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                         <color key="textColor" red="0.51372551918029785" green="0.52549022436141968" blue="0.53333336114883423" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -535,8 +532,22 @@
                                             <segue destination="4e4-wf-iOJ" kind="presentation" modalPresentationStyle="formSheet" id="NGm-R0-4QN"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ezv-sN-zI3">
+                                        <rect key="frame" x="18" y="930" width="50" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="0wg-hj-9hI"/>
+                                            <constraint firstAttribute="height" constant="34" id="mbM-Kj-iJi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                        <state key="normal" title="Sync">
+                                            <color key="titleColor" red="0.47450980539999998" green="0.75294119120000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SyncButtonPressed:" destination="hje-Nn-7VH" eventType="touchUpInside" id="OTZ-NA-jk6"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SYNC ERROR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYY-YN-KNf">
-                                        <rect key="frame" x="0.0" y="871.5" width="86" height="16.5"/>
+                                        <rect key="frame" x="0.0" y="899" width="86" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                         <color key="textColor" red="0.81568628549575806" green="0.22352941334247589" blue="0.062745101749897003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -545,25 +556,27 @@
                                 <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="aM6-K5-8Ns" firstAttribute="top" secondItem="1A1-ab-oz6" secondAttribute="top" constant="25" id="56l-eA-rwE"/>
+                                    <constraint firstItem="M4y-Uq-AgY" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="APg-MT-Ajb"/>
+                                    <constraint firstItem="EAz-xa-dJb" firstAttribute="centerX" secondItem="hJb-0C-amA" secondAttribute="centerX" id="AoF-uE-S9v"/>
                                     <constraint firstItem="hJb-0C-amA" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="DGf-zY-sKn"/>
-                                    <constraint firstItem="M4y-Uq-AgY" firstAttribute="centerX" secondItem="EAz-xa-dJb" secondAttribute="centerX" id="GPN-jW-lCJ"/>
+                                    <constraint firstItem="Ezv-sN-zI3" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="DdB-t0-kgJ"/>
                                     <constraint firstItem="yTn-ax-adf" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="Ihe-MO-vEd"/>
                                     <constraint firstItem="cGx-II-c1F" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="L9F-lQ-xO9"/>
                                     <constraint firstItem="yTn-ax-adf" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="MDI-Ze-kQu"/>
                                     <constraint firstItem="cGx-II-c1F" firstAttribute="top" secondItem="aM6-K5-8Ns" secondAttribute="bottom" id="V4j-eo-DTE"/>
                                     <constraint firstItem="KYY-YN-KNf" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="VRX-rD-Ed2"/>
-                                    <constraint firstItem="EAz-xa-dJb" firstAttribute="top" secondItem="M4y-Uq-AgY" secondAttribute="bottom" constant="4" id="VWk-Ao-Tr8"/>
-                                    <constraint firstItem="M4y-Uq-AgY" firstAttribute="top" secondItem="KYY-YN-KNf" secondAttribute="bottom" constant="19" id="bMF-pI-sic"/>
+                                    <constraint firstItem="hJb-0C-amA" firstAttribute="top" secondItem="Ezv-sN-zI3" secondAttribute="bottom" constant="15" id="XBW-D4-KqC"/>
+                                    <constraint firstItem="M4y-Uq-AgY" firstAttribute="top" secondItem="KYY-YN-KNf" secondAttribute="bottom" constant="-46.5" id="bMF-pI-sic"/>
                                     <constraint firstAttribute="bottom" secondItem="hJb-0C-amA" secondAttribute="bottom" constant="24" id="btD-pf-yXi"/>
+                                    <constraint firstItem="EAz-xa-dJb" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="dkK-As-7yz"/>
+                                    <constraint firstItem="hJb-0C-amA" firstAttribute="top" secondItem="EAz-xa-dJb" secondAttribute="bottom" constant="63" id="fpB-wh-OPe"/>
                                     <constraint firstItem="aM6-K5-8Ns" firstAttribute="centerX" secondItem="1A1-ab-oz6" secondAttribute="centerX" id="jbR-RP-iTC"/>
                                     <constraint firstAttribute="width" constant="86" id="k4T-ap-qKu"/>
                                     <constraint firstItem="cGx-II-c1F" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="kuj-Wi-FTr"/>
-                                    <constraint firstItem="EAz-xa-dJb" firstAttribute="centerX" secondItem="hJb-0C-amA" secondAttribute="centerX" id="lc1-1i-GtJ"/>
                                     <constraint firstItem="aM6-K5-8Ns" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="mvG-x6-Zak"/>
                                     <constraint firstItem="yTn-ax-adf" firstAttribute="top" secondItem="cGx-II-c1F" secondAttribute="bottom" id="oyg-U9-Fej"/>
-                                    <constraint firstItem="EAz-xa-dJb" firstAttribute="width" secondItem="1A1-ab-oz6" secondAttribute="width" id="pFU-yW-anH"/>
                                     <constraint firstItem="KYY-YN-KNf" firstAttribute="centerX" secondItem="M4y-Uq-AgY" secondAttribute="centerX" id="q9J-qj-naO"/>
-                                    <constraint firstItem="hJb-0C-amA" firstAttribute="top" secondItem="EAz-xa-dJb" secondAttribute="bottom" constant="25" id="xup-IL-IKM"/>
+                                    <constraint firstItem="EAz-xa-dJb" firstAttribute="top" secondItem="M4y-Uq-AgY" secondAttribute="bottom" constant="10.5" id="rOX-IY-pcc"/>
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </view>
@@ -3294,6 +3307,6 @@
         <segue reference="Ciq-Bt-Zfc"/>
         <segue reference="cln-V8-Md1"/>
         <segue reference="OKW-vY-WJX"/>
-        <segue reference="kZG-yn-k2n"/>
+        <segue reference="okA-0A-YbN"/>
     </inferredMetricsTieBreakers>
 </document>

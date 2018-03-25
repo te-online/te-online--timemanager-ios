@@ -167,33 +167,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             syncActive = false
         }
         if(syncActive) {
-            let priority = DispatchQueue.GlobalQueuePriority.default
-            // Dispatch the sync task to a background thread.
-            DispatchQueue.global(priority: priority).async {
+            DispatchQueue.main.async {
                 if let containerController = self.window?.rootViewController as? ContainerViewController {
+                    containerController.hideSyncError()
                     containerController.showSyncInProgress()
                 }
             
-                let se = SyncEngine()
+                let syncEngine = SyncEngine()
                 
                 self.backgroundManagedObjectContext.performAndWait {
-                    se.doSyncJob()
-                    
-                    if let containerController = self.window?.rootViewController as? ContainerViewController {
-                        containerController.hideSyncInProgress()
-                        containerController.showSyncError()
-                        if UserDefaults.standard.bool(forKey: "syncError") {
-                            containerController.showSyncError()
-                        } else {
-                            containerController.hideSyncError()
-                        }
-                    }
+                    syncEngine.doSyncJob()
                 }
                 
                 completion()
             }
         } else {
             completion()
+        }
+    }
+    
+    func syncEnded(error: Bool) {
+        DispatchQueue.main.async {
+            if let containerController = self.window?.rootViewController as? ContainerViewController {
+                containerController.hideSyncInProgress()
+                if error {
+                    containerController.showSyncError()
+                } else {
+                    containerController.hideSyncError()
+                }
+            }
         }
     }
 

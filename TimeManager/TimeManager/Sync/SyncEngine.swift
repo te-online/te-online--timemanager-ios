@@ -190,6 +190,7 @@ class SyncEngine {
             }
             
             self.appDelegate.saveContext()
+            self.appDelegate.syncEnded(error: (json == JSON.null))
         })
     }
     

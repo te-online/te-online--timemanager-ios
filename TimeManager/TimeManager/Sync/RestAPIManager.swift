@@ -98,15 +98,8 @@ class RestApiManager: NSObject {
                 }
                 if let jsonData = data {
                     let json:JSON = JSON(data: jsonData)
-                    if (json == JSON.null) {
-                        // Empty response / no response
-                        self.defaults.setValue(true, forKey: "syncError")
-                    } else {
-                        self.defaults.setValue(false, forKey: "syncError")
-                    }
                     onCompletion(json, nil)
                 } else {
-                    self.defaults.setValue(true, forKey: "syncError")
                     onCompletion(JSON.null, error as NSError?)
                 }
             })

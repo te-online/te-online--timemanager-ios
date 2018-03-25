@@ -19,7 +19,7 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var SyncErrorLabel: UILabel!
     @IBOutlet weak var SyncingText: UILabel!
     @IBOutlet weak var NaviView: UIView!
-    
+
     @IBOutlet weak var OverviewButton: UIButton!
     @IBOutlet weak var EntriesButton: UIButton!
     @IBOutlet weak var StatisticsButton: UIButton!
@@ -78,6 +78,10 @@ class ContainerViewController: UIViewController {
     
     @IBAction func NavBarButtonStatisticsTouched(_ sender: AnyObject) {
         self.cycleFromViewController(fromViewController: self.currentViewController, toViewController: self.statisticsScreenController)
+    }
+    
+    @IBAction func SyncButtonPressed(_ sender: Any) {
+        (UIApplication.shared.delegate as! AppDelegate).syncInBackground({})
     }
     
     func displayContentController(_ content: UIViewController!) {
