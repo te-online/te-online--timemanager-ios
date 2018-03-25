@@ -84,7 +84,7 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
         DurationPickerView.dataSource = self
         DurationPickerView.delegate = self
         
-        currentDuration = PickerDurations.first!
+        self.currentDuration = PickerDurations.first!
         
         // Give some orientation, where the user is.
         if self.currentTaskObject != nil {
@@ -104,9 +104,10 @@ class TimeEditController: UIViewController, UIPickerViewDataSource, UIPickerView
             StartPickerView.setDate(self.editTimeObject.start! as Date, animated: false)
             
             // Set the hours picker view.
-            let num = self.PickerDurations.index(of: String(format: "%g", self.editTimeObject.getDurationInHours()))
+            let num = self.PickerDurations.index(of: String(format: "%g", (self.editTimeObject.getDurationInHours()).round(nearest: 0.25)))
             if num != nil  {
                 DurationPickerView.selectRow(num!, inComponent: 0, animated: false)
+                self.currentDuration = PickerDurations[num!]
             }
             
             // Rename buttons.
