@@ -22,10 +22,10 @@ class RestApiManager: NSObject {
         // If the service URL is our debug URL, don't use https, otherwise we should and must.
         self.serviceUrl = defaults.string(forKey: "cloudSyncServer") ?? ""
         if(self.serviceUrl == "192.168.178.80:8888/nextcloud-server/index.php/apps/timemanager") {
-            self.baseURL = "http://" + self.serviceUrl + "/api/updateObjects"
+            self.baseURL = "http://" + self.serviceUrl + "/index.php/apps/timemanager/api/updateObjects"
             // self.baseURL = "http://192.168.178.80:4444/api/updateObjects"
         } else {
-            self.baseURL = "https://" + self.serviceUrl + "/api/updateObjects"
+            self.baseURL = "https://" + self.serviceUrl + "/index.php/apps/timemanager/api/updateObjects"
         }
         NSLog("%@", self.baseURL)
     }
