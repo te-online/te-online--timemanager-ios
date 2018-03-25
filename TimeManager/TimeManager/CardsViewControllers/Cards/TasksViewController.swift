@@ -126,6 +126,7 @@ class TasksViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         
         item?.setValue(project.name, forKey: "name")
         item?.setValue(now, forKey: "changed")
+        item?.setValue(nil, forKey: "commit")
         
         do {
             try dataController.managedObjectContext.save()

@@ -97,7 +97,8 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
                 try moc.save()
                 (self as CardOfViewDeckController).delegate?.didDeleteTask()
             } catch {
-                fatalError("Failed to delete task: \(error)")
+                // @todo Do something sensible here.
+//                fatalError("Failed to delete task: \(error)")
             }
         }
     }
@@ -120,7 +121,8 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         do {
             try dataController.managedObjectContext.save()
         } catch {
-            fatalError("Failure to save context: \(error)")
+            // @todo Do something sensible here.
+//            fatalError("Failure to save context: \(error)")
         }
     }
     
@@ -131,12 +133,14 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         
         item?.setValue(task.name, forKey: "name")
         item?.setValue(now, forKey: "changed")
+        item?.setValue(nil, forKey: "commit")
         
         do {
             try dataController.managedObjectContext.save()
             self.populateCurrentTaskDetails()
         } catch {
-            fatalError("Failure to save context: \(error)")
+            // @todo Do something sensible here.
+//            fatalError("Failure to save context: \(error)")
         }
     }
     
@@ -149,12 +153,14 @@ class TimesViewController: CardOfViewDeckController, NSFetchedResultsControllerD
         item?.setValue(time.start, forKey: "start")
         item?.setValue(time.end, forKey: "end")
         item?.setValue(now, forKey: "changed")
+        item?.setValue(nil, forKey: "commit")
         
         do {
-            try dataController.managedObjectContext.save()
+            try self.dataController.managedObjectContext.save()
             self.collectionView!.reloadData()
         } catch {
-            fatalError("Failure to save context: \(error)")
+            // @todo Do something sensible here.
+//                fatalError("Failure to save context: \(error)")
         }
     }
     

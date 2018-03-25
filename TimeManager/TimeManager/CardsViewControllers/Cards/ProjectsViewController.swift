@@ -129,6 +129,7 @@ class ProjectsViewController: CardOfViewDeckController, NSFetchedResultsControll
         item?.setValue(client.city, forKey: "city")
         item?.setValue(client.note, forKey: "note")
         item?.setValue(now, forKey: "changed")
+        item?.setValue(nil, forKey: "commit")
         
         do {
             try dataController.managedObjectContext.save()
